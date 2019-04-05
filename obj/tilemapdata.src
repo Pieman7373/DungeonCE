@@ -46,6 +46,39 @@ _tilemap_map:
 	DB	5
 	DB	5
 	DB	5
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
 	DB	1
 	DB	1
 	DB	1

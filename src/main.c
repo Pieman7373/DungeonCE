@@ -25,7 +25,7 @@
 #include "maingameloop.h"
 
 #include "gfx/dungeon_gfx.h"
-#include "gfx/tiles/tiles_gfx.h"
+#include "gfx/tiles_gfx.h"
 
 
 
@@ -47,18 +47,19 @@
 	int editpy = 10;
 	
 	//for tilemap stuff
-	
+
 	#define TILE_WIDTH          32
 	#define TILE_HEIGHT         32
 
-	#define TILEMAP_WIDTH       10
-	#define TILEMAP_HEIGHT      7
+	#define TILEMAP_WIDTH       11
+	#define TILEMAP_HEIGHT      8
 
 	#define TILEMAP_DRAW_WIDTH  10
 	#define TILEMAP_DRAW_HEIGHT 7
 
 	#define Y_OFFSET            0
 	#define X_OFFSET            0
+	
 	
 	unsigned int x_offset = 0;
 	unsigned int y_offset = 0;

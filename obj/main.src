@@ -93,7 +93,7 @@ _player_setup:
 ;   25	#include "maingameloop.h"
 ;   26	
 ;   27	#include "gfx/dungeon_gfx.h"
-;   28	#include "gfx/tiles/tiles_gfx.h"
+;   28	#include "gfx/tiles_gfx.h"
 ;   29	
 ;   30	
 ;   31	
@@ -115,12 +115,12 @@ _player_setup:
 ;   47		int editpy = 10;
 ;   48		
 ;   49		//for tilemap stuff
-;   50		
+;   50	
 ;   51		#define TILE_WIDTH          32
 ;   52		#define TILE_HEIGHT         32
 ;   53	
-;   54		#define TILEMAP_WIDTH       10
-;   55		#define TILEMAP_HEIGHT      7
+;   54		#define TILEMAP_WIDTH       11
+;   55		#define TILEMAP_HEIGHT      8
 ;   56	
 ;   57		#define TILEMAP_DRAW_WIDTH  10
 ;   58		#define TILEMAP_DRAW_HEIGHT 7
@@ -128,59 +128,60 @@ _player_setup:
 ;   60		#define Y_OFFSET            0
 ;   61		#define X_OFFSET            0
 ;   62		
-;   63		unsigned int x_offset = 0;
-;   64		unsigned int y_offset = 0;
-;   65		
-;   66		extern uint8_t tilemap_map[];
-;   67		
+;   63		
+;   64		unsigned int x_offset = 0;
+;   65		unsigned int y_offset = 0;
+;   66		
+;   67		extern uint8_t tilemap_map[];
 ;   68		
 ;   69		
-;   70		//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
-;   71		signed int setnumber = 0;
-;   72		
-;   73		//{helmet,chestplate,boots,weapon,x,y,x offset,y offset}
-;   74		uint8_t player_setup [8] = {0,0,0,0,0,0,0,0};
+;   70		
+;   71		//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
+;   72		signed int setnumber = 0;
+;   73		
+;   74		//{helmet,chestplate,boots,weapon,x,y,x offset,y offset}
+;   75		uint8_t player_setup [8] = {0,0,0,0,0,0,0,0};
 	SEGMENT CODE
-;   75		
-;   76	void main(void) {
+;   76		
+;   77	void main(void) {
 _main:
 	LD	HL,-18
 	CALL	__frameset
-;   77		
-;   78		kb_key_t key;
-;   79		gfx_tilemap_t tilemap;
-;   80	
-;   81	    /* Initialize the tilemap structure */
-;   82		tilemap.map         = tilemap_map;
+;   78		
+;   79		kb_key_t key;
+;   80		gfx_tilemap_t tilemap;
+;   81	
+;   82	    /* Initialize the tilemap structure */
+;   83		tilemap.map         = tilemap_map;
 	LD	BC,_tilemap_map
 	LD	(IX+-18),BC
-;   83	    tilemap.tiles       = tileset_tiles;
+;   84	    tilemap.tiles       = tileset_tiles;
 	LD	BC,_tileset_tiles_data
 	LD	(IX+-15),BC
-;   84	    tilemap.type_width  = gfx_tile_32_pixel;
+;   85	    tilemap.type_width  = gfx_tile_32_pixel;
 	LD	(IX+-8),5
-;   85	    tilemap.type_height = gfx_tile_32_pixel;
+;   86	    tilemap.type_height = gfx_tile_32_pixel;
 	LD	(IX+-7),5
-;   86	    tilemap.tile_height = TILE_HEIGHT;
+;   87	    tilemap.tile_height = TILE_HEIGHT;
 	LD	(IX+-12),32
-;   87	    tilemap.tile_width  = TILE_WIDTH;
+;   88	    tilemap.tile_width  = TILE_WIDTH;
 	LD	(IX+-11),32
-;   88	    tilemap.draw_height = TILEMAP_DRAW_HEIGHT;
+;   89	    tilemap.draw_height = TILEMAP_DRAW_HEIGHT;
 	LD	(IX+-10),7
-;   89	    tilemap.draw_width  = TILEMAP_DRAW_WIDTH;
+;   90	    tilemap.draw_width  = TILEMAP_DRAW_WIDTH;
 	LD	(IX+-9),10
-;   90	    tilemap.height      = TILEMAP_HEIGHT;
-	LD	(IX+-6),7
-;   91	    tilemap.width       = TILEMAP_WIDTH;
-	LD	(IX+-5),10
-;   92	    tilemap.y_loc       = Y_OFFSET;
+;   91	    tilemap.height      = TILEMAP_HEIGHT;
+	LD	(IX+-6),8
+;   92	    tilemap.width       = TILEMAP_WIDTH;
+	LD	(IX+-5),11
+;   93	    tilemap.y_loc       = Y_OFFSET;
 	LD	(IX+-4),0
-;   93	    tilemap.x_loc       = X_OFFSET;
+;   94	    tilemap.x_loc       = X_OFFSET;
 	LD	BC,0
 	LD	(IX+-3),BC
-;   94		
 ;   95		
-;   96		gfx_SetPalette(dungeon_gfx_pal, sizeof_dungeon_gfx_pal, 0);
+;   96		
+;   97		gfx_SetPalette(dungeon_gfx_pal, sizeof_dungeon_gfx_pal, 0);
 	PUSH	BC
 	LD	BC,512
 	PUSH	BC
@@ -190,78 +191,78 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   97		gfx_SetTransparentColor(transcolor);
+;   98		gfx_SetTransparentColor(transcolor);
 	LD	A,(_transcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTransparentColor
 	POP	BC
-;   98		gfx_Begin();
+;   99		gfx_Begin();
 	CALL	_gfx_Begin
-;   99		kb_SetMode(3);
+;  100		kb_SetMode(3);
 	LD	A,(16056320)
 	AND	A,252
 	OR	A,3
 	LD	(16056320),A
-;  100	
-;  101		
-;  102		do {
+;  101	
+;  102		
+;  103		do {
 L_8:
-;  103			
-;  104			/*pick whether to continue or not*/
-;  105			
-;  106			mainmenu ();
+;  104			
+;  105			/*pick whether to continue or not*/
+;  106			
+;  107			mainmenu ();
 	CALL	_mainmenu
-;  107	
-;  108			//menuyes comes from the mainmenu function
-;  109			//menuyes chunk begin
-;  110			if (menuyes == 1) {
-;  111				if (kb_Data[3] & kb_1) {
-;  112					
-;  113				}
-;  114			}
-;  115			if (menuyes == 1) {
+;  108	
+;  109			//menuyes comes from the mainmenu function
+;  110			//menuyes chunk begin
+;  111			if (menuyes == 1) {
+;  112				if (kb_Data[3] & kb_1) {
+;  113					
+;  114				}
+;  115			}
+;  116			if (menuyes == 1) {
 	LD	BC,1
 	LD	HL,(_menuyes)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_7
-;  116				if (kb_Data[4] & kb_2) {
+;  117				if (kb_Data[4] & kb_2) {
 	LD	A,(16056344)
 	AND	A,2
 	JR	Z,L_7
-;  117					maingameloop();
+;  118					maingameloop();
 	CALL	_maingameloop
-;  118				}
-;  119			}
+;  119				}
+;  120			}
 L_7:
-;  120			if (menuyes == 1) {
+;  121			if (menuyes == 1) {
 	LD	BC,1
 	LD	HL,(_menuyes)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_9
-;  121				if (kb_Data[5] & kb_3) {
+;  122				if (kb_Data[5] & kb_3) {
 	LD	A,(16056346)
 	AND	A,2
 	JR	Z,L_9
-;  122					options();
+;  123					options();
 	CALL	_options
-;  123				}
-;  124			}
-;  125			//menuyes chunk end
-;  126		
+;  124				}
+;  125			}
+;  126			//menuyes chunk end
 ;  127		
-;  128		} while (!(kb_Data[6] & kb_Clear));
+;  128		
+;  129		} while (!(kb_Data[6] & kb_Clear));
 L_9:
 	LD	A,(16056348)
 	AND	A,64
 	JR	Z,L_8
-;  129		
-;  130		gfx_End();
+;  130		
+;  131		gfx_End();
 	CALL	_gfx_End
-;  131	}
+;  132	}
 	LD	SP,IX
 	POP	IX
 	RET	

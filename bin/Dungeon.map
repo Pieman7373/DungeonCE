@@ -4,7 +4,7 @@ Copyright (C) 1999-2008 Zilog, Inc. All Rights Reserved
 
 LINK MAP:
 
-DATE:      Thu Apr 04 23:44:46 2019
+DATE:      Fri Apr 05 05:32:46 2019
 PROCESSOR: assembler
 FILES:     obj\main.obj           
            obj\maingameloop.obj
@@ -33,7 +33,8 @@ FILES:     obj\main.obj
            obj\steel_chestplate_down.obj
            obj\steel_helmet_down.obj
            obj\steel_sword.obj
-           obj\iconc.obj          
+           obj\tiles_gfx.obj
+           obj\tileset.obj        obj\iconc.obj          
            C:\Users\Pieman773\Desktop\CECdev\lib\ccleanup.obj
            C:\Users\Pieman773\Desktop\CECdev\lib\cce.lib
            C:\Users\Pieman773\Desktop\CECdev\lib\cshared.lib
@@ -49,16 +50,15 @@ FILES:     obj\main.obj
 
 COMMAND LIST:
 =============
--FORMAT=INTEL32 -map -maxhexlen=64 -quiet -warnoverlap -xref -unresolved=fatal -sort ADDRESS=ascending -warn -NOdebug -NOigcase define __copy_code_to_ram = 0 range rom $000000 : $3FFFFF range ram $D00000 : $FFFFFF range bss $D031F6 : $D13FD6 change code is ram change data is ram change text is ram change strsect is text define __low_bss = base of bss define __len_bss = length of bss define __heaptop = (highaddr of bss) define __heapbot = (top of bss)+1 define __stack = $D1A87E locate .header at $D1A87F locate .icon at (top of .header)+1 locate .launcher at (top of .icon)+1 locate .libs at (top of .launcher)+1 locate .graphx_header at (top of .libs)+1 locate .graphx at (top of .graphx_header)+1 locate .keypadc_header at (top of .graphx+1) locate .keypadc at (top of .keypadc_header)+1 locate .startup at (top of .keypadc)+1 locate .cleanup at (top of .startup)+1 locate .exit at (top of .cleanup)+1 locate code at (top of .exit)+1 locate data at (top of code)+1 locate text at (top of data)+1 bin/Dungeon.hex = obj\main.obj,obj\maingameloop.obj,obj\menuandeditfunctions.obj,obj\tilemapdata.obj,obj\chain_boots_down.obj,obj\chain_chestplate_down.obj,obj\chain_helmet_down.obj,obj\club.obj,obj\dragon_boots_down.obj,obj\dragon_chestplate_down.obj,obj\dragon_helmet_down.obj,obj\dragon_sword.obj,obj\dungeon_gfx.obj,obj\editmenunumbers.obj,obj\iron_sword.obj,obj\leather_boots_down.obj,obj\leather_chestplate_down.obj,obj\leather_helmet_down.obj,obj\mainmenulogo.obj,obj\menuwords.obj,obj\no_item.obj,obj\optionsmenu.obj,obj\player_naked_down.obj,obj\steel_boots_down.obj,obj\steel_chestplate_down.obj,obj\steel_helmet_down.obj,obj\steel_sword.obj,obj\iconc.obj,C:\Users\Pieman773\Desktop\CECdev\lib\ccleanup.obj,C:\Users\Pieman773\Desktop\CECdev\lib\cce.lib,C:\Users\Pieman773\Desktop\CECdev\lib\cshared.lib,C:\Users\Pieman773\Desktop\CECdev\lib\clinked.lib,C:\Users\Pieman773\Desktop\CECdev\lib\graphx.lib,C:\Users\Pieman773\Desktop\CECdev\lib\keypadc.lib,C:\Users\Pieman773\Desktop\CECdev\lib\graphx_header.obj,C:\Users\Pieman773\Desktop\CECdev\lib\keypadc_header.obj,C:\Users\Pieman773\Desktop\CECdev\lib\libheader.obj,C:\Users\Pieman773\Desktop\CECdev\lib\cstartup.obj 
-WARNING (724) --> Symbol _tileset_tiles_data (obj\main.obj) is not defined.
+-FORMAT=INTEL32 -map -maxhexlen=64 -quiet -warnoverlap -xref -unresolved=fatal -sort ADDRESS=ascending -warn -NOdebug -NOigcase define __copy_code_to_ram = 0 range rom $000000 : $3FFFFF range ram $D00000 : $FFFFFF range bss $D031F6 : $D13FD6 change code is ram change data is ram change text is ram change strsect is text define __low_bss = base of bss define __len_bss = length of bss define __heaptop = (highaddr of bss) define __heapbot = (top of bss)+1 define __stack = $D1A87E locate .header at $D1A87F locate .icon at (top of .header)+1 locate .launcher at (top of .icon)+1 locate .libs at (top of .launcher)+1 locate .graphx_header at (top of .libs)+1 locate .graphx at (top of .graphx_header)+1 locate .keypadc_header at (top of .graphx+1) locate .keypadc at (top of .keypadc_header)+1 locate .startup at (top of .keypadc)+1 locate .cleanup at (top of .startup)+1 locate .exit at (top of .cleanup)+1 locate code at (top of .exit)+1 locate data at (top of code)+1 locate text at (top of data)+1 bin/Dungeon.hex = obj\main.obj,obj\maingameloop.obj,obj\menuandeditfunctions.obj,obj\tilemapdata.obj,obj\chain_boots_down.obj,obj\chain_chestplate_down.obj,obj\chain_helmet_down.obj,obj\club.obj,obj\dragon_boots_down.obj,obj\dragon_chestplate_down.obj,obj\dragon_helmet_down.obj,obj\dragon_sword.obj,obj\dungeon_gfx.obj,obj\editmenunumbers.obj,obj\iron_sword.obj,obj\leather_boots_down.obj,obj\leather_chestplate_down.obj,obj\leather_helmet_down.obj,obj\mainmenulogo.obj,obj\menuwords.obj,obj\no_item.obj,obj\optionsmenu.obj,obj\player_naked_down.obj,obj\steel_boots_down.obj,obj\steel_chestplate_down.obj,obj\steel_helmet_down.obj,obj\steel_sword.obj,obj\tiles_gfx.obj,obj\tileset.obj,obj\iconc.obj,C:\Users\Pieman773\Desktop\CECdev\lib\ccleanup.obj,C:\Users\Pieman773\Desktop\CECdev\lib\cce.lib,C:\Users\Pieman773\Desktop\CECdev\lib\cshared.lib,C:\Users\Pieman773\Desktop\CECdev\lib\clinked.lib,C:\Users\Pieman773\Desktop\CECdev\lib\graphx.lib,C:\Users\Pieman773\Desktop\CECdev\lib\keypadc.lib,C:\Users\Pieman773\Desktop\CECdev\lib\graphx_header.obj,C:\Users\Pieman773\Desktop\CECdev\lib\keypadc_header.obj,C:\Users\Pieman773\Desktop\CECdev\lib\libheader.obj,C:\Users\Pieman773\Desktop\CECdev\lib\cstartup.obj 
 
 SPACE ALLOCATION:
 =================
 
 Space                     Base         Top      Size      Used    Unused
 ------------------ ----------- ----------- --------- --------- ---------
-RAM                   D:D031F6    D:D2BBAD   300000H    11347H   2EECB9H
-                                          (  3145728     70471   3075257)
+RAM                   D:D031F6    D:D2DDD5   300000H    1356FH   2ECA91H
+                                          (  3145728     79215   3066513)
 
 
 SEGMENTS WITHIN SPACE:
@@ -76,205 +76,218 @@ RAM                Type                Base        Top         Size
 .launcher          normal data            D:D1A99E    D:D1A9ED       50h
 .startup           normal data            D:D1AA4D    D:D1AA87       3bh
 BSS                normal data            D:D031F6    D:D0320D       18h
-CODE               normal data            D:D1AAA4    D:D1B543      aa0h
-DATA               normal data            D:D1B544    D:D2BB67    10624h
-TEXT               normal data            D:D2BB68    D:D2BBAD       46h
+CODE               normal data            D:D1AAA4    D:D1B537      a94h
+DATA               normal data            D:D1B538    D:D2DDA4    1286dh
+TEXT               normal data            D:D2DDA5    D:D2DDD5       31h
 
 SEGMENTS WITHIN MODULES:
 ========================
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_BOOTS_DOWN.C (File: chain_boots_down.obj) Version: 1:0 04/04/2019 23:44:42
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_BOOTS_DOWN.C (File: chain_boots_down.obj) Version: 1:0 04/05/2019 05:32:41
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1B5C2    D:D1B9C3      402h
+    Segment: DATA                              D:D1B5D7    D:D1B9D8      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_CHESTPLATE_DOWN.C (File: chain_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:42
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1B9C4    D:D1BDC5      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_HELMET_DOWN.C (File: chain_helmet_down.obj) Version: 1:0 04/04/2019 23:44:42
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_CHESTPLATE_DOWN.C (File: chain_chestplate_down.obj) Version: 1:0 04/05/2019 05:32:41
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1BDC6    D:D1C1C7      402h
+    Segment: DATA                              D:D1B9D9    D:D1BDDA      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CLUB.C (File: club.obj) Version: 1:0 04/04/2019 23:44:42
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1C1C8    D:D1C5C9      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_BOOTS_DOWN.C (File: dragon_boots_down.obj) Version: 1:0 04/04/2019 23:44:43
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_HELMET_DOWN.C (File: chain_helmet_down.obj) Version: 1:0 04/05/2019 05:32:41
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1C5CA    D:D1C9CB      402h
+    Segment: DATA                              D:D1BDDB    D:D1C1DC      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_CHESTPLATE_DOWN.C (File: dragon_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:43
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1C9CC    D:D1CDCD      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_HELMET_DOWN.C (File: dragon_helmet_down.obj) Version: 1:0 04/04/2019 23:44:43
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CLUB.C (File: club.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1CDCE    D:D1D1CF      402h
+    Segment: DATA                              D:D1C1DD    D:D1C5DE      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_SWORD.C (File: dragon_sword.obj) Version: 1:0 04/04/2019 23:44:43
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1D1D0    D:D1D5D1      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DUNGEON_GFX.C (File: dungeon_gfx.obj) Version: 1:0 04/04/2019 23:44:43
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_BOOTS_DOWN.C (File: dragon_boots_down.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1D5D2    D:D1D7D1      200h
+    Segment: DATA                              D:D1C5DF    D:D1C9E0      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\EDITMENUNUMBERS.C (File: editmenunumbers.obj) Version: 1:0 04/04/2019 23:44:43
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1D7D2    D:D1EA93     12c2h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\IRON_SWORD.C (File: iron_sword.obj) Version: 1:0 04/04/2019 23:44:43
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_CHESTPLATE_DOWN.C (File: dragon_chestplate_down.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1EA94    D:D1EE95      402h
+    Segment: DATA                              D:D1C9E1    D:D1CDE2      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_BOOTS_DOWN.C (File: leather_boots_down.obj) Version: 1:0 04/04/2019 23:44:43
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1EE96    D:D1F297      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_CHESTPLATE_DOWN.C (File: leather_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:44
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_HELMET_DOWN.C (File: dragon_helmet_down.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1F298    D:D1F699      402h
+    Segment: DATA                              D:D1CDE3    D:D1D1E4      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_HELMET_DOWN.C (File: leather_helmet_down.obj) Version: 1:0 04/04/2019 23:44:44
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1F69A    D:D1FA9B      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MAINMENULOGO.C (File: mainmenulogo.obj) Version: 1:0 04/04/2019 23:44:44
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_SWORD.C (File: dragon_sword.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1FA9C    D:D2538F     58f4h
+    Segment: DATA                              D:D1D1E5    D:D1D5E6      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MENUWORDS.C (File: menuwords.obj) Version: 1:0 04/04/2019 23:44:44
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D25390    D:D26719     138ah
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\NO_ITEM.C (File: no_item.obj) Version: 1:0 04/04/2019 23:44:44
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DUNGEON_GFX.C (File: dungeon_gfx.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D2671A    D:D26B1B      402h
+    Segment: DATA                              D:D1D5E7    D:D1D7E6      200h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\OPTIONSMENU.C (File: optionsmenu.obj) Version: 1:0 04/04/2019 23:44:44
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D26B1C    D:D2A73B     3c20h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\PLAYER_NAKED_DOWN.C (File: player_naked_down.obj) Version: 1:0 04/04/2019 23:44:44
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\EDITMENUNUMBERS.C (File: editmenunumbers.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D2A73C    D:D2AB3D      402h
+    Segment: DATA                              D:D1D7E7    D:D1EAA8     12c2h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_BOOTS_DOWN.C (File: steel_boots_down.obj) Version: 1:0 04/04/2019 23:44:45
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D2AB3E    D:D2AF3F      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_CHESTPLATE_DOWN.C (File: steel_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:45
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\IRON_SWORD.C (File: iron_sword.obj) Version: 1:0 04/05/2019 05:32:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D2AF40    D:D2B341      402h
+    Segment: DATA                              D:D1EAA9    D:D1EEAA      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_HELMET_DOWN.C (File: steel_helmet_down.obj) Version: 1:0 04/04/2019 23:44:45
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D2B342    D:D2B743      402h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_SWORD.C (File: steel_sword.obj) Version: 1:0 04/04/2019 23:44:45
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_BOOTS_DOWN.C (File: leather_boots_down.obj) Version: 1:0 04/05/2019 05:32:43
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D2B744    D:D2BB45      402h
+    Segment: DATA                              D:D1EEAB    D:D1F2AC      402h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C (File: main.obj) Version: 1:0 04/04/2019 23:44:42
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_CHESTPLATE_DOWN.C (File: leather_chestplate_down.obj) Version: 1:0 04/05/2019 05:32:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1F2AD    D:D1F6AE      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_HELMET_DOWN.C (File: leather_helmet_down.obj) Version: 1:0 04/05/2019 05:32:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1F6AF    D:D1FAB0      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MAINMENULOGO.C (File: mainmenulogo.obj) Version: 1:0 04/05/2019 05:32:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1FAB1    D:D253A4     58f4h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MENUWORDS.C (File: menuwords.obj) Version: 1:0 04/05/2019 05:32:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D253A5    D:D2672E     138ah
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\NO_ITEM.C (File: no_item.obj) Version: 1:0 04/05/2019 05:32:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2672F    D:D26B30      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\OPTIONSMENU.C (File: optionsmenu.obj) Version: 1:0 04/05/2019 05:32:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D26B31    D:D2A750     3c20h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\PLAYER_NAKED_DOWN.C (File: player_naked_down.obj) Version: 1:0 04/05/2019 05:32:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2A751    D:D2AB52      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_BOOTS_DOWN.C (File: steel_boots_down.obj) Version: 1:0 04/05/2019 05:32:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2AB53    D:D2AF54      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_CHESTPLATE_DOWN.C (File: steel_chestplate_down.obj) Version: 1:0 04/05/2019 05:32:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2AF55    D:D2B356      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_HELMET_DOWN.C (File: steel_helmet_down.obj) Version: 1:0 04/05/2019 05:32:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2B357    D:D2B758      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_SWORD.C (File: steel_sword.obj) Version: 1:0 04/05/2019 05:32:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2B759    D:D2BB5A      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILES_GFX.C (File: tiles_gfx.obj) Version: 1:0 04/05/2019 05:32:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2BB5B    D:D2BD5A      200h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C (File: tileset.obj) Version: 1:0 04/05/2019 05:32:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2BD5B    D:D2DD82     2028h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C (File: main.obj) Version: 1:0 04/05/2019 05:32:40
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: BSS                               D:D031F6    D:D031FB        6h
     Segment: CODE                              D:D1AAA4    D:D1AB5A       b7h
-    Segment: DATA                              D:D1B544    D:D1B57B       38h
+    Segment: DATA                              D:D1B538    D:D1B56F       38h
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C (File: maingameloop.obj) Version: 1:0 04/04/2019 23:44:42
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C (File: maingameloop.obj) Version: 1:0 04/05/2019 05:32:40
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: BSS                               D:D031FC    D:D0320D       12h
-    Segment: CODE                              D:D1AB5B    D:D1ABC4       6ah
-    Segment: TEXT (was STRSECT)                D:D2BB68    D:D2BB7C       15h
+    Segment: CODE                              D:D1AB5B    D:D1ABB8       5eh
 
 
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C (File: menuandeditfunctions.obj) Version: 1:0 04/04/2019 23:44:42
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                              D:D1ABC5    D:D1B535      971h
-    Segment: TEXT (was STRSECT)                D:D2BB7D    D:D2BBAD       31h
-
-
-Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\TILEMAPDATA.C (File: tilemapdata.obj) Version: 1:0 04/04/2019 23:44:42
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C (File: menuandeditfunctions.obj) Version: 1:0 04/05/2019 05:32:41
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:D1B57C    D:D1B5C1       46h
+    Segment: CODE                              D:D1ABB9    D:D1B529      971h
+    Segment: TEXT (was STRSECT)                D:D2DDA5    D:D2DDD5       31h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\TILEMAPDATA.C (File: tilemapdata.obj) Version: 1:0 04/05/2019 05:32:41
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1B570    D:D1B5D6       67h
 
 
 Module: ccleanup.asm (File: ccleanup.obj) Version: 1:0 07/24/2017 21:53:14
@@ -297,7 +310,7 @@ Module: frameset.src (Library: cshared.lib) Version: 1:0 07/24/2017 21:51:33
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                              D:D1B536    D:D1B543        eh
+    Segment: CODE                              D:D1B52A    D:D1B537        eh
 
 
 Module: gfx_Begin.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:27
@@ -318,49 +331,35 @@ Module: gfx_FillRectangle.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:4
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1AA07    D:D1AA0A        4h
+    Segment: .graphx                           D:D1AA0B    D:D1AA0E        4h
 
 
 Module: gfx_FillScreen.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:34
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1AA0F    D:D1AA12        4h
+    Segment: .graphx                           D:D1AA13    D:D1AA16        4h
 
 
 Module: gfx_HorizLine.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:41
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1A9FF    D:D1AA02        4h
-
-
-Module: gfx_PrintString.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:45
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1AA0B    D:D1AA0E        4h
+    Segment: .graphx                           D:D1AA03    D:D1AA06        4h
 
 
 Module: gfx_PrintStringXY.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:45
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1AA03    D:D1AA06        4h
-
-
-Module: gfx_PrintUInt.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:46
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1AA13    D:D1AA16        4h
+    Segment: .graphx                           D:D1AA07    D:D1AA0A        4h
 
 
 Module: gfx_Rectangle.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:48
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: .graphx                           D:D1A9FB    D:D1A9FE        4h
+    Segment: .graphx                           D:D1A9FF    D:D1AA02        4h
 
 
 Module: gfx_ScaledTransparentSprite_NoClip.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:53
@@ -375,6 +374,13 @@ Module: gfx_SetColor.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:54
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: .graphx                           D:D1AA1F    D:D1AA22        4h
+
+
+Module: gfx_SetDraw.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:54
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA0F    D:D1AA12        4h
 
 
 Module: gfx_SetPalette.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:55
@@ -419,6 +425,13 @@ Module: gfx_SetTransparentColor.src (Library: graphx.lib) Version: 1:0 07/24/201
     Segment: .graphx                           D:D1AA1B    D:D1AA1E        4h
 
 
+Module: gfx_SwapDraw.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:50:03
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1A9FB    D:D1A9FE        4h
+
+
 Module: gfx_Tilemap.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:50:06
 
     Name                                        Base        Top      Size
@@ -440,7 +453,7 @@ Module: graphx_header.asm (File: graphx_header.obj) Version: 1:0 07/24/2017 21:5
     Segment: .graphx_header                    D:D1A9EE    D:D1A9F6        9h
 
 
-Module: iconc.src (File: iconc.obj) Version: 1:0 04/04/2019 23:44:45
+Module: iconc.src (File: iconc.obj) Version: 1:0 04/05/2019 05:32:45
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
@@ -459,7 +472,7 @@ Module: libheader.asm (File: libheader.obj) Version: 1:0 07/24/2017 21:53:15
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: .launcher                         D:D1A99E    D:D1A9ED       50h
-    Segment: DATA                              D:D2BB46    D:D2BB67       22h
+    Segment: DATA                              D:D2DD83    D:D2DDA4       22h
 
 EXTERNAL DEFINITIONS:
 =====================
@@ -591,13 +604,13 @@ _init                               D:D1A882 cstartup        .header
 __program_icon                      D:D1A887 iconc           .icon                           
 __program_description               D:D1A989 iconc           .icon                           
 _gfx_SetTextFGColor                 D:D1A9F7 gfx_SetTextFGCo .graphx                         
-_gfx_Rectangle                      D:D1A9FB gfx_Rectangle   .graphx                         
-_gfx_HorizLine                      D:D1A9FF gfx_HorizLine   .graphx                         
-_gfx_PrintStringXY                  D:D1AA03 gfx_PrintString .graphx                         
-_gfx_FillRectangle                  D:D1AA07 gfx_FillRectang .graphx                         
-_gfx_PrintString                    D:D1AA0B gfx_PrintString .graphx                         
-_gfx_FillScreen                     D:D1AA0F gfx_FillScreen  .graphx                         
-_gfx_PrintUInt                      D:D1AA13 gfx_PrintUInt   .graphx                         
+_gfx_SwapDraw                       D:D1A9FB gfx_SwapDraw    .graphx                         
+_gfx_Rectangle                      D:D1A9FF gfx_Rectangle   .graphx                         
+_gfx_HorizLine                      D:D1AA03 gfx_HorizLine   .graphx                         
+_gfx_PrintStringXY                  D:D1AA07 gfx_PrintString .graphx                         
+_gfx_FillRectangle                  D:D1AA0B gfx_FillRectang .graphx                         
+_gfx_SetDraw                        D:D1AA0F gfx_SetDraw     .graphx                         
+_gfx_FillScreen                     D:D1AA13 gfx_FillScreen  .graphx                         
 _gfx_Begin                          D:D1AA17 gfx_Begin       .graphx                         
 _gfx_SetTransparentColor            D:D1AA1B gfx_SetTranspar .graphx                         
 _gfx_SetColor                       D:D1AA1F gfx_SetColor    .graphx                         
@@ -614,60 +627,70 @@ __errsp                             D:D1AA7A cstartup        .startup
 _exit                               D:D1AA9E cstartup        .exit                           
 _main                               D:D1AAA4 MAIN            CODE                            
 _maingameloop                       D:D1AB5B MAINGAMELOOP    CODE                            
-_drawmap                            D:D1AB68 MAINGAMELOOP    CODE                            
-_drawcharacter                      D:D1ABC3 MAINGAMELOOP    CODE                            
-_drawenemies                        D:D1ABC4 MAINGAMELOOP    CODE                            
-_keywait                            D:D1ABC5 MENUANDEDITFUNC CODE                            
-_mainmenu                           D:D1ABCD MENUANDEDITFUNC CODE                            
-_options                            D:D1AC83 MENUANDEDITFUNC CODE                            
-_playercreate                       D:D1AD32 MENUANDEDITFUNC CODE                            
-_draweditedplayer                   D:D1AE83 MENUANDEDITFUNC CODE                            
-_drawequipment                      D:D1B28E MENUANDEDITFUNC CODE                            
-_menubkgnd                          D:D1B4EB MENUANDEDITFUNC CODE                            
-__frameset                          D:D1B536 frameset        CODE                            
-_textcolor                          D:D1B544 MAIN            DATA                            
-_accentcolor                        D:D1B547 MAIN            DATA                            
-_menucolor                          D:D1B54A MAIN            DATA                            
-_submenucolor                       D:D1B54D MAIN            DATA                            
-_transcolor                         D:D1B550 MAIN            DATA                            
-_editweaponx                        D:D1B553 MAIN            DATA                            
-_editweapony                        D:D1B556 MAIN            DATA                            
-_editweaponsmallx                   D:D1B559 MAIN            DATA                            
-_editweaponsmally                   D:D1B55C MAIN            DATA                            
-_editscale                          D:D1B55F MAIN            DATA                            
-_editscalep                         D:D1B562 MAIN            DATA                            
-_editpx                             D:D1B565 MAIN            DATA                            
-_editpy                             D:D1B568 MAIN            DATA                            
-_x_offset                           D:D1B56B MAIN            DATA                            
-_y_offset                           D:D1B56E MAIN            DATA                            
-_setnumber                          D:D1B571 MAIN            DATA                            
-_player_setup                       D:D1B574 MAIN            DATA                            
-_tilemap_map                        D:D1B57C TILEMAPDATA     DATA                            
-_chain_boots_down_data              D:D1B5C2 CHAIN_BOOTS_DOW DATA                            
-_chain_chestplate_down_data         D:D1B9C4 CHAIN_CHESTPLAT DATA                            
-_chain_helmet_down_data             D:D1BDC6 CHAIN_HELMET_DO DATA                            
-_club_data                          D:D1C1C8 CLUB            DATA                            
-_dragon_boots_down_data             D:D1C5CA DRAGON_BOOTS_DO DATA                            
-_dragon_chestplate_down_data        D:D1C9CC DRAGON_CHESTPLA DATA                            
-_dragon_helmet_down_data            D:D1CDCE DRAGON_HELMET_D DATA                            
-_dragon_sword_data                  D:D1D1D0 DRAGON_SWORD    DATA                            
-_dungeon_gfx_pal                    D:D1D5D2 DUNGEON_GFX     DATA                            
-_editmenunumbers_data               D:D1D7D2 EDITMENUNUMBERS DATA                            
-_iron_sword_data                    D:D1EA94 IRON_SWORD      DATA                            
-_leather_boots_down_data            D:D1EE96 LEATHER_BOOTS_D DATA                            
-_leather_chestplate_down_data       D:D1F298 LEATHER_CHESTPL DATA                            
-_leather_helmet_down_data           D:D1F69A LEATHER_HELMET_ DATA                            
-_mainmenulogo_data                  D:D1FA9C MAINMENULOGO    DATA                            
-_menuwords_data                     D:D25390 MENUWORDS       DATA                            
-_no_item_data                       D:D2671A NO_ITEM         DATA                            
-_optionsmenu_data                   D:D26B1C OPTIONSMENU     DATA                            
-_player_naked_down_data             D:D2A73C PLAYER_NAKED_DO DATA                            
-_steel_boots_down_data              D:D2AB3E STEEL_BOOTS_DOW DATA                            
-_steel_chestplate_down_data         D:D2AF40 STEEL_CHESTPLAT DATA                            
-_steel_helmet_down_data             D:D2B342 STEEL_HELMET_DO DATA                            
-_steel_sword_data                   D:D2B744 STEEL_SWORD     DATA                            
+_drawmap                            D:D1AB70 MAINGAMELOOP    CODE                            
+_drawcharacter                      D:D1ABB7 MAINGAMELOOP    CODE                            
+_drawenemies                        D:D1ABB8 MAINGAMELOOP    CODE                            
+_keywait                            D:D1ABB9 MENUANDEDITFUNC CODE                            
+_mainmenu                           D:D1ABC1 MENUANDEDITFUNC CODE                            
+_options                            D:D1AC77 MENUANDEDITFUNC CODE                            
+_playercreate                       D:D1AD26 MENUANDEDITFUNC CODE                            
+_draweditedplayer                   D:D1AE77 MENUANDEDITFUNC CODE                            
+_drawequipment                      D:D1B282 MENUANDEDITFUNC CODE                            
+_menubkgnd                          D:D1B4DF MENUANDEDITFUNC CODE                            
+__frameset                          D:D1B52A frameset        CODE                            
+_textcolor                          D:D1B538 MAIN            DATA                            
+_accentcolor                        D:D1B53B MAIN            DATA                            
+_menucolor                          D:D1B53E MAIN            DATA                            
+_submenucolor                       D:D1B541 MAIN            DATA                            
+_transcolor                         D:D1B544 MAIN            DATA                            
+_editweaponx                        D:D1B547 MAIN            DATA                            
+_editweapony                        D:D1B54A MAIN            DATA                            
+_editweaponsmallx                   D:D1B54D MAIN            DATA                            
+_editweaponsmally                   D:D1B550 MAIN            DATA                            
+_editscale                          D:D1B553 MAIN            DATA                            
+_editscalep                         D:D1B556 MAIN            DATA                            
+_editpx                             D:D1B559 MAIN            DATA                            
+_editpy                             D:D1B55C MAIN            DATA                            
+_x_offset                           D:D1B55F MAIN            DATA                            
+_y_offset                           D:D1B562 MAIN            DATA                            
+_setnumber                          D:D1B565 MAIN            DATA                            
+_player_setup                       D:D1B568 MAIN            DATA                            
+_tilemap_map                        D:D1B570 TILEMAPDATA     DATA                            
+_chain_boots_down_data              D:D1B5D7 CHAIN_BOOTS_DOW DATA                            
+_chain_chestplate_down_data         D:D1B9D9 CHAIN_CHESTPLAT DATA                            
+_chain_helmet_down_data             D:D1BDDB CHAIN_HELMET_DO DATA                            
+_club_data                          D:D1C1DD CLUB            DATA                            
+_dragon_boots_down_data             D:D1C5DF DRAGON_BOOTS_DO DATA                            
+_dragon_chestplate_down_data        D:D1C9E1 DRAGON_CHESTPLA DATA                            
+_dragon_helmet_down_data            D:D1CDE3 DRAGON_HELMET_D DATA                            
+_dragon_sword_data                  D:D1D1E5 DRAGON_SWORD    DATA                            
+_dungeon_gfx_pal                    D:D1D5E7 DUNGEON_GFX     DATA                            
+_editmenunumbers_data               D:D1D7E7 EDITMENUNUMBERS DATA                            
+_iron_sword_data                    D:D1EAA9 IRON_SWORD      DATA                            
+_leather_boots_down_data            D:D1EEAB LEATHER_BOOTS_D DATA                            
+_leather_chestplate_down_data       D:D1F2AD LEATHER_CHESTPL DATA                            
+_leather_helmet_down_data           D:D1F6AF LEATHER_HELMET_ DATA                            
+_mainmenulogo_data                  D:D1FAB1 MAINMENULOGO    DATA                            
+_menuwords_data                     D:D253A5 MENUWORDS       DATA                            
+_no_item_data                       D:D2672F NO_ITEM         DATA                            
+_optionsmenu_data                   D:D26B31 OPTIONSMENU     DATA                            
+_player_naked_down_data             D:D2A751 PLAYER_NAKED_DO DATA                            
+_steel_boots_down_data              D:D2AB53 STEEL_BOOTS_DOW DATA                            
+_steel_chestplate_down_data         D:D2AF55 STEEL_CHESTPLAT DATA                            
+_steel_helmet_down_data             D:D2B357 STEEL_HELMET_DO DATA                            
+_steel_sword_data                   D:D2B759 STEEL_SWORD     DATA                            
+_tiles_gfx_pal                      D:D2BB5B TILES_GFX       DATA                            
+_tileset_tile_0_data                D:D2BD5B TILESET         DATA                            
+_tileset_tile_1_data                D:D2C15D TILESET         DATA                            
+_tileset_tile_2_data                D:D2C55F TILESET         DATA                            
+_tileset_tile_3_data                D:D2C961 TILESET         DATA                            
+_tileset_tile_4_data                D:D2CD63 TILESET         DATA                            
+_tileset_tile_5_data                D:D2D165 TILESET         DATA                            
+_tileset_tile_6_data                D:D2D567 TILESET         DATA                            
+_tileset_tile_7_data                D:D2D969 TILESET         DATA                            
+_tileset_tiles_data                 D:D2DD6B TILESET         DATA                            
 
-200 external symbol(s).
+210 external symbol(s).
 
 SYMBOL CROSS REFERENCE:
 =======================
@@ -804,31 +827,32 @@ __program_icon                    Defined     iconc.src
 __program_description             Defined     iconc.src
 _gfx_SetTextFGColor               Defined     gfx_SetTextFGColor.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_SwapDraw                     Defined     gfx_SwapDraw.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
 _gfx_Rectangle                    Defined     gfx_Rectangle.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
 _gfx_HorizLine                    Defined     gfx_HorizLine.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
 _gfx_PrintStringXY                Defined     gfx_PrintStringXY.src
-                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
 _gfx_FillRectangle                Defined     gfx_FillRectangle.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
-_gfx_PrintString                  Defined     gfx_PrintString.src
+_gfx_SetDraw                      Defined     gfx_SetDraw.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
 _gfx_FillScreen                   Defined     gfx_FillScreen.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
-_gfx_PrintUInt                    Defined     gfx_PrintUInt.src
-                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
 _gfx_Begin                        Defined     gfx_Begin.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
 _gfx_SetTransparentColor          Defined     gfx_SetTransparentColor.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
 _gfx_SetColor                     Defined     gfx_SetColor.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
 _gfx_SetTextScale                 Defined     gfx_SetTextScale.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
 _gfx_SetPalette                   Defined     gfx_SetPalette.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
 _gfx_Tilemap                      Defined     gfx_Tilemap.src
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
 _gfx_SetTextTransparentColor      Defined     gfx_SetTextTransparentColor.src
@@ -943,16 +967,26 @@ _steel_helmet_down_data           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CE
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
 _steel_sword_data                 Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_SWORD.C
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
-
-UNDEFINED SYMBOL CROSS REFERENCE:
-=================================
-Name                              Use         Module
---------------------------------- ----------- -------------------------
-_tileset_tiles_data               UNDEFINED
+_tiles_gfx_pal                    Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILES_GFX.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_tileset_tile_0_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_1_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_2_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_3_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_4_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_5_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_6_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tile_7_data              Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
+_tileset_tiles_data               Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\TILESET.C
                                   Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+
+OUTPUT CHECKSUM
+===============
+bin/Dungeon.hex      F14D10
+
 
 
 END OF LINK MAP:
 ================
 0 Errors
-1 Warnings
+0 Warnings

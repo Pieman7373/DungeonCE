@@ -28,6 +28,14 @@ Transparent Color : 0xFC78
  mainmenulogo : converted!
  menuwords : converted!
 
+--- Group tiles_gfx (C) ---
+Using built-in xlibc palette ...
+warning: might ignore transparent color value for a fixed palette.
+Transparent Color Index : 0
+Transparent Color : 0xFC78
+1:
+ tileset : converted!
+
 Converted in 0 s
 
 [warning] image quality might be too low.

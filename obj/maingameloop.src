@@ -9,7 +9,7 @@ _tilemap:
 ;    1	#include "menuandeditfunctions.h"
 ;    2	#include "maingameloop.h"
 ;    3	#include "gfx/dungeon_gfx.h"
-;    4	#include "gfx/tiles/tiles_gfx.h"
+;    4	#include "gfx/tiles_gfx.h"
 ;    5	
 ;    6	#include <stdbool.h>
 ;    7	#include <stddef.h>
@@ -53,16 +53,20 @@ _maingameloop:
 ;   43		} while (!(kb_Data[6] & kb_Clear));
 ;   44	}
 ;   45	*/
-;   46	
-;   47		do{
-L_0:
-;   48			drawmap();
+;   46	drawmap();
 	CALL	_drawmap
-;   49		
-;   50		} while (!(kb_Data[6] & kb_Clear));
+;   47		do{
+L_1:
+;   48		
+;   49		} while (!((kb_Data[6] & kb_Clear)||(kb_Data[1] & kb_Del)));
 	LD	A,(16056348)
 	AND	A,64
-	JR	Z,L_0
+	JR	NZ,L_3
+	LD	A,(16056338)
+	AND	A,128
+	JR	Z,L_1
+L_3:
+;   50		return;
 ;   51	}
 	RET	
 
@@ -81,9 +85,28 @@ L_0:
 ;   54	void drawmap(void) {
 _drawmap:
 ;   55		
-;   56		//gfx_SetDrawBuffer();
-;   57		
-;   58		gfx_Tilemap(&tilemap, x_offset, y_offset);
+;   56		gfx_SetDrawScreen();
+	LD	BC,0
+	PUSH	BC
+	CALL	_gfx_SetDraw
+	POP	BC
+;   57		gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
+	LD	BC,0
+	PUSH	BC
+	LD	BC,512
+	PUSH	BC
+	LD	BC,_tiles_gfx_pal
+	PUSH	BC
+	CALL	_gfx_SetPalette
+	POP	BC
+	POP	BC
+	POP	BC
+;   58		gfx_SetColor(0x00);
+	LD	BC,0
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   59		gfx_Tilemap(&tilemap, x_offset, y_offset);
 	LD	BC,(_y_offset)
 	PUSH	BC
 	LD	BC,(_x_offset)
@@ -94,67 +117,36 @@ _drawmap:
 	POP	BC
 	POP	BC
 	POP	BC
-;   59		gfx_PrintStringXY("x offset:", 8, 277);
-	LD	BC,277
-	PUSH	BC
-	LD	BC,8
-	PUSH	BC
-	LD	BC,L__2
-	PUSH	BC
-	CALL	_gfx_PrintStringXY
-	POP	BC
-	POP	BC
-	POP	BC
-;   60		gfx_PrintUInt(x_offset, 4);
-	LD	BC,4
-	PUSH	BC
-	LD	BC,(_x_offset)
-	PUSH	BC
-	CALL	_gfx_PrintUInt
-	POP	BC
-	POP	BC
-;   61		gfx_PrintString(" y_offset:");
-	LD	BC,L__3
-	PUSH	BC
-	CALL	_gfx_PrintString
-	POP	BC
-;   62		gfx_PrintUInt(y_offset, 4);
-	LD	BC,4
-	PUSH	BC
-	LD	BC,(_y_offset)
-	PUSH	BC
-	CALL	_gfx_PrintUInt
-	POP	BC
-	POP	BC
-;   63	}
+;   60		//gfx_PrintStringXY("x offset:", 8, 277);
+;   61		//gfx_PrintUInt(x_offset, 4);
+;   62		//gfx_PrintString(" y offset:");
+;   63		//gfx_PrintUInt(y_offset, 4);
+;   64		
+;   65		gfx_SwapDraw();
+	CALL	_gfx_SwapDraw
+;   66	}
 	RET	
 
 
 ;**************************** _drawmap ***************************
 ;Name                         Addr/Register   Size   Type
-;_gfx_PrintString                    IMPORT  -----   function
-;_gfx_PrintUInt                      IMPORT  -----   function
-;_gfx_PrintStringXY                  IMPORT  -----   function
+;_gfx_SwapDraw                       IMPORT  -----   function
 ;_tilemap                            STATIC     18   variable
 ;_x_offset                           IMPORT      3   variable
 ;_y_offset                           IMPORT      3   variable
 ;_gfx_Tilemap                        IMPORT  -----   function
+;_gfx_SetColor                       IMPORT  -----   function
+;_tiles_gfx_pal                      IMPORT    512   variable
+;_gfx_SetPalette                     IMPORT  -----   function
+;_gfx_SetDraw                        IMPORT  -----   function
 
 
 ; Stack Frame Size: 6 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-	SEGMENT STRSECT
-L__2:
-	DB	"x offset:"
-	DB	0
-L__3:
-	DB	" y_offset:"
-	DB	0
-	SEGMENT CODE
-;   64	
-;   65	void drawcharacter(void) {}
+;   67	
+;   68	void drawcharacter(void) {}
 _drawcharacter:
 	RET	
 
@@ -167,9 +159,9 @@ _drawcharacter:
 ;       Spill Code: 0 (instruction)
 
 
-;   66	
-;   67	
-;   68	void drawenemies(void) {}
+;   69	
+;   70	
+;   71	void drawenemies(void) {}
 _drawenemies:
 	RET	
 
@@ -184,10 +176,12 @@ _drawenemies:
 
 	XREF _y_offset:ROM
 	XREF _x_offset:ROM
-	XREF _gfx_PrintStringXY:ROM
-	XREF _gfx_PrintString:ROM
-	XREF _gfx_PrintUInt:ROM
+	XREF _gfx_SwapDraw:ROM
+	XREF _gfx_SetDraw:ROM
+	XREF _gfx_SetPalette:ROM
+	XREF _gfx_SetColor:ROM
 	XREF _gfx_Tilemap:ROM
+	XREF _tiles_gfx_pal:ROM
 	XDEF _drawenemies
 	XDEF _drawcharacter
 	XDEF _drawmap
