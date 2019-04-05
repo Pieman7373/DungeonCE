@@ -1,0 +1,37 @@
+Opened convpng.ini
+
+--- Group dungeon_gfx (C) ---
+Using built-in xlibc palette ...
+warning: might ignore transparent color value for a fixed palette.
+Transparent Color Index : 0
+Transparent Color : 0xFC78
+21:
+ player_naked_down : converted!
+ leather_helmet_down : converted!
+ chain_helmet_down : converted!
+ steel_helmet_down : converted!
+ dragon_helmet_down : converted!
+ leather_chestplate_down : converted!
+ chain_chestplate_down : converted!
+ steel_chestplate_down : converted!
+ dragon_chestplate_down : converted!
+ leather_boots_down : converted!
+ chain_boots_down : converted!
+ steel_boots_down : converted!
+ dragon_boots_down : converted!
+ club : converted!
+ iron_sword : converted!
+ steel_sword : converted!
+ dragon_sword : converted!
+ optionsmenu : converted!
+ editmenunumbers : converted!
+ mainmenulogo : converted!
+ menuwords : converted!
+
+Converted in 0 s
+
+[warning] image quality might be too low.
+please try grouping similar images, reducing image colors, 
+or selecting a better palette if conversion is not ideal.
+
+Finished!

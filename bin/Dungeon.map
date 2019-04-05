@@ -1,0 +1,958 @@
+
+IEEE 695 OMF Linker Version 6.25 (11121301)
+Copyright (C) 1999-2008 Zilog, Inc. All Rights Reserved
+
+LINK MAP:
+
+DATE:      Thu Apr 04 23:44:46 2019
+PROCESSOR: assembler
+FILES:     obj\main.obj           
+           obj\maingameloop.obj
+           obj\menuandeditfunctions.obj
+           obj\tilemapdata.obj
+           obj\chain_boots_down.obj
+           obj\chain_chestplate_down.obj
+           obj\chain_helmet_down.obj
+           obj\club.obj           
+           obj\dragon_boots_down.obj
+           obj\dragon_chestplate_down.obj
+           obj\dragon_helmet_down.obj
+           obj\dragon_sword.obj
+           obj\dungeon_gfx.obj
+           obj\editmenunumbers.obj
+           obj\iron_sword.obj
+           obj\leather_boots_down.obj
+           obj\leather_chestplate_down.obj
+           obj\leather_helmet_down.obj
+           obj\mainmenulogo.obj
+           obj\menuwords.obj
+           obj\no_item.obj        
+           obj\optionsmenu.obj
+           obj\player_naked_down.obj
+           obj\steel_boots_down.obj
+           obj\steel_chestplate_down.obj
+           obj\steel_helmet_down.obj
+           obj\steel_sword.obj
+           obj\iconc.obj          
+           C:\Users\Pieman773\Desktop\CECdev\lib\ccleanup.obj
+           C:\Users\Pieman773\Desktop\CECdev\lib\cce.lib
+           C:\Users\Pieman773\Desktop\CECdev\lib\cshared.lib
+           C:\Users\Pieman773\Desktop\CECdev\lib\clinked.lib
+           C:\Users\Pieman773\Desktop\CECdev\lib\graphx.lib
+           C:\Users\Pieman773\Desktop\CECdev\lib\keypadc.lib
+           C:\Users\Pieman773\Desktop\CECdev\lib\graphx_header.obj
+           C:\Users\Pieman773\Desktop\CECdev\lib\keypadc_header.obj
+           C:\Users\Pieman773\Desktop\CECdev\lib\libheader.obj
+           C:\Users\Pieman773\Desktop\CECdev\lib\cstartup.obj
+           
+
+
+COMMAND LIST:
+=============
+-FORMAT=INTEL32 -map -maxhexlen=64 -quiet -warnoverlap -xref -unresolved=fatal -sort ADDRESS=ascending -warn -NOdebug -NOigcase define __copy_code_to_ram = 0 range rom $000000 : $3FFFFF range ram $D00000 : $FFFFFF range bss $D031F6 : $D13FD6 change code is ram change data is ram change text is ram change strsect is text define __low_bss = base of bss define __len_bss = length of bss define __heaptop = (highaddr of bss) define __heapbot = (top of bss)+1 define __stack = $D1A87E locate .header at $D1A87F locate .icon at (top of .header)+1 locate .launcher at (top of .icon)+1 locate .libs at (top of .launcher)+1 locate .graphx_header at (top of .libs)+1 locate .graphx at (top of .graphx_header)+1 locate .keypadc_header at (top of .graphx+1) locate .keypadc at (top of .keypadc_header)+1 locate .startup at (top of .keypadc)+1 locate .cleanup at (top of .startup)+1 locate .exit at (top of .cleanup)+1 locate code at (top of .exit)+1 locate data at (top of code)+1 locate text at (top of data)+1 bin/Dungeon.hex = obj\main.obj,obj\maingameloop.obj,obj\menuandeditfunctions.obj,obj\tilemapdata.obj,obj\chain_boots_down.obj,obj\chain_chestplate_down.obj,obj\chain_helmet_down.obj,obj\club.obj,obj\dragon_boots_down.obj,obj\dragon_chestplate_down.obj,obj\dragon_helmet_down.obj,obj\dragon_sword.obj,obj\dungeon_gfx.obj,obj\editmenunumbers.obj,obj\iron_sword.obj,obj\leather_boots_down.obj,obj\leather_chestplate_down.obj,obj\leather_helmet_down.obj,obj\mainmenulogo.obj,obj\menuwords.obj,obj\no_item.obj,obj\optionsmenu.obj,obj\player_naked_down.obj,obj\steel_boots_down.obj,obj\steel_chestplate_down.obj,obj\steel_helmet_down.obj,obj\steel_sword.obj,obj\iconc.obj,C:\Users\Pieman773\Desktop\CECdev\lib\ccleanup.obj,C:\Users\Pieman773\Desktop\CECdev\lib\cce.lib,C:\Users\Pieman773\Desktop\CECdev\lib\cshared.lib,C:\Users\Pieman773\Desktop\CECdev\lib\clinked.lib,C:\Users\Pieman773\Desktop\CECdev\lib\graphx.lib,C:\Users\Pieman773\Desktop\CECdev\lib\keypadc.lib,C:\Users\Pieman773\Desktop\CECdev\lib\graphx_header.obj,C:\Users\Pieman773\Desktop\CECdev\lib\keypadc_header.obj,C:\Users\Pieman773\Desktop\CECdev\lib\libheader.obj,C:\Users\Pieman773\Desktop\CECdev\lib\cstartup.obj 
+WARNING (724) --> Symbol _tileset_tiles_data (obj\main.obj) is not defined.
+
+SPACE ALLOCATION:
+=================
+
+Space                     Base         Top      Size      Used    Unused
+------------------ ----------- ----------- --------- --------- ---------
+RAM                   D:D031F6    D:D2BBAD   300000H    11347H   2EECB9H
+                                          (  3145728     70471   3075257)
+
+
+SEGMENTS WITHIN SPACE:
+======================
+
+RAM                Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+.cleanup           normal data            D:D1AA88    D:D1AA9B       14h
+.exit              normal data            D:D1AA9C    D:D1AAA3        8h
+.graphx            normal data            D:D1A9F7    D:D1AA42       4ch
+.graphx_header     normal data            D:D1A9EE    D:D1A9F6        9h
+.header            normal data            D:D1A87F    D:D1A881        3h
+.icon              normal data            D:D1A882    D:D1A99D      11ch
+.keypadc_header    normal data            D:D1AA43    D:D1AA4C        ah
+.launcher          normal data            D:D1A99E    D:D1A9ED       50h
+.startup           normal data            D:D1AA4D    D:D1AA87       3bh
+BSS                normal data            D:D031F6    D:D0320D       18h
+CODE               normal data            D:D1AAA4    D:D1B543      aa0h
+DATA               normal data            D:D1B544    D:D2BB67    10624h
+TEXT               normal data            D:D2BB68    D:D2BBAD       46h
+
+SEGMENTS WITHIN MODULES:
+========================
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_BOOTS_DOWN.C (File: chain_boots_down.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1B5C2    D:D1B9C3      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_CHESTPLATE_DOWN.C (File: chain_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1B9C4    D:D1BDC5      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_HELMET_DOWN.C (File: chain_helmet_down.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1BDC6    D:D1C1C7      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CLUB.C (File: club.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1C1C8    D:D1C5C9      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_BOOTS_DOWN.C (File: dragon_boots_down.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1C5CA    D:D1C9CB      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_CHESTPLATE_DOWN.C (File: dragon_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1C9CC    D:D1CDCD      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_HELMET_DOWN.C (File: dragon_helmet_down.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1CDCE    D:D1D1CF      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_SWORD.C (File: dragon_sword.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1D1D0    D:D1D5D1      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DUNGEON_GFX.C (File: dungeon_gfx.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1D5D2    D:D1D7D1      200h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\EDITMENUNUMBERS.C (File: editmenunumbers.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1D7D2    D:D1EA93     12c2h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\IRON_SWORD.C (File: iron_sword.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1EA94    D:D1EE95      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_BOOTS_DOWN.C (File: leather_boots_down.obj) Version: 1:0 04/04/2019 23:44:43
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1EE96    D:D1F297      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_CHESTPLATE_DOWN.C (File: leather_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1F298    D:D1F699      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_HELMET_DOWN.C (File: leather_helmet_down.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1F69A    D:D1FA9B      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MAINMENULOGO.C (File: mainmenulogo.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1FA9C    D:D2538F     58f4h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MENUWORDS.C (File: menuwords.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D25390    D:D26719     138ah
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\NO_ITEM.C (File: no_item.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2671A    D:D26B1B      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\OPTIONSMENU.C (File: optionsmenu.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D26B1C    D:D2A73B     3c20h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\PLAYER_NAKED_DOWN.C (File: player_naked_down.obj) Version: 1:0 04/04/2019 23:44:44
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2A73C    D:D2AB3D      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_BOOTS_DOWN.C (File: steel_boots_down.obj) Version: 1:0 04/04/2019 23:44:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2AB3E    D:D2AF3F      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_CHESTPLATE_DOWN.C (File: steel_chestplate_down.obj) Version: 1:0 04/04/2019 23:44:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2AF40    D:D2B341      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_HELMET_DOWN.C (File: steel_helmet_down.obj) Version: 1:0 04/04/2019 23:44:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2B342    D:D2B743      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_SWORD.C (File: steel_sword.obj) Version: 1:0 04/04/2019 23:44:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D2B744    D:D2BB45      402h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C (File: main.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: BSS                               D:D031F6    D:D031FB        6h
+    Segment: CODE                              D:D1AAA4    D:D1AB5A       b7h
+    Segment: DATA                              D:D1B544    D:D1B57B       38h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C (File: maingameloop.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: BSS                               D:D031FC    D:D0320D       12h
+    Segment: CODE                              D:D1AB5B    D:D1ABC4       6ah
+    Segment: TEXT (was STRSECT)                D:D2BB68    D:D2BB7C       15h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C (File: menuandeditfunctions.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              D:D1ABC5    D:D1B535      971h
+    Segment: TEXT (was STRSECT)                D:D2BB7D    D:D2BBAD       31h
+
+
+Module: ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\TILEMAPDATA.C (File: tilemapdata.obj) Version: 1:0 04/04/2019 23:44:42
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: DATA                              D:D1B57C    D:D1B5C1       46h
+
+
+Module: ccleanup.asm (File: ccleanup.obj) Version: 1:0 07/24/2017 21:53:14
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .cleanup                          D:D1AA88    D:D1AA9B       14h
+
+
+Module: cstartup.asm (File: cstartup.obj) Version: 1:0 07/24/2017 21:53:14
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .exit                             D:D1AA9C    D:D1AAA3        8h
+    Segment: .header                           D:D1A87F    D:D1A881        3h
+    Segment: .startup                          D:D1AA4D    D:D1AA87       3bh
+
+
+Module: frameset.src (Library: cshared.lib) Version: 1:0 07/24/2017 21:51:33
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: CODE                              D:D1B536    D:D1B543        eh
+
+
+Module: gfx_Begin.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:27
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA17    D:D1AA1A        4h
+
+
+Module: gfx_End.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:31
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA3B    D:D1AA3E        4h
+
+
+Module: gfx_FillRectangle.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:33
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA07    D:D1AA0A        4h
+
+
+Module: gfx_FillScreen.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:34
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA0F    D:D1AA12        4h
+
+
+Module: gfx_HorizLine.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:41
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1A9FF    D:D1AA02        4h
+
+
+Module: gfx_PrintString.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA0B    D:D1AA0E        4h
+
+
+Module: gfx_PrintStringXY.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA03    D:D1AA06        4h
+
+
+Module: gfx_PrintUInt.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:46
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA13    D:D1AA16        4h
+
+
+Module: gfx_Rectangle.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:48
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1A9FB    D:D1A9FE        4h
+
+
+Module: gfx_ScaledTransparentSprite_NoClip.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:53
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA3F    D:D1AA42        4h
+
+
+Module: gfx_SetColor.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:54
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA1F    D:D1AA22        4h
+
+
+Module: gfx_SetPalette.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:55
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA27    D:D1AA2A        4h
+
+
+Module: gfx_SetTextBGColor.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:56
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA37    D:D1AA3A        4h
+
+
+Module: gfx_SetTextFGColor.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1A9F7    D:D1A9FA        4h
+
+
+Module: gfx_SetTextScale.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:58
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA23    D:D1AA26        4h
+
+
+Module: gfx_SetTextTransparentColor.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:58
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA2F    D:D1AA32        4h
+
+
+Module: gfx_SetTransparentColor.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:49:59
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA1B    D:D1AA1E        4h
+
+
+Module: gfx_Tilemap.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:50:06
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA2B    D:D1AA2E        4h
+
+
+Module: gfx_TransparentSprite.src (Library: graphx.lib) Version: 1:0 07/24/2017 21:50:07
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx                           D:D1AA33    D:D1AA36        4h
+
+
+Module: graphx_header.asm (File: graphx_header.obj) Version: 1:0 07/24/2017 21:50:14
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .graphx_header                    D:D1A9EE    D:D1A9F6        9h
+
+
+Module: iconc.src (File: iconc.obj) Version: 1:0 04/04/2019 23:44:45
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .icon                             D:D1A882    D:D1A99D      11ch
+
+
+Module: keypadc_header.asm (File: keypadc_header.obj) Version: 1:0 07/24/2017 21:50:36
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .keypadc_header                   D:D1AA43    D:D1AA4C        ah
+
+
+Module: libheader.asm (File: libheader.obj) Version: 1:0 07/24/2017 21:53:15
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: .launcher                         D:D1A99E    D:D1A9ED       50h
+    Segment: DATA                              D:D2BB46    D:D2BB67       22h
+
+EXTERNAL DEFINITIONS:
+=====================
+
+Symbol                             Address   Module          Segment
+-------------------------------- ----------- --------------- --------------------------------
+__copy_code_to_ram                  00000000 (User Defined)
+__len_bss                           00000018 (User Defined)
+__low_bss                           00D031F6 (User Defined)
+__heapbot                           00D0320E (User Defined)
+__heaptop                           00D13FD6 (User Defined)
+__stack                             00D1A87E (User Defined)
+_boot_GetBootMajorVer               D:000080 tice            CODE                            
+_boot_GetHardwareVer                D:000084 tice            CODE                            
+_boot_GetBootMinorVer               D:00008C tice            CODE                            
+_boot_DebugPrintf                   D:0000B4 tice            CODE                            
+_boot_ClearVRAM                     D:000374 tice            CODE                            
+_boot_TurnOff                       D:000388 tice            CODE                            
+_boot_NewLine                       D:000390 tice            CODE                            
+_boot_Set6MHzMode                   D:00039C tice            CODE                            
+_boot_Set48MHzMode                  D:0003A0 tice            CODE                            
+_boot_Set6MHzModeI                  D:0003A4 tice            CODE                            
+_boot_Set48MHzModeI                 D:0003A8 tice            CODE                            
+_boot_GetBatteryStatus              D:0003B0 tice            CODE                            
+_boot_WaitShort                     D:0003B4 tice            CODE                            
+_boot_CheckOnPressed                D:00057C tice            CODE                            
+_boot_SetDate                       D:000598 tice            CODE                            
+_boot_GetDate                       D:0005A8 tice            CODE                            
+_boot_GetTime                       D:0005B0 tice            CODE                            
+_boot_SetTime                       D:0005B4 tice            CODE                            
+_boot_IsAfterNoon                   D:0005C8 tice            CODE                            
+_asm_MoveDown                       D:0207F4 tice            CODE                            
+_asm_MoveUp                         D:020800 tice            CODE                            
+_asm_ClrLCDFull                     D:020808 tice            CODE                            
+_asm_ClrLCD                         D:02080C tice            CODE                            
+_asm_ClrTxtShd                      D:020818 tice            CODE                            
+_asm_HomeUp                         D:020828 tice            CODE                            
+_asm_RunIndicOn                     D:020844 tice            CODE                            
+_asm_RunIndicOff                    D:020848 tice            CODE                            
+_asm_DelRes                         D:020E5C tice            CODE                            
+_asm_DisableAPD                     D:021134 tice            CODE                            
+_asm_EnableAPD                      D:021138 tice            CODE                            
+_asm_DrawStatusBar                  D:021A3C tice            CODE                            
+_os_PushErrorHandler                D:021C78 tice            CODE                            
+_os_PopErrorHandler                 D:021C7C tice            CODE                            
+_os_ThrowError                      D:021C80 tice            CODE                            
+_os_RealCopy                        D:021C84 tice            CODE                            
+_os_RealAsinRad                     D:021C88 tice            CODE                            
+_os_RealAcosRad                     D:021C8C tice            CODE                            
+_os_RealAtanRad                     D:021C90 tice            CODE                            
+_os_RealAdd                         D:021C94 tice            CODE                            
+_os_CplxSquare                      D:021C98 tice            CODE                            
+_os_RealCompare                     D:021C9C tice            CODE                            
+_os_RealCosRad                      D:021CA0 tice            CODE                            
+_os_RealRadToDeg                    D:021CA4 tice            CODE                            
+_os_RealDiv                         D:021CA8 tice            CODE                            
+_os_RealExp                         D:021CAC tice            CODE                            
+_os_RealFloor                       D:021CB0 tice            CODE                            
+_os_RealToStr                       D:021CB4 tice            CODE                            
+_os_RealFrac                        D:021CB8 tice            CODE                            
+_os_RealGcd                         D:021CBC tice            CODE                            
+_os_RealRoundInt                    D:021CC0 tice            CODE                            
+_os_RealLcm                         D:021CC4 tice            CODE                            
+_os_RealLog                         D:021CC8 tice            CODE                            
+_os_RealMax                         D:021CCC tice            CODE                            
+_os_RealMin                         D:021CD0 tice            CODE                            
+_os_RealMul                         D:021CD4 tice            CODE                            
+_os_RealNcr                         D:021CD8 tice            CODE                            
+_os_RealNeg                         D:021CDC tice            CODE                            
+_os_RealNpr                         D:021CE0 tice            CODE                            
+_os_RealPow                         D:021CE4 tice            CODE                            
+_os_RealDegToRad                    D:021CE8 tice            CODE                            
+_os_RealRandInt                     D:021CEC tice            CODE                            
+_os_RealInv                         D:021CF0 tice            CODE                            
+_os_RealMod                         D:021CF4 tice            CODE                            
+_os_RealRound                       D:021CF8 tice            CODE                            
+_os_RealSinRad                      D:021CFC tice            CODE                            
+_os_RealSqrt                        D:021D00 tice            CODE                            
+_os_RealSub                         D:021D04 tice            CODE                            
+_os_RealTanRad                      D:021D08 tice            CODE                            
+_os_StrToReal                       D:021D0C tice            CODE                            
+_os_RealInt                         D:021D10 tice            CODE                            
+_os_SetFlagBits                     D:021D14 tice            CODE                            
+_os_ResetFlagBits                   D:021D18 tice            CODE                            
+_os_TestFlagBits                    D:021D1C tice            CODE                            
+_os_SetFlagByte                     D:021D20 tice            CODE                            
+_os_GetFlagByte                     D:021D24 tice            CODE                            
+_os_GetCursorPos                    D:021D28 tice            CODE                            
+_os_PutStrFull                      D:021D2C tice            CODE                            
+_os_PutStrLine                      D:021D30 tice            CODE                            
+_os_SetCursorPos                    D:021D34 tice            CODE                            
+_os_GetKey                          D:021D38 tice            CODE                            
+_os_GetCSC                          D:021D3C tice            CODE                            
+_os_AppInit                         D:021D40 tice            CODE                            
+_os_DisableCursor                   D:021DE4 tice            CODE                            
+_os_EnableCursor                    D:021DE8 tice            CODE                            
+_os_FontDrawText                    D:021E00 tice            CODE                            
+_os_FontGetHeight                   D:021E14 tice            CODE                            
+_os_FontGetWidth                    D:021E18 tice            CODE                            
+_os_InitDrawing                     D:021E1C tice            CODE                            
+_os_SetDrawBGColor                  D:021E20 tice            CODE                            
+_os_SetDrawFGColor                  D:021E24 tice            CODE                            
+_os_FontSelect                      D:021E28 tice            CODE                            
+_os_SetTimer1                       D:021EC8 tice            CODE                            
+_os_DisableTimer1                   D:021ECC tice            CODE                            
+_os_GetSystemStats                  D:021ED4 tice            CODE                            
+_os_GetDrawBGColor                  D:021EE4 tice            CODE                            
+_os_GetDrawFGColor                  D:021EE8 tice            CODE                            
+_os_FontGetID                       D:021EEC tice            CODE                            
+_os_RealToInt24                     D:021EF4 tice            CODE                            
+_os_Int24ToReal                     D:021EF8 tice            CODE                            
+_os_ForceCmdNoChar                  D:021FA8 tice            CODE                            
+_os_GetSymTablePtr                  D:021FB0 tice            CODE                            
+_os_NextSymEntry                    D:021FB4 tice            CODE                            
+_os_ChkFindSym                      D:021FB8 tice            CODE                            
+_os_MemChk                          D:021FF0 tice            CODE                            
+_asm_ArcChk                         D:022040 tice            CODE                            
+_os_SetTimer2                       D:022080 tice            CODE                            
+_os_DisableTimer2                   D:022084 tice            CODE                            
+_os_FloatToReal                     D:022170 tice            CODE                            
+_os_RealToFloat                     D:022174 tice            CODE                            
+_os_FontDrawTransText               D:022178 tice            CODE                            
+_os_CreateAppVar                    D:022184 tice            CODE                            
+_errno                              D:D008DC cstartup        CODE                            
+_menuyes                            D:D031F6 MAIN            BSS                             
+_menuoption                         D:D031F9 MAIN            BSS                             
+_tilemap                            D:D031FC MAINGAMELOOP    BSS                             
+_init                               D:D1A882 cstartup        .header                         
+__program_icon                      D:D1A887 iconc           .icon                           
+__program_description               D:D1A989 iconc           .icon                           
+_gfx_SetTextFGColor                 D:D1A9F7 gfx_SetTextFGCo .graphx                         
+_gfx_Rectangle                      D:D1A9FB gfx_Rectangle   .graphx                         
+_gfx_HorizLine                      D:D1A9FF gfx_HorizLine   .graphx                         
+_gfx_PrintStringXY                  D:D1AA03 gfx_PrintString .graphx                         
+_gfx_FillRectangle                  D:D1AA07 gfx_FillRectang .graphx                         
+_gfx_PrintString                    D:D1AA0B gfx_PrintString .graphx                         
+_gfx_FillScreen                     D:D1AA0F gfx_FillScreen  .graphx                         
+_gfx_PrintUInt                      D:D1AA13 gfx_PrintUInt   .graphx                         
+_gfx_Begin                          D:D1AA17 gfx_Begin       .graphx                         
+_gfx_SetTransparentColor            D:D1AA1B gfx_SetTranspar .graphx                         
+_gfx_SetColor                       D:D1AA1F gfx_SetColor    .graphx                         
+_gfx_SetTextScale                   D:D1AA23 gfx_SetTextScal .graphx                         
+_gfx_SetPalette                     D:D1AA27 gfx_SetPalette  .graphx                         
+_gfx_Tilemap                        D:D1AA2B gfx_Tilemap     .graphx                         
+_gfx_SetTextTransparentColor        D:D1AA2F gfx_SetTextTran .graphx                         
+_gfx_TransparentSprite              D:D1AA33 gfx_Transparent .graphx                         
+_gfx_SetTextBGColor                 D:D1AA37 gfx_SetTextBGCo .graphx                         
+_gfx_End                            D:D1AA3B gfx_End         .graphx                         
+_gfx_ScaledTransparentSprite_NoC    D:D1AA3F gfx_ScaledTrans .graphx                         
+__exit                              D:D1AA7A cstartup        .startup                        
+__errsp                             D:D1AA7A cstartup        .startup                        
+_exit                               D:D1AA9E cstartup        .exit                           
+_main                               D:D1AAA4 MAIN            CODE                            
+_maingameloop                       D:D1AB5B MAINGAMELOOP    CODE                            
+_drawmap                            D:D1AB68 MAINGAMELOOP    CODE                            
+_drawcharacter                      D:D1ABC3 MAINGAMELOOP    CODE                            
+_drawenemies                        D:D1ABC4 MAINGAMELOOP    CODE                            
+_keywait                            D:D1ABC5 MENUANDEDITFUNC CODE                            
+_mainmenu                           D:D1ABCD MENUANDEDITFUNC CODE                            
+_options                            D:D1AC83 MENUANDEDITFUNC CODE                            
+_playercreate                       D:D1AD32 MENUANDEDITFUNC CODE                            
+_draweditedplayer                   D:D1AE83 MENUANDEDITFUNC CODE                            
+_drawequipment                      D:D1B28E MENUANDEDITFUNC CODE                            
+_menubkgnd                          D:D1B4EB MENUANDEDITFUNC CODE                            
+__frameset                          D:D1B536 frameset        CODE                            
+_textcolor                          D:D1B544 MAIN            DATA                            
+_accentcolor                        D:D1B547 MAIN            DATA                            
+_menucolor                          D:D1B54A MAIN            DATA                            
+_submenucolor                       D:D1B54D MAIN            DATA                            
+_transcolor                         D:D1B550 MAIN            DATA                            
+_editweaponx                        D:D1B553 MAIN            DATA                            
+_editweapony                        D:D1B556 MAIN            DATA                            
+_editweaponsmallx                   D:D1B559 MAIN            DATA                            
+_editweaponsmally                   D:D1B55C MAIN            DATA                            
+_editscale                          D:D1B55F MAIN            DATA                            
+_editscalep                         D:D1B562 MAIN            DATA                            
+_editpx                             D:D1B565 MAIN            DATA                            
+_editpy                             D:D1B568 MAIN            DATA                            
+_x_offset                           D:D1B56B MAIN            DATA                            
+_y_offset                           D:D1B56E MAIN            DATA                            
+_setnumber                          D:D1B571 MAIN            DATA                            
+_player_setup                       D:D1B574 MAIN            DATA                            
+_tilemap_map                        D:D1B57C TILEMAPDATA     DATA                            
+_chain_boots_down_data              D:D1B5C2 CHAIN_BOOTS_DOW DATA                            
+_chain_chestplate_down_data         D:D1B9C4 CHAIN_CHESTPLAT DATA                            
+_chain_helmet_down_data             D:D1BDC6 CHAIN_HELMET_DO DATA                            
+_club_data                          D:D1C1C8 CLUB            DATA                            
+_dragon_boots_down_data             D:D1C5CA DRAGON_BOOTS_DO DATA                            
+_dragon_chestplate_down_data        D:D1C9CC DRAGON_CHESTPLA DATA                            
+_dragon_helmet_down_data            D:D1CDCE DRAGON_HELMET_D DATA                            
+_dragon_sword_data                  D:D1D1D0 DRAGON_SWORD    DATA                            
+_dungeon_gfx_pal                    D:D1D5D2 DUNGEON_GFX     DATA                            
+_editmenunumbers_data               D:D1D7D2 EDITMENUNUMBERS DATA                            
+_iron_sword_data                    D:D1EA94 IRON_SWORD      DATA                            
+_leather_boots_down_data            D:D1EE96 LEATHER_BOOTS_D DATA                            
+_leather_chestplate_down_data       D:D1F298 LEATHER_CHESTPL DATA                            
+_leather_helmet_down_data           D:D1F69A LEATHER_HELMET_ DATA                            
+_mainmenulogo_data                  D:D1FA9C MAINMENULOGO    DATA                            
+_menuwords_data                     D:D25390 MENUWORDS       DATA                            
+_no_item_data                       D:D2671A NO_ITEM         DATA                            
+_optionsmenu_data                   D:D26B1C OPTIONSMENU     DATA                            
+_player_naked_down_data             D:D2A73C PLAYER_NAKED_DO DATA                            
+_steel_boots_down_data              D:D2AB3E STEEL_BOOTS_DOW DATA                            
+_steel_chestplate_down_data         D:D2AF40 STEEL_CHESTPLAT DATA                            
+_steel_helmet_down_data             D:D2B342 STEEL_HELMET_DO DATA                            
+_steel_sword_data                   D:D2B744 STEEL_SWORD     DATA                            
+
+200 external symbol(s).
+
+SYMBOL CROSS REFERENCE:
+=======================
+Name                              Use         Module
+--------------------------------- ----------- -------------------------
+__copy_code_to_ram                Defined     LINKER
+__len_bss                         Defined     LINKER
+                                  Referenced  cstartup.asm
+__low_bss                         Defined     LINKER
+                                  Referenced  cstartup.asm
+__heapbot                         Defined     LINKER
+__heaptop                         Defined     LINKER
+__stack                           Defined     LINKER
+_boot_GetBootMajorVer             Defined     tice.src
+_boot_GetHardwareVer              Defined     tice.src
+_boot_GetBootMinorVer             Defined     tice.src
+_boot_DebugPrintf                 Defined     tice.src
+_boot_ClearVRAM                   Defined     tice.src
+_boot_TurnOff                     Defined     tice.src
+_boot_NewLine                     Defined     tice.src
+_boot_Set6MHzMode                 Defined     tice.src
+_boot_Set48MHzMode                Defined     tice.src
+_boot_Set6MHzModeI                Defined     tice.src
+_boot_Set48MHzModeI               Defined     tice.src
+_boot_GetBatteryStatus            Defined     tice.src
+_boot_WaitShort                   Defined     tice.src
+_boot_CheckOnPressed              Defined     tice.src
+_boot_SetDate                     Defined     tice.src
+_boot_GetDate                     Defined     tice.src
+_boot_GetTime                     Defined     tice.src
+_boot_SetTime                     Defined     tice.src
+_boot_IsAfterNoon                 Defined     tice.src
+_asm_MoveDown                     Defined     tice.src
+_asm_MoveUp                       Defined     tice.src
+_asm_ClrLCDFull                   Defined     tice.src
+_asm_ClrLCD                       Defined     tice.src
+_asm_ClrTxtShd                    Defined     tice.src
+_asm_HomeUp                       Defined     tice.src
+_asm_RunIndicOn                   Defined     tice.src
+_asm_RunIndicOff                  Defined     tice.src
+_asm_DelRes                       Defined     tice.src
+_asm_DisableAPD                   Defined     tice.src
+_asm_EnableAPD                    Defined     tice.src
+_asm_DrawStatusBar                Defined     tice.src
+_os_PushErrorHandler              Defined     tice.src
+_os_PopErrorHandler               Defined     tice.src
+_os_ThrowError                    Defined     tice.src
+_os_RealCopy                      Defined     tice.src
+_os_RealAsinRad                   Defined     tice.src
+_os_RealAcosRad                   Defined     tice.src
+_os_RealAtanRad                   Defined     tice.src
+_os_RealAdd                       Defined     tice.src
+_os_CplxSquare                    Defined     tice.src
+_os_RealCompare                   Defined     tice.src
+_os_RealCosRad                    Defined     tice.src
+_os_RealRadToDeg                  Defined     tice.src
+_os_RealDiv                       Defined     tice.src
+_os_RealExp                       Defined     tice.src
+_os_RealFloor                     Defined     tice.src
+_os_RealToStr                     Defined     tice.src
+_os_RealFrac                      Defined     tice.src
+_os_RealGcd                       Defined     tice.src
+_os_RealRoundInt                  Defined     tice.src
+_os_RealLcm                       Defined     tice.src
+_os_RealLog                       Defined     tice.src
+_os_RealMax                       Defined     tice.src
+_os_RealMin                       Defined     tice.src
+_os_RealMul                       Defined     tice.src
+_os_RealNcr                       Defined     tice.src
+_os_RealNeg                       Defined     tice.src
+_os_RealNpr                       Defined     tice.src
+_os_RealPow                       Defined     tice.src
+_os_RealDegToRad                  Defined     tice.src
+_os_RealRandInt                   Defined     tice.src
+_os_RealInv                       Defined     tice.src
+_os_RealMod                       Defined     tice.src
+_os_RealRound                     Defined     tice.src
+_os_RealSinRad                    Defined     tice.src
+_os_RealSqrt                      Defined     tice.src
+_os_RealSub                       Defined     tice.src
+_os_RealTanRad                    Defined     tice.src
+_os_StrToReal                     Defined     tice.src
+_os_RealInt                       Defined     tice.src
+_os_SetFlagBits                   Defined     tice.src
+_os_ResetFlagBits                 Defined     tice.src
+_os_TestFlagBits                  Defined     tice.src
+_os_SetFlagByte                   Defined     tice.src
+_os_GetFlagByte                   Defined     tice.src
+_os_GetCursorPos                  Defined     tice.src
+_os_PutStrFull                    Defined     tice.src
+_os_PutStrLine                    Defined     tice.src
+_os_SetCursorPos                  Defined     tice.src
+_os_GetKey                        Defined     tice.src
+_os_GetCSC                        Defined     tice.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_os_AppInit                       Defined     tice.src
+_os_DisableCursor                 Defined     tice.src
+_os_EnableCursor                  Defined     tice.src
+_os_FontDrawText                  Defined     tice.src
+_os_FontGetHeight                 Defined     tice.src
+_os_FontGetWidth                  Defined     tice.src
+_os_InitDrawing                   Defined     tice.src
+_os_SetDrawBGColor                Defined     tice.src
+_os_SetDrawFGColor                Defined     tice.src
+_os_FontSelect                    Defined     tice.src
+_os_SetTimer1                     Defined     tice.src
+_os_DisableTimer1                 Defined     tice.src
+_os_GetSystemStats                Defined     tice.src
+_os_GetDrawBGColor                Defined     tice.src
+_os_GetDrawFGColor                Defined     tice.src
+_os_FontGetID                     Defined     tice.src
+_os_RealToInt24                   Defined     tice.src
+_os_Int24ToReal                   Defined     tice.src
+_os_ForceCmdNoChar                Defined     tice.src
+_os_GetSymTablePtr                Defined     tice.src
+_os_NextSymEntry                  Defined     tice.src
+_os_ChkFindSym                    Defined     tice.src
+_os_MemChk                        Defined     tice.src
+_asm_ArcChk                       Defined     tice.src
+_os_SetTimer2                     Defined     tice.src
+_os_DisableTimer2                 Defined     tice.src
+_os_FloatToReal                   Defined     tice.src
+_os_RealToFloat                   Defined     tice.src
+_os_FontDrawTransText             Defined     tice.src
+_os_CreateAppVar                  Defined     tice.src
+_errno                            Defined     cstartup.asm
+_menuyes                          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_menuoption                       Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_tilemap                          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_init                             Defined     cstartup.asm
+__program_icon                    Defined     iconc.src
+__program_description             Defined     iconc.src
+_gfx_SetTextFGColor               Defined     gfx_SetTextFGColor.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_Rectangle                    Defined     gfx_Rectangle.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_HorizLine                    Defined     gfx_HorizLine.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_PrintStringXY                Defined     gfx_PrintStringXY.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_FillRectangle                Defined     gfx_FillRectangle.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_PrintString                  Defined     gfx_PrintString.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_gfx_FillScreen                   Defined     gfx_FillScreen.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_PrintUInt                    Defined     gfx_PrintUInt.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_gfx_Begin                        Defined     gfx_Begin.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_gfx_SetTransparentColor          Defined     gfx_SetTransparentColor.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_gfx_SetColor                     Defined     gfx_SetColor.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_SetTextScale                 Defined     gfx_SetTextScale.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_SetPalette                   Defined     gfx_SetPalette.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_gfx_Tilemap                      Defined     gfx_Tilemap.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_gfx_SetTextTransparentColor      Defined     gfx_SetTextTransparentColor.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_TransparentSprite            Defined     gfx_TransparentSprite.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_SetTextBGColor               Defined     gfx_SetTextBGColor.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_gfx_End                          Defined     gfx_End.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_gfx_ScaledTransparentSprite_NoCl Defined     gfx_ScaledTransparentSprite_NoClip.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+__exit                            Defined     cstartup.asm
+__errsp                           Defined     cstartup.asm
+_exit                             Defined     cstartup.asm
+_main                             Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  cstartup.asm
+_maingameloop                     Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_drawmap                          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_drawcharacter                    Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_drawenemies                      Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_keywait                          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_mainmenu                         Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_options                          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_playercreate                     Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_draweditedplayer                 Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_drawequipment                    Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_menubkgnd                        Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+__frameset                        Defined     frameset.src
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_textcolor                        Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_accentcolor                      Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_menucolor                        Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_submenucolor                     Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_transcolor                       Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editweaponx                      Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editweapony                      Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editweaponsmallx                 Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editweaponsmally                 Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editscale                        Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editscalep                       Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_editpx                           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_editpy                           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_x_offset                         Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_y_offset                         Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAINGAMELOOP.C
+_setnumber                        Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_player_setup                     Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_tilemap_map                      Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\TILEMAPDATA.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_chain_boots_down_data            Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_BOOTS_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_chain_chestplate_down_data       Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_CHESTPLATE_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_chain_helmet_down_data           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CHAIN_HELMET_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_club_data                        Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\CLUB.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_dragon_boots_down_data           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_BOOTS_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_dragon_chestplate_down_data      Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_CHESTPLATE_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_dragon_helmet_down_data          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_HELMET_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_dragon_sword_data                Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DRAGON_SWORD.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_dungeon_gfx_pal                  Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DUNGEON_GFX.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+_editmenunumbers_data             Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\EDITMENUNUMBERS.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_iron_sword_data                  Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\IRON_SWORD.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_leather_boots_down_data          Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_BOOTS_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_leather_chestplate_down_data     Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_CHESTPLATE_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_leather_helmet_down_data         Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\LEATHER_HELMET_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_mainmenulogo_data                Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MAINMENULOGO.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_menuwords_data                   Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\MENUWORDS.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_no_item_data                     Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\NO_ITEM.C
+_optionsmenu_data                 Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\OPTIONSMENU.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_player_naked_down_data           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\PLAYER_NAKED_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_steel_boots_down_data            Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_BOOTS_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_steel_chestplate_down_data       Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_CHESTPLATE_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_steel_helmet_down_data           Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_HELMET_DOWN.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+_steel_sword_data                 Defined     ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\STEEL_SWORD.C
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MENUANDEDITFUNCTIONS.C
+
+UNDEFINED SYMBOL CROSS REFERENCE:
+=================================
+Name                              Use         Module
+--------------------------------- ----------- -------------------------
+_tileset_tiles_data               UNDEFINED
+                                  Referenced  ..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\MAIN.C
+
+
+END OF LINK MAP:
+================
+0 Errors
+1 Warnings
