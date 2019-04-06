@@ -49,7 +49,7 @@
 	int editpy = 10;
 	
 	
-	int mapshift = 32;
+	int mapshift;
 	
 	//for tilemap stuff
 

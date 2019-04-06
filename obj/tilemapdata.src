@@ -106,561 +106,326 @@ _tilemap_map:
 	DB	6
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
-	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -674,11 +439,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -695,35 +457,22 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -734,40 +483,40 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -775,12 +524,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -790,76 +534,33 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	0
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	6
-	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	0
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
 	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	0
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	0
 	DB	0
 	DB	2
 	DB	2
@@ -875,10 +576,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -892,8 +591,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -906,10 +603,14 @@ _tilemap_map:
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -920,9 +621,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -932,9 +634,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -942,42 +644,23 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	0
 	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	0
 	DB	0
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -992,20 +675,13 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	0
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -1015,7 +691,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1025,89 +700,33 @@ _tilemap_map:
 	DB	0
 	DB	0
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	0
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	0
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -1116,24 +735,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	5
 	DB	2
 	DB	2
@@ -1141,7 +742,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	0
 	DB	0
 	DB	2
 	DB	2
@@ -1152,18 +753,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	0
+	DB	0
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1175,9 +772,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1189,8 +786,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1198,6 +793,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1206,11 +803,14 @@ _tilemap_map:
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1220,7 +820,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1234,7 +835,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -1246,22 +846,21 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
 	DB	2
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	0
-	DB	2
-	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1276,7 +875,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -1289,14 +887,13 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1304,6 +901,13 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
 	DB	2
@@ -1312,19 +916,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1333,34 +929,38 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
+	DB	0
 	DB	0
+	DB	0
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1388,13 +988,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1406,25 +1003,29 @@ _tilemap_map:
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1434,6 +1035,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -1445,7 +1047,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	5
 	DB	2
 	DB	2
@@ -1475,7 +1076,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -1488,8 +1088,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	2
 	DB	2
 	DB	2
 	DB	0
@@ -1503,19 +1101,25 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	6
 	DB	6
 	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1525,23 +1129,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1572,10 +1173,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1588,8 +1188,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	0
 	DB	0
@@ -1603,13 +1201,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -1628,16 +1228,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1645,10 +1241,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1661,6 +1259,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1676,6 +1275,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1690,8 +1290,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	0
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1703,35 +1301,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	5
 	DB	5
@@ -1746,7 +1324,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1756,12 +1333,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1779,6 +1359,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1793,6 +1374,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1804,27 +1387,44 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
+	DB	0
+	DB	0
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1833,27 +1433,21 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -1864,9 +1458,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1880,6 +1474,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1893,9 +1488,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1904,14 +1501,21 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1921,16 +1525,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
-	DB	1
-	DB	1
-	DB	1
+	DB	5
+	DB	5
+	DB	5
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1938,6 +1546,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1946,10 +1555,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -1963,10 +1572,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -1978,39 +1588,53 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2020,12 +1644,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2046,7 +1669,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2066,7 +1688,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
+	DB	2
+	DB	0
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -2076,6 +1701,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -2099,18 +1733,23 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2124,11 +1763,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2139,14 +1777,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
-	DB	1
-	DB	1
 	DB	2
 	DB	2
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2154,25 +1786,32 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2182,7 +1821,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2199,18 +1837,25 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2221,10 +1866,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2236,13 +1881,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
-	DB	1
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2254,19 +1894,27 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
+	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2276,13 +1924,12 @@ _tilemap_map:
 	DB	1
 	DB	1
 	DB	1
-	DB	2
-	DB	2
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2304,13 +1951,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2323,7 +1966,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2340,8 +1983,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2354,11 +1996,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	1
 	DB	2
 	DB	2
@@ -2366,14 +2017,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	1
@@ -2382,8 +2031,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -2404,13 +2051,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2422,8 +2066,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2438,9 +2082,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2454,11 +2097,19 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
-	DB	1
-	DB	1
+	DB	5
+	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	1
 	DB	2
 	DB	2
@@ -2467,22 +2118,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2494,36 +2143,34 @@ _tilemap_map:
 	DB	1
 	DB	1
 	DB	1
-	DB	1
-	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	5
 	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2535,12 +2182,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2553,13 +2199,19 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	1
-	DB	1
-	DB	1
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	1
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2567,7 +2219,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2581,67 +2232,60 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	1
 	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	1
 	DB	1
 	DB	1
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2655,11 +2299,21 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	1
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2667,14 +2321,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2682,7 +2334,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2690,6 +2341,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2699,35 +2351,38 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
-	DB	6
-	DB	6
+	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
-	DB	1
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2741,11 +2396,21 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2767,13 +2432,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	1
 	DB	1
 	DB	2
 	DB	2
@@ -2782,16 +2448,18 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
+	DB	1
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2800,14 +2468,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2816,6 +2482,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -2823,11 +2490,26 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -2857,7 +2539,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	1
 	DB	1
 	DB	2
 	DB	2
@@ -2867,12 +2549,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	1
 	DB	2
@@ -2897,23 +2582,34 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -2927,6 +2623,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2941,6 +2641,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -2959,7 +2660,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -2973,7 +2673,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	1
 	DB	1
 	DB	2
 	DB	2
@@ -2988,8 +2688,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3000,15 +2700,16 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
 	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -3025,6 +2726,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3038,10 +2741,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	1
-	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3089,8 +2789,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	1
-	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3098,15 +2796,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	6
 	DB	6
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -3139,7 +2842,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3156,9 +2858,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3173,7 +2873,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	1
+	DB	2
 	DB	1
 	DB	2
 	DB	2
@@ -3187,11 +2887,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	1
 	DB	2
 	DB	1
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3199,13 +2896,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
 	DB	6
 	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -3236,14 +2940,13 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -3255,26 +2958,23 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	1
 	DB	1
-	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3289,9 +2989,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	1
-	DB	1
-	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3299,19 +2996,25 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3335,6 +3038,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3343,23 +3049,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	0
-	DB	0
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3370,11 +3070,11 @@ _tilemap_map:
 	DB	5
 	DB	2
 	DB	2
-	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3388,8 +3088,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	1
 	DB	1
 	DB	1
 	DB	2
@@ -3398,35 +3096,22 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	3
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3434,7 +3119,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3453,24 +3137,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
-	DB	5
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3482,7 +3150,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3490,6 +3157,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3504,15 +3172,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	3
 	DB	2
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3520,13 +3182,16 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
 	DB	2
-	DB	3
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3535,23 +3200,19 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3566,12 +3227,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3582,10 +3239,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
@@ -3599,22 +3257,23 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
+	DB	1
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	3
+	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3623,24 +3282,36 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	3
-	DB	3
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3650,7 +3321,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3660,29 +3330,32 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	5
+	DB	2
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3694,29 +3367,31 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
+	DB	1
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	1
+	DB	1
+	DB	1
 	DB	2
 	DB	2
 	DB	2
@@ -3724,16 +3399,24 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3743,6 +3426,7 @@ _tilemap_map:
 	DB	3
 	DB	3
 	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3751,24 +3435,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3781,7 +3458,6 @@ _tilemap_map:
 	DB	5
 	DB	5
 	DB	5
-	DB	2
 	DB	5
 	DB	5
 	DB	5
@@ -3794,24 +3470,22 @@ _tilemap_map:
 	DB	5
 	DB	5
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3824,8 +3498,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
+	DB	2
+	DB	5
+	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3833,11 +3519,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3855,12 +3539,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
 	DB	2
 	DB	2
 	DB	2
-	DB	3
+	DB	2
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -3883,6 +3566,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	2
+	DB	2
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3893,23 +3582,34 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
 	DB	5
-	DB	5
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	3
 	DB	2
@@ -3923,9 +3623,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
+	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3942,7 +3643,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -3954,27 +3654,35 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	2
 	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	5
+	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3982,7 +3690,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -3991,41 +3698,51 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
 	DB	2
+	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	3
+	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	3
 	DB	3
-	DB	2
-	DB	2
+	DB	3
+	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4042,25 +3759,40 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
+	DB	2
 	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
-	DB	3
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4068,21 +3800,23 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
-	DB	3
 	DB	3
-	DB	3
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4090,7 +3824,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	3
 	DB	2
 	DB	2
@@ -4098,15 +3831,13 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4119,13 +3850,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4143,45 +3878,44 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	5
-	DB	2
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
-	DB	3
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	2
 	DB	3
-	DB	5
+	DB	2
+	DB	2
+	DB	2
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4204,13 +3938,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	3
 	DB	2
 	DB	2
@@ -4219,13 +3950,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	3
+	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4233,7 +3968,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4242,8 +3976,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4259,19 +3991,29 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	3
 	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	2
 	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4280,17 +4022,18 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	3
+	DB	3
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4299,31 +4042,35 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
+	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	3
+	DB	2
 	DB	3
 	DB	3
 	DB	3
@@ -4332,8 +4079,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
+	DB	2
+	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4343,6 +4092,7 @@ _tilemap_map:
 	DB	2
 	DB	3
 	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4350,7 +4100,19 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
+	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4361,6 +4123,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	3
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4371,44 +4139,57 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	3
-	DB	2
+	DB	3
+	DB	3
+	DB	3
+	DB	3
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	3
+	DB	3
+	DB	3
+	DB	3
+	DB	3
+	DB	3
+	DB	3
+	DB	3
+	DB	3
+	DB	3
 	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4418,30 +4199,31 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
 	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	3
-	DB	3
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4449,6 +4231,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	2
 	DB	5
 	DB	2
 	DB	2
@@ -4459,12 +4242,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	2
 	DB	5
 	DB	2
 	DB	2
@@ -4472,17 +4257,16 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4497,16 +4281,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4518,8 +4300,16 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	5
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -4533,16 +4323,26 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	3
+	DB	3
+	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	5
-	DB	5
-	DB	3
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
+	DB	2
 	DB	2
 	DB	2
+	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4559,8 +4359,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4571,7 +4371,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	3
 	DB	3
 	DB	2
 	DB	2
@@ -4587,11 +4387,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
-	DB	3
 	DB	3
-	DB	3
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4603,13 +4399,18 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4618,15 +4419,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4636,13 +4437,12 @@ _tilemap_map:
 	DB	5
 	DB	5
 	DB	5
-	DB	2
+	DB	5
 	DB	2
 	DB	2
+	DB	3
+	DB	3
 	DB	2
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4650,15 +4450,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
-	DB	4
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	2
 	DB	3
 	DB	2
 	DB	2
@@ -4671,8 +4471,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4690,8 +4490,6 @@ _tilemap_map:
 	DB	3
 	DB	2
 	DB	2
-	DB	3
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4703,13 +4501,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	5
-	DB	5
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -4718,6 +4518,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4731,14 +4532,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4747,19 +4549,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4771,8 +4571,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	3
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4801,19 +4601,19 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	5
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -4831,18 +4631,18 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
-	DB	4
-	DB	4
-	DB	4
-	DB	4
-	DB	4
-	DB	4
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -4851,14 +4651,15 @@ _tilemap_map:
 	DB	2
 	DB	5
 	DB	5
-	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	4
 	DB	2
 	DB	2
 	DB	2
-	DB	4
+	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4880,50 +4681,48 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
+	DB	3
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	2
+	DB	6
+	DB	6
 	DB	6
 	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	4
+	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
-	DB	4
-	DB	4
-	DB	4
-	DB	4
-	DB	4
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -4931,6 +4730,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	5
 	DB	5
 	DB	2
 	DB	2
@@ -4939,8 +4740,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -4949,30 +4748,30 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	5
 	DB	5
 	DB	5
 	DB	2
 	DB	2
 	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	3
 	DB	2
 	DB	2
 	DB	2
+	DB	3
 	DB	2
 	DB	2
 	DB	2
@@ -4980,25 +4779,23 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	5
-	DB	5
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	3
+	DB	3
+	DB	3
+	DB	3
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5006,40 +4803,44 @@ _tilemap_map:
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	4
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	4
+	DB	4
+	DB	4
 	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5049,12 +4850,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	5
 	DB	2
 	DB	2
-	DB	4
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5065,26 +4865,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	4
-	DB	4
-	DB	4
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	5
+	DB	3
 	DB	2
 	DB	2
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5093,6 +4881,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5101,29 +4890,40 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	4
-	DB	4
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	5
 	DB	2
 	DB	4
 	DB	4
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5141,6 +4941,7 @@ _tilemap_map:
 	DB	2
 	DB	4
 	DB	4
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -5152,12 +4953,11 @@ _tilemap_map:
 	DB	5
 	DB	2
 	DB	2
-	DB	2
 	DB	4
 	DB	4
 	DB	2
 	DB	2
-	DB	4
+	DB	2
 	DB	4
 	DB	2
 	DB	2
@@ -5169,31 +4969,27 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
+	DB	3
 	DB	2
-	DB	4
-	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	4
-	DB	4
-	DB	4
-	DB	4
-	DB	4
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5202,13 +4998,18 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	4
@@ -5216,12 +5017,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	4
 	DB	2
 	DB	2
@@ -5230,9 +5031,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -5247,16 +5046,18 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
+	DB	2
+	DB	2
 	DB	5
+	DB	2
 	DB	5
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
-	DB	4
-	DB	4
-	DB	4
+	DB	2
+	DB	2
 	DB	4
 	DB	2
 	DB	2
@@ -5269,10 +5070,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	4
-	DB	2
-	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5281,13 +5081,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	4
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5306,11 +5103,15 @@ _tilemap_map:
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	4
 	DB	4
 	DB	2
 	DB	2
@@ -5322,8 +5123,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	4
-	DB	2
-	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5332,7 +5132,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -5341,6 +5140,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	4
+	DB	4
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -5352,11 +5153,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
+	DB	4
 	DB	4
 	DB	2
 	DB	2
@@ -5364,29 +5165,33 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	4
-	DB	2
-	DB	2
-	DB	2
+	DB	4
 	DB	2
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	5
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	4
+	DB	4
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5396,7 +5201,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5404,53 +5219,51 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
-	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	4
-	DB	2
-	DB	2
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	5
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -5463,35 +5276,42 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5501,17 +5321,17 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5520,15 +5340,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
-	DB	4
 	DB	2
 	DB	2
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5538,26 +5358,24 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	4
-	DB	4
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5568,8 +5386,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	4
 	DB	4
 	DB	2
 	DB	2
@@ -5581,14 +5397,21 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5598,14 +5421,16 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -5614,6 +5439,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5621,6 +5447,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5629,30 +5457,31 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
-	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5662,16 +5491,25 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
+	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -5681,18 +5519,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	4
 	DB	4
 	DB	4
-	DB	4
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -5703,9 +5537,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	6
-	DB	6
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5729,6 +5562,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5737,42 +5571,45 @@ _tilemap_map:
 	DB	2
 	DB	4
 	DB	4
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	5
-	DB	5
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -5787,11 +5624,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
 	DB	2
 	DB	2
-	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5802,10 +5636,10 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -5828,12 +5662,14 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5851,7 +5687,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
+	DB	4
+	DB	4
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5861,13 +5701,19 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
-	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5891,7 +5737,6 @@ _tilemap_map:
 	DB	2
 	DB	4
 	DB	4
-	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5904,8 +5749,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -5919,11 +5762,13 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5942,8 +5787,11 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -5953,6 +5801,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -5962,7 +5819,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -5985,13 +5841,33 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
+	DB	4
+	DB	4
 	DB	2
 	DB	2
 	DB	2
@@ -6004,8 +5880,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -6014,15 +5888,12 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
 	DB	2
+	DB	4
+	DB	4
+	DB	4
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6030,6 +5901,15 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -6039,8 +5919,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6061,13 +5939,30 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	5
 	DB	2
 	DB	2
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
+	DB	255
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	5
 	DB	2
 	DB	2
 	DB	2
@@ -6104,24 +5999,28 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	9
 	DB	9
+	DB	9
 	DB	2
 	DB	2
-	DB	9
-	DB	9
 	DB	2
-	DB	9
 	DB	9
-	DB	2
 	DB	9
 	DB	9
 	DB	2
@@ -6139,8 +6038,9 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
 	DB	2
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6166,10 +6066,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6204,24 +6100,30 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	9
 	DB	9
-	DB	9
-	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	9
 	DB	9
-	DB	2
 	DB	2
+	DB	9
+	DB	9
 	DB	2
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6230,7 +6132,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6239,7 +6140,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	9
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6262,25 +6162,22 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
+	DB	2
+	DB	2
 	DB	2
 	DB	2
 	DB	9
 	DB	9
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6304,33 +6201,36 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	9
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	9
 	DB	9
-	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	9
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6362,23 +6262,20 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	5
-	DB	2
-	DB	2
-	DB	9
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	9
-	DB	9
-	DB	9
-	DB	9
 	DB	9
 	DB	9
+	DB	2
+	DB	2
+	DB	2
+	DB	2
 	DB	9
 	DB	9
+	DB	2
+	DB	2
+	DB	2
+	DB	2
 	DB	9
 	DB	9
 	DB	9
@@ -6394,9 +6291,7 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
+	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6404,31 +6299,36 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	2
+	DB	2
 	DB	6
 	DB	6
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	9
-	DB	2
+	DB	9
 	DB	2
 	DB	2
-	DB	9
 	DB	2
-	DB	9
 	DB	9
 	DB	9
 	DB	9
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	2
 	DB	2
-	DB	2
 	DB	9
 	DB	2
 	DB	2
@@ -6454,7 +6354,6 @@ _tilemap_map:
 	DB	1
 	DB	1
 	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6462,28 +6361,16 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
+	DB	5
 	DB	2
 	DB	2
+	DB	9
 	DB	2
 	DB	2
-	DB	9
-	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
-	DB	9
 	DB	9
 	DB	9
 	DB	9
@@ -6504,28 +6391,42 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	6
-	DB	6
 	DB	2
 	DB	2
 	DB	2
+	DB	9
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
-	DB	9
 	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
-	DB	9
-	DB	9
 	DB	2
+	DB	9
 	DB	2
 	DB	2
 	DB	2
+	DB	9
 	DB	2
+	DB	9
+	DB	9
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	9
+	DB	2
 	DB	2
 	DB	2
 	DB	9
@@ -6545,7 +6446,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	1
 	DB	0
 	DB	0
@@ -6554,13 +6454,6 @@ _tilemap_map:
 	DB	0
 	DB	0
 	DB	1
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6582,6 +6475,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6589,31 +6484,37 @@ _tilemap_map:
 	DB	9
 	DB	9
 	DB	9
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
-	DB	2
 	DB	9
-	DB	2
 	DB	9
-	DB	2
-	DB	2
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
+	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
+	DB	9
 	DB	2
 	DB	2
-	DB	9
 	DB	9
 	DB	9
 	DB	2
@@ -6624,7 +6525,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
 	DB	9
 	DB	2
 	DB	2
@@ -6636,8 +6536,8 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
 	DB	2
+	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6654,7 +6554,6 @@ _tilemap_map:
 	DB	0
 	DB	0
 	DB	1
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6687,28 +6586,30 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
-	DB	9
 	DB	9
 	DB	9
 	DB	9
-	DB	9
-	DB	9
-	DB	9
+	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
 	DB	2
+	DB	9
 	DB	2
+	DB	9
 	DB	2
 	DB	2
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -6725,7 +6626,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6754,9 +6654,6 @@ _tilemap_map:
 	DB	0
 	DB	0
 	DB	1
-	DB	2
-	DB	2
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6806,9 +6703,13 @@ _tilemap_map:
 	DB	2
 	DB	6
 	DB	6
-	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	2
 	DB	2
 	DB	2
@@ -6825,7 +6726,6 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	9
 	DB	2
 	DB	2
 	DB	2
@@ -6855,7 +6755,6 @@ _tilemap_map:
 	DB	1
 	DB	1
 	DB	5
-	DB	2
 	DB	2
 	DB	2
 	DB	2
@@ -6902,8 +6801,109 @@ _tilemap_map:
 	DB	2
 	DB	2
 	DB	2
-	DB	2
-	DB	2
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
+	DB	6
 	DB	6
 	DB	6
 	DB	6

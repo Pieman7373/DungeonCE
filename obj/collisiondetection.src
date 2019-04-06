@@ -30,7 +30,7 @@
 ;   24	
 ;   25	
 ;   26	
-;   27	
+;   27	//check mapshift away
 ;   28	void collisionleft(void) {
 _collisionleft:
 ;   29		(goleft = 1);
@@ -50,12 +50,14 @@ _collisionleft:
 
 
 ;   31	
-;   32	void collisionright(void) {
+;   32	
+;   33	//check mapshift+32 away
+;   34	void collisionright(void) {
 _collisionright:
-;   33		(goright = 1);
+;   35		(goright = 1);
 	LD	BC,1
 	LD	(_goright),BC
-;   34	}
+;   36	}
 	RET	
 
 
@@ -68,13 +70,15 @@ _collisionright:
 ;       Spill Code: 0 (instruction)
 
 
-;   35	
-;   36	void collisionup(void) {
+;   37	
+;   38	
+;   39	//check mapshift away
+;   40	void collisionup(void) {
 _collisionup:
-;   37		(goup = 1);
+;   41		(goup = 1);
 	LD	BC,1
 	LD	(_goup),BC
-;   38	}
+;   42	}
 	RET	
 
 
@@ -87,13 +91,15 @@ _collisionup:
 ;       Spill Code: 0 (instruction)
 
 
-;   39	
-;   40	void collisiondown(void) {
+;   43	
+;   44	
+;   45	//check mapshift+32 away
+;   46	void collisiondown(void) {
 _collisiondown:
-;   41		(godown = 1);
+;   47		(godown = 1);
 	LD	BC,1
 	LD	(_godown),BC
-;   42	}
+;   48	}
 	RET	
 
 

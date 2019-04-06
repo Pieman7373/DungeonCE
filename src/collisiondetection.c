@@ -24,19 +24,25 @@ extern int goright;
 
 
 
-
+//check mapshift away
 void collisionleft(void) {
 	(goleft = 1);
 }
 
+
+//check mapshift+32 away
 void collisionright(void) {
 	(goright = 1);
 }
 
+
+//check mapshift away
 void collisionup(void) {
 	(goup = 1);
 }
 
+
+//check mapshift+32 away
 void collisiondown(void) {
 	(godown = 1);
 }

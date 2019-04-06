@@ -6,5 +6,8 @@ void drawmap();
 void drawenemies();
 void drawcharacter();
 void mapshifter();
-
+void drawhelmet();
+void drawchestplate();
+void drawboot();
+void setmapshift();
 #endif

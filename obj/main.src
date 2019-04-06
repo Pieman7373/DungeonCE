@@ -48,9 +48,10 @@ _editpx:
 _editpy:
 	DW	10
 	DB	0
+	SEGMENT BSS
 _mapshift:
-	DW	32
-	DB	0
+	DS	3
+	SEGMENT DATA
 _x_offset:
 	DW	0
 	DB	0
@@ -124,7 +125,7 @@ _player_setup:
 ;   49		int editpy = 10;
 ;   50		
 ;   51		
-;   52		int mapshift = 32;
+;   52		int mapshift;
 ;   53		
 ;   54		//for tilemap stuff
 ;   55	

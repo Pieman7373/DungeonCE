@@ -369,107 +369,102 @@ _playercreate:
 	POP	BC
 ;   91		do {
 L_40:
-;   92			keywait();
-	CALL	_keywait
-;   93			
-;   94			drawequipment();
+;   92			drawequipment();
 	CALL	_drawequipment
-;   95			draweditedplayer();
+;   93			draweditedplayer();
 	CALL	_draweditedplayer
-;   96			do {
+;   94			do {
 L_38:
-;   97					if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
+;   95					if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
 	LD	A,(16056338)
 	AND	A,16
 	JR	Z,L_23
 	LD	BC,0
 	LD	(_setnumber),BC
 L_23:
-;   98					if (kb_Data[1] & kb_Window) {(setnumber = 1);}
+;   96					if (kb_Data[1] & kb_Window) {(setnumber = 1);}
 	LD	A,(16056338)
 	AND	A,8
 	JR	Z,L_25
 	LD	BC,1
 	LD	(_setnumber),BC
 L_25:
-;   99					if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
+;   97					if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
 	LD	A,(16056338)
 	AND	A,4
 	JR	Z,L_27
 	LD	BC,2
 	LD	(_setnumber),BC
 L_27:
-;  100					if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
+;   98					if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
 	LD	A,(16056338)
 	AND	A,2
 	JR	Z,L_29
 	LD	BC,3
 	LD	(_setnumber),BC
 L_29:
-;  101					if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
+;   99					if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
 	LD	A,(16056338)
 	AND	A,1
 	JR	Z,L_31
 	LD	BC,4
 	LD	(_setnumber),BC
 L_31:
-;  102				
-;  103					if (kb_Data[3] & kb_1){
+;  100				
+;  101					if (kb_Data[3] & kb_1){
 	LD	A,(16056342)
 	AND	A,2
 	JR	Z,L_33
-;  104						(player_setup[0] = setnumber);
+;  102						(player_setup[0] = setnumber);
 	LD	A,(_setnumber)
 	LD	(_player_setup),A
-;  105					}
+;  103					}
 L_33:
-;  106					if (kb_Data[4] & kb_2) {
+;  104					if (kb_Data[4] & kb_2) {
 	LD	A,(16056344)
 	AND	A,2
 	JR	Z,L_35
-;  107						(player_setup[1] = setnumber);
+;  105						(player_setup[1] = setnumber);
 	LD	HL,_player_setup
 	INC	HL
 	LD	A,(_setnumber)
 	LD	(HL),A
-;  108					}
+;  106					}
 L_35:
-;  109					if (kb_Data[5] & kb_3) {
+;  107					if (kb_Data[5] & kb_3) {
 	LD	A,(16056346)
 	AND	A,2
 	JR	Z,L_37
-;  110						(player_setup[2] = setnumber);
+;  108						(player_setup[2] = setnumber);
 	LD	HL,_player_setup+2
 	LD	A,(_setnumber)
 	LD	(HL),A
-;  111					}
+;  109					}
 L_37:
-;  112					if (kb_Data[3] & kb_4) {
+;  110					if (kb_Data[3] & kb_4) {
 	LD	A,(16056342)
 	AND	A,4
 	JR	Z,L_39
-;  113						(player_setup[3] = setnumber);
+;  111						(player_setup[3] = setnumber);
 	LD	HL,_player_setup+3
 	LD	A,(_setnumber)
 	LD	(HL),A
-;  114					}
-;  115					
-;  116					
-;  117			}	while (!os_GetCSC());
+;  112					}		
+;  113			}	while (!os_GetCSC());
 L_39:
 	CALL	_os_GetCSC
 	OR	A,A
 	JR	Z,L_38
-;  118			
-;  119		}	while (!(kb_Data[1] & kb_Del));
+;  114			
+;  115		}	while (!(kb_Data[1] & kb_Del));
 	LD	A,(16056338)
 	AND	A,128
 	JR	Z,L_40
-;  120		
-;  121		(menuyes = 3);
+;  116		
+;  117		(menuyes = 3);
 	LD	BC,3
 	LD	(_menuyes),BC
-;  122	}
+;  118	}
 	RET	
 
 
@@ -481,7 +476,6 @@ L_39:
 ;_setnumber                          IMPORT      3   variable
 ;_draweditedplayer                   IMPORT  -----   function
 ;_drawequipment                      IMPORT  -----   function
-;_keywait                            IMPORT  -----   function
 ;_editmenunumbers_data               IMPORT   4802   variable
 ;_gfx_TransparentSprite              IMPORT  -----   function
 ;_gfx_PrintStringXY                  IMPORT  -----   function
@@ -504,18 +498,18 @@ L__14:
 	DB	"f(1-5) = change set, # = select item, del = back"
 	DB	0
 	SEGMENT CODE
-;  123	
-;  124	
-;  125	void draweditedplayer(void) {
+;  119	
+;  120	
+;  121	void draweditedplayer(void) {
 _draweditedplayer:
 	LD	HL,-9
 	CALL	__frameset
-;  126		gfx_SetColor(0x00);
+;  122		gfx_SetColor(0x00);
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  127		gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
+;  123		gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
 	LD	BC,(_editscale)
 	LD	HL,BC
 	ADD	HL,HL
@@ -537,7 +531,7 @@ _draweditedplayer:
 	POP	BC
 	POP	BC
 	POP	BC
-;  128		gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
+;  124		gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
 	LD	A,(_editscale)
 	LD	C,A
 	LD	A,(_editscale)
@@ -558,7 +552,7 @@ _draweditedplayer:
 	POP	BC
 	POP	BC
 	POP	BC
-;  129		if (player_setup [0] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,editpx,editpy,editscale,editscale);}
+;  125		if (player_setup [0] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -587,7 +581,7 @@ _draweditedplayer:
 	POP	BC
 	POP	BC
 L_46:
-;  130		if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
+;  126		if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	BC,_player_setup
 	INC	BC
 	LD	(IX+-3),BC
@@ -620,7 +614,7 @@ L_46:
 	POP	BC
 	POP	BC
 L_48:
-;  131		if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy,editscale,editscale);}
+;  127		if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy,editscale,editscale);}
 	LD	IY,_player_setup
 	LEA	IY,IY+2
 	LD	(IX+-6),IY
@@ -653,7 +647,7 @@ L_48:
 	POP	BC
 	POP	BC
 L_50:
-;  132		if (player_setup [3] == 1) {gfx_ScaledTransparentSprite_NoClip(club,editweaponx,editweapony,editscale-1,editscale-1);}
+;  128		if (player_setup [3] == 1) {gfx_ScaledTransparentSprite_NoClip(club,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	IY,_player_setup
 	LEA	IY,IY+3
 	LD	(IX+-9),IY
@@ -686,8 +680,8 @@ L_50:
 	POP	BC
 	POP	BC
 L_52:
-;  133		
-;  134		if (player_setup [0] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,editpx,editpy,editscale,editscale);}
+;  129		
+;  130		if (player_setup [0] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -716,7 +710,7 @@ L_52:
 	POP	BC
 	POP	BC
 L_54:
-;  135		if (player_setup [1] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,editpx,editpy,editscale,editscale);}
+;  131		if (player_setup [1] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,(IX+-3)
 	LD	A,(HL)
 	UEXT	HL
@@ -746,7 +740,7 @@ L_54:
 	POP	BC
 	POP	BC
 L_56:
-;  136		if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy,editscale,editscale);}
+;  132		if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,(IX+-6)
 	LD	A,(HL)
 	UEXT	HL
@@ -776,7 +770,7 @@ L_56:
 	POP	BC
 	POP	BC
 L_58:
-;  137		if (player_setup [3] == 2) {gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+;  133		if (player_setup [3] == 2) {gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,(IX+-9)
 	LD	A,(HL)
 	UEXT	HL
@@ -806,8 +800,8 @@ L_58:
 	POP	BC
 	POP	BC
 L_60:
-;  138		
-;  139		if (player_setup [0] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,editpx,editpy,editscale,editscale);}
+;  134		
+;  135		if (player_setup [0] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -836,7 +830,7 @@ L_60:
 	POP	BC
 	POP	BC
 L_62:
-;  140		if (player_setup [1] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,editpx,editpy,editscale,editscale);}
+;  136		if (player_setup [1] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,(IX+-3)
 	LD	A,(HL)
 	UEXT	HL
@@ -866,7 +860,7 @@ L_62:
 	POP	BC
 	POP	BC
 L_64:
-;  141		if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy,editscale,editscale);}
+;  137		if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,(IX+-6)
 	LD	A,(HL)
 	UEXT	HL
@@ -896,7 +890,7 @@ L_64:
 	POP	BC
 	POP	BC
 L_66:
-;  142		if (player_setup [3] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+;  138		if (player_setup [3] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,(IX+-9)
 	LD	A,(HL)
 	UEXT	HL
@@ -926,8 +920,8 @@ L_66:
 	POP	BC
 	POP	BC
 L_68:
-;  143		
-;  144		if (player_setup [0] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,editpx,editpy,editscale,editscale);}
+;  139		
+;  140		if (player_setup [0] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -956,7 +950,7 @@ L_68:
 	POP	BC
 	POP	BC
 L_70:
-;  145		if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
+;  141		if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,(IX+-3)
 	LD	A,(HL)
 	UEXT	HL
@@ -986,7 +980,7 @@ L_70:
 	POP	BC
 	POP	BC
 L_72:
-;  146		if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
+;  142		if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,(IX+-6)
 	LD	A,(HL)
 	UEXT	HL
@@ -1016,7 +1010,7 @@ L_72:
 	POP	BC
 	POP	BC
 L_74:
-;  147		if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+;  143		if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,(IX+-9)
 	LD	A,(HL)
 	UEXT	HL
@@ -1045,7 +1039,7 @@ L_74:
 	POP	BC
 	POP	BC
 	POP	BC
-;  148	}
+;  144	}
 L_75:
 	LD	SP,IX
 	POP	IX
@@ -1089,18 +1083,18 @@ L_75:
 ;       Spill Code: 0 (instruction)
 
 
-;  149	
-;  150	
-;  151	//draw sprites in spots dependent on which equipment set is selected
-;  152	void drawequipment(void) {
+;  145	
+;  146	
+;  147	//draw sprites in spots dependent on which equipment set is selected
+;  148	void drawequipment(void) {
 _drawequipment:
-;  153		
-;  154		gfx_SetColor(0x00);
+;  149		
+;  150		gfx_SetColor(0x00);
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  155		gfx_FillRectangle(65,12,96,208);
+;  151		gfx_FillRectangle(65,12,96,208);
 	LD	BC,208
 	PUSH	BC
 	LD	BC,96
@@ -1114,14 +1108,14 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  156		
-;  157		if (setnumber == 1) {
+;  152		
+;  153		if (setnumber == 1) {
 	LD	BC,1
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_78
-;  158			gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
+;  154			gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1137,7 +1131,7 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  159			gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
+;  155			gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1153,7 +1147,7 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  160			gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,55,3,3);
+;  156			gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1169,7 +1163,7 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  161			gfx_ScaledTransparentSprite_NoClip(club,editweaponsmallx,editweaponsmally,2,2);
+;  157			gfx_ScaledTransparentSprite_NoClip(club,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1188,15 +1182,15 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  162		}
+;  158		}
 L_78:
-;  163		if (setnumber == 2) {
+;  159		if (setnumber == 2) {
 	LD	BC,2
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_80
-;  164			gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,50,15,3,3);
+;  160			gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,50,15,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1212,7 +1206,7 @@ L_78:
 	POP	BC
 	POP	BC
 	POP	BC
-;  165			gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,50,25,3,3);
+;  161			gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1228,7 +1222,7 @@ L_78:
 	POP	BC
 	POP	BC
 	POP	BC
-;  166			gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,55,3,3);
+;  162			gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1244,7 +1238,7 @@ L_78:
 	POP	BC
 	POP	BC
 	POP	BC
-;  167			gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponsmallx,editweaponsmally,2,2);
+;  163			gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1263,15 +1257,15 @@ L_78:
 	POP	BC
 	POP	BC
 	POP	BC
-;  168		}
+;  164		}
 L_80:
-;  169		if (setnumber == 3) {
+;  165		if (setnumber == 3) {
 	LD	BC,3
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_82
-;  170			gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,50,15,3,3);
+;  166			gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,50,15,3,3);
 	PUSH	BC
 	PUSH	BC
 	LD	BC,15
@@ -1286,7 +1280,7 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  171			gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,50,25,3,3);
+;  167			gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1302,7 +1296,7 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  172			gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,55,3,3);
+;  168			gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1318,7 +1312,7 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  173			gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponsmallx,editweaponsmally,2,2);
+;  169			gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1337,15 +1331,15 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  174		}
+;  170		}
 L_82:
-;  175		if (setnumber == 4) {
+;  171		if (setnumber == 4) {
 	LD	BC,4
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_83
-;  176			gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,50,15,3,3);
+;  172			gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,50,15,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1361,7 +1355,7 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  177			gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
+;  173			gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1377,7 +1371,7 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  178			gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
+;  174			gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
@@ -1393,7 +1387,7 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  179			gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
+;  175			gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1412,8 +1406,8 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  180		}
-;  181	}
+;  176		}
+;  177	}
 L_83:
 	RET	
 
@@ -1448,26 +1442,26 @@ L_83:
 ;       Spill Code: 0 (instruction)
 
 
-;  182	
-;  183	
-;  184	
-;  185	void menubkgnd(void) {
+;  178	
+;  179	
+;  180	
+;  181	void menubkgnd(void) {
 _menubkgnd:
-;  186		gfx_FillScreen(menucolor);
+;  182		gfx_FillScreen(menucolor);
 	LD	A,(_menucolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_FillScreen
 	POP	BC
-;  187		gfx_SetColor(accentcolor);
+;  183		gfx_SetColor(accentcolor);
 	LD	A,(_accentcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  188		gfx_Rectangle(0,0,320,240);
+;  184		gfx_Rectangle(0,0,320,240);
 	LD	BC,240
 	PUSH	BC
 	LD	BC,320
@@ -1480,7 +1474,7 @@ _menubkgnd:
 	POP	BC
 	POP	BC
 	POP	BC
-;  189		gfx_Rectangle(2,2,316,236);
+;  185		gfx_Rectangle(2,2,316,236);
 	LD	BC,236
 	PUSH	BC
 	LD	BC,316
@@ -1493,7 +1487,7 @@ _menubkgnd:
 	POP	BC
 	POP	BC
 	POP	BC
-;  190	}
+;  186	}
 	RET	
 
 

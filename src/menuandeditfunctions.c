@@ -89,8 +89,6 @@ void playercreate(void) {
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
 	gfx_TransparentSprite(editmenunumbers,40,20);
 	do {
-		keywait();
-		
 		drawequipment();
 		draweditedplayer();
 		do {
@@ -111,9 +109,7 @@ void playercreate(void) {
 				}
 				if (kb_Data[3] & kb_4) {
 					(player_setup[3] = setnumber);
-				}
-				
-				
+				}		
 		}	while (!os_GetCSC());
 		
 	}	while (!(kb_Data[1] & kb_Del));

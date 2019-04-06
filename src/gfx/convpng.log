@@ -5,9 +5,15 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-21:
+27:
  player_naked_down : converted!
+ player_naked_up : converted!
+ player_naked_left : converted!
+ player_naked_right : converted!
  leather_helmet_down : converted!
+ leather_helmet_up : converted!
+ leather_helmet_left : converted!
+ leather_helmet_right : converted!
  chain_helmet_down : converted!
  steel_helmet_down : converted!
  dragon_helmet_down : converted!
@@ -36,7 +42,7 @@ Transparent Color : 0xFC78
 1:
  tileset : converted!
 
-Converted in 0 s
+Converted in 8 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
