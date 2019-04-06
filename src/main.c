@@ -23,9 +23,11 @@
 #include <keypadc.h>
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
+#include "collisiondetection.h"
 
 #include "gfx/dungeon_gfx.h"
 #include "gfx/tiles_gfx.h"
+#include "gfx/tilemapdata.h"
 
 
 
@@ -46,14 +48,18 @@
 	int editpx = 140;
 	int editpy = 10;
 	
+	
+	int mapshift = 32;
+	
 	//for tilemap stuff
 
 	#define TILE_WIDTH          32
 	#define TILE_HEIGHT         32
 
-	#define TILEMAP_WIDTH       11
-	#define TILEMAP_HEIGHT      8
-
+	#define TILEMAP_WIDTH       100
+	
+	#define TILEMAP_HEIGHT      70
+	
 	#define TILEMAP_DRAW_WIDTH  10
 	#define TILEMAP_DRAW_HEIGHT 7
 
@@ -65,6 +71,7 @@
 	unsigned int y_offset = 0;
 	
 	extern uint8_t tilemap_map[];
+	gfx_tilemap_t tilemap;
 	
 	
 	
@@ -77,7 +84,6 @@
 void main(void) {
 	
 	kb_key_t key;
-	gfx_tilemap_t tilemap;
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;

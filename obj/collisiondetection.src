@@ -1,0 +1,117 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -nomodsect -optspeed -noreduceopt -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\COLLISIONDETECTION.C"
+	.assume ADL=1
+	SEGMENT CODE
+;    1	#include "menuandeditfunctions.h"
+;    2	#include "maingameloop.h"
+;    3	#include "gfx/dungeon_gfx.h"
+;    4	#include "gfx/tiles_gfx.h"
+;    5	
+;    6	#include <stdbool.h>
+;    7	#include <stddef.h>
+;    8	#include <stdint.h>
+;    9	#include <tice.h>
+;   10	
+;   11	#include <math.h>
+;   12	#include <setjmp.h>
+;   13	#include <fileioc.h>
+;   14	#include <stdio.h>
+;   15	#include <stdlib.h>
+;   16	#include <string.h>
+;   17	#include <graphx.h>
+;   18	#include <keypadc.h>
+;   19	
+;   20	extern int goup;
+;   21	extern int godown;
+;   22	extern int goleft;
+;   23	extern int goright;
+;   24	
+;   25	
+;   26	
+;   27	
+;   28	void collisionleft(void) {
+_collisionleft:
+;   29		(goleft = 1);
+	LD	BC,1
+	LD	(_goleft),BC
+;   30	}
+	RET	
+
+
+;**************************** _collisionleft ***************************
+;Name                         Addr/Register   Size   Type
+;_goleft                             IMPORT      3   variable
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;   31	
+;   32	void collisionright(void) {
+_collisionright:
+;   33		(goright = 1);
+	LD	BC,1
+	LD	(_goright),BC
+;   34	}
+	RET	
+
+
+;**************************** _collisionright ***************************
+;Name                         Addr/Register   Size   Type
+;_goright                            IMPORT      3   variable
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;   35	
+;   36	void collisionup(void) {
+_collisionup:
+;   37		(goup = 1);
+	LD	BC,1
+	LD	(_goup),BC
+;   38	}
+	RET	
+
+
+;**************************** _collisionup ***************************
+;Name                         Addr/Register   Size   Type
+;_goup                               IMPORT      3   variable
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;   39	
+;   40	void collisiondown(void) {
+_collisiondown:
+;   41		(godown = 1);
+	LD	BC,1
+	LD	(_godown),BC
+;   42	}
+	RET	
+
+
+;**************************** _collisiondown ***************************
+;Name                         Addr/Register   Size   Type
+;_godown                             IMPORT      3   variable
+
+
+; Stack Frame Size: 6 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+	XREF _goright:ROM
+	XREF _goleft:ROM
+	XREF _godown:ROM
+	XREF _goup:ROM
+	XDEF _collisiondown
+	XDEF _collisionup
+	XDEF _collisionright
+	XDEF _collisionleft
+	END

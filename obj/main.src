@@ -48,12 +48,19 @@ _editpx:
 _editpy:
 	DW	10
 	DB	0
+_mapshift:
+	DW	32
+	DB	0
 _x_offset:
 	DW	0
 	DB	0
 _y_offset:
 	DW	0
 	DB	0
+	SEGMENT BSS
+_tilemap:
+	DS	18
+	SEGMENT DATA
 _setnumber:
 	DW	0
 	DB	0
@@ -91,180 +98,190 @@ _player_setup:
 ;   23	#include <keypadc.h>
 ;   24	#include "menuandeditfunctions.h"
 ;   25	#include "maingameloop.h"
-;   26	
-;   27	#include "gfx/dungeon_gfx.h"
-;   28	#include "gfx/tiles_gfx.h"
-;   29	
-;   30	
+;   26	#include "collisiondetection.h"
+;   27	
+;   28	#include "gfx/dungeon_gfx.h"
+;   29	#include "gfx/tiles_gfx.h"
+;   30	#include "gfx/tilemapdata.h"
 ;   31	
-;   32	/* Put all your globals here */
-;   33		int menuyes;
-;   34		int menuoption;
-;   35		int textcolor = (0xE6);
-;   36		int accentcolor = (0x40);
-;   37		int menucolor = (0x00);
-;   38		int submenucolor = (0x4A);
-;   39		int transcolor = (0xF8);
-;   40		int editweaponx = 90;
-;   41		int editweapony = 0;
-;   42		int editweaponsmallx = 75;
-;   43		int editweaponsmally = 150;
-;   44		int editscale = 6;
-;   45		int editscalep = 12;
-;   46		int editpx = 140;
-;   47		int editpy = 10;
-;   48		
-;   49		//for tilemap stuff
-;   50	
-;   51		#define TILE_WIDTH          32
-;   52		#define TILE_HEIGHT         32
-;   53	
-;   54		#define TILEMAP_WIDTH       11
-;   55		#define TILEMAP_HEIGHT      8
-;   56	
-;   57		#define TILEMAP_DRAW_WIDTH  10
-;   58		#define TILEMAP_DRAW_HEIGHT 7
-;   59	
-;   60		#define Y_OFFSET            0
-;   61		#define X_OFFSET            0
+;   32	
+;   33	
+;   34	/* Put all your globals here */
+;   35		int menuyes;
+;   36		int menuoption;
+;   37		int textcolor = (0xE6);
+;   38		int accentcolor = (0x40);
+;   39		int menucolor = (0x00);
+;   40		int submenucolor = (0x4A);
+;   41		int transcolor = (0xF8);
+;   42		int editweaponx = 90;
+;   43		int editweapony = 0;
+;   44		int editweaponsmallx = 75;
+;   45		int editweaponsmally = 150;
+;   46		int editscale = 6;
+;   47		int editscalep = 12;
+;   48		int editpx = 140;
+;   49		int editpy = 10;
+;   50		
+;   51		
+;   52		int mapshift = 32;
+;   53		
+;   54		//for tilemap stuff
+;   55	
+;   56		#define TILE_WIDTH          32
+;   57		#define TILE_HEIGHT         32
+;   58	
+;   59		#define TILEMAP_WIDTH       100
+;   60		
+;   61		#define TILEMAP_HEIGHT      70
 ;   62		
-;   63		
-;   64		unsigned int x_offset = 0;
-;   65		unsigned int y_offset = 0;
-;   66		
-;   67		extern uint8_t tilemap_map[];
+;   63		#define TILEMAP_DRAW_WIDTH  10
+;   64		#define TILEMAP_DRAW_HEIGHT 7
+;   65	
+;   66		#define Y_OFFSET            0
+;   67		#define X_OFFSET            0
 ;   68		
 ;   69		
-;   70		
-;   71		//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
-;   72		signed int setnumber = 0;
-;   73		
-;   74		//{helmet,chestplate,boots,weapon,x,y,x offset,y offset}
-;   75		uint8_t player_setup [8] = {0,0,0,0,0,0,0,0};
-	SEGMENT CODE
+;   70		unsigned int x_offset = 0;
+;   71		unsigned int y_offset = 0;
+;   72		
+;   73		extern uint8_t tilemap_map[];
+;   74		gfx_tilemap_t tilemap;
+;   75		
 ;   76		
-;   77	void main(void) {
+;   77		
+;   78		//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
+;   79		signed int setnumber = 0;
+;   80		
+;   81		//{helmet,chestplate,boots,weapon,x,y,x offset,y offset}
+;   82		uint8_t player_setup [8] = {0,0,0,0,0,0,0,0};
+	SEGMENT CODE
+;   83		
+;   84	void main(void) {
 _main:
-	LD	HL,-18
-	CALL	__frameset
-;   78		
-;   79		kb_key_t key;
-;   80		gfx_tilemap_t tilemap;
-;   81	
-;   82	    /* Initialize the tilemap structure */
-;   83		tilemap.map         = tilemap_map;
+;   85		
+;   86		kb_key_t key;
+;   87	
+;   88	    /* Initialize the tilemap structure */
+;   89		tilemap.map         = tilemap_map;
 	LD	BC,_tilemap_map
-	LD	(IX+-18),BC
-;   84	    tilemap.tiles       = tileset_tiles;
+	LD	(_tilemap),BC
+;   90	    tilemap.tiles       = tileset_tiles;
 	LD	BC,_tileset_tiles_data
-	LD	(IX+-15),BC
-;   85	    tilemap.type_width  = gfx_tile_32_pixel;
-	LD	(IX+-8),5
-;   86	    tilemap.type_height = gfx_tile_32_pixel;
-	LD	(IX+-7),5
-;   87	    tilemap.tile_height = TILE_HEIGHT;
-	LD	(IX+-12),32
-;   88	    tilemap.tile_width  = TILE_WIDTH;
-	LD	(IX+-11),32
-;   89	    tilemap.draw_height = TILEMAP_DRAW_HEIGHT;
-	LD	(IX+-10),7
-;   90	    tilemap.draw_width  = TILEMAP_DRAW_WIDTH;
-	LD	(IX+-9),10
-;   91	    tilemap.height      = TILEMAP_HEIGHT;
-	LD	(IX+-6),8
-;   92	    tilemap.width       = TILEMAP_WIDTH;
-	LD	(IX+-5),11
-;   93	    tilemap.y_loc       = Y_OFFSET;
-	LD	(IX+-4),0
-;   94	    tilemap.x_loc       = X_OFFSET;
+	LD	(_tilemap+3),BC
+;   91	    tilemap.type_width  = gfx_tile_32_pixel;
+	LD	A,5
+	LD	(_tilemap+10),A
+;   92	    tilemap.type_height = gfx_tile_32_pixel;
+	LD	(_tilemap+11),A
+;   93	    tilemap.tile_height = TILE_HEIGHT;
+	LD	A,32
+	LD	(_tilemap+6),A
+;   94	    tilemap.tile_width  = TILE_WIDTH;
+	LD	(_tilemap+7),A
+;   95	    tilemap.draw_height = TILEMAP_DRAW_HEIGHT;
+	LD	A,7
+	LD	(_tilemap+8),A
+;   96	    tilemap.draw_width  = TILEMAP_DRAW_WIDTH;
+	LD	A,10
+	LD	(_tilemap+9),A
+;   97	    tilemap.height      = TILEMAP_HEIGHT;
+;   98	    tilemap.width       = TILEMAP_WIDTH;
+;   99	    tilemap.y_loc       = Y_OFFSET;
+;  100	    tilemap.x_loc       = X_OFFSET;
+;  101		
+;  102		
+;  103		gfx_SetPalette(dungeon_gfx_pal, sizeof_dungeon_gfx_pal, 0);
 	LD	BC,0
-	LD	(IX+-3),BC
-;   95		
-;   96		
-;   97		gfx_SetPalette(dungeon_gfx_pal, sizeof_dungeon_gfx_pal, 0);
 	PUSH	BC
+	LD	A,70
 	LD	BC,512
 	PUSH	BC
+	LD	(_tilemap+12),A
 	LD	BC,_dungeon_gfx_pal
 	PUSH	BC
+	LD	A,100
+	LD	(_tilemap+13),A
+	XOR	A,A
+	LD	(_tilemap+14),A
+	LD	BC,0
+	LD	(_tilemap+15),BC
 	CALL	_gfx_SetPalette
 	POP	BC
 	POP	BC
 	POP	BC
-;   98		gfx_SetTransparentColor(transcolor);
+;  104		gfx_SetTransparentColor(transcolor);
 	LD	A,(_transcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTransparentColor
 	POP	BC
-;   99		gfx_Begin();
+;  105		gfx_Begin();
 	CALL	_gfx_Begin
-;  100		kb_SetMode(3);
+;  106		kb_SetMode(3);
 	LD	A,(16056320)
 	AND	A,252
 	OR	A,3
 	LD	(16056320),A
-;  101	
-;  102		
-;  103		do {
+;  107	
+;  108		
+;  109		do {
 L_8:
-;  104			
-;  105			/*pick whether to continue or not*/
-;  106			
-;  107			mainmenu ();
+;  110			
+;  111			/*pick whether to continue or not*/
+;  112			
+;  113			mainmenu ();
 	CALL	_mainmenu
-;  108	
-;  109			//menuyes comes from the mainmenu function
-;  110			//menuyes chunk begin
-;  111			if (menuyes == 1) {
-;  112				if (kb_Data[3] & kb_1) {
-;  113					
-;  114				}
-;  115			}
-;  116			if (menuyes == 1) {
+;  114	
+;  115			//menuyes comes from the mainmenu function
+;  116			//menuyes chunk begin
+;  117			if (menuyes == 1) {
+;  118				if (kb_Data[3] & kb_1) {
+;  119					
+;  120				}
+;  121			}
+;  122			if (menuyes == 1) {
 	LD	BC,1
 	LD	HL,(_menuyes)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_7
-;  117				if (kb_Data[4] & kb_2) {
+;  123				if (kb_Data[4] & kb_2) {
 	LD	A,(16056344)
 	AND	A,2
 	JR	Z,L_7
-;  118					maingameloop();
+;  124					maingameloop();
 	CALL	_maingameloop
-;  119				}
-;  120			}
+;  125				}
+;  126			}
 L_7:
-;  121			if (menuyes == 1) {
+;  127			if (menuyes == 1) {
 	LD	BC,1
 	LD	HL,(_menuyes)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_9
-;  122				if (kb_Data[5] & kb_3) {
+;  128				if (kb_Data[5] & kb_3) {
 	LD	A,(16056346)
 	AND	A,2
 	JR	Z,L_9
-;  123					options();
+;  129					options();
 	CALL	_options
-;  124				}
-;  125			}
-;  126			//menuyes chunk end
-;  127		
-;  128		
-;  129		} while (!(kb_Data[6] & kb_Clear));
+;  130				}
+;  131			}
+;  132			//menuyes chunk end
+;  133		
+;  134		
+;  135		} while (!(kb_Data[6] & kb_Clear));
 L_9:
 	LD	A,(16056348)
 	AND	A,64
 	JR	Z,L_8
-;  130		
-;  131		gfx_End();
+;  136		
+;  137		gfx_End();
 	CALL	_gfx_End
-;  132	}
-	LD	SP,IX
-	POP	IX
+;  138	}
 	RET	
 
 
@@ -280,12 +297,12 @@ L_9:
 ;_gfx_SetTransparentColor            IMPORT  -----   function
 ;_dungeon_gfx_pal                    IMPORT    512   variable
 ;_gfx_SetPalette                     IMPORT  -----   function
-;_tileset_tiles_data                 IMPORT     24   variable
+;_tileset_tiles_data                 IMPORT     81   variable
+;_tilemap                            STATIC     18   variable
 ;_tilemap_map                        IMPORT  unknown variable
-;tilemap                              IX-18     18   variable
 
 
-; Stack Frame Size: 24 (bytes)
+; Stack Frame Size: 6 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
@@ -299,12 +316,13 @@ L_9:
 	XREF _gfx_SetTransparentColor:ROM
 	XREF _gfx_End:ROM
 	XREF _gfx_Begin:ROM
-	XREF __frameset:ROM
 	XDEF _main
 	XDEF _player_setup
 	XDEF _setnumber
+	XDEF _tilemap
 	XDEF _y_offset
 	XDEF _x_offset
+	XDEF _mapshift
 	XDEF _editpy
 	XDEF _editpx
 	XDEF _editscalep

@@ -5,5 +5,6 @@ void maingameloop();
 void drawmap();
 void drawenemies();
 void drawcharacter();
+void mapshifter();
 
 #endif
