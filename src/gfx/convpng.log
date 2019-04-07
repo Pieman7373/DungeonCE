@@ -1,30 +1,142 @@
-Opened convpng.ini
+opened convpng.ini
 
---- Group dungeon_gfx (C) ---
-Using built-in xlibc palette ...
+--- dungeon_gfx (C) ---
+using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
-Transparent Color Index : 0
-Transparent Color : 0xFC78
-4:
+transparent color index : 0
+transparent color : 0xFC78
+60:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
  menuwords : converted!
+ player_naked_down : converted!
+ player_naked_up : converted!
+ player_naked_left : converted!
+ player_naked_right : converted!
+ leather_helmet_down : converted!
+ leather_helmet_up : converted!
+ leather_helmet_left : converted!
+ leather_helmet_right : converted!
+ chain_helmet_down : converted!
+ chain_helmet_up : converted!
+ chain_helmet_left : converted!
+ chain_helmet_right : converted!
+ steel_helmet_down : converted!
+ steel_helmet_up : converted!
+ steel_helmet_left : converted!
+ steel_helmet_right : converted!
+ dragon_helmet_down : converted!
+ dragon_helmet_up : converted!
+ dragon_helmet_left : converted!
+ dragon_helmet_right : converted!
+ leather_chestplate_down : converted!
+ leather_chestplate_up : converted!
+ leather_chestplate_left : converted!
+ leather_chestplate_right : converted!
+ chain_chestplate_down : converted!
+ chain_chestplate_up : converted!
+ chain_chestplate_left : converted!
+ chain_chestplate_right : converted!
+ steel_chestplate_down : converted!
+ steel_chestplate_up : converted!
+ steel_chestplate_left : converted!
+ steel_chestplate_right : converted!
+ dragon_chestplate_down : converted!
+ dragon_chestplate_up : converted!
+ dragon_chestplate_left : converted!
+ dragon_chestplate_right : converted!
+ leather_boots_down : converted!
+ leather_boots_up : converted!
+ leather_boots_left : converted!
+ leather_boots_right : converted!
+ chain_boots_down : converted!
+ chain_boots_up : converted!
+ chain_boots_left : converted!
+ chain_boots_right : converted!
+ steel_boots_down : converted!
+ steel_boots_up : converted!
+ steel_boots_left : converted!
+ steel_boots_right : converted!
+ dragon_boots_down : converted!
+ dragon_boots_up : converted!
+ dragon_boots_left : converted!
+ dragon_boots_right : converted!
+ club : converted!
+ iron_sword : converted!
+ steel_sword : converted!
+ dragon_sword : converted!
 
---- Group tiles_gfx (C) ---
-Using built-in xlibc palette ...
+--- tiles_gfx (C) ---
+using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
-Transparent Color Index : 0
-Transparent Color : 0xFC78
+transparent color index : 0
+transparent color : 0xFC78
 1:
  tileset : converted!
 
-exporting appvar: dungeon.8xp
+exporting appvar: dungeon.8xv
+ player_naked_down
+ player_naked_up
+ player_naked_left
+ player_naked_right
+ leather_helmet_down
+ leather_helmet_up
+ leather_helmet_left
+ leather_helmet_right
+ chain_helmet_down
+ chain_helmet_up
+ chain_helmet_left
+ chain_helmet_right
+ steel_helmet_down
+ steel_helmet_up
+ steel_helmet_left
+ steel_helmet_right
+ dragon_helmet_down
+ dragon_helmet_up
+ dragon_helmet_left
+ dragon_helmet_right
+ leather_chestplate_down
+ leather_chestplate_up
+ leather_chestplate_left
+ leather_chestplate_right
+ chain_chestplate_down
+ chain_chestplate_up
+ chain_chestplate_left
+ chain_chestplate_right
+ steel_chestplate_down
+ steel_chestplate_up
+ steel_chestplate_left
+ steel_chestplate_right
+ dragon_chestplate_down
+ dragon_chestplate_up
+ dragon_chestplate_left
+ dragon_chestplate_right
+ leather_boots_down
+ leather_boots_up
+ leather_boots_left
+ leather_boots_right
+ chain_boots_down
+ chain_boots_up
+ chain_boots_left
+ chain_boots_right
+ steel_boots_down
+ steel_boots_up
+ steel_boots_left
+ steel_boots_right
+ dragon_boots_down
+ dragon_boots_up
+ dragon_boots_left
+ dragon_boots_right
+ club
+ iron_sword
+ steel_sword
+ dragon_sword
 
-Converted in 1 s
+converted in 1 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
 or selecting a better palette if conversion is not ideal.
 
-Finished!
+finished!
