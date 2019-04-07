@@ -30,47 +30,48 @@ _dumb:
 ;    3	#include "collisiondetection.h"
 ;    4	#include "gfx/dungeon_gfx.h"
 ;    5	#include "gfx/tiles_gfx.h"
-;    6	
-;    7	#include <stdbool.h>
-;    8	#include <stddef.h>
-;    9	#include <stdint.h>
-;   10	#include <tice.h>
-;   11	
-;   12	#include <math.h>
-;   13	#include <setjmp.h>
-;   14	#include <fileioc.h>
-;   15	#include <stdio.h>
-;   16	#include <stdlib.h>
-;   17	#include <string.h>
-;   18	#include <graphx.h>
-;   19	#include <keypadc.h>
-;   20	
-;   21	int goleft;
-;   22	int goright;
-;   23	int goup;
-;   24	int godown;
-;   25	int spritexoffset = 160;
-;   26	int spriteyoffset = 128;
-;   27	//1=left,2=up,3=right,4=down
-;   28	int playerface = 2;
-;   29	int dumb = 0;
+;    6	#include "gfx/dungeon.h"
+;    7	
+;    8	#include <stdbool.h>
+;    9	#include <stddef.h>
+;   10	#include <stdint.h>
+;   11	#include <tice.h>
+;   12	
+;   13	#include <math.h>
+;   14	#include <setjmp.h>
+;   15	#include <fileioc.h>
+;   16	#include <stdio.h>
+;   17	#include <stdlib.h>
+;   18	#include <string.h>
+;   19	#include <graphx.h>
+;   20	#include <keypadc.h>
+;   21	
+;   22	int goleft;
+;   23	int goright;
+;   24	int goup;
+;   25	int godown;
+;   26	int spritexoffset = 160;
+;   27	int spriteyoffset = 128;
+;   28	//1=left,2=up,3=right,4=down
+;   29	int playerface = 2;
+;   30	int dumb = 0;
 	SEGMENT CODE
-;   30	
-;   31	extern int menuyes;
-;   32	extern int textcolor;
-;   33	extern uint8_t tilemap_map[];
-;   34	extern unsigned int x_offset;
-;   35	extern unsigned int y_offset;
-;   36	extern int mapstartx;
-;   37	extern int mapstarty;
-;   38	extern int mapshift;
-;   39	extern uint8_t player_setup [];
-;   40	
-;   41	extern gfx_tilemap_t tilemap;
-;   42	
-;   43	void maingameloop(void){
+;   31	
+;   32	extern int menuyes;
+;   33	extern int textcolor;
+;   34	extern uint8_t tilemap_map[];
+;   35	extern unsigned int x_offset;
+;   36	extern unsigned int y_offset;
+;   37	extern int mapstartx;
+;   38	extern int mapstarty;
+;   39	extern int mapshift;
+;   40	extern uint8_t player_setup [];
+;   41	
+;   42	extern gfx_tilemap_t tilemap;
+;   43	
+;   44	void maingameloop(void){
 _maingameloop:
-;   44	x_offset = mapstartx * 32;
+;   45	x_offset = mapstartx * 32;
 	LD	HL,(_mapstartx)
 	ADD	HL,HL
 	ADD	HL,HL
@@ -78,7 +79,7 @@ _maingameloop:
 	ADD	HL,HL
 	ADD	HL,HL
 	LD	(_x_offset),HL
-;   45	y_offset = mapstarty * 32;
+;   46	y_offset = mapstarty * 32;
 	LD	HL,(_mapstarty)
 	ADD	HL,HL
 	ADD	HL,HL
@@ -86,32 +87,32 @@ _maingameloop:
 	ADD	HL,HL
 	ADD	HL,HL
 	LD	(_y_offset),HL
-;   46		do{
+;   47		do{
 L_1:
-;   47				
-;   48			(goleft = 0);
+;   48				
+;   49			(goleft = 0);
 	LD	BC,0
 	LD	(_goleft),BC
-;   49			(goright = 0);
+;   50			(goright = 0);
 	LD	(_goright),BC
-;   50			(goup = 0);
+;   51			(goup = 0);
 	LD	(_goup),BC
-;   51			(godown = 0);
+;   52			(godown = 0);
 	LD	(_godown),BC
-;   52			
-;   53			setmapshift();
+;   53			
+;   54			setmapshift();
 	CALL	_setmapshift
-;   54			
-;   55			drawmap();
+;   55			
+;   56			drawmap();
 	CALL	_drawmap
-;   56			drawcharacter();
+;   57			drawcharacter();
 	CALL	_drawcharacter
-;   57			drawplayerattack();
+;   58			drawplayerattack();
 	CALL	_drawplayerattack
-;   58			mapshifter();
+;   59			mapshifter();
 	CALL	_mapshifter
-;   59		
-;   60		} while (!((kb_Data[6] & kb_Clear)||(kb_Data[1] & kb_Yequ)));
+;   60		
+;   61		} while (!((kb_Data[6] & kb_Clear)||(kb_Data[1] & kb_Yequ)));
 	LD	A,(16056348)
 	AND	A,64
 	JR	NZ,L_3
@@ -119,10 +120,10 @@ L_1:
 	AND	A,16
 	JR	Z,L_1
 L_3:
-;   61		menuyes = 3;
+;   62		menuyes = 3;
 	LD	BC,3
 	LD	(_menuyes),BC
-;   62	}
+;   63	}
 	RET	
 
 
@@ -148,11 +149,11 @@ L_3:
 ;       Spill Code: 0 (instruction)
 
 
-;   63	
 ;   64	
-;   65	void setmapshift(void) {
+;   65	
+;   66	void setmapshift(void) {
 _setmapshift:
-;   66		if (player_setup[2] == 0) {(mapshift = 1);}
+;   67		if (player_setup[2] == 0) {(mapshift = 1);}
 	LD	IY,_player_setup
 	LD	A,(IY+2)
 	OR	A,A
@@ -160,7 +161,7 @@ _setmapshift:
 	LD	BC,1
 	LD	(_mapshift),BC
 L_7:
-;   67		if (player_setup[2] == 1) {(mapshift = 8);}
+;   68		if (player_setup[2] == 1) {(mapshift = 8);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -172,7 +173,7 @@ L_7:
 	LD	BC,8
 	LD	(_mapshift),BC
 L_9:
-;   68		if (player_setup[2] == 2) {(mapshift = 16);}
+;   69		if (player_setup[2] == 2) {(mapshift = 16);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -184,7 +185,7 @@ L_9:
 	LD	BC,16
 	LD	(_mapshift),BC
 L_11:
-;   69		if (player_setup[2] == 3) {(mapshift = 24);}
+;   70		if (player_setup[2] == 3) {(mapshift = 24);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -196,7 +197,7 @@ L_11:
 	LD	BC,24
 	LD	(_mapshift),BC
 L_13:
-;   70		if (player_setup[2] == 4) {(mapshift = 32);}
+;   71		if (player_setup[2] == 4) {(mapshift = 32);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -207,7 +208,7 @@ L_13:
 	JR	NZ,L_14
 	LD	BC,32
 	LD	(_mapshift),BC
-;   71	}
+;   72	}
 L_14:
 	RET	
 
@@ -222,16 +223,16 @@ L_14:
 ;       Spill Code: 0 (instruction)
 
 
-;   72		
-;   73	void drawmap(void) {
+;   73		
+;   74	void drawmap(void) {
 _drawmap:
-;   74	
-;   75		gfx_SetDrawBuffer();
+;   75	
+;   76		gfx_SetDrawBuffer();
 	LD	BC,1
 	PUSH	BC
 	CALL	_gfx_SetDraw
 	POP	BC
-;   76		gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
+;   77		gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	LD	BC,0
 	PUSH	BC
 	LD	BC,512
@@ -242,7 +243,7 @@ _drawmap:
 	POP	BC
 	POP	BC
 	POP	BC
-;   77		gfx_Tilemap(&tilemap, x_offset, y_offset);
+;   78		gfx_Tilemap(&tilemap, x_offset, y_offset);
 	LD	BC,(_y_offset)
 	PUSH	BC
 	LD	BC,(_x_offset)
@@ -253,12 +254,12 @@ _drawmap:
 	POP	BC
 	POP	BC
 	POP	BC
-;   78		gfx_SetColor(0x00);
+;   79		gfx_SetColor(0x00);
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;   79		gfx_FillRectangle(0,224,320,16);
+;   80		gfx_FillRectangle(0,224,320,16);
 	LD	BC,16
 	PUSH	BC
 	LD	BC,320
@@ -272,14 +273,14 @@ _drawmap:
 	POP	BC
 	POP	BC
 	POP	BC
-;   80		gfx_SetTextFGColor(textcolor);
+;   81		gfx_SetTextFGColor(textcolor);
 	LD	A,(_textcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-;   81		gfx_PrintStringXY("x", 8, 224);
+;   82		gfx_PrintStringXY("x", 8, 224);
 	LD	BC,224
 	PUSH	BC
 	LD	BC,8
@@ -290,7 +291,7 @@ _drawmap:
 	POP	BC
 	POP	BC
 	POP	BC
-;   82		gfx_PrintUInt(x_offset, 4);
+;   83		gfx_PrintUInt(x_offset, 4);
 	LD	BC,4
 	PUSH	BC
 	LD	BC,(_x_offset)
@@ -298,12 +299,12 @@ _drawmap:
 	CALL	_gfx_PrintUInt
 	POP	BC
 	POP	BC
-;   83		gfx_PrintString("  y");
+;   84		gfx_PrintString("  y");
 	LD	BC,L__10
 	PUSH	BC
 	CALL	_gfx_PrintString
 	POP	BC
-;   84		gfx_PrintUInt(y_offset, 4);
+;   85		gfx_PrintUInt(y_offset, 4);
 	LD	BC,4
 	PUSH	BC
 	LD	BC,(_y_offset)
@@ -311,7 +312,7 @@ _drawmap:
 	CALL	_gfx_PrintUInt
 	POP	BC
 	POP	BC
-;   85	}
+;   86	}
 	RET	
 
 
@@ -345,152 +346,152 @@ L__10:
 	DB	"  y"
 	DB	0
 	SEGMENT CODE
-;   86	
-;   87	void mapshifter(void) {
+;   87	
+;   88	void mapshifter(void) {
 _mapshifter:
-;   88		if (kb_Data[7] & kb_Left) {
+;   89		if (kb_Data[7] & kb_Left) {
 	LD	A,(16056350)
 	AND	A,2
 	JR	Z,L_23
-;   89			collisionleft();
+;   90			collisionleft();
 	CALL	_collisionleft
-;   90			if (goleft == 1) {
+;   91			if (goleft == 1) {
 	LD	BC,1
 	LD	HL,(_goleft)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_23
-;   91				(playerface = 1);
+;   92				(playerface = 1);
 	LD	(_playerface),BC
-;   92				if (x_offset  == 0) {
+;   93				if (x_offset  == 0) {
 	LD	HL,(_x_offset)
 	LD	BC,0
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_17
-;   93					(x_offset = 0);
+;   94					(x_offset = 0);
 	LD	(_x_offset),BC
-;   94				}
-;   95				else {
+;   95				}
+;   96				else {
 	JR	L_23
 L_17:
-;   96					(x_offset = (x_offset - mapshift));
+;   97					(x_offset = (x_offset - mapshift));
 	LD	HL,(_x_offset)
 	LD	BC,(_mapshift)
 	OR	A,A
 	SBC	HL,BC
 	LD	(_x_offset),HL
-;   97				}
-;   98			}
-;   99		}
+;   98				}
+;   99			}
+;  100		}
 L_23:
-;  100		if (kb_Data[7] & kb_Right) {
+;  101		if (kb_Data[7] & kb_Right) {
 	LD	A,(16056350)
 	AND	A,4
 	JR	Z,L_27
-;  101			collisionright();
+;  102			collisionright();
 	CALL	_collisionright
-;  102			if (goright == 1){
+;  103			if (goright == 1){
 	LD	BC,1
 	LD	HL,(_goright)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_27
-;  103				(playerface = 3);
+;  104				(playerface = 3);
 	LD	BC,3
 	LD	(_playerface),BC
-;  104				(x_offset = (x_offset + mapshift));
+;  105				(x_offset = (x_offset + mapshift));
 	LD	BC,(_x_offset)
 	LD	HL,(_mapshift)
 	ADD	HL,BC
 	LD	(_x_offset),HL
-;  105				if (x_offset > 4480) { 
+;  106				if (x_offset > 4480) { 
 	LD	BC,(_x_offset)
 	LD	HL,4480
 	OR	A,A
 	SBC	HL,BC
 	JR	NC,L_27
-;  106					(x_offset = (x_offset - mapshift));
+;  107					(x_offset = (x_offset - mapshift));
 	LD	HL,(_x_offset)
 	LD	BC,(_mapshift)
 	OR	A,A
 	SBC	HL,BC
 	LD	(_x_offset),HL
-;  107				}
-;  108	
-;  109			}
-;  110		}
+;  108				}
+;  109	
+;  110			}
+;  111		}
 L_27:
-;  111		if (kb_Data[7] & kb_Up) {
+;  112		if (kb_Data[7] & kb_Up) {
 	LD	A,(16056350)
 	AND	A,8
 	JR	Z,L_31
-;  112				collisionup();
+;  113				collisionup();
 	CALL	_collisionup
-;  113				if (goup == 1){
+;  114				if (goup == 1){
 	LD	BC,1
 	LD	HL,(_goup)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_31
-;  114					(playerface = 2);
+;  115					(playerface = 2);
 	LD	BC,2
 	LD	(_playerface),BC
-;  115				(y_offset = (y_offset - mapshift));
+;  116				(y_offset = (y_offset - mapshift));
 	LD	HL,(_y_offset)
 	LD	BC,(_mapshift)
 	OR	A,A
 	SBC	HL,BC
 	LD	(_y_offset),HL
-;  116				if (y_offset > 3105) {
+;  117				if (y_offset > 3105) {
 	LD	BC,(_y_offset)
 	LD	HL,3105
 	OR	A,A
 	SBC	HL,BC
 	JR	NC,L_31
-;  117					(y_offset = 0);
+;  118					(y_offset = 0);
 	LD	BC,0
 	LD	(_y_offset),BC
-;  118				}
-;  119			}
-;  120		}
+;  119				}
+;  120			}
+;  121		}
 L_31:
-;  121		if (kb_Data[7] & kb_Down) {
+;  122		if (kb_Data[7] & kb_Down) {
 	LD	A,(16056350)
 	AND	A,1
 	JR	Z,L_32
-;  122				collisiondown();
+;  123				collisiondown();
 	CALL	_collisiondown
-;  123				if (godown == 1){
+;  124				if (godown == 1){
 	LD	BC,1
 	LD	HL,(_godown)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_32
-;  124					(playerface = 4);
+;  125					(playerface = 4);
 	LD	BC,4
 	LD	(_playerface),BC
-;  125				(y_offset = (y_offset + mapshift));
+;  126				(y_offset = (y_offset + mapshift));
 	LD	BC,(_y_offset)
 	LD	HL,(_mapshift)
 	ADD	HL,BC
 	LD	(_y_offset),HL
-;  126				if (y_offset > 3104) {
+;  127				if (y_offset > 3104) {
 	LD	BC,(_y_offset)
 	LD	HL,3104
 	OR	A,A
 	SBC	HL,BC
 	JR	NC,L_32
-;  127					(y_offset =(y_offset - mapshift));
+;  128					(y_offset =(y_offset - mapshift));
 	LD	HL,(_y_offset)
 	LD	BC,(_mapshift)
 	OR	A,A
 	SBC	HL,BC
 	LD	(_y_offset),HL
-;  128				}
-;  129			}
-;  130		}
-;  131	}
+;  129				}
+;  130			}
+;  131		}
+;  132	}
 L_32:
 	RET	
 
@@ -515,16 +516,16 @@ L_32:
 ;       Spill Code: 0 (instruction)
 
 
-;  132	
-;  133	void drawcharacter(void) {
+;  133	
+;  134	void drawcharacter(void) {
 _drawcharacter:
-;  134		if (playerface == 1) {
+;  135		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_39
-;  135			gfx_TransparentSprite(player_naked_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  136			gfx_TransparentSprite(player_naked_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -535,16 +536,17 @@ _drawcharacter:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_player_naked_left_data
+	LD	BC,(IY+6)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  136		}
-;  137		else if (playerface == 2) {
+;  137		}
+;  138		else if (playerface == 2) {
 	JR	L_40
 L_39:
 	LD	BC,2
@@ -552,7 +554,7 @@ L_39:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_37
-;  138			gfx_TransparentSprite(player_naked_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  139			gfx_TransparentSprite(player_naked_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -563,16 +565,17 @@ L_39:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_player_naked_up_data
+	LD	BC,(IY+3)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  139		}
-;  140		else if (playerface == 3) {
+;  140		}
+;  141		else if (playerface == 3) {
 	JR	L_40
 L_37:
 	LD	BC,3
@@ -580,7 +583,7 @@ L_37:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_35
-;  141			gfx_TransparentSprite(player_naked_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  142			gfx_TransparentSprite(player_naked_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -591,16 +594,17 @@ L_37:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_player_naked_right_data
+	LD	BC,(IY+9)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  142		}
-;  143		else if (playerface == 4) {
+;  143		}
+;  144		else if (playerface == 4) {
 	JR	L_40
 L_35:
 	LD	BC,4
@@ -608,7 +612,7 @@ L_35:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_40
-;  144			gfx_TransparentSprite(player_naked_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  145			gfx_TransparentSprite(player_naked_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -621,24 +625,24 @@ L_35:
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_player_naked_down_data
+	LD	BC,(_dungeon)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  145		}
+;  146		}
 L_40:
-;  146	
-;  147	drawhelmet();
+;  147	
+;  148	drawhelmet();
 	CALL	_drawhelmet
-;  148	drawchestplate();
+;  149	drawchestplate();
 	CALL	_drawchestplate
-;  149	drawboot();
+;  150	drawboot();
 	CALL	_drawboot
-;  150	gfx_SwapDraw();
+;  151	gfx_SwapDraw();
 	CALL	_gfx_SwapDraw
-;  151	}
+;  152	}
 	RET	
 
 
@@ -648,10 +652,7 @@ L_40:
 ;_drawboot                           IMPORT  -----   function
 ;_drawchestplate                     IMPORT  -----   function
 ;_drawhelmet                         IMPORT  -----   function
-;_player_naked_down_data             IMPORT   1026   variable
-;_player_naked_right_data            IMPORT   1026   variable
-;_player_naked_up_data               IMPORT   1026   variable
-;_player_naked_left_data             IMPORT   1026   variable
+;_dungeon                            IMPORT    168   variable
 ;_spritexoffset                      STATIC      3   variable
 ;_x_offset                           IMPORT      3   variable
 ;_spriteyoffset                      STATIC      3   variable
@@ -664,23 +665,23 @@ L_40:
 ;       Spill Code: 0 (instruction)
 
 
-;  152	
 ;  153	
 ;  154	
-;  155	void drawhelmet(void) {
+;  155	
+;  156	void drawhelmet(void) {
 _drawhelmet:
-;  156		if (player_setup[0] = 1){
+;  157		if (player_setup[0] = 1){
 	LD	A,1
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_75
-;  157		if (playerface == 1) {
+;  158		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_48
-;  158			gfx_TransparentSprite(leather_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  159			gfx_TransparentSprite(leather_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -691,16 +692,17 @@ _drawhelmet:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_helmet_left_data
+	LD	BC,(IY+18)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  159		}
-;  160		else if (playerface == 2) {
+;  160		}
+;  161		else if (playerface == 2) {
 	JR	L_76
 L_48:
 	LD	BC,2
@@ -708,7 +710,7 @@ L_48:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_46
-;  161			gfx_TransparentSprite(leather_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  162			gfx_TransparentSprite(leather_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -719,16 +721,17 @@ L_48:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_helmet_up_data
+	LD	BC,(IY+15)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  162		}
-;  163		else if (playerface == 3) {
+;  163		}
+;  164		else if (playerface == 3) {
 	JR	L_76
 L_46:
 	LD	BC,3
@@ -736,7 +739,7 @@ L_46:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_44
-;  164			gfx_TransparentSprite(leather_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  165			gfx_TransparentSprite(leather_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -747,16 +750,17 @@ L_46:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_helmet_right_data
+	LD	BC,(IY+21)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  165		}
-;  166		else if (playerface == 4) {
+;  166		}
+;  167		else if (playerface == 4) {
 	JR	L_76
 L_44:
 	LD	BC,4
@@ -764,7 +768,7 @@ L_44:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_76
-;  167			gfx_TransparentSprite(leather_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  168			gfx_TransparentSprite(leather_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -775,30 +779,31 @@ L_44:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_helmet_down_data
+	LD	BC,(IY+12)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  168		}
 ;  169		}
-;  170		else if (player_setup[0] = 2){
+;  170		}
+;  171		else if (player_setup[0] = 2){
 	JR	L_76
 L_75:
 	LD	A,2
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_73
-;  171			if (playerface == 1) {
+;  172			if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_55
-;  172			gfx_TransparentSprite(chain_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  173			gfx_TransparentSprite(chain_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -809,16 +814,17 @@ L_75:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_helmet_left_data
+	LD	BC,(IY+30)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  173		}
-;  174		else if (playerface == 2) {
+;  174		}
+;  175		else if (playerface == 2) {
 	JR	L_76
 L_55:
 	LD	BC,2
@@ -826,7 +832,7 @@ L_55:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_53
-;  175			gfx_TransparentSprite(chain_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  176			gfx_TransparentSprite(chain_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -837,16 +843,17 @@ L_55:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_helmet_up_data
+	LD	BC,(IY+27)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  176		}
-;  177		else if (playerface == 3) {
+;  177		}
+;  178		else if (playerface == 3) {
 	JR	L_76
 L_53:
 	LD	BC,3
@@ -854,7 +861,7 @@ L_53:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_51
-;  178			gfx_TransparentSprite(chain_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  179			gfx_TransparentSprite(chain_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -865,16 +872,17 @@ L_53:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_helmet_right_data
+	LD	BC,(IY+33)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  179		}
-;  180		else if (playerface == 4) {
+;  180		}
+;  181		else if (playerface == 4) {
 	JR	L_76
 L_51:
 	LD	BC,4
@@ -882,7 +890,7 @@ L_51:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_76
-;  181			gfx_TransparentSprite(chain_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  182			gfx_TransparentSprite(chain_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -893,30 +901,31 @@ L_51:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_helmet_down_data
+	LD	BC,(IY+24)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  182		}
 ;  183		}
-;  184		else if (player_setup[0] = 3){
+;  184		}
+;  185		else if (player_setup[0] = 3){
 	JR	L_76
 L_73:
 	LD	A,3
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_71
-;  185			if (playerface == 1) {
+;  186			if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_62
-;  186			gfx_TransparentSprite(steel_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  187			gfx_TransparentSprite(steel_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -927,16 +936,17 @@ L_73:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_helmet_left_data
+	LD	BC,(IY+42)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  187		}
-;  188		else if (playerface == 2) {
+;  188		}
+;  189		else if (playerface == 2) {
 	JR	L_76
 L_62:
 	LD	BC,2
@@ -944,7 +954,7 @@ L_62:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_60
-;  189			gfx_TransparentSprite(steel_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  190			gfx_TransparentSprite(steel_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -955,16 +965,17 @@ L_62:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_helmet_up_data
+	LD	BC,(IY+39)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  190		}
-;  191		else if (playerface == 3) {
+;  191		}
+;  192		else if (playerface == 3) {
 	JR	L_76
 L_60:
 	LD	BC,3
@@ -972,7 +983,7 @@ L_60:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_58
-;  192			gfx_TransparentSprite(steel_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  193			gfx_TransparentSprite(steel_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -983,16 +994,17 @@ L_60:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_helmet_right_data
+	LD	BC,(IY+45)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  193		}
-;  194		else if (playerface == 4) {
+;  194		}
+;  195		else if (playerface == 4) {
 	JR	L_76
 L_58:
 	LD	BC,4
@@ -1000,7 +1012,7 @@ L_58:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_76
-;  195			gfx_TransparentSprite(steel_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  196			gfx_TransparentSprite(steel_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1011,24 +1023,25 @@ L_58:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_helmet_down_data
+	LD	BC,(IY+36)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  196		}
 ;  197		}
-;  198		else if (player_setup[0] = 4){
+;  198		}
+;  199		else if (player_setup[0] = 4){
 	JR	L_76
 L_71:
 	LD	A,4
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_69
-;  199			gfx_TransparentSprite(dragon_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  200			gfx_TransparentSprite(dragon_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1039,16 +1052,17 @@ L_71:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_helmet_left_data
+	LD	BC,(IY+54)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  200		}
-;  201		else if (playerface == 2) {
+;  201		}
+;  202		else if (playerface == 2) {
 	JR	L_76
 L_69:
 	LD	BC,2
@@ -1056,7 +1070,7 @@ L_69:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_67
-;  202			gfx_TransparentSprite(dragon_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  203			gfx_TransparentSprite(dragon_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1067,16 +1081,17 @@ L_69:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_helmet_up_data
+	LD	BC,(IY+51)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  203		}
-;  204		else if (playerface == 3) {
+;  204		}
+;  205		else if (playerface == 3) {
 	JR	L_76
 L_67:
 	LD	BC,3
@@ -1084,7 +1099,7 @@ L_67:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_65
-;  205			gfx_TransparentSprite(dragon_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  206			gfx_TransparentSprite(dragon_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1095,16 +1110,17 @@ L_67:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_helmet_right_data
+	LD	BC,(IY+57)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  206		}
-;  207		else if (playerface == 4) {
+;  207		}
+;  208		else if (playerface == 4) {
 	JR	L_76
 L_65:
 	LD	BC,4
@@ -1112,7 +1128,7 @@ L_65:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_76
-;  208			gfx_TransparentSprite(dragon_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  209			gfx_TransparentSprite(dragon_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1123,38 +1139,24 @@ L_65:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_helmet_down_data
+	LD	BC,(IY+48)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  209		}
 ;  210		}
+;  211		}
 L_76:
 	RET	
 
 
 ;**************************** _drawhelmet ***************************
 ;Name                         Addr/Register   Size   Type
-;_dragon_helmet_down_data            IMPORT   1026   variable
-;_dragon_helmet_right_data           IMPORT   1026   variable
-;_dragon_helmet_up_data              IMPORT   1026   variable
-;_dragon_helmet_left_data            IMPORT   1026   variable
-;_steel_helmet_down_data             IMPORT   1026   variable
-;_steel_helmet_right_data            IMPORT   1026   variable
-;_steel_helmet_up_data               IMPORT   1026   variable
-;_steel_helmet_left_data             IMPORT   1026   variable
-;_chain_helmet_down_data             IMPORT   1026   variable
-;_chain_helmet_right_data            IMPORT   1026   variable
-;_chain_helmet_up_data               IMPORT   1026   variable
-;_chain_helmet_left_data             IMPORT   1026   variable
-;_leather_helmet_down_data           IMPORT   1026   variable
-;_leather_helmet_right_data          IMPORT   1026   variable
-;_leather_helmet_up_data             IMPORT   1026   variable
-;_leather_helmet_left_data           IMPORT   1026   variable
+;_dungeon                            IMPORT    168   variable
 ;_spritexoffset                      STATIC      3   variable
 ;_x_offset                           IMPORT      3   variable
 ;_spriteyoffset                      STATIC      3   variable
@@ -1168,20 +1170,20 @@ L_76:
 ;       Spill Code: 0 (instruction)
 
 
-;  211	void drawchestplate(void) {
+;  212	void drawchestplate(void) {
 _drawchestplate:
-;  212		if (player_setup[0] = 1){
+;  213		if (player_setup[0] = 1){
 	LD	A,1
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_111
-;  213		if (playerface == 1) {
+;  214		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_83
-;  214			gfx_TransparentSprite(leather_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  215			gfx_TransparentSprite(leather_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1192,16 +1194,17 @@ _drawchestplate:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_chestplate_left_data
+	LD	BC,(IY+66)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  215		}
-;  216		else if (playerface == 2) {
+;  216		}
+;  217		else if (playerface == 2) {
 	JR	L_112
 L_83:
 	LD	BC,2
@@ -1209,7 +1212,7 @@ L_83:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_81
-;  217			gfx_TransparentSprite(leather_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  218			gfx_TransparentSprite(leather_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1220,16 +1223,17 @@ L_83:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_chestplate_up_data
+	LD	BC,(IY+63)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  218		}
-;  219		else if (playerface == 3) {
+;  219		}
+;  220		else if (playerface == 3) {
 	JR	L_112
 L_81:
 	LD	BC,3
@@ -1237,7 +1241,7 @@ L_81:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_79
-;  220			gfx_TransparentSprite(leather_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  221			gfx_TransparentSprite(leather_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1248,16 +1252,17 @@ L_81:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_chestplate_right_data
+	LD	BC,(IY+69)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  221		}
-;  222		else if (playerface == 4) {
+;  222		}
+;  223		else if (playerface == 4) {
 	JR	L_112
 L_79:
 	LD	BC,4
@@ -1265,7 +1270,7 @@ L_79:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_112
-;  223			gfx_TransparentSprite(leather_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  224			gfx_TransparentSprite(leather_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1276,30 +1281,31 @@ L_79:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_chestplate_down_data
+	LD	BC,(IY+60)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  224		}
 ;  225		}
-;  226		else if (player_setup[0] = 2){
+;  226		}
+;  227		else if (player_setup[0] = 2){
 	JR	L_112
 L_111:
 	LD	A,2
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_109
-;  227		if (playerface == 1) {
+;  228		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_90
-;  228			gfx_TransparentSprite(chain_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  229			gfx_TransparentSprite(chain_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1310,16 +1316,17 @@ L_111:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_chestplate_left_data
+	LD	BC,(IY+78)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  229		}
-;  230		else if (playerface == 2) {
+;  230		}
+;  231		else if (playerface == 2) {
 	JR	L_112
 L_90:
 	LD	BC,2
@@ -1327,7 +1334,7 @@ L_90:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_88
-;  231			gfx_TransparentSprite(chain_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  232			gfx_TransparentSprite(chain_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1338,16 +1345,17 @@ L_90:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_chestplate_up_data
+	LD	BC,(IY+75)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  232		}
-;  233		else if (playerface == 3) {
+;  233		}
+;  234		else if (playerface == 3) {
 	JR	L_112
 L_88:
 	LD	BC,3
@@ -1355,7 +1363,7 @@ L_88:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_86
-;  234			gfx_TransparentSprite(chain_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  235			gfx_TransparentSprite(chain_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1366,16 +1374,17 @@ L_88:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_chestplate_right_data
+	LD	BC,(IY+81)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  235		}
-;  236		else if (playerface == 4) {
+;  236		}
+;  237		else if (playerface == 4) {
 	JR	L_112
 L_86:
 	LD	BC,4
@@ -1383,7 +1392,7 @@ L_86:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_112
-;  237			gfx_TransparentSprite(chain_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  238			gfx_TransparentSprite(chain_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1394,30 +1403,31 @@ L_86:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_chestplate_down_data
+	LD	BC,(IY+72)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  238		}
 ;  239		}
-;  240		else if (player_setup[0] = 3){
+;  240		}
+;  241		else if (player_setup[0] = 3){
 	JR	L_112
 L_109:
 	LD	A,3
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_107
-;  241		if (playerface == 1) {
+;  242		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_97
-;  242			gfx_TransparentSprite(steel_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  243			gfx_TransparentSprite(steel_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1428,16 +1438,17 @@ L_109:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_chestplate_left_data
+	LD	BC,(IY+90)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  243		}
-;  244		else if (playerface == 2) {
+;  244		}
+;  245		else if (playerface == 2) {
 	JR	L_112
 L_97:
 	LD	BC,2
@@ -1445,7 +1456,7 @@ L_97:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_95
-;  245			gfx_TransparentSprite(steel_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  246			gfx_TransparentSprite(steel_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1456,16 +1467,17 @@ L_97:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_chestplate_up_data
+	LD	BC,(IY+87)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  246		}
-;  247		else if (playerface == 3) {
+;  247		}
+;  248		else if (playerface == 3) {
 	JR	L_112
 L_95:
 	LD	BC,3
@@ -1473,7 +1485,7 @@ L_95:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_93
-;  248			gfx_TransparentSprite(steel_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  249			gfx_TransparentSprite(steel_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1484,16 +1496,17 @@ L_95:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_chestplate_right_data
+	LD	BC,(IY+93)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  249		}
-;  250		else if (playerface == 4) {
+;  250		}
+;  251		else if (playerface == 4) {
 	JR	L_112
 L_93:
 	LD	BC,4
@@ -1501,7 +1514,7 @@ L_93:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_112
-;  251			gfx_TransparentSprite(steel_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  252			gfx_TransparentSprite(steel_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1512,30 +1525,31 @@ L_93:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_chestplate_down_data
+	LD	BC,(IY+84)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  252		}
 ;  253		}
-;  254		else if (player_setup[0] = 4){
+;  254		}
+;  255		else if (player_setup[0] = 4){
 	JR	L_112
 L_107:
 	LD	A,4
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_112
-;  255		if (playerface == 1) {
+;  256		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_104
-;  256			gfx_TransparentSprite(dragon_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  257			gfx_TransparentSprite(dragon_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1546,16 +1560,17 @@ L_107:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_chestplate_left_data
+	LD	BC,(IY+102)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  257		}
-;  258		else if (playerface == 2) {
+;  258		}
+;  259		else if (playerface == 2) {
 	JR	L_112
 L_104:
 	LD	BC,2
@@ -1563,7 +1578,7 @@ L_104:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_102
-;  259			gfx_TransparentSprite(dragon_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  260			gfx_TransparentSprite(dragon_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1574,16 +1589,17 @@ L_104:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_chestplate_up_data
+	LD	BC,(IY+99)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  260		}
-;  261		else if (playerface == 3) {
+;  261		}
+;  262		else if (playerface == 3) {
 	JR	L_112
 L_102:
 	LD	BC,3
@@ -1591,7 +1607,7 @@ L_102:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_100
-;  262			gfx_TransparentSprite(dragon_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  263			gfx_TransparentSprite(dragon_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1602,16 +1618,17 @@ L_102:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_chestplate_right_data
+	LD	BC,(IY+105)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  263		}
-;  264		else if (playerface == 4) {
+;  264		}
+;  265		else if (playerface == 4) {
 	JR	L_112
 L_100:
 	LD	BC,4
@@ -1619,7 +1636,7 @@ L_100:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_112
-;  265			gfx_TransparentSprite(dragon_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  266			gfx_TransparentSprite(dragon_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1630,39 +1647,25 @@ L_100:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_chestplate_down_data
+	LD	BC,(IY+96)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  266		}
 ;  267		}
-;  268	}
+;  268		}
+;  269	}
 L_112:
 	RET	
 
 
 ;**************************** _drawchestplate ***************************
 ;Name                         Addr/Register   Size   Type
-;_dragon_chestplate_down_data        IMPORT   1026   variable
-;_dragon_chestplate_right_data       IMPORT   1026   variable
-;_dragon_chestplate_up_data          IMPORT   1026   variable
-;_dragon_chestplate_left_data        IMPORT   1026   variable
-;_steel_chestplate_down_data         IMPORT   1026   variable
-;_steel_chestplate_right_data        IMPORT   1026   variable
-;_steel_chestplate_up_data           IMPORT   1026   variable
-;_steel_chestplate_left_data         IMPORT   1026   variable
-;_chain_chestplate_down_data         IMPORT   1026   variable
-;_chain_chestplate_right_data        IMPORT   1026   variable
-;_chain_chestplate_up_data           IMPORT   1026   variable
-;_chain_chestplate_left_data         IMPORT   1026   variable
-;_leather_chestplate_down_data       IMPORT   1026   variable
-;_leather_chestplate_right_data      IMPORT   1026   variable
-;_leather_chestplate_up_data         IMPORT   1026   variable
-;_leather_chestplate_left_data       IMPORT   1026   variable
+;_dungeon                            IMPORT    168   variable
 ;_spritexoffset                      STATIC      3   variable
 ;_x_offset                           IMPORT      3   variable
 ;_spriteyoffset                      STATIC      3   variable
@@ -1676,20 +1679,20 @@ L_112:
 ;       Spill Code: 0 (instruction)
 
 
-;  269	void drawboot(void) {
+;  270	void drawboot(void) {
 _drawboot:
-;  270			if (player_setup[0] = 1){
+;  271			if (player_setup[0] = 1){
 	LD	A,1
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_147
-;  271		if (playerface == 1) {
+;  272		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_119
-;  272			gfx_TransparentSprite(leather_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  273			gfx_TransparentSprite(leather_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1700,16 +1703,17 @@ _drawboot:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_boots_left_data
+	LD	BC,(IY+114)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  273		}
-;  274		else if (playerface == 2) {
+;  274		}
+;  275		else if (playerface == 2) {
 	JR	L_148
 L_119:
 	LD	BC,2
@@ -1717,7 +1721,7 @@ L_119:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_117
-;  275			gfx_TransparentSprite(leather_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  276			gfx_TransparentSprite(leather_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1728,16 +1732,17 @@ L_119:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_boots_up_data
+	LD	BC,(IY+111)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  276		}
-;  277		else if (playerface == 3) {
+;  277		}
+;  278		else if (playerface == 3) {
 	JR	L_148
 L_117:
 	LD	BC,3
@@ -1745,7 +1750,7 @@ L_117:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_115
-;  278			gfx_TransparentSprite(leather_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  279			gfx_TransparentSprite(leather_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1756,16 +1761,17 @@ L_117:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_boots_right_data
+	LD	BC,(IY+117)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  279		}
-;  280		else if (playerface == 4) {
+;  280		}
+;  281		else if (playerface == 4) {
 	JR	L_148
 L_115:
 	LD	BC,4
@@ -1773,7 +1779,7 @@ L_115:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_148
-;  281			gfx_TransparentSprite(leather_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  282			gfx_TransparentSprite(leather_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1784,30 +1790,31 @@ L_115:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_leather_boots_down_data
+	LD	BC,(IY+108)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  282		}
 ;  283		}
-;  284		else if (player_setup[0] = 2){
+;  284		}
+;  285		else if (player_setup[0] = 2){
 	JR	L_148
 L_147:
 	LD	A,2
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_145
-;  285			if (playerface == 1) {
+;  286			if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_126
-;  286			gfx_TransparentSprite(chain_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  287			gfx_TransparentSprite(chain_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1818,16 +1825,17 @@ L_147:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_boots_left_data
+	LD	BC,(IY+126)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  287		}
-;  288		else if (playerface == 2) {
+;  288		}
+;  289		else if (playerface == 2) {
 	JR	L_148
 L_126:
 	LD	BC,2
@@ -1835,7 +1843,7 @@ L_126:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_124
-;  289			gfx_TransparentSprite(chain_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  290			gfx_TransparentSprite(chain_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1846,16 +1854,17 @@ L_126:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_boots_up_data
+	LD	BC,(IY+123)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  290		}
-;  291		else if (playerface == 3) {
+;  291		}
+;  292		else if (playerface == 3) {
 	JR	L_148
 L_124:
 	LD	BC,3
@@ -1863,27 +1872,30 @@ L_124:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_122
-;  292			gfx_TransparentSprite(chain_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  293			gfx_TransparentSprite(chain_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_boots_right_data
+	LD	HL,_dungeon
+	LD	BC,129
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  293		}
-;  294		else if (playerface == 4) {
+;  294		}
+;  295		else if (playerface == 4) {
 	JR	L_148
 L_122:
 	LD	BC,4
@@ -1891,7 +1903,7 @@ L_122:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_148
-;  295			gfx_TransparentSprite(chain_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  296			gfx_TransparentSprite(chain_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
@@ -1902,50 +1914,54 @@ L_122:
 	LD	HL,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
+	LD	IY,_dungeon
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_chain_boots_down_data
+	LD	BC,(IY+120)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  296		}
 ;  297		}
-;  298		else if (player_setup[0] = 3){
+;  298		}
+;  299		else if (player_setup[0] = 3){
 	JR	L_148
 L_145:
 	LD	A,3
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_143
-;  299			if (playerface == 1) {
+;  300			if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_133
-;  300			gfx_TransparentSprite(steel_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  301			gfx_TransparentSprite(steel_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_boots_left_data
+	LD	HL,_dungeon
+	LD	BC,138
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  301		}
-;  302		else if (playerface == 2) {
+;  302		}
+;  303		else if (playerface == 2) {
 	JR	L_148
 L_133:
 	LD	BC,2
@@ -1953,27 +1969,30 @@ L_133:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_131
-;  303			gfx_TransparentSprite(steel_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  304			gfx_TransparentSprite(steel_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_boots_up_data
+	LD	HL,_dungeon
+	LD	BC,135
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  304		}
-;  305		else if (playerface == 3) {
+;  305		}
+;  306		else if (playerface == 3) {
 	JR	L_148
 L_131:
 	LD	BC,3
@@ -1981,27 +2000,30 @@ L_131:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_129
-;  306			gfx_TransparentSprite(steel_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  307			gfx_TransparentSprite(steel_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_boots_right_data
+	LD	HL,_dungeon
+	LD	BC,141
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  307		}
-;  308		else if (playerface == 4) {
+;  308		}
+;  309		else if (playerface == 4) {
 	JR	L_148
 L_129:
 	LD	BC,4
@@ -2009,61 +2031,67 @@ L_129:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_148
-;  309			gfx_TransparentSprite(steel_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  310			gfx_TransparentSprite(steel_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_steel_boots_down_data
+	LD	HL,_dungeon
+	LD	BC,132
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  310		}
 ;  311		}
-;  312		else if (player_setup[0] = 4){
+;  312		}
+;  313		else if (player_setup[0] = 4){
 	JR	L_148
 L_143:
 	LD	A,4
 	LD	(_player_setup),A
 	OR	A,A
 	JR	Z,L_148
-;  313		if (playerface == 1) {
+;  314		if (playerface == 1) {
 	LD	BC,1
 	LD	HL,(_playerface)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_140
-;  314			gfx_TransparentSprite(dragon_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  315			gfx_TransparentSprite(dragon_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_boots_left_data
+	LD	HL,_dungeon
+	LD	BC,150
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  315		}
-;  316		else if (playerface == 2) {
+;  316		}
+;  317		else if (playerface == 2) {
 	JR	L_148
 L_140:
 	LD	BC,2
@@ -2071,27 +2099,30 @@ L_140:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_138
-;  317			gfx_TransparentSprite(dragon_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  318			gfx_TransparentSprite(dragon_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_boots_up_data
+	LD	HL,_dungeon
+	LD	BC,147
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  318		}
-;  319		else if (playerface == 3) {
+;  319		}
+;  320		else if (playerface == 3) {
 	JR	L_148
 L_138:
 	LD	BC,3
@@ -2099,27 +2130,30 @@ L_138:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_136
-;  320			gfx_TransparentSprite(dragon_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  321			gfx_TransparentSprite(dragon_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_boots_right_data
+	LD	HL,_dungeon
+	LD	BC,153
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  321		}
-;  322		else if (playerface == 4) {
+;  322		}
+;  323		else if (playerface == 4) {
 	JR	L_148
 L_136:
 	LD	BC,4
@@ -2127,50 +2161,38 @@ L_136:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_148
-;  323			gfx_TransparentSprite(dragon_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+;  324			gfx_TransparentSprite(dragon_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
 	LD	HL,(_y_offset)
 	LD	BC,(_y_offset)
 	CALL	__idivu
-	LD	BC,(_x_offset)
-	LD	DE,(_spriteyoffset)
-	ADD	HL,DE
+	LD	BC,(_spriteyoffset)
+	ADD	HL,BC
 	PUSH	HL
 	LD	HL,(_x_offset)
+	LD	BC,(_x_offset)
 	CALL	__idivu
 	LD	BC,(_spritexoffset)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,_dragon_boots_down_data
+	LD	HL,_dungeon
+	LD	BC,144
+	ADD	HL,BC
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_TransparentSprite
 	POP	BC
 	POP	BC
 	POP	BC
-;  324		}
 ;  325		}
-;  326	}
+;  326		}
+;  327	}
 L_148:
 	RET	
 
 
 ;**************************** _drawboot ***************************
 ;Name                         Addr/Register   Size   Type
-;_dragon_boots_down_data             IMPORT   1026   variable
-;_dragon_boots_right_data            IMPORT   1026   variable
-;_dragon_boots_up_data               IMPORT   1026   variable
-;_dragon_boots_left_data             IMPORT   1026   variable
-;_steel_boots_down_data              IMPORT   1026   variable
-;_steel_boots_right_data             IMPORT   1026   variable
-;_steel_boots_up_data                IMPORT   1026   variable
-;_steel_boots_left_data              IMPORT   1026   variable
-;_chain_boots_down_data              IMPORT   1026   variable
-;_chain_boots_right_data             IMPORT   1026   variable
-;_chain_boots_up_data                IMPORT   1026   variable
-;_chain_boots_left_data              IMPORT   1026   variable
-;_leather_boots_down_data            IMPORT   1026   variable
-;_leather_boots_right_data           IMPORT   1026   variable
-;_leather_boots_up_data              IMPORT   1026   variable
-;_leather_boots_left_data            IMPORT   1026   variable
+;_dungeon                            IMPORT    168   variable
 ;_spritexoffset                      STATIC      3   variable
 ;_x_offset                           IMPORT      3   variable
 ;_spriteyoffset                      STATIC      3   variable
@@ -2184,8 +2206,8 @@ L_148:
 ;       Spill Code: 0 (instruction)
 
 
-;  327	
-;  328	void drawplayerattack(void){}
+;  328	
+;  329	void drawplayerattack(void){}
 _drawplayerattack:
 	RET	
 
@@ -2198,7 +2220,7 @@ _drawplayerattack:
 ;       Spill Code: 0 (instruction)
 
 
-;  329	void drawenemies(void){}
+;  330	void drawenemies(void){}
 _drawenemies:
 	RET	
 
@@ -2231,59 +2253,8 @@ _drawenemies:
 	XREF _gfx_SetPalette:ROM
 	XREF _gfx_SetColor:ROM
 	XREF _gfx_Tilemap:ROM
+	XREF _dungeon:ROM
 	XREF _tiles_gfx_pal:ROM
-	XREF _dragon_boots_right_data:ROM
-	XREF _dragon_boots_left_data:ROM
-	XREF _dragon_boots_up_data:ROM
-	XREF _dragon_boots_down_data:ROM
-	XREF _steel_boots_right_data:ROM
-	XREF _steel_boots_left_data:ROM
-	XREF _steel_boots_up_data:ROM
-	XREF _steel_boots_down_data:ROM
-	XREF _chain_boots_right_data:ROM
-	XREF _chain_boots_left_data:ROM
-	XREF _chain_boots_up_data:ROM
-	XREF _chain_boots_down_data:ROM
-	XREF _leather_boots_right_data:ROM
-	XREF _leather_boots_left_data:ROM
-	XREF _leather_boots_up_data:ROM
-	XREF _leather_boots_down_data:ROM
-	XREF _dragon_chestplate_right_data:ROM
-	XREF _dragon_chestplate_left_data:ROM
-	XREF _dragon_chestplate_up_data:ROM
-	XREF _dragon_chestplate_down_data:ROM
-	XREF _steel_chestplate_right_data:ROM
-	XREF _steel_chestplate_left_data:ROM
-	XREF _steel_chestplate_up_data:ROM
-	XREF _steel_chestplate_down_data:ROM
-	XREF _chain_chestplate_right_data:ROM
-	XREF _chain_chestplate_left_data:ROM
-	XREF _chain_chestplate_up_data:ROM
-	XREF _chain_chestplate_down_data:ROM
-	XREF _leather_chestplate_right_data:ROM
-	XREF _leather_chestplate_left_data:ROM
-	XREF _leather_chestplate_up_data:ROM
-	XREF _leather_chestplate_down_data:ROM
-	XREF _dragon_helmet_right_data:ROM
-	XREF _dragon_helmet_left_data:ROM
-	XREF _dragon_helmet_up_data:ROM
-	XREF _dragon_helmet_down_data:ROM
-	XREF _steel_helmet_right_data:ROM
-	XREF _steel_helmet_left_data:ROM
-	XREF _steel_helmet_up_data:ROM
-	XREF _steel_helmet_down_data:ROM
-	XREF _chain_helmet_right_data:ROM
-	XREF _chain_helmet_left_data:ROM
-	XREF _chain_helmet_up_data:ROM
-	XREF _chain_helmet_down_data:ROM
-	XREF _leather_helmet_right_data:ROM
-	XREF _leather_helmet_left_data:ROM
-	XREF _leather_helmet_up_data:ROM
-	XREF _leather_helmet_down_data:ROM
-	XREF _player_naked_right_data:ROM
-	XREF _player_naked_left_data:ROM
-	XREF _player_naked_up_data:ROM
-	XREF _player_naked_down_data:ROM
 	XREF _collisionright:ROM
 	XREF _collisionleft:ROM
 	XREF _collisiondown:ROM

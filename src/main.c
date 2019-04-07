@@ -25,6 +25,7 @@
 #include "maingameloop.h"
 #include "collisiondetection.h"
 
+#include "gfx/dungeon.h"
 #include "gfx/dungeon_gfx.h"
 #include "gfx/tiles_gfx.h"
 #include "gfx/tilemapdata.h"
@@ -56,7 +57,6 @@
 	//player is 4 away
 	int mapstarty;
 	
-	
 	//for tilemap stuff
 
 	#define TILE_WIDTH          32
@@ -75,6 +75,8 @@
 	
 	unsigned int x_offset;
 	unsigned int y_offset;
+	
+	extern uint8_t *dungeon[56];
 	
 	extern uint8_t tilemap_map[];
 	gfx_tilemap_t tilemap;
@@ -96,7 +98,7 @@
 	uint8_t player_setup [6] = {0,0,4,0,0,0};
 	
 void main(void) {
-	
+
 	kb_key_t key;
 
     /* Initialize the tilemap structure */

@@ -14,7 +14,7 @@ COMPRESSED  ?= YES
 ICON        ?= dungeonicon.png
 DESCRIPTION ?= "CC22 Dungeon Crawler"
 
-L ?= graphx keypadc
+L ?= graphx keypadc fileioc
 
 # ----------------------------
 # Specify source and output locations

@@ -6,44 +6,45 @@
 	SEGMENT CODE
 ;    1	#include "menuandeditfunctions.h"
 ;    2	#include "gfx/dungeon_gfx.h"
-;    3	
-;    4	#include <stdbool.h>
-;    5	#include <stddef.h>
-;    6	#include <stdint.h>
-;    7	#include <tice.h>
-;    8	
-;    9	#include <math.h>
-;   10	#include <setjmp.h>
-;   11	#include <fileioc.h>
-;   12	#include <stdio.h>
-;   13	#include <stdlib.h>
-;   14	#include <string.h>
-;   15	#include <graphx.h>
-;   16	#include <keypadc.h>
-;   17	
+;    3	#include "gfx/dungeon.h"
+;    4	
+;    5	#include <stdbool.h>
+;    6	#include <stddef.h>
+;    7	#include <stdint.h>
+;    8	#include <tice.h>
+;    9	
+;   10	#include <math.h>
+;   11	#include <setjmp.h>
+;   12	#include <fileioc.h>
+;   13	#include <stdio.h>
+;   14	#include <stdlib.h>
+;   15	#include <string.h>
+;   16	#include <graphx.h>
+;   17	#include <keypadc.h>
 ;   18	
-;   19	extern int menuoption;
-;   20	extern int menuyes;
-;   21	extern int textcolor;
-;   22	extern int menucolor;
-;   23	extern int submenucolor;
-;   24	extern int accentcolor;
-;   25	extern int transcolor;
-;   26	extern int editscale;
-;   27	extern int editscalep;
-;   28	extern int editweaponx;
-;   29	extern int editweapony;
-;   30	extern int editweaponsmallx;
-;   31	extern int editweaponsmally;
-;   32	extern int editpx;
-;   33	extern int editpy;
-;   34	extern signed int setnumber;
-;   35	extern uint8_t player_setup[];
-;   36	
-;   37	extern int mapstartx;
-;   38	extern int mapstarty;
-;   39	
-;   40	void keywait(void) { while (os_GetCSC()); }
+;   19	
+;   20	extern int menuoption;
+;   21	extern int menuyes;
+;   22	extern int textcolor;
+;   23	extern int menucolor;
+;   24	extern int submenucolor;
+;   25	extern int accentcolor;
+;   26	extern int transcolor;
+;   27	extern int editscale;
+;   28	extern int editscalep;
+;   29	extern int editweaponx;
+;   30	extern int editweapony;
+;   31	extern int editweaponsmallx;
+;   32	extern int editweaponsmally;
+;   33	extern int editpx;
+;   34	extern int editpy;
+;   35	extern signed int setnumber;
+;   36	extern uint8_t player_setup[];
+;   37	
+;   38	extern int mapstartx;
+;   39	extern int mapstarty;
+;   40	
+;   41	void keywait(void) { while (os_GetCSC()); }
 _keywait:
 L_1:
 	CALL	_os_GetCSC
@@ -61,14 +62,14 @@ L_1:
 ;       Spill Code: 0 (instruction)
 
 
-;   41	
-;   42	void mainmenu(void) {
+;   42	
+;   43	void mainmenu(void) {
 _mainmenu:
 	LD	HL,-3
 	CALL	__frameset
-;   43		menubkgnd();
+;   44		menubkgnd();
 	CALL	_menubkgnd
-;   44	    gfx_TransparentSprite(mainmenulogo,33,20);
+;   45	    gfx_TransparentSprite(mainmenulogo,33,20);
 	LD	BC,20
 	PUSH	BC
 	LD	BC,33
@@ -79,7 +80,7 @@ _mainmenu:
 	POP	BC
 	POP	BC
 	POP	BC
-;   45	    gfx_TransparentSprite(menuwords,100,130);
+;   46	    gfx_TransparentSprite(menuwords,100,130);
 	LD	BC,130
 	PUSH	BC
 	LD	BC,100
@@ -90,55 +91,55 @@ _mainmenu:
 	POP	BC
 	POP	BC
 	POP	BC
-;   46	   
-;   47	    do {
+;   47	   
+;   48	    do {
 L_11:
-;   48	        menuyes = 0;
+;   49	        menuyes = 0;
 	LD	BC,0
 	LD	(_menuyes),BC
-;   49	       
-;   50	        if (kb_Data[3] & kb_1) {
+;   50	       
+;   51	        if (kb_Data[3] & kb_1) {
 	LD	A,(16056342)
 	AND	A,2
 	LD	(IX+-1),A
 	OR	A,A
 	JR	Z,L_5
-;   51	            menuyes = 1;
+;   52	            menuyes = 1;
 	LD	BC,1
 	LD	(_menuyes),BC
-;   52	            menuoption = 1;
+;   53	            menuoption = 1;
 	LD	(_menuoption),BC
-;   53	        }
+;   54	        }
 L_5:
-;   54	        if (kb_Data[4] & kb_2) {
+;   55	        if (kb_Data[4] & kb_2) {
 	LD	A,(16056344)
 	AND	A,2
 	LD	(IX+-2),A
 	OR	A,A
 	JR	Z,L_7
-;   55	            menuyes = 1;
+;   56	            menuyes = 1;
 	LD	BC,1
 	LD	(_menuyes),BC
-;   56	            menuoption = 2;
+;   57	            menuoption = 2;
 	LD	BC,2
 	LD	(_menuoption),BC
-;   57	        }
+;   58	        }
 L_7:
-;   58	        if (kb_Data[5] & kb_3) {
+;   59	        if (kb_Data[5] & kb_3) {
 	LD	A,(16056346)
 	AND	A,2
 	LD	(IX+-3),A
 	OR	A,A
 	JR	Z,L_12
-;   59	            menuyes = 1;
+;   60	            menuyes = 1;
 	LD	BC,1
 	LD	(_menuyes),BC
-;   60	            menuoption = 3;
+;   61	            menuoption = 3;
 	LD	BC,3
 	LD	(_menuoption),BC
-;   61	        }
-;   62	       
-;   63	    } while (!((kb_Data[3] & kb_1)||(kb_Data[4] & kb_2)||(kb_Data[5] & kb_3)||(kb_Data[6] & kb_Clear)));
+;   62	        }
+;   63	       
+;   64	    } while (!((kb_Data[3] & kb_1)||(kb_Data[4] & kb_2)||(kb_Data[5] & kb_3)||(kb_Data[6] & kb_Clear)));
 L_12:
 	LD	A,(IX+-1)
 	OR	A,A
@@ -153,8 +154,8 @@ L_12:
 	AND	A,64
 	JR	Z,L_11
 L_13:
-;   64	    return;
-;   65	}
+;   65	    return;
+;   66	}
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -177,17 +178,17 @@ L_13:
 ;       Spill Code: 0 (instruction)
 
 
-;   66	
-;   67	void options(void) {
+;   67	
+;   68	void options(void) {
 _options:
-;   68		gfx_SetColor(submenucolor);
+;   69		gfx_SetColor(submenucolor);
 	LD	A,(_submenucolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;   69		gfx_FillRectangle(40,60,215,100);
+;   70		gfx_FillRectangle(40,60,215,100);
 	LD	BC,100
 	PUSH	BC
 	LD	BC,215
@@ -201,14 +202,14 @@ _options:
 	POP	BC
 	POP	BC
 	POP	BC
-;   70		gfx_SetColor(accentcolor);
+;   71		gfx_SetColor(accentcolor);
 	LD	A,(_accentcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;   71		gfx_Rectangle(40,60,215,100);
+;   72		gfx_Rectangle(40,60,215,100);
 	LD	BC,100
 	PUSH	BC
 	LD	BC,215
@@ -222,7 +223,7 @@ _options:
 	POP	BC
 	POP	BC
 	POP	BC
-;   72		gfx_Rectangle(42,62,211,96);
+;   73		gfx_Rectangle(42,62,211,96);
 	LD	BC,96
 	PUSH	BC
 	LD	BC,211
@@ -236,7 +237,7 @@ _options:
 	POP	BC
 	POP	BC
 	POP	BC
-;   73		gfx_TransparentSprite(optionsmenu,45,65);
+;   74		gfx_TransparentSprite(optionsmenu,45,65);
 	LD	BC,65
 	PUSH	BC
 	LD	BC,45
@@ -247,32 +248,32 @@ _options:
 	POP	BC
 	POP	BC
 	POP	BC
-;   74			do {
+;   75			do {
 L_18:
-;   75				if (kb_Data[3] & kb_1) {
+;   76				if (kb_Data[3] & kb_1) {
 	LD	A,(16056342)
 	AND	A,2
 	JR	Z,L_17
-;   76					playercreate();
+;   77					playercreate();
 	CALL	_playercreate
-;   77				}
+;   78				}
 L_17:
-;   78				if (kb_Data[4] & kb_2){
+;   79				if (kb_Data[4] & kb_2){
 	LD	A,(16056344)
 	AND	A,2
 	JR	Z,L_19
-;   79					menuyes = 3;
+;   80					menuyes = 3;
 	LD	BC,3
 	LD	(_menuyes),BC
-;   80				}
-;   81			} while (menuyes != 3);
+;   81				}
+;   82			} while (menuyes != 3);
 L_19:
 	LD	BC,3
 	LD	HL,(_menuyes)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_18
-;   82	}
+;   83	}
 	RET	
 
 
@@ -293,22 +294,22 @@ L_19:
 ;       Spill Code: 0 (instruction)
 
 
-;   83	
-;   84	void loadsave(void) {
+;   84	
+;   85	void loadsave(void) {
 _loadsave:
-;   85		mapstartx = player_setup[4];
+;   86		mapstartx = player_setup[4];
 	LD	IY,_player_setup
 	LEA	HL,IY+4
 	LD	A,(HL)
 	UEXT	HL
 	LD	L,A
 	LD	(_mapstartx),HL
-;   86		mapstarty = player_setup[5];
+;   87		mapstarty = player_setup[5];
 	LD	A,(IY+5)
 	UEXT	HL
 	LD	L,A
 	LD	(_mapstarty),HL
-;   87	}
+;   88	}
 	RET	
 
 
@@ -323,16 +324,16 @@ _loadsave:
 ;       Spill Code: 0 (instruction)
 
 
-;   88	
-;   89	void newgame(void) {
+;   89	
+;   90	void newgame(void) {
 _newgame:
-;   90		mapstartx = 70;
+;   91		mapstartx = 70;
 	LD	BC,70
 	LD	(_mapstartx),BC
-;   91		mapstarty = 96;
+;   92		mapstarty = 96;
 	LD	BC,96
 	LD	(_mapstarty),BC
-;   92	}
+;   93	}
 	RET	
 
 
@@ -346,12 +347,12 @@ _newgame:
 ;       Spill Code: 0 (instruction)
 
 
-;   93	
-;   94	void playercreate(void) {
+;   94	
+;   95	void playercreate(void) {
 _playercreate:
-;   95		menubkgnd();
+;   96		menubkgnd();
 	CALL	_menubkgnd
-;   96		gfx_HorizLine(0,223,320);
+;   97		gfx_HorizLine(0,223,320);
 	LD	BC,320
 	PUSH	BC
 	LD	BC,223
@@ -362,7 +363,7 @@ _playercreate:
 	POP	BC
 	POP	BC
 	POP	BC
-;   97		gfx_HorizLine(0,221,320);
+;   98		gfx_HorizLine(0,221,320);
 	LD	BC,320
 	PUSH	BC
 	LD	BC,221
@@ -373,35 +374,35 @@ _playercreate:
 	POP	BC
 	POP	BC
 	POP	BC
-;   98		gfx_SetTextTransparentColor(transcolor);
+;   99		gfx_SetTextTransparentColor(transcolor);
 	LD	A,(_transcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTextTransparentColor
 	POP	BC
-;   99		gfx_SetTextFGColor(textcolor);
+;  100		gfx_SetTextFGColor(textcolor);
 	LD	A,(_textcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-;  100	    gfx_SetTextBGColor(transcolor);
+;  101	    gfx_SetTextBGColor(transcolor);
 	LD	A,(_transcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTextBGColor
 	POP	BC
-;  101		gfx_SetTextScale(1,1);
+;  102		gfx_SetTextScale(1,1);
 	LD	BC,1
 	PUSH	BC
 	PUSH	BC
 	CALL	_gfx_SetTextScale
 	POP	BC
 	POP	BC
-;  102		gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
+;  103		gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
 	LD	BC,227
 	PUSH	BC
 	LD	BC,8
@@ -412,7 +413,7 @@ _playercreate:
 	POP	BC
 	POP	BC
 	POP	BC
-;  103		gfx_TransparentSprite(editmenunumbers,40,20);
+;  104		gfx_TransparentSprite(editmenunumbers,40,20);
 	LD	BC,20
 	PUSH	BC
 	LD	BC,40
@@ -423,21 +424,21 @@ _playercreate:
 	POP	BC
 	POP	BC
 	POP	BC
-;  104		do {
+;  105		do {
 L_42:
-;  105			drawequipment();
+;  106			drawequipment();
 	CALL	_drawequipment
-;  106			draweditedplayer();
+;  107			draweditedplayer();
 	CALL	_draweditedplayer
-;  107			do {
+;  108			do {
 L_40:
-;  108					if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
+;  109					if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
 	LD	A,(16056338)
 	AND	A,16
 	JR	Z,L_31
 	LD	BC,0
 	LD	(_setnumber),BC
-;  109					else if (kb_Data[1] & kb_Window) {(setnumber = 1);}
+;  110					else if (kb_Data[1] & kb_Window) {(setnumber = 1);}
 	JR	L_39
 L_31:
 	LD	A,(16056338)
@@ -445,7 +446,7 @@ L_31:
 	JR	Z,L_29
 	LD	BC,1
 	LD	(_setnumber),BC
-;  110					else if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
+;  111					else if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
 	JR	L_39
 L_29:
 	LD	A,(16056338)
@@ -453,7 +454,7 @@ L_29:
 	JR	Z,L_27
 	LD	BC,2
 	LD	(_setnumber),BC
-;  111					else if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
+;  112					else if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
 	JR	L_39
 L_27:
 	LD	A,(16056338)
@@ -461,7 +462,7 @@ L_27:
 	JR	Z,L_25
 	LD	BC,3
 	LD	(_setnumber),BC
-;  112					else if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
+;  113					else if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
 	JR	L_39
 L_25:
 	LD	A,(16056338)
@@ -470,64 +471,64 @@ L_25:
 	LD	BC,4
 	LD	(_setnumber),BC
 L_39:
-;  113				
-;  114					if (kb_Data[3] & kb_1){
+;  114				
+;  115					if (kb_Data[3] & kb_1){
 	LD	A,(16056342)
 	AND	A,2
 	JR	Z,L_38
-;  115						(player_setup[0] = setnumber);
+;  116						(player_setup[0] = setnumber);
 	LD	A,(_setnumber)
 	LD	(_player_setup),A
-;  116					}
-;  117					else if (kb_Data[4] & kb_2) {
+;  117					}
+;  118					else if (kb_Data[4] & kb_2) {
 	JR	L_41
 L_38:
 	LD	A,(16056344)
 	AND	A,2
 	JR	Z,L_36
-;  118						(player_setup[1] = setnumber);
+;  119						(player_setup[1] = setnumber);
 	LD	HL,_player_setup
 	INC	HL
 	LD	A,(_setnumber)
 	LD	(HL),A
-;  119					}
-;  120					else if (kb_Data[5] & kb_3) {
+;  120					}
+;  121					else if (kb_Data[5] & kb_3) {
 	JR	L_41
 L_36:
 	LD	A,(16056346)
 	AND	A,2
 	JR	Z,L_34
-;  121						(player_setup[2] = setnumber);
+;  122						(player_setup[2] = setnumber);
 	LD	HL,_player_setup+2
 	LD	A,(_setnumber)
 	LD	(HL),A
-;  122					}
-;  123					else if (kb_Data[3] & kb_4) {
+;  123					}
+;  124					else if (kb_Data[3] & kb_4) {
 	JR	L_41
 L_34:
 	LD	A,(16056342)
 	AND	A,4
 	JR	Z,L_41
-;  124						(player_setup[3] = setnumber);
+;  125						(player_setup[3] = setnumber);
 	LD	HL,_player_setup+3
 	LD	A,(_setnumber)
 	LD	(HL),A
-;  125					}		
-;  126			}	while (!os_GetCSC());
+;  126					}		
+;  127			}	while (!os_GetCSC());
 L_41:
 	CALL	_os_GetCSC
 	OR	A,A
 	JR	Z,L_40
-;  127			
-;  128		}	while (!(kb_Data[1] & kb_Del));
+;  128			
+;  129		}	while (!(kb_Data[1] & kb_Del));
 	LD	A,(16056338)
 	AND	A,128
 	JR	Z,L_42
-;  129		
-;  130		(menuyes = 3);
+;  130		
+;  131		(menuyes = 3);
 	LD	BC,3
 	LD	(_menuyes),BC
-;  131	}
+;  132	}
 	RET	
 
 
@@ -561,15 +562,15 @@ L__16:
 	DB	"f(1-5) = change set, # = select item, del = back"
 	DB	0
 	SEGMENT CODE
-;  132	
-;  133	void draweditedplayer(void) {
+;  133	
+;  134	void draweditedplayer(void) {
 _draweditedplayer:
-;  134		gfx_SetColor(0x00);
+;  135		gfx_SetColor(0x00);
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  135		gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
+;  136		gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
 	LD	BC,(_editscale)
 	LD	HL,BC
 	ADD	HL,HL
@@ -591,7 +592,7 @@ _draweditedplayer:
 	POP	BC
 	POP	BC
 	POP	BC
-;  136		gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
+;  137		gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
 	LD	A,(_editscale)
 	LD	C,A
 	LD	A,(_editscale)
@@ -604,7 +605,7 @@ _draweditedplayer:
 	PUSH	BC
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_player_naked_down_data
+	LD	BC,(_dungeon)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -612,7 +613,7 @@ _draweditedplayer:
 	POP	BC
 	POP	BC
 	POP	BC
-;  137		if (player_setup [0] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,editpx,editpy,editscale,editscale);}
+;  138		if (player_setup [0] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -630,9 +631,10 @@ _draweditedplayer:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+12
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_leather_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -641,7 +643,7 @@ _draweditedplayer:
 	POP	BC
 	POP	BC
 L_48:
-;  138		if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
+;  139		if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup
 	INC	HL
 	LD	A,(HL)
@@ -661,9 +663,10 @@ L_48:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+60
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_leather_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -672,7 +675,7 @@ L_48:
 	POP	BC
 	POP	BC
 L_50:
-;  139		if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy,editscale,editscale);}
+;  140		if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -691,9 +694,10 @@ L_50:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+108
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_leather_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -702,7 +706,7 @@ L_50:
 	POP	BC
 	POP	BC
 L_52:
-;  140		if (player_setup [3] == 1) {gfx_ScaledTransparentSprite_NoClip(club,editweaponx,editweapony,editscale-1,editscale-1);}
+;  141		if (player_setup [3] == 1) {gfx_ScaledTransparentSprite_NoClip(club,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,_player_setup+3
 	LD	A,(HL)
 	UEXT	HL
@@ -721,9 +725,12 @@ L_52:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	BC,156
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponx)
 	PUSH	BC
-	LD	BC,_club_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -732,8 +739,8 @@ L_52:
 	POP	BC
 	POP	BC
 L_54:
-;  141		
-;  142		if (player_setup [0] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,editpx,editpy,editscale,editscale);}
+;  142		
+;  143		if (player_setup [0] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -751,9 +758,10 @@ L_54:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+24
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_chain_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -762,7 +770,7 @@ L_54:
 	POP	BC
 	POP	BC
 L_56:
-;  143		if (player_setup [1] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,editpx,editpy,editscale,editscale);}
+;  144		if (player_setup [1] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup
 	INC	HL
 	LD	A,(HL)
@@ -782,9 +790,10 @@ L_56:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+72
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_chain_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -793,7 +802,7 @@ L_56:
 	POP	BC
 	POP	BC
 L_58:
-;  144		if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy,editscale,editscale);}
+;  145		if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -812,9 +821,10 @@ L_58:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+120
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_chain_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -823,7 +833,7 @@ L_58:
 	POP	BC
 	POP	BC
 L_60:
-;  145		if (player_setup [3] == 2) {gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+;  146		if (player_setup [3] == 2) {gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,_player_setup+3
 	LD	A,(HL)
 	UEXT	HL
@@ -842,9 +852,12 @@ L_60:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	BC,159
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponx)
 	PUSH	BC
-	LD	BC,_iron_sword_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -853,8 +866,8 @@ L_60:
 	POP	BC
 	POP	BC
 L_62:
-;  146		
-;  147		if (player_setup [0] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,editpx,editpy,editscale,editscale);}
+;  147		
+;  148		if (player_setup [0] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -872,9 +885,10 @@ L_62:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+36
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_steel_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -883,7 +897,7 @@ L_62:
 	POP	BC
 	POP	BC
 L_64:
-;  148		if (player_setup [1] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,editpx,editpy,editscale,editscale);}
+;  149		if (player_setup [1] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup
 	INC	HL
 	LD	A,(HL)
@@ -903,9 +917,10 @@ L_64:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+84
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_steel_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -914,7 +929,7 @@ L_64:
 	POP	BC
 	POP	BC
 L_66:
-;  149		if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy,editscale,editscale);}
+;  150		if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -933,9 +948,12 @@ L_66:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	BC,132
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_steel_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -944,7 +962,7 @@ L_66:
 	POP	BC
 	POP	BC
 L_68:
-;  150		if (player_setup [3] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+;  151		if (player_setup [3] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,_player_setup+3
 	LD	A,(HL)
 	UEXT	HL
@@ -963,9 +981,12 @@ L_68:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	BC,162
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponx)
 	PUSH	BC
-	LD	BC,_steel_sword_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -974,8 +995,8 @@ L_68:
 	POP	BC
 	POP	BC
 L_70:
-;  151		
-;  152		if (player_setup [0] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,editpx,editpy,editscale,editscale);}
+;  152		
+;  153		if (player_setup [0] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,editpx,editpy,editscale,editscale);}
 	LD	A,(_player_setup)
 	UEXT	HL
 	LD	L,A
@@ -993,9 +1014,10 @@ L_70:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+48
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_dragon_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1004,7 +1026,7 @@ L_70:
 	POP	BC
 	POP	BC
 L_72:
-;  153		if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
+;  154		if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup
 	INC	HL
 	LD	A,(HL)
@@ -1024,9 +1046,10 @@ L_72:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	HL,_dungeon+96
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_dragon_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1035,7 +1058,7 @@ L_72:
 	POP	BC
 	POP	BC
 L_74:
-;  154		if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
+;  155		if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
 	LD	HL,_player_setup+2
 	LD	A,(HL)
 	UEXT	HL
@@ -1054,9 +1077,12 @@ L_74:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	BC,144
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editpx)
 	PUSH	BC
-	LD	BC,_dragon_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1065,7 +1091,7 @@ L_74:
 	POP	BC
 	POP	BC
 L_76:
-;  155		if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+;  156		if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	LD	HL,_player_setup+3
 	LD	A,(HL)
 	UEXT	HL
@@ -1084,9 +1110,12 @@ L_76:
 	PUSH	BC
 	LD	C,A
 	PUSH	BC
+	LD	BC,165
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponx)
 	PUSH	BC
-	LD	BC,_dragon_sword_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1094,33 +1123,17 @@ L_76:
 	POP	BC
 	POP	BC
 	POP	BC
-;  156	}
+;  157	}
 L_77:
 	RET	
 
 
 ;**************************** _draweditedplayer ***************************
 ;Name                         Addr/Register   Size   Type
-;_dragon_sword_data                  IMPORT   1026   variable
-;_dragon_boots_down_data             IMPORT   1026   variable
-;_dragon_chestplate_down_data        IMPORT   1026   variable
-;_dragon_helmet_down_data            IMPORT   1026   variable
-;_steel_sword_data                   IMPORT   1026   variable
-;_steel_boots_down_data              IMPORT   1026   variable
-;_steel_chestplate_down_data         IMPORT   1026   variable
-;_steel_helmet_down_data             IMPORT   1026   variable
-;_iron_sword_data                    IMPORT   1026   variable
-;_chain_boots_down_data              IMPORT   1026   variable
-;_chain_chestplate_down_data         IMPORT   1026   variable
-;_chain_helmet_down_data             IMPORT   1026   variable
-;_club_data                          IMPORT   1026   variable
 ;_editweaponx                        IMPORT      3   variable
 ;_editweapony                        IMPORT      3   variable
-;_leather_boots_down_data            IMPORT   1026   variable
-;_leather_chestplate_down_data       IMPORT   1026   variable
-;_leather_helmet_down_data           IMPORT   1026   variable
 ;_player_setup                       IMPORT  unknown variable
-;_player_naked_down_data             IMPORT   1026   variable
+;_dungeon                            IMPORT    168   variable
 ;_gfx_ScaledTransparentSprite_NoClip      IMPORT  -----   function
 ;_editpx                             IMPORT      3   variable
 ;_editpy                             IMPORT      3   variable
@@ -1133,16 +1146,16 @@ L_77:
 ;       Spill Code: 0 (instruction)
 
 
-;  157	
-;  158	void drawequipment(void) {
+;  158	
+;  159	void drawequipment(void) {
 _drawequipment:
-;  159		
-;  160		gfx_SetColor(0x00);
+;  160		
+;  161		gfx_SetColor(0x00);
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  161		gfx_FillRectangle(65,12,96,208);
+;  162		gfx_FillRectangle(65,12,96,208);
 	LD	BC,208
 	PUSH	BC
 	LD	BC,96
@@ -1156,22 +1169,23 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  162		
-;  163		if (setnumber == 1) {
+;  163		
+;  164		if (setnumber == 1) {
 	LD	BC,1
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_80
-;  164			gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
+;  165			gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
+	LD	HL,_dungeon+12
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_leather_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1179,15 +1193,16 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  165			gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
+;  166			gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,25
 	PUSH	BC
+	LD	HL,_dungeon+60
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_leather_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1195,15 +1210,16 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  166			gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,55,3,3);
+;  167			gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,55
 	PUSH	BC
+	LD	HL,_dungeon+108
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_leather_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1211,7 +1227,7 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  167			gfx_ScaledTransparentSprite_NoClip(club,editweaponsmallx,editweaponsmally,2,2);
+;  168			gfx_ScaledTransparentSprite_NoClip(club,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1220,9 +1236,12 @@ _drawequipment:
 	PUSH	DE
 	LD	B,0
 	PUSH	BC
+	LD	BC,156
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponsmallx)
 	PUSH	BC
-	LD	BC,_club_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1230,23 +1249,24 @@ _drawequipment:
 	POP	BC
 	POP	BC
 	POP	BC
-;  168		}
+;  169		}
 L_80:
-;  169		if (setnumber == 2) {
+;  170		if (setnumber == 2) {
 	LD	BC,2
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_82
-;  170			gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,50,15,3,3);
+;  171			gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,50,15,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
+	LD	HL,_dungeon+24
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_chain_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1254,15 +1274,16 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  171			gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,50,25,3,3);
+;  172			gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,25
 	PUSH	BC
+	LD	HL,_dungeon+72
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_chain_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1270,15 +1291,16 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  172			gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,55,3,3);
+;  173			gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,55
 	PUSH	BC
+	LD	HL,_dungeon+120
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_chain_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1286,7 +1308,7 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  173			gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponsmallx,editweaponsmally,2,2);
+;  174			gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1295,9 +1317,12 @@ L_80:
 	PUSH	DE
 	LD	B,0
 	PUSH	BC
+	LD	BC,159
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponsmallx)
 	PUSH	BC
-	LD	BC,_iron_sword_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1305,22 +1330,23 @@ L_80:
 	POP	BC
 	POP	BC
 	POP	BC
-;  174		}
+;  175		}
 L_82:
-;  175		if (setnumber == 3) {
+;  176		if (setnumber == 3) {
 	LD	BC,3
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_84
-;  176			gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,50,15,3,3);
+;  177			gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,50,15,3,3);
 	PUSH	BC
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
+	LD	HL,_dungeon+36
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_steel_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1328,15 +1354,16 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  177			gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,50,25,3,3);
+;  178			gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,25
 	PUSH	BC
+	LD	HL,_dungeon+84
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_steel_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1344,15 +1371,18 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  178			gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,55,3,3);
+;  179			gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,55
 	PUSH	BC
+	LD	BC,132
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_steel_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1360,7 +1390,7 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  179			gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponsmallx,editweaponsmally,2,2);
+;  180			gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1369,9 +1399,12 @@ L_82:
 	PUSH	DE
 	LD	B,0
 	PUSH	BC
+	LD	BC,162
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponsmallx)
 	PUSH	BC
-	LD	BC,_steel_sword_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1379,23 +1412,24 @@ L_82:
 	POP	BC
 	POP	BC
 	POP	BC
-;  180		}
+;  181		}
 L_84:
-;  181		if (setnumber == 4) {
+;  182		if (setnumber == 4) {
 	LD	BC,4
 	LD	HL,(_setnumber)
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_85
-;  182			gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,50,15,3,3);
+;  183			gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,50,15,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,15
 	PUSH	BC
+	LD	HL,_dungeon+48
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_dragon_helmet_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1403,15 +1437,16 @@ L_84:
 	POP	BC
 	POP	BC
 	POP	BC
-;  183			gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
+;  184			gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,25
 	PUSH	BC
+	LD	HL,_dungeon+96
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_dragon_chestplate_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1419,15 +1454,18 @@ L_84:
 	POP	BC
 	POP	BC
 	POP	BC
-;  184			gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
+;  185			gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
 	LD	BC,3
 	PUSH	BC
 	PUSH	BC
 	LD	BC,55
 	PUSH	BC
+	LD	BC,144
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,50
 	PUSH	BC
-	LD	BC,_dragon_boots_down_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1435,7 +1473,7 @@ L_84:
 	POP	BC
 	POP	BC
 	POP	BC
-;  185			gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
+;  186			gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
 	LD	BC,2
 	PUSH	BC
 	LD	A,(_editweaponsmally)
@@ -1444,9 +1482,12 @@ L_84:
 	PUSH	DE
 	LD	B,0
 	PUSH	BC
+	LD	BC,165
+	LD	HL,_dungeon
+	ADD	HL,BC
 	LD	BC,(_editweaponsmallx)
 	PUSH	BC
-	LD	BC,_dragon_sword_data
+	LD	BC,(HL)
 	PUSH	BC
 	CALL	_gfx_ScaledTransparentSprite_NoClip
 	POP	BC
@@ -1454,32 +1495,17 @@ L_84:
 	POP	BC
 	POP	BC
 	POP	BC
-;  186		}
-;  187	}
+;  187		}
+;  188	}
 L_85:
 	RET	
 
 
 ;**************************** _drawequipment ***************************
 ;Name                         Addr/Register   Size   Type
-;_dragon_sword_data                  IMPORT   1026   variable
-;_dragon_boots_down_data             IMPORT   1026   variable
-;_dragon_chestplate_down_data        IMPORT   1026   variable
-;_dragon_helmet_down_data            IMPORT   1026   variable
-;_steel_sword_data                   IMPORT   1026   variable
-;_steel_boots_down_data              IMPORT   1026   variable
-;_steel_chestplate_down_data         IMPORT   1026   variable
-;_steel_helmet_down_data             IMPORT   1026   variable
-;_iron_sword_data                    IMPORT   1026   variable
-;_chain_boots_down_data              IMPORT   1026   variable
-;_chain_chestplate_down_data         IMPORT   1026   variable
-;_chain_helmet_down_data             IMPORT   1026   variable
-;_club_data                          IMPORT   1026   variable
 ;_editweaponsmallx                   IMPORT      3   variable
 ;_editweaponsmally                   IMPORT      3   variable
-;_leather_boots_down_data            IMPORT   1026   variable
-;_leather_chestplate_down_data       IMPORT   1026   variable
-;_leather_helmet_down_data           IMPORT   1026   variable
+;_dungeon                            IMPORT    168   variable
 ;_gfx_ScaledTransparentSprite_NoClip      IMPORT  -----   function
 ;_setnumber                          IMPORT      3   variable
 ;_gfx_FillRectangle                  IMPORT  -----   function
@@ -1490,24 +1516,24 @@ L_85:
 ;       Spill Code: 0 (instruction)
 
 
-;  188	
-;  189	void menubkgnd(void) {
+;  189	
+;  190	void menubkgnd(void) {
 _menubkgnd:
-;  190		gfx_FillScreen(menucolor);
+;  191		gfx_FillScreen(menucolor);
 	LD	A,(_menucolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_FillScreen
 	POP	BC
-;  191		gfx_SetColor(accentcolor);
+;  192		gfx_SetColor(accentcolor);
 	LD	A,(_accentcolor)
 	LD	C,A
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  192		gfx_Rectangle(0,0,320,240);
+;  193		gfx_Rectangle(0,0,320,240);
 	LD	BC,240
 	PUSH	BC
 	LD	BC,320
@@ -1520,7 +1546,7 @@ _menubkgnd:
 	POP	BC
 	POP	BC
 	POP	BC
-;  193		gfx_Rectangle(2,2,316,236);
+;  194		gfx_Rectangle(2,2,316,236);
 	LD	BC,236
 	PUSH	BC
 	LD	BC,316
@@ -1533,7 +1559,7 @@ _menubkgnd:
 	POP	BC
 	POP	BC
 	POP	BC
-;  194	}
+;  195	}
 	RET	
 
 
@@ -1581,27 +1607,11 @@ _menubkgnd:
 	XREF _gfx_FillScreen:ROM
 	XREF _gfx_SetColor:ROM
 	XREF _os_GetCSC:ROM
+	XREF _dungeon:ROM
 	XREF _menuwords_data:ROM
 	XREF _mainmenulogo_data:ROM
 	XREF _editmenunumbers_data:ROM
 	XREF _optionsmenu_data:ROM
-	XREF _dragon_sword_data:ROM
-	XREF _steel_sword_data:ROM
-	XREF _iron_sword_data:ROM
-	XREF _club_data:ROM
-	XREF _dragon_boots_down_data:ROM
-	XREF _steel_boots_down_data:ROM
-	XREF _chain_boots_down_data:ROM
-	XREF _leather_boots_down_data:ROM
-	XREF _dragon_chestplate_down_data:ROM
-	XREF _steel_chestplate_down_data:ROM
-	XREF _chain_chestplate_down_data:ROM
-	XREF _leather_chestplate_down_data:ROM
-	XREF _dragon_helmet_down_data:ROM
-	XREF _steel_helmet_down_data:ROM
-	XREF _chain_helmet_down_data:ROM
-	XREF _leather_helmet_down_data:ROM
-	XREF _player_naked_down_data:ROM
 	XREF __frameset:ROM
 	XDEF _menubkgnd
 	XDEF _drawequipment

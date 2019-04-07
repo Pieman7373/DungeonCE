@@ -1,0 +1,228 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -nomodsect -optspeed -noreduceopt -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"..\..\..\..\..\PIEMAN~1\DESKTOP\CECDEV\CC22\SRC\GFX\DUNGEON.C"
+	.assume ADL=1
+	SEGMENT DATA
+_dungeon:
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+	DW24	0
+;    1	// Converted using ConvPNG
+;    2	#include <stdint.h>
+;    3	#include "dungeon.h"
+;    4	
+;    5	#include <fileioc.h>
+;    6	uint8_t *dungeon[56] = {
+	SEGMENT CODE
+;    7	 (uint8_t*)0,
+;    8	 (uint8_t*)0,
+;    9	 (uint8_t*)0,
+;   10	 (uint8_t*)0,
+;   11	 (uint8_t*)0,
+;   12	 (uint8_t*)0,
+;   13	 (uint8_t*)0,
+;   14	 (uint8_t*)0,
+;   15	 (uint8_t*)0,
+;   16	 (uint8_t*)0,
+;   17	 (uint8_t*)0,
+;   18	 (uint8_t*)0,
+;   19	 (uint8_t*)0,
+;   20	 (uint8_t*)0,
+;   21	 (uint8_t*)0,
+;   22	 (uint8_t*)0,
+;   23	 (uint8_t*)0,
+;   24	 (uint8_t*)0,
+;   25	 (uint8_t*)0,
+;   26	 (uint8_t*)0,
+;   27	 (uint8_t*)0,
+;   28	 (uint8_t*)0,
+;   29	 (uint8_t*)0,
+;   30	 (uint8_t*)0,
+;   31	 (uint8_t*)0,
+;   32	 (uint8_t*)0,
+;   33	 (uint8_t*)0,
+;   34	 (uint8_t*)0,
+;   35	 (uint8_t*)0,
+;   36	 (uint8_t*)0,
+;   37	 (uint8_t*)0,
+;   38	 (uint8_t*)0,
+;   39	 (uint8_t*)0,
+;   40	 (uint8_t*)0,
+;   41	 (uint8_t*)0,
+;   42	 (uint8_t*)0,
+;   43	 (uint8_t*)0,
+;   44	 (uint8_t*)0,
+;   45	 (uint8_t*)0,
+;   46	 (uint8_t*)0,
+;   47	 (uint8_t*)0,
+;   48	 (uint8_t*)0,
+;   49	 (uint8_t*)0,
+;   50	 (uint8_t*)0,
+;   51	 (uint8_t*)0,
+;   52	 (uint8_t*)0,
+;   53	 (uint8_t*)0,
+;   54	 (uint8_t*)0,
+;   55	 (uint8_t*)0,
+;   56	 (uint8_t*)0,
+;   57	 (uint8_t*)0,
+;   58	 (uint8_t*)0,
+;   59	 (uint8_t*)0,
+;   60	 (uint8_t*)0,
+;   61	 (uint8_t*)0,
+;   62	 (uint8_t*)0,
+;   63	};
+;   64	
+;   65	bool dungeon_init(void) {
+_dungeon_init:
+	LD	HL,-10
+	CALL	__frameset
+;   66	    unsigned int data, i;
+;   67	    ti_var_t appvar;
+;   68	
+;   69	    ti_CloseAll();
+	CALL	_ti_CloseAll
+;   70	
+;   71	    appvar = ti_Open("dungeon", "r");
+	LD	BC,L__0
+	PUSH	BC
+	LD	BC,L__1
+	PUSH	BC
+	CALL	_ti_Open
+	POP	BC
+	POP	BC
+	LD	(IX+-4),A
+;   72	    data = (unsigned int)ti_GetDataPtr(appvar) - (unsigned int)dungeon[0];
+	LD	C,(IX+-4)
+	LD	B,0
+	PUSH	BC
+	CALL	_ti_GetDataPtr
+	POP	BC
+	LD	BC,(_dungeon)
+	OR	A,A
+	SBC	HL,BC
+	LD	(IX+-7),HL
+;   73	    for (i = 0; i < dungeon_num; i++) {
+	LD	BC,0
+	LD	(IX+-3),BC
+	JR	L_3
+L_1:
+;   74	        dungeon[i] += data;
+	LD	HL,(IX+-3)
+	ADD	HL,HL
+	ADD	HL,HL
+	OR	A,A
+	LD	BC,(IX+-3)
+	SBC	HL,BC
+	LD	BC,_dungeon
+	ADD	HL,BC
+	LD	(IX+-10),HL
+	LD	HL,(HL)
+	LD	IY,(IX+-10)
+	LD	BC,(IX+-7)
+	ADD	HL,BC
+	LD	(IY),HL
+	LD	BC,(IX+-3)
+	INC	BC
+	LD	(IX+-3),BC
+;   75	    }
+L_3:
+	LD	BC,56
+	LD	HL,(IX+-3)
+	OR	A,A
+	SBC	HL,BC
+	JR	C,L_1
+;   76	
+;   77	    ti_CloseAll();
+	CALL	_ti_CloseAll
+;   78	
+;   79	    return (bool)appvar;
+	LD	A,(IX+-4)
+;   80	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _dungeon_init ***************************
+;Name                         Addr/Register   Size   Type
+;_dungeon                            STATIC    168   variable
+;_ti_GetDataPtr                      IMPORT  -----   function
+;_ti_Open                            IMPORT  -----   function
+;_ti_CloseAll                        IMPORT  -----   function
+;data                                  IX-7      3   variable
+;appvar                                IX-4      1   variable
+;i                                     IX-3      3   variable
+
+
+; Stack Frame Size: 16 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+	SEGMENT STRSECT
+L__0:
+	DB	"r"
+	DB	0
+L__1:
+	DB	"dungeon"
+	DB	0
+	XREF _ti_GetDataPtr:ROM
+	XREF _ti_Open:ROM
+	XREF _ti_CloseAll:ROM
+	XREF __frameset:ROM
+	XDEF _dungeon_init
+	XDEF _dungeon
+	END

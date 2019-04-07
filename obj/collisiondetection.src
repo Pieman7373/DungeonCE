@@ -23,20 +23,22 @@
 ;   17	#include <graphx.h>
 ;   18	#include <keypadc.h>
 ;   19	
-;   20	extern int goup;
-;   21	extern int godown;
-;   22	extern int goleft;
-;   23	extern int goright;
-;   24	
-;   25	
+;   20	#include "gfx/Dungeon.h"
+;   21	
+;   22	extern int goup;
+;   23	extern int godown;
+;   24	extern int goleft;
+;   25	extern int goright;
 ;   26	
-;   27	//check mapshift away
-;   28	void collisionleft(void) {
+;   27	
+;   28	
+;   29	//check mapshift away
+;   30	void collisionleft(void) {
 _collisionleft:
-;   29		(goleft = 1);
+;   31		(goleft = 1);
 	LD	BC,1
 	LD	(_goleft),BC
-;   30	}
+;   32	}
 	RET	
 
 
@@ -49,15 +51,15 @@ _collisionleft:
 ;       Spill Code: 0 (instruction)
 
 
-;   31	
-;   32	
-;   33	//check mapshift+32 away
-;   34	void collisionright(void) {
+;   33	
+;   34	
+;   35	//check mapshift+32 away
+;   36	void collisionright(void) {
 _collisionright:
-;   35		(goright = 1);
+;   37		(goright = 1);
 	LD	BC,1
 	LD	(_goright),BC
-;   36	}
+;   38	}
 	RET	
 
 
@@ -70,15 +72,15 @@ _collisionright:
 ;       Spill Code: 0 (instruction)
 
 
-;   37	
-;   38	
-;   39	//check mapshift away
-;   40	void collisionup(void) {
+;   39	
+;   40	
+;   41	//check mapshift away
+;   42	void collisionup(void) {
 _collisionup:
-;   41		(goup = 1);
+;   43		(goup = 1);
 	LD	BC,1
 	LD	(_goup),BC
-;   42	}
+;   44	}
 	RET	
 
 
@@ -91,15 +93,15 @@ _collisionup:
 ;       Spill Code: 0 (instruction)
 
 
-;   43	
-;   44	
-;   45	//check mapshift+32 away
-;   46	void collisiondown(void) {
+;   45	
+;   46	
+;   47	//check mapshift+32 away
+;   48	void collisiondown(void) {
 _collisiondown:
-;   47		(godown = 1);
+;   49		(godown = 1);
 	LD	BC,1
 	LD	(_godown),BC
-;   48	}
+;   50	}
 	RET	
 
 

@@ -3,6 +3,7 @@
 #include "collisiondetection.h"
 #include "gfx/dungeon_gfx.h"
 #include "gfx/tiles_gfx.h"
+#include "gfx/dungeon.h"
 
 #include <stdbool.h>
 #include <stddef.h>

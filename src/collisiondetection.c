@@ -17,6 +17,8 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+#include "gfx/Dungeon.h"
+
 extern int goup;
 extern int godown;
 extern int goleft;
