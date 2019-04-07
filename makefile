@@ -8,7 +8,7 @@
 # ----------------------------
 
 NAME        ?= Dungeon
-DEBUGMODE   ?= DEBUG
+DEBUGMODE   ?= NDEBUG
 ARCHIVED    ?= YES
 COMPRESSED  ?= YES
 ICON        ?= dungeonicon.png

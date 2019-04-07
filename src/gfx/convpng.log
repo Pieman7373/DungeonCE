@@ -1,10 +1,10 @@
-opened convpng.ini
+Opened convpng.ini
 
---- dungeon_gfx (C) ---
-using built-in xlibc palette ...
+--- Group dungeon_gfx (C) ---
+Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
-transparent color index : 0
-transparent color : 0xFC78
+Transparent Color Index : 0
+Transparent Color : 0xFC78
 60:
  optionsmenu : converted!
  editmenunumbers : converted!
@@ -67,76 +67,20 @@ transparent color : 0xFC78
  steel_sword : converted!
  dragon_sword : converted!
 
---- tiles_gfx (C) ---
-using built-in xlibc palette ...
+--- Group tiles_gfx (C) ---
+Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
-transparent color index : 0
-transparent color : 0xFC78
+Transparent Color Index : 0
+Transparent Color : 0xFC78
 1:
  tileset : converted!
 
-exporting appvar: dungeon.8xv
- player_naked_down
- player_naked_up
- player_naked_left
- player_naked_right
- leather_helmet_down
- leather_helmet_up
- leather_helmet_left
- leather_helmet_right
- chain_helmet_down
- chain_helmet_up
- chain_helmet_left
- chain_helmet_right
- steel_helmet_down
- steel_helmet_up
- steel_helmet_left
- steel_helmet_right
- dragon_helmet_down
- dragon_helmet_up
- dragon_helmet_left
- dragon_helmet_right
- leather_chestplate_down
- leather_chestplate_up
- leather_chestplate_left
- leather_chestplate_right
- chain_chestplate_down
- chain_chestplate_up
- chain_chestplate_left
- chain_chestplate_right
- steel_chestplate_down
- steel_chestplate_up
- steel_chestplate_left
- steel_chestplate_right
- dragon_chestplate_down
- dragon_chestplate_up
- dragon_chestplate_left
- dragon_chestplate_right
- leather_boots_down
- leather_boots_up
- leather_boots_left
- leather_boots_right
- chain_boots_down
- chain_boots_up
- chain_boots_left
- chain_boots_right
- steel_boots_down
- steel_boots_up
- steel_boots_left
- steel_boots_right
- dragon_boots_down
- dragon_boots_up
- dragon_boots_left
- dragon_boots_right
- club
- iron_sword
- steel_sword
- dragon_sword
+exporting appvar: dungeon.8xp
 
-converted in 1 s
+Converted in 1 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
 or selecting a better palette if conversion is not ideal.
 
-finished!
+Finished!

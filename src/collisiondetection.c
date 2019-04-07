@@ -19,32 +19,40 @@
 
 #include "gfx/Dungeon.h"
 
+extern int playertilex;
+extern int playertiley;
 extern int goup;
 extern int godown;
 extern int goleft;
 extern int goright;
+extern gfx_tilemap_t tilemap;
 
 
 
-//check mapshift away
 void collisionleft(void) {
-	(goleft = 1);
+	if ((gfx_GetTile(&tilemap,playertilex-32,playertiley)) >= 18) {
+	goleft = 0;
+	}
+	else {(goleft = 1);}
 }
-
-
-//check mapshift+32 away
 void collisionright(void) {
-	(goright = 1);
+	if ((gfx_GetTile(&tilemap,playertilex+32,playertiley)) >= 18) {
+	goright = 0;
+	}
+	else {(goright = 1);}
 }
-
-
-//check mapshift away
 void collisionup(void) {
-	(goup = 1);
+	if ((gfx_GetTile(&tilemap,playertilex,playertiley-32)) >= 18) {
+	goup = 0;
+	}
+	else {(goup = 1);}
 }
-
-
-//check mapshift+32 away
 void collisiondown(void) {
-	(godown = 1);
+	if ((gfx_GetTile(&tilemap,playertilex,playertiley+32)) >= 18) {
+	godown = 0;
+	}
+	else {(godown = 1);}
 }
+
+
+

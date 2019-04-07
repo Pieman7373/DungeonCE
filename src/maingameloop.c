@@ -27,7 +27,11 @@ int spritexoffset = 160;
 int spriteyoffset = 128;
 //1=left,2=up,3=right,4=down
 int playerface = 2;
-int dumb = 0;
+int playerx;
+int playery;
+int playertilex;
+int playertiley;
+
 
 extern int menuyes;
 extern int textcolor;
@@ -69,80 +73,82 @@ void setmapshift(void) {
 	if (player_setup[2] == 2) {(mapshift = 16);}
 	if (player_setup[2] == 3) {(mapshift = 24);}
 	if (player_setup[2] == 4) {(mapshift = 32);}
-}
-	
+}	
 void drawmap(void) {
-
+	playerx = ((x_offset/x_offset)+spritexoffset);
+	playery = ((y_offset/y_offset)+spriteyoffset);
+	playertilex = (x_offset + (32*5));
+	playertiley = (y_offset + (32*4));
+	
 	gfx_SetDrawBuffer();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_Tilemap(&tilemap, x_offset, y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
 	gfx_SetTextFGColor(textcolor);
-	gfx_PrintStringXY("x", 8, 224);
-	gfx_PrintUInt(x_offset, 4);
-	gfx_PrintString("  y");
-	gfx_PrintUInt(y_offset, 4);
+	//gfx_PrintStringXY("x", 8, 224);
+	//gfx_PrintUInt(x_offset, 4);
+	//gfx_PrintString("  y");
+	//gfx_PrintUInt(y_offset, 4);
+	gfx_PrintStringXY("tile", 8, 224);
+	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley)),2);
+	gfx_PrintString("  tile L");
+	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex-32,playertiley)),2);
+	gfx_PrintString("  tile U");
+	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley-32)),2);
+	gfx_PrintString("  tile R");
+	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex+32,playertiley)),2);
+	gfx_PrintString("  tile D");
+	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley+32)),2);
+	
 }
-
 void mapshifter(void) {
 	if (kb_Data[7] & kb_Left) {
+		(playerface = 1);
 		collisionleft();
 		if (goleft == 1) {
-			(playerface = 1);
-			if (x_offset  == 0) {
-				(x_offset = 0);
-			}
-			else {
-				(x_offset = (x_offset - mapshift));
-			}
+			(x_offset = (x_offset - mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Right) {
+		(playerface = 3);
 		collisionright();
 		if (goright == 1){
-			(playerface = 3);
 			(x_offset = (x_offset + mapshift));
-			if (x_offset > 4480) { 
-				(x_offset = (x_offset - mapshift));
-			}
-
 		}
 	}
 	if (kb_Data[7] & kb_Up) {
+		(playerface = 2);
 			collisionup();
 			if (goup == 1){
-				(playerface = 2);
 			(y_offset = (y_offset - mapshift));
-			if (y_offset > 3105) {
-				(y_offset = 0);
-			}
 		}
 	}
 	if (kb_Data[7] & kb_Down) {
+			(playerface = 4);
 			collisiondown();
 			if (godown == 1){
-				(playerface = 4);
 			(y_offset = (y_offset + mapshift));
-			if (y_offset > 3104) {
-				(y_offset =(y_offset - mapshift));
-			}
 		}
 	}
+	keywait();
+	keywait();
+	keywait();
+	keywait();
+	keywait();
 }
-
 void drawcharacter(void) {
 	if (playerface == 1) {
-		gfx_TransparentSprite(player_naked_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(player_naked_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(player_naked_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(player_naked_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(player_naked_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(player_naked_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(player_naked_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(player_naked_down,playerx,playery);
 	}
 
 drawhelmet();
@@ -150,178 +156,177 @@ drawchestplate();
 drawboot();
 gfx_SwapDraw();
 }
-
-
-
 void drawhelmet(void) {
-	if (player_setup[0] = 1){
+	if (player_setup[0] == 1){
 	if (playerface == 1) {
-		gfx_TransparentSprite(leather_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_helmet_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(leather_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_helmet_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(leather_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_helmet_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(leather_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_helmet_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 2){
+	else if (player_setup[0] == 2){
 		if (playerface == 1) {
-		gfx_TransparentSprite(chain_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_helmet_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(chain_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_helmet_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(chain_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_helmet_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(chain_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_helmet_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 3){
+	else if (player_setup[0] == 3){
 		if (playerface == 1) {
-		gfx_TransparentSprite(steel_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_helmet_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(steel_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_helmet_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(steel_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_helmet_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(steel_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_helmet_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 4){
-		gfx_TransparentSprite(dragon_helmet_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+	else if (player_setup[0] == 4){
+		if (playerface == 1) {
+		gfx_TransparentSprite(dragon_helmet_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(dragon_helmet_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_helmet_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(dragon_helmet_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_helmet_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(dragon_helmet_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_helmet_down,playerx,playery);
 	}
 	}
+}
 void drawchestplate(void) {
-	if (player_setup[0] = 1){
+	if (player_setup[1] == 1){
 	if (playerface == 1) {
-		gfx_TransparentSprite(leather_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_chestplate_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(leather_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_chestplate_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(leather_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_chestplate_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(leather_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_chestplate_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 2){
+	else if (player_setup[1] == 2){
 	if (playerface == 1) {
-		gfx_TransparentSprite(chain_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_chestplate_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(chain_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_chestplate_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(chain_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_chestplate_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(chain_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_chestplate_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 3){
+	else if (player_setup[1] == 3){
 	if (playerface == 1) {
-		gfx_TransparentSprite(steel_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_chestplate_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(steel_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_chestplate_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(steel_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_chestplate_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(steel_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_chestplate_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 4){
+	else if (player_setup[1] == 4){
 	if (playerface == 1) {
-		gfx_TransparentSprite(dragon_chestplate_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_chestplate_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(dragon_chestplate_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_chestplate_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(dragon_chestplate_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_chestplate_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(dragon_chestplate_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_chestplate_down,playerx,playery);
 	}
 	}
 }
 void drawboot(void) {
-		if (player_setup[0] = 1){
+	if (player_setup[2] == 1){
 	if (playerface == 1) {
-		gfx_TransparentSprite(leather_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_boots_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(leather_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_boots_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(leather_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_boots_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(leather_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(leather_boots_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 2){
+	else if (player_setup[2] == 2){
 		if (playerface == 1) {
-		gfx_TransparentSprite(chain_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_boots_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(chain_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_boots_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(chain_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_boots_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(chain_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(chain_boots_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 3){
+	else if (player_setup[2] == 3){
 		if (playerface == 1) {
-		gfx_TransparentSprite(steel_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_boots_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(steel_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_boots_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(steel_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_boots_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(steel_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(steel_boots_down,playerx,playery);
 	}
 	}
-	else if (player_setup[0] = 4){
+	else if (player_setup[2] == 4){
 	if (playerface == 1) {
-		gfx_TransparentSprite(dragon_boots_left,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_boots_left,playerx,playery);
 	}
 	else if (playerface == 2) {
-		gfx_TransparentSprite(dragon_boots_up,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_boots_up,playerx,playery);
 	}
 	else if (playerface == 3) {
-		gfx_TransparentSprite(dragon_boots_right,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_boots_right,playerx,playery);
 	}
 	else if (playerface == 4) {
-		gfx_TransparentSprite(dragon_boots_down,(x_offset/x_offset)+spritexoffset,(y_offset/y_offset) + spriteyoffset);
+		gfx_TransparentSprite(dragon_boots_down,playerx,playery);
 	}
 	}
 }
