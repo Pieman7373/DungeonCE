@@ -32,7 +32,10 @@ extern int editweaponsmally;
 extern int editpx;
 extern int editpy;
 extern signed int setnumber;
-extern uint8_t player_setup[4];
+extern uint8_t player_setup[];
+
+extern int mapstartx;
+extern int mapstarty;
 
 void keywait(void) { while (os_GetCSC()); }
 
@@ -78,6 +81,16 @@ void options(void) {
 		} while (menuyes != 3);
 }
 
+void loadsave(void) {
+	mapstartx = player_setup[4];
+	mapstarty = player_setup[5];
+}
+
+void newgame(void) {
+	mapstartx = 70;
+	mapstarty = 96;
+}
+
 void playercreate(void) {
 	menubkgnd();
 	gfx_HorizLine(0,223,320);
@@ -93,21 +106,21 @@ void playercreate(void) {
 		draweditedplayer();
 		do {
 				if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
-				if (kb_Data[1] & kb_Window) {(setnumber = 1);}
-				if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
-				if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
-				if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
+				else if (kb_Data[1] & kb_Window) {(setnumber = 1);}
+				else if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
+				else if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
+				else if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
 			
 				if (kb_Data[3] & kb_1){
 					(player_setup[0] = setnumber);
 				}
-				if (kb_Data[4] & kb_2) {
+				else if (kb_Data[4] & kb_2) {
 					(player_setup[1] = setnumber);
 				}
-				if (kb_Data[5] & kb_3) {
+				else if (kb_Data[5] & kb_3) {
 					(player_setup[2] = setnumber);
 				}
-				if (kb_Data[3] & kb_4) {
+				else if (kb_Data[3] & kb_4) {
 					(player_setup[3] = setnumber);
 				}		
 		}	while (!os_GetCSC());
@@ -116,7 +129,6 @@ void playercreate(void) {
 	
 	(menuyes = 3);
 }
-
 
 void draweditedplayer(void) {
 	gfx_SetColor(0x00);
@@ -143,8 +155,6 @@ void draweditedplayer(void) {
 	if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 }
 
-
-//draw sprites in spots dependent on which equipment set is selected
 void drawequipment(void) {
 	
 	gfx_SetColor(0x00);
@@ -175,8 +185,6 @@ void drawequipment(void) {
 		gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 }
-
-
 
 void menubkgnd(void) {
 	gfx_FillScreen(menucolor);

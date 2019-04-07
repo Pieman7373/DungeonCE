@@ -51,14 +51,20 @@
 	
 	int mapshift;
 	
+	//player is 5 away
+	int mapstartx;
+	//player is 4 away
+	int mapstarty;
+	
+	
 	//for tilemap stuff
 
 	#define TILE_WIDTH          32
 	#define TILE_HEIGHT         32
 
-	#define TILEMAP_WIDTH       100
+	#define TILEMAP_WIDTH       150
 	
-	#define TILEMAP_HEIGHT      70
+	#define TILEMAP_HEIGHT      95
 	
 	#define TILEMAP_DRAW_WIDTH  10
 	#define TILEMAP_DRAW_HEIGHT 7
@@ -67,8 +73,8 @@
 	#define X_OFFSET            0
 	
 	
-	unsigned int x_offset = 0;
-	unsigned int y_offset = 0;
+	unsigned int x_offset;
+	unsigned int y_offset;
 	
 	extern uint8_t tilemap_map[];
 	gfx_tilemap_t tilemap;
@@ -78,8 +84,16 @@
 	//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
 	signed int setnumber = 0;
 	
-	//{helmet,chestplate,boots,weapon,x,y,x offset,y offset}
-	uint8_t player_setup [8] = {0,0,0,0,0,0,0,0};
+	
+	/*
+	!!!!!!!!!!!!!!!!!!!!!!
+	!!!!!!!!!!!!!!!!!!!!!
+	RESET PLAYER STATS
+	!!!!!!!!!!!!!!!!!!!!
+	!!!!!!!!!!!!!!!!!!!!
+	*/
+	//{helmet,chestplate,boots,weapon,x,y}
+	uint8_t player_setup [6] = {0,0,4,0,0,0};
 	
 void main(void) {
 	
@@ -116,11 +130,13 @@ void main(void) {
 		//menuyes chunk begin
 		if (menuyes == 1) {
 			if (kb_Data[3] & kb_1) {
-				
+				loadsave();
+				maingameloop();
 			}
 		}
 		if (menuyes == 1) {
 			if (kb_Data[4] & kb_2) {
+				newgame();
 				maingameloop();
 			}
 		}
