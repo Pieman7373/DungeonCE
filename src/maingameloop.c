@@ -65,9 +65,11 @@ y_offset = mapstarty * 32;
 		drawcharacter();
 		drawplayerattack();
 		mapshifter();
+	if (kb_Data[1] & kb_Yequ) {
+		drawsavemenu();
+		}
 	
-	} while (!((kb_Data[6] & kb_Clear)||(kb_Data[1] & kb_Yequ)));
-	menuyes = 3;
+	} while (!((kb_Data[6] & kb_Clear)||(kb_Data[1] & kb_Window)));
 }
 
 
@@ -90,10 +92,7 @@ void drawmap(void) {
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
 	gfx_SetTextFGColor(textcolor);
-	//gfx_PrintStringXY("x", 8, 224);
-	//gfx_PrintUInt(x_offset, 4);
-	//gfx_PrintString("  y");
-	//gfx_PrintUInt(y_offset, 4);
+/*print debug numbers for collision and stuff
 	gfx_PrintStringXY("tile", 8, 224);
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley)),2);
 	gfx_PrintString("  tile L");
@@ -104,7 +103,8 @@ void drawmap(void) {
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex+32,playertiley)),2);
 	gfx_PrintString("  tile D");
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley+32)),2);
-	
+*/
+	gfx_PrintStringXY("SAVE",8,226);
 }
 void mapshifter(void) {
 	if (kb_Data[7] & kb_Left) {

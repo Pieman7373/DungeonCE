@@ -5,11 +5,12 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-60:
+61:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
  menuwords : converted!
+ savemenu : converted!
  player_naked_down : converted!
  player_naked_up : converted!
  player_naked_left : converted!

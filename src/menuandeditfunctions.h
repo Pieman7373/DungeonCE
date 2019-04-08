@@ -11,5 +11,7 @@ void options();
 void playercreate();
 void drawequipment();
 void draweditedplayer();
+void savegame();
+void drawsavemenu();
 
 #endif

@@ -92,7 +92,7 @@
 	!!!!!!!!!!!!!!!!!!!!
 	*/
 	//{helmet,chestplate,boots,weapon,x,y}
-	uint8_t player_setup [6] = {3,2,4,1,0,0};
+	uint8_t player_setup [6] = {3,2,4,3,0,0};
 	
 void main(void) {
 

@@ -82,6 +82,21 @@ void options(void) {
 		} while (menuyes != 3);
 }
 
+void drawsavemenu(void){
+	gfx_SetDrawBuffer();
+	gfx_SetColor(submenucolor);
+	gfx_FillRectangle(0,154,108,66);
+	gfx_SetColor(accentcolor);
+	gfx_Rectangle(0,154,108,66);
+	gfx_Rectangle(2,156,104,62);
+	gfx_TransparentSprite(savemenu, 4, 158);
+	gfx_SwapDraw();
+	do {
+		if (kb_Data[3] & kb_1) {savegame();}
+	} while (!(kb_Data[2] & kb_2));
+}
+
+void savegame(void) {}
 void loadsave(void) {
 	mapstartx = player_setup[4];
 	mapstarty = player_setup[5];
@@ -130,7 +145,6 @@ void playercreate(void) {
 	
 	(menuyes = 3);
 }
-
 void draweditedplayer(void) {
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
@@ -155,7 +169,6 @@ void draweditedplayer(void) {
 	if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 }
-
 void drawequipment(void) {
 	
 	gfx_SetColor(0x00);
