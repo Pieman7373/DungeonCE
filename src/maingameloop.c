@@ -31,6 +31,9 @@ int playerx;
 int playery;
 int playertilex;
 int playertiley;
+gfx_sprite_t *weapon;
+gfx_sprite_t *weaponrotated;
+gfx_sprite_t *equipment;
 
 
 extern int menuyes;
@@ -138,6 +141,7 @@ void mapshifter(void) {
 	keywait();
 }
 void drawcharacter(void) {
+	
 	if (playerface == 1) {
 		gfx_TransparentSprite(player_naked_left,playerx,playery);
 	}
@@ -154,8 +158,9 @@ void drawcharacter(void) {
 drawhelmet();
 drawchestplate();
 drawboot();
-gfx_SwapDraw();
 }
+
+//REWRITE USING POINTER equipment
 void drawhelmet(void) {
 	if (player_setup[0] == 1){
 	if (playerface == 1) {
@@ -331,5 +336,27 @@ void drawboot(void) {
 	}
 }
 
-void drawplayerattack(void){}
+void drawplayerattack(void){
+	gfx_UninitedSprite(weaponrotated, 32, 32);
+	if (kb_Data[1] & kb_2nd){
+		if (player_setup[3] == 1) {weapon = club;}
+		if (player_setup[3] == 2) {weapon = iron_sword;}
+		if (player_setup[3] == 3) {weapon = steel_sword;}
+		if (player_setup[3] == 4) {weapon = dragon_sword;}
+		
+		if (playerface == 1) {
+			gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),playerx-32,playery);
+		}
+		if (playerface == 2) {
+			gfx_TransparentSprite(weapon,playerx,playery-32);
+		}
+		if (playerface == 3) {
+			gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),playerx+32,playery);
+		}
+		if (playerface == 4) {
+			gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
+		}
+	}
+	gfx_SwapDraw();
+}
 void drawenemies(void){}

@@ -99,7 +99,6 @@ void main(void) {
 	kb_key_t key;
 	
 	if (!dungeon_init()) { abort(); }
-	
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;
