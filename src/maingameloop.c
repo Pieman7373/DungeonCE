@@ -33,8 +33,9 @@ int playertilex;
 int playertiley;
 gfx_sprite_t *weapon;
 gfx_sprite_t *weaponrotated;
-gfx_sprite_t *equipment;
-
+gfx_sprite_t *helmet;
+gfx_sprite_t *chestplate;
+gfx_sprite_t *boots;
 
 extern int menuyes;
 extern int textcolor;
@@ -163,177 +164,84 @@ drawboot();
 //REWRITE USING POINTER equipment
 void drawhelmet(void) {
 	if (player_setup[0] == 1){
-	if (playerface == 1) {
-		gfx_TransparentSprite(leather_helmet_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(leather_helmet_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(leather_helmet_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(leather_helmet_down,playerx,playery);
-	}
+	if (playerface == 1) {helmet = leather_helmet_left;}
+	else if (playerface == 2) {helmet = leather_chestplate_up;}
+	else if (playerface == 3) {helmet = leather_helmet_right;}
+	else if (playerface == 4) {helmet = leather_helmet_down;}
 	}
 	else if (player_setup[0] == 2){
-		if (playerface == 1) {
-		gfx_TransparentSprite(chain_helmet_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(chain_helmet_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(chain_helmet_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(chain_helmet_down,playerx,playery);
-	}
+		if (playerface == 1) {helmet = chain_helmet_left;}
+	else if (playerface == 2) {helmet = chain_helmet_up;}
+	else if (playerface == 3) {helmet = chain_helmet_right;}
+	else if (playerface == 4) {helmet = chain_helmet_down;}
 	}
 	else if (player_setup[0] == 3){
-		if (playerface == 1) {
-		gfx_TransparentSprite(steel_helmet_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(steel_helmet_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(steel_helmet_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(steel_helmet_down,playerx,playery);
-	}
+		if (playerface == 1) {helmet = steel_helmet_left;}
+	else if (playerface == 2) {helmet = steel_helmet_up;}
+	else if (playerface == 3) {helmet = steel_helmet_right;}
+	else if (playerface == 4) {helmet = steel_helmet_down;}
 	}
 	else if (player_setup[0] == 4){
-		if (playerface == 1) {
-		gfx_TransparentSprite(dragon_helmet_left,playerx,playery);
+		if (playerface == 1) {helmet = dragon_helmet_left;}
+	else if (playerface == 2) {helmet = dragon_helmet_up;}
+	else if (playerface == 3) {helmet = dragon_helmet_right;}
+	else if (playerface == 4) {helmet = dragon_helmet_down;}
 	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(dragon_helmet_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(dragon_helmet_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(dragon_helmet_down,playerx,playery);
-	}
-	}
+	gfx_TransparentSprite(helmet,playerx,playery);
 }
 void drawchestplate(void) {
 	if (player_setup[1] == 1){
-	if (playerface == 1) {
-		gfx_TransparentSprite(leather_chestplate_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(leather_chestplate_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(leather_chestplate_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(leather_chestplate_down,playerx,playery);
-	}
+	if (playerface == 1) {chestplate = leather_chestplate_left;}
+	else if (playerface == 2) {chestplate = leather_chestplate_up;}
+	else if (playerface == 3) {chestplate = leather_chestplate_right;}
+	else if (playerface == 4) {chestplate = leather_chestplate_down;}
 	}
 	else if (player_setup[1] == 2){
-	if (playerface == 1) {
-		gfx_TransparentSprite(chain_chestplate_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(chain_chestplate_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(chain_chestplate_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(chain_chestplate_down,playerx,playery);
-	}
+	if (playerface == 1) {chestplate = chain_chestplate_left;}
+	else if (playerface == 2) {chestplate = chain_chestplate_up;}
+	else if (playerface == 3) {chestplate = chain_chestplate_right;}
+	else if (playerface == 4) {chestplate = chain_chestplate_down;}
 	}
 	else if (player_setup[1] == 3){
-	if (playerface == 1) {
-		gfx_TransparentSprite(steel_chestplate_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(steel_chestplate_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(steel_chestplate_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(steel_chestplate_down,playerx,playery);
-	}
+	if (playerface == 1) {chestplate = steel_chestplate_left;}
+	else if (playerface == 2) {chestplate = steel_chestplate_up;}
+	else if (playerface == 3) {chestplate = steel_chestplate_right;}
+	else if (playerface == 4) {chestplate = steel_chestplate_down;}
 	}
 	else if (player_setup[1] == 4){
-	if (playerface == 1) {
-		gfx_TransparentSprite(dragon_chestplate_left,playerx,playery);
+	if (playerface == 1) {chestplate = dragon_chestplate_left;}
+	else if (playerface == 2) {chestplate = dragon_chestplate_up;}
+	else if (playerface == 3) {chestplate = dragon_chestplate_right;}
+	else if (playerface == 4) {chestplate = dragon_chestplate_down;}
 	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(dragon_chestplate_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(dragon_chestplate_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(dragon_chestplate_down,playerx,playery);
-	}
-	}
+	gfx_TransparentSprite(chestplate,playerx,playery);
 }
 void drawboot(void) {
 	if (player_setup[2] == 1){
-	if (playerface == 1) {
-		gfx_TransparentSprite(leather_boots_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(leather_boots_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(leather_boots_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(leather_boots_down,playerx,playery);
-	}
+	if (playerface == 1) {boots = leather_boots_left;}
+	else if (playerface == 2) {boots = leather_boots_up;}
+	else if (playerface == 3) {boots = leather_boots_right;}
+	else if (playerface == 4) {boots = leather_boots_down;}
 	}
 	else if (player_setup[2] == 2){
-		if (playerface == 1) {
-		gfx_TransparentSprite(chain_boots_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(chain_boots_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(chain_boots_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(chain_boots_down,playerx,playery);
-	}
+		if (playerface == 1) {boots = chain_boots_left;}
+	else if (playerface == 2) {boots = chain_boots_up;}
+	else if (playerface == 3) {boots = chain_boots_right;}
+	else if (playerface == 4) {boots = chain_boots_down;}
 	}
 	else if (player_setup[2] == 3){
-		if (playerface == 1) {
-		gfx_TransparentSprite(steel_boots_left,playerx,playery);
-	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(steel_boots_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(steel_boots_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(steel_boots_down,playerx,playery);
-	}
+		if (playerface == 1) {boots = steel_boots_left;}
+	else if (playerface == 2) {boots = steel_boots_up;}
+	else if (playerface == 3) {boots = steel_boots_right;}
+	else if (playerface == 4) {boots = steel_boots_down;}
 	}
 	else if (player_setup[2] == 4){
-	if (playerface == 1) {
-		gfx_TransparentSprite(dragon_boots_left,playerx,playery);
+	if (playerface == 1) {boots = dragon_boots_left;}
+	else if (playerface == 2) {boots = dragon_boots_up;}
+	else if (playerface == 3) {boots = dragon_boots_right;}
+	else if (playerface == 4) {boots = dragon_boots_down;}
 	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(dragon_boots_up,playerx,playery);
-	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(dragon_boots_right,playerx,playery);
-	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(dragon_boots_down,playerx,playery);
-	}
-	}
+	gfx_TransparentSprite(boots,playerx,playery);
 }
 
 void drawplayerattack(void){
