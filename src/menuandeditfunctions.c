@@ -96,8 +96,11 @@ void drawsavemenu(void){
 	} while (!(kb_Data[2] & kb_2));
 }
 
-void savegame(void) {}
+void savegame(void) {
+	//save player_setup to Appvar
+}
 void loadsave(void) {
+	//load player_setup from Appvar
 	mapstartx = player_setup[4];
 	mapstarty = player_setup[5];
 }
