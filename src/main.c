@@ -76,7 +76,9 @@
 	extern uint8_t *dungeon[56];
 	
 	extern uint8_t tilemap_map[];
+	extern uint8_t tilemap_enemies[];
 	gfx_tilemap_t tilemap;
+	gfx_tilemap_t enemytilemap;
 	
 	
 	
@@ -114,6 +116,19 @@ void main(void) {
     tilemap.y_loc       = Y_OFFSET;
     tilemap.x_loc       = X_OFFSET;
 	
+	    /* Initialize the enemy tilemap structure */
+	enemytilemap.map         = tilemap_enemies;
+    enemytilemap.tiles       = tileset_tiles;
+    enemytilemap.type_width  = gfx_tile_32_pixel;
+    enemytilemap.type_height = gfx_tile_32_pixel;
+    enemytilemap.tile_height = TILE_HEIGHT;
+    enemytilemap.tile_width  = TILE_WIDTH;
+    enemytilemap.draw_height = TILEMAP_DRAW_HEIGHT;
+    enemytilemap.draw_width  = TILEMAP_DRAW_WIDTH;
+    enemytilemap.height      = TILEMAP_HEIGHT;
+    enemytilemap.width       = TILEMAP_WIDTH;
+    enemytilemap.y_loc       = Y_OFFSET;
+    enemytilemap.x_loc       = X_OFFSET;
 	
 	gfx_SetPalette(dungeon_gfx_pal, sizeof_dungeon_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);

@@ -4,6 +4,7 @@
 #define tilemapdata_header
 #include <stdint.h>
 
+extern uint8_t tilemap_enemies[15750];
 extern uint8_t tilemap_map[15750];
 
 #endif

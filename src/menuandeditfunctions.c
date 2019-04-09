@@ -93,7 +93,7 @@ void drawsavemenu(void){
 	gfx_SwapDraw();
 	do {
 		if (kb_Data[3] & kb_1) {savegame();}
-	} while (!(kb_Data[2] & kb_2));
+	} while (!(kb_Data[4] & kb_2));
 }
 
 void savegame(void) {

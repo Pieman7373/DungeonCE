@@ -40,6 +40,7 @@ gfx_sprite_t *boots;
 extern int menuyes;
 extern int textcolor;
 extern uint8_t tilemap_map[];
+extern uint8_t tilemap_enemies[];
 extern unsigned int x_offset;
 extern unsigned int y_offset;
 extern int mapstartx;
@@ -48,6 +49,7 @@ extern int mapshift;
 extern uint8_t player_setup [];
 
 extern gfx_tilemap_t tilemap;
+extern gfx_tilemap_t enemytilemap;
 
 void maingameloop(void){
 x_offset = mapstartx * 32;
@@ -89,6 +91,7 @@ void drawmap(void) {
 	gfx_SetDrawBuffer();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_Tilemap(&tilemap, x_offset, y_offset);
+	gfx_TransparentTilemap(&enemytilemap, x_offset, y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
 	gfx_SetTextFGColor(textcolor);
@@ -135,11 +138,6 @@ void mapshifter(void) {
 			(y_offset = (y_offset + mapshift));
 		}
 	}
-	keywait();
-	keywait();
-	keywait();
-	keywait();
-	keywait();
 }
 void drawcharacter(void) {
 	
@@ -160,8 +158,6 @@ drawhelmet();
 drawchestplate();
 drawboot();
 }
-
-//REWRITE USING POINTER equipment
 void drawhelmet(void) {
 	if (player_setup[0] == 1){
 	if (playerface == 1) {helmet = leather_helmet_left;}
@@ -264,7 +260,9 @@ void drawplayerattack(void){
 		if (playerface == 4) {
 			gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
 		}
+		playerattackhitcheck();
 	}
 	gfx_SwapDraw();
 }
-void drawenemies(void){}
+
+void updateenemies(void){}

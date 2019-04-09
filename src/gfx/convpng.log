@@ -68,17 +68,10 @@ Transparent Color : 0xFC78
  steel_sword : converted!
  dragon_sword : converted!
 
---- Group tiles_gfx (C) ---
-Using built-in xlibc palette ...
-warning: might ignore transparent color value for a fixed palette.
-Transparent Color Index : 0
-Transparent Color : 0xFC78
-1:
- tileset : converted!
-
+exporting appvar: dungeon.8xp
 exporting appvar: dungeon.8xp
 
-Converted in 2 s
+Converted in 1 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
