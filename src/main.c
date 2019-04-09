@@ -73,7 +73,7 @@
 	unsigned int x_offset;
 	unsigned int y_offset;
 	
-	extern uint8_t *dungeon[56];
+	extern uint8_t *dungeon[44];
 	
 	extern uint8_t tilemap_map[];
 	extern uint8_t tilemap_enemies[];
