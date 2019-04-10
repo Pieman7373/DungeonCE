@@ -5,7 +5,7 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-49:
+51:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
@@ -55,6 +55,8 @@ Transparent Color : 0xFC78
  iron_sword : converted!
  steel_sword : converted!
  dragon_sword : converted!
+ slime_blue : converted!
+ slime_green : converted!
 
 --- Group tiles_gfx (C) ---
 Using built-in xlibc palette ...

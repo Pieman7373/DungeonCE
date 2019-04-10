@@ -24,6 +24,7 @@ int goup;
 int godown;
 int spritexoffset = 160;
 int spriteyoffset = 128;
+
 //1=left,2=up,3=right,4=down
 int playerface = 2;
 int playerx;
@@ -49,9 +50,10 @@ extern int mapshift;
 extern uint8_t player_setup [];
 
 extern gfx_tilemap_t tilemap;
-extern gfx_tilemap_t enemytilemap;
+	
 
-void maingameloop(void){
+void maingameloop(void){	
+	
 x_offset = mapstartx * 32;
 y_offset = mapstarty * 32;
 	do{
@@ -65,6 +67,7 @@ y_offset = mapstarty * 32;
 		
 		drawmap();
 		drawcharacter();
+		updateenemies();
 		drawplayerattack();
 		mapshifter();
 	if (kb_Data[1] & kb_Yequ) {
@@ -91,10 +94,13 @@ void drawmap(void) {
 	gfx_SetDrawBuffer();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_Tilemap(&tilemap, x_offset, y_offset);
-	gfx_TransparentTilemap(&enemytilemap, x_offset, y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
 	gfx_SetTextFGColor(textcolor);
+	gfx_SetTextXY(48,226);
+	gfx_PrintUInt(x_offset,4);
+	gfx_PrintString("----");
+	gfx_PrintUInt(y_offset,4);
 /*print debug numbers for collision and stuff
 	gfx_PrintStringXY("tile", 8, 224);
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley)),2);
@@ -240,7 +246,6 @@ void drawboot(void) {
 	}
 	gfx_TransparentSprite(boots,playerx,playery);
 }
-
 void drawplayerattack(void){
 	gfx_UninitedSprite(weaponrotated, 32, 32);
 	if (kb_Data[1] & kb_2nd){
@@ -266,4 +271,4 @@ void drawplayerattack(void){
 	gfx_SwapDraw();
 }
 
-void updateenemies(void){}
+

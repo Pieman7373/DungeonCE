@@ -1,7 +1,6 @@
 #ifndef MENUANDEDITFUNCTIONS_H
 #define MENUANDEDITFUNCTIONS_H
 
-
 void keywait();
 void mainmenu();
 void menubkgnd();
@@ -13,5 +12,9 @@ void drawequipment();
 void draweditedplayer();
 void savegame();
 void drawsavemenu();
+
+void resetenemies();
+void updateenemies();
+void renderenemy();
 
 #endif

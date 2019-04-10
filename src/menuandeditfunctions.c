@@ -16,6 +16,12 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+#define NUM_ENEMIES  2
+#define TYPE         
+#define DEAD         
+#define X			 
+#define Y            
+#define HEALTH		 
 
 extern int menuoption;
 extern int menuyes;
@@ -32,15 +38,50 @@ extern int editweaponsmallx;
 extern int editweaponsmally;
 extern int editpx;
 extern int editpy;
+extern unsigned int x_offset;
+extern unsigned int y_offset;
+
+uint8_t enemytype;
+int deadset;
+uint24_t enemyx;
+uint24_t enemyy;
+uint8_t enemyhealth;
+
+int i;
 extern signed int setnumber;
 extern uint8_t player_setup[];
+uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1};
+uint16_t defaultenemy_xlist[NUM_ENEMIES] = {192,224};
+uint16_t defaultenemy_ylist[NUM_ENEMIES] = {160,192};
 
 extern int mapstartx;
 extern int mapstarty;
 
+typedef struct enemy {
+	uint8_t type;
+	int dead;
+	uint24_t x; 
+	uint24_t y; 
+	uint8_t health;
+	} enemy_t;
+
+gfx_sprite_t *enemySprite;
+
+enemy_t  enemy[NUM_ENEMIES];
+
 void keywait(void) { while (os_GetCSC()); }
 
 void mainmenu(void) {
+	
+		//type, dead, enemyx,enemyy,health
+	enemy[NUM_ENEMIES].type   = enemytype;
+	enemy[NUM_ENEMIES].dead   = deadset;
+	enemy[NUM_ENEMIES].x      = enemyx;
+	enemy[NUM_ENEMIES].y      = enemyy;
+	enemy[NUM_ENEMIES].health = enemyhealth;
+	
+	resetenemies();
+	
 	menubkgnd();
     gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
     gfx_TransparentSprite(menuwords,100,130);
@@ -64,7 +105,6 @@ void mainmenu(void) {
     } while (!((kb_Data[3] & kb_1)||(kb_Data[4] & kb_2)||(kb_Data[5] & kb_3)||(kb_Data[6] & kb_Clear)));
     return;
 }
-
 void options(void) {
 	gfx_SetColor(submenucolor);
 	gfx_FillRectangle(40,60,215,100);
@@ -81,7 +121,6 @@ void options(void) {
 			}
 		} while (menuyes != 3);
 }
-
 void drawsavemenu(void){
 	gfx_SetDrawBuffer();
 	gfx_SetColor(submenucolor);
@@ -95,7 +134,6 @@ void drawsavemenu(void){
 		if (kb_Data[3] & kb_1) {savegame();}
 	} while (!(kb_Data[4] & kb_2));
 }
-
 void savegame(void) {
 	//save player_setup to Appvar
 }
@@ -104,10 +142,12 @@ void loadsave(void) {
 	mapstartx = player_setup[4];
 	mapstarty = player_setup[5];
 }
-
 void newgame(void) {
 	mapstartx = 70;
 	mapstarty = 96;
+	//Initiate Enemies
+
+	resetenemies();
 }
 
 void playercreate(void) {
@@ -209,3 +249,32 @@ void menubkgnd(void) {
 	gfx_Rectangle(0,0,320,240);
 	gfx_Rectangle(2,2,316,236);
 }
+
+
+void resetenemies(void) {
+	for (i = 0; i < NUM_ENEMIES; i++) {
+		enemy[i].type = defaultenemy_typelist[i];
+		enemy[i].x = defaultenemy_xlist[i];
+		enemy[i].y = defaultenemy_ylist[i];
+		if ((enemy[i].type) == 0) {enemy[i].health = 10;}
+		if ((enemy[i].type) == 1) {enemy[i].health = 20;}
+	}
+}
+
+void updateenemies(void) {
+	for (i = 0; i < NUM_ENEMIES; i++) {
+		if ((enemy[i].type) == 0) {enemySprite = slime_blue;}
+		else if ((enemy[i].type) == 1) {enemySprite = slime_green;}
+		
+		if ((enemy->dead) == 0) {
+		renderenemy(&enemy[i]);
+		}
+	}
+}
+void renderenemy(enemy_t *enemy) {
+		gfx_TransparentSprite(enemySprite, enemy->x + (x_offset/x_offset), enemy->y + (y_offset/y_offset)); 
+		gfx_SetTextFGColor(0xA8);
+		gfx_SetTextXY(enemy->x + (x_offset/x_offset),enemy->y + (y_offset/y_offset));
+		gfx_PrintUInt(enemy->health,2);
+	}
+

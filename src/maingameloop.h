@@ -3,7 +3,6 @@
 
 void maingameloop();
 void drawmap();
-void updateenemies();
 void drawcharacter();
 void mapshifter();
 void drawplayerattack();
