@@ -1,6 +1,6 @@
 #include "menuandeditfunctions.h"
-#include "gfx/dungeon_gfx.h"
 #include "gfx/dungeon.h"
+#include "gfx/dungeon_gfx.h"
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -42,7 +42,7 @@ void keywait(void) { while (os_GetCSC()); }
 
 void mainmenu(void) {
 	menubkgnd();
-    gfx_TransparentSprite(mainmenulogo,33,20);
+    gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
     gfx_TransparentSprite(menuwords,100,130);
    
     do {

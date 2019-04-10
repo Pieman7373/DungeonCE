@@ -1,7 +1,6 @@
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
 #include "collisiondetection.h"
-#include "gfx/dungeon_gfx.h"
 #include "gfx/tiles_gfx.h"
 #include "gfx/dungeon.h"
 
@@ -158,7 +157,7 @@ drawchestplate();
 drawboot();
 }
 void drawhelmet(void) {
-		gfx_UninitedSprite(flippedequip, 32,32);
+	gfx_UninitedSprite(flippedequip, 32,32);
 	if (player_setup[0] == 1){
 	if (playerface == 1) {helmet = leather_helmet_left;}
 	else if (playerface == 2) {helmet = leather_helmet_up;}
@@ -186,6 +185,7 @@ void drawhelmet(void) {
 	gfx_TransparentSprite(helmet,playerx,playery);
 }
 void drawchestplate(void) {
+	gfx_UninitedSprite(flippedequip, 32,32);
 	if (player_setup[1] == 1){
 	if (playerface == 1) {chestplate = leather_chestplate_left;}
 	else if (playerface == 2) {chestplate = leather_chestplate_up;}
@@ -213,6 +213,7 @@ void drawchestplate(void) {
 	gfx_TransparentSprite(chestplate,playerx,playery);
 }
 void drawboot(void) {
+	gfx_UninitedSprite(flippedequip, 32,32);
 	if (player_setup[2] == 1){
 	if (playerface == 1) {boots = leather_boots_left;}
 	else if (playerface == 2) {boots = leather_boots_up;}

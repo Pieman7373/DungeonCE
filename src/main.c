@@ -26,7 +26,6 @@
 #include "collisiondetection.h"
 
 #include "gfx/dungeon.h"
-#include "gfx/dungeon_gfx.h"
 #include "gfx/tiles_gfx.h"
 
 /* Put all your globals here */
@@ -73,7 +72,7 @@
 	unsigned int x_offset;
 	unsigned int y_offset;
 	
-	extern uint8_t *dungeon[44];
+	extern uint8_t *dungeon[];
 	
 	extern uint8_t tilemap_map[];
 	extern uint8_t tilemap_enemies[];
@@ -130,7 +129,7 @@ void main(void) {
     enemytilemap.y_loc       = Y_OFFSET;
     enemytilemap.x_loc       = X_OFFSET;
 	
-	gfx_SetPalette(dungeon_gfx_pal, sizeof_dungeon_gfx_pal, 0);
+	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);
 	gfx_Begin();
 	kb_SetMode(3);

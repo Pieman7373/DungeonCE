@@ -1,6 +1,5 @@
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
-#include "gfx/dungeon_gfx.h"
 #include "gfx/tiles_gfx.h"
 
 #include <stdbool.h>
