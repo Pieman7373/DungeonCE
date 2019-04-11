@@ -9,6 +9,8 @@ void drawplayerattack();
 void drawhelmet();
 void drawchestplate();
 void drawboot();
+void checkplayerstatus();
 void drawbottombar();
 void setmapshift();
+void youdied();
 #endif

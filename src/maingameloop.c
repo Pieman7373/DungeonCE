@@ -71,6 +71,7 @@ y_offset = mapstarty * 32;
 		drawmap();
 		drawcharacter();
 		updateenemies();
+		checkplayerstatus();
 		drawbottombar();
 		drawplayerattack();
 		mapshifter();
@@ -79,7 +80,7 @@ y_offset = mapstarty * 32;
 		}
 	
 	} while (!((kb_Data[1] & kb_Graph)||(kb_Data[6] & kb_Clear)));
-	menuyes = 3;
+	mainmenu();
 }
 
 
@@ -161,30 +162,6 @@ void drawcharacter(void) {
 	else if (playerface == 4) {
 		gfx_TransparentSprite(player_naked_down,playerx,playery);
 	}
-	/*for testing of healthbar*/
-	if (kb_Data[3] & kb_4) {
-		(player_setup[6] = player_setup[6] - 2);
-		if (player_setup[6] < 0) {player_setup[6] = 0;}
-	}
-	if (kb_Data[5] & kb_6) {
-		(player_setup[6] = player_setup[6] + 2);
-		if (player_setup[6] > 100) {player_setup[6] = 100;}
-	}
-	
-	
-	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){player_health = health100;}
-	else if ((90 >= player_setup[6]) & (player_setup[6] > 80)){player_health = health90;}
-	else if ((80 >= player_setup[6]) & (player_setup[6] > 70)){player_health = health80;}
-	else if ((70 >= player_setup[6]) & (player_setup[6] > 60)){player_health = health70;}
-	else if ((60 >= player_setup[6]) & (player_setup[6] > 50)){player_health = health60;}
-	else if ((50 >= player_setup[6]) & (player_setup[6] > 40)){player_health = health50;}
-	else if ((40 >= player_setup[6]) & (player_setup[6] > 30)){player_health = health40;}
-	else if ((30 >= player_setup[6]) & (player_setup[6] > 20)){player_health = health30;}
-	else if ((20 >= player_setup[6]) & (player_setup[6] > 10)){player_health = health20;}
-	else if ((10 >= player_setup[6]) & (player_setup[6] > 0)){player_health = health10;}
-	
-	
-	
 drawhelmet();
 drawchestplate();
 drawboot();
@@ -274,6 +251,7 @@ void drawboot(void) {
 	gfx_TransparentSprite(boots,playerx,playery);
 }
 void drawplayerattack(void){
+	
 	gfx_UninitedSprite(weaponrotated, 32, 32);
 	if (kb_Data[1] & kb_2nd){
 		if (player_setup[3] == 1) {weapon = club;}
@@ -297,6 +275,28 @@ void drawplayerattack(void){
 	}
 	gfx_SwapDraw();
 }
+void checkplayerstatus(void){
+		/*for testing of healthbar*/
+	if (kb_Data[3] & kb_4) {
+		(player_setup[6] = player_setup[6] - 2);
+	}
+	if (kb_Data[5] & kb_6) {
+		(player_setup[6] = player_setup[6] + 2);
+		if (player_setup[6] > 100) {player_setup[6] = 100;}
+	}
+	
+	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){player_health = health100;}
+	else if ((90 >= player_setup[6]) & (player_setup[6] > 80)){player_health = health90;}
+	else if ((80 >= player_setup[6]) & (player_setup[6] > 70)){player_health = health80;}
+	else if ((70 >= player_setup[6]) & (player_setup[6] > 60)){player_health = health70;}
+	else if ((60 >= player_setup[6]) & (player_setup[6] > 50)){player_health = health60;}
+	else if ((50 >= player_setup[6]) & (player_setup[6] > 40)){player_health = health50;}
+	else if ((40 >= player_setup[6]) & (player_setup[6] > 30)){player_health = health40;}
+	else if ((30 >= player_setup[6]) & (player_setup[6] > 20)){player_health = health30;}
+	else if ((20 >= player_setup[6]) & (player_setup[6] > 10)){player_health = health20;}
+	else if ((10 >= player_setup[6]) & (player_setup[6] > 0)){player_health = health10;}
+	if (player_setup[6] <= 0) {youdied();}
+}
 void drawbottombar(void){
 			gfx_SetColor(0x00);
 			gfx_FillRectangle(0,224,320,16);
@@ -304,4 +304,10 @@ void drawbottombar(void){
 			gfx_SetTextFGColor(textcolor);
 			gfx_PrintStringXY("[SAVE]   HP:",8,228);
 }
-
+void youdied(void){
+	gfx_SetDrawBuffer();
+	menubkgnd();
+	do {
+	} while (!(kb_Data[4] & kb_2));
+	abort();
+}

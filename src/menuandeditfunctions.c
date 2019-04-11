@@ -51,7 +51,7 @@ int i;
 int drawhealth = 1;
 extern signed int setnumber;
 extern uint8_t player_setup[];
-#define NUM_ENEMIES  7
+#define NUM_ENEMIES 9
 uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,2,2,2,2};
 uint16_t defaultenemy_xlist[NUM_ENEMIES] = {74,74,74,106,107,107,106};
 uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,74,75,74,75};
@@ -149,8 +149,6 @@ void loadsave(void) {
 void newgame(void) {
 	mapstartx = 70;
 	mapstarty = 96;
-	//Initiate Enemies
-
 	resetenemies();
 }
 
@@ -163,6 +161,10 @@ void playercreate(void) {
     gfx_SetTextBGColor(transcolor);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
+	gfx_SetTextScale(2,2);
+	gfx_PrintStringXY("1.",40,20);
+	gfx_PrintStringXY("2.",50,20);
+	
 	gfx_TransparentSprite(editmenunumbers,40,20);
 	do {
 		drawequipment();
