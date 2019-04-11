@@ -12,6 +12,7 @@ void drawequipment();
 void draweditedplayer();
 void savegame();
 void drawsavemenu();
+void drawstatsmenu();
 
 void resetenemies();
 void updateenemies();

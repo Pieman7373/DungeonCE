@@ -77,7 +77,10 @@ y_offset = mapstarty * 32;
 		mapshifter();
 	if (kb_Data[1] & kb_Yequ) {
 		drawsavemenu();
-		}
+	}
+	if (kb_Data[1] & kb_Window) {
+		drawstatsmenu();
+	}
 	
 	} while (!((kb_Data[1] & kb_Graph)||(kb_Data[6] & kb_Clear)));
 	mainmenu();
@@ -307,6 +310,11 @@ void drawbottombar(void){
 void youdied(void){
 	gfx_SetDrawBuffer();
 	menubkgnd();
+	gfx_ScaledTransparentSprite_NoClip(tombstone,100,50,6,6);
+	gfx_SetTextFGColor(0xE8);
+	gfx_SetTextScale(3,3);
+	gfx_PrintStringXY("You died!" 10,220);
+	gfx_SwapDraw();
 	do {
 	} while (!(kb_Data[4] & kb_2));
 	abort();
