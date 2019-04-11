@@ -51,10 +51,10 @@ int i;
 int drawhealth = 1;
 extern signed int setnumber;
 extern uint8_t player_setup[];
-#define NUM_ENEMIES  2
-uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1};
-uint16_t defaultenemy_xlist[NUM_ENEMIES] = {192,224};
-uint16_t defaultenemy_ylist[NUM_ENEMIES] = {160,192};
+#define NUM_ENEMIES  7
+uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,2,2,2,2};
+uint16_t defaultenemy_xlist[NUM_ENEMIES] = {74,74,74,106,107,107,106};
+uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,74,75,74,75};
 
 extern int mapstartx;
 extern int mapstarty;
@@ -258,17 +258,19 @@ void menubkgnd(void) {
 void resetenemies(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemy[i].type = defaultenemy_typelist[i];
-		enemy[i].x = defaultenemy_xlist[i];
-		enemy[i].y = defaultenemy_ylist[i];
+		enemy[i].x = defaultenemy_xlist[i]*32;
+		enemy[i].y = defaultenemy_ylist[i]*32;
 		if ((enemy[i].type) == 0) {enemy[i].health = 10;}
 		if ((enemy[i].type) == 1) {enemy[i].health = 20;}
+		if ((enemy[i].type) == 2) {enemy[i].health = 30;}
 	}
 }
 
 void updateenemies(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		if ((enemy[i].type) == 0) {enemySprite = slime_blue;}
-		else if ((enemy[i].type) == 1) {enemySprite = slime_green;}
+		if ((enemy[i].type) == 1) {enemySprite = slime_green;}
+		if ((enemy[i].type) == 2) {enemySprite = slime_red;}
 		
 		if ((enemy->dead) == 0) {
 		renderenemy(&enemy[i]);
@@ -276,10 +278,10 @@ void updateenemies(void) {
 	}
 }
 void renderenemy(enemy_t *enemy) {
-		gfx_TransparentSprite(enemySprite, enemy->x + x_offset, enemy->y + y_offset); 
+		gfx_TransparentSprite(enemySprite, enemy->x - x_offset, enemy->y - y_offset); 
 		gfx_SetTextFGColor(0xA8);
 		if (drawhealth == 1) {
-		gfx_SetTextXY(enemy->x + x_offset,enemy->y + y_offset);
+		gfx_SetTextXY(enemy->x - x_offset,enemy->y - y_offset);
 		gfx_PrintUInt(enemy->health,2);
 		}
 	}

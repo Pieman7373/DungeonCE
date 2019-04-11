@@ -36,6 +36,7 @@ int playertiley;
 gfx_sprite_t *weapon;
 gfx_sprite_t *weaponrotated;
 gfx_sprite_t *flippedequip;
+gfx_sprite_t *player_health;
 gfx_sprite_t *helmet;
 gfx_sprite_t *chestplate;
 gfx_sprite_t *boots;
@@ -66,10 +67,11 @@ y_offset = mapstarty * 32;
 		(godown = 0);
 		
 		setmapshift();
-		
+	
 		drawmap();
 		drawcharacter();
 		updateenemies();
+		drawbottombar();
 		drawplayerattack();
 		mapshifter();
 	if (kb_Data[1] & kb_Yequ) {
@@ -93,19 +95,16 @@ void drawmap(void) {
 	playery = ((y_offset/y_offset)+spriteyoffset);
 	playertilex = (x_offset + (32*5));
 	playertiley = (y_offset + (32*4));
-	tileoffsetx = x_offset/32;
-	tileoffsety = y_offset/32;
-	
 	gfx_SetDrawBuffer();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_Tilemap(&tilemap, x_offset, y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
-	gfx_SetTextFGColor(textcolor);
-	gfx_SetTextXY(48,226);
-	gfx_PrintUInt(x_offset,4);
-	gfx_PrintString("----");
-	gfx_PrintUInt(y_offset,4);
+	
+	//gfx_SetTextXY(48,226);
+	//gfx_PrintUInt(x_offset,4);
+	//gfx_PrintString("----");
+	//gfx_PrintUInt(y_offset,4);
 /*print debug numbers for collision and stuff
 	gfx_PrintStringXY("tile", 8, 224);
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley)),2);
@@ -118,7 +117,6 @@ void drawmap(void) {
 	gfx_PrintString("  tile D");
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley+32)),2);
 */
-	gfx_PrintStringXY("SAVE",8,226);
 }
 void mapshifter(void) {
 	if (kb_Data[7] & kb_Left) {
@@ -163,6 +161,30 @@ void drawcharacter(void) {
 	else if (playerface == 4) {
 		gfx_TransparentSprite(player_naked_down,playerx,playery);
 	}
+	/*for testing of healthbar*/
+	if (kb_Data[3] & kb_4) {
+		(player_setup[6] = player_setup[6] - 2);
+		if (player_setup[6] < 0) {player_setup[6] = 0;}
+	}
+	if (kb_Data[5] & kb_6) {
+		(player_setup[6] = player_setup[6] + 2);
+		if (player_setup[6] > 100) {player_setup[6] = 100;}
+	}
+	
+	
+	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){player_health = health100;}
+	else if ((90 >= player_setup[6]) & (player_setup[6] > 80)){player_health = health90;}
+	else if ((80 >= player_setup[6]) & (player_setup[6] > 70)){player_health = health80;}
+	else if ((70 >= player_setup[6]) & (player_setup[6] > 60)){player_health = health70;}
+	else if ((60 >= player_setup[6]) & (player_setup[6] > 50)){player_health = health60;}
+	else if ((50 >= player_setup[6]) & (player_setup[6] > 40)){player_health = health50;}
+	else if ((40 >= player_setup[6]) & (player_setup[6] > 30)){player_health = health40;}
+	else if ((30 >= player_setup[6]) & (player_setup[6] > 20)){player_health = health30;}
+	else if ((20 >= player_setup[6]) & (player_setup[6] > 10)){player_health = health20;}
+	else if ((10 >= player_setup[6]) & (player_setup[6] > 0)){player_health = health10;}
+	
+	
+	
 drawhelmet();
 drawchestplate();
 drawboot();
@@ -275,5 +297,11 @@ void drawplayerattack(void){
 	}
 	gfx_SwapDraw();
 }
-
+void drawbottombar(void){
+			gfx_SetColor(0x00);
+			gfx_FillRectangle(0,224,320,16);
+			gfx_TransparentSprite(player_health,80,224);
+			gfx_SetTextFGColor(textcolor);
+			gfx_PrintStringXY("[SAVE]   HP:",8,228);
+}
 

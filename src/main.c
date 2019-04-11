@@ -89,9 +89,9 @@
 	!!!!!!!!!!!!!!!!!!!!
 	!!!!!!!!!!!!!!!!!!!!
 	*/
-	//{helmet,chestplate,boots,weapon,x,y}
-	uint8_t player_setup [6] = {3,2,4,3,0,0};
-	
+	//{helmet,chestplate,boots,weapon,x,y,health%}
+	uint8_t player_setup[7] = {3,2,4,3,0,0,100};
+
 void main(void) {
 
 	kb_key_t key;
@@ -116,7 +116,7 @@ void main(void) {
 	gfx_SetTransparentColor(transcolor);
 	gfx_Begin();
 	kb_SetMode(3);
-
+	gfx_SetTextConfig(1);
 	
 	do {
 		
