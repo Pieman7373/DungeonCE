@@ -24,6 +24,8 @@ int goup;
 int godown;
 int spritexoffset = 160;
 int spriteyoffset = 128;
+int tileoffsetx;
+int tileoffsety;
 
 //1=left,2=up,3=right,4=down
 int playerface = 2;
@@ -74,7 +76,8 @@ y_offset = mapstarty * 32;
 		drawsavemenu();
 		}
 	
-	} while (!((kb_Data[6] & kb_Clear)||(kb_Data[1] & kb_Window)));
+	} while (!((kb_Data[1] & kb_Graph)||(kb_Data[6] & kb_Clear)));
+	menuyes = 3;
 }
 
 
@@ -90,6 +93,8 @@ void drawmap(void) {
 	playery = ((y_offset/y_offset)+spriteyoffset);
 	playertilex = (x_offset + (32*5));
 	playertiley = (y_offset + (32*4));
+	tileoffsetx = x_offset/32;
+	tileoffsety = y_offset/32;
 	
 	gfx_SetDrawBuffer();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);

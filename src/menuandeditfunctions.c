@@ -16,7 +16,7 @@
 #include <graphx.h>
 #include <keypadc.h>
 
-#define NUM_ENEMIES  2
+
 #define TYPE         
 #define DEAD         
 #define X			 
@@ -48,14 +48,18 @@ uint24_t enemyy;
 uint8_t enemyhealth;
 
 int i;
+int drawhealth = 1;
 extern signed int setnumber;
 extern uint8_t player_setup[];
+#define NUM_ENEMIES  2
 uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1};
 uint16_t defaultenemy_xlist[NUM_ENEMIES] = {192,224};
 uint16_t defaultenemy_ylist[NUM_ENEMIES] = {160,192};
 
 extern int mapstartx;
 extern int mapstarty;
+extern int tileoffsetx;
+extern int tileoffsety;
 
 typedef struct enemy {
 	uint8_t type;
@@ -272,9 +276,11 @@ void updateenemies(void) {
 	}
 }
 void renderenemy(enemy_t *enemy) {
-		gfx_TransparentSprite(enemySprite, enemy->x + (x_offset/x_offset), enemy->y + (y_offset/y_offset)); 
+		gfx_TransparentSprite(enemySprite, enemy->x + x_offset, enemy->y + y_offset); 
 		gfx_SetTextFGColor(0xA8);
-		gfx_SetTextXY(enemy->x + (x_offset/x_offset),enemy->y + (y_offset/y_offset));
+		if (drawhealth == 1) {
+		gfx_SetTextXY(enemy->x + x_offset,enemy->y + y_offset);
 		gfx_PrintUInt(enemy->health,2);
+		}
 	}
 
