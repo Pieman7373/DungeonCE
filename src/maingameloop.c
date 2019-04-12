@@ -53,7 +53,40 @@ extern int mapshift;
 extern uint8_t player_setup [];
 
 extern gfx_tilemap_t tilemap;
+
+
+//Start of the game
+void menuloop(void){
 	
+	do {
+		/*pick whether to continue or not*/
+		mainmenu ();
+
+		//menuyes comes from the mainmenu function
+		//menuyes chunk begin
+		if (menuyes == 1) {
+			if (kb_Data[3] & kb_1) {
+				loadsave();
+				maingameloop();
+			}
+		}
+		if (menuyes == 1) {
+			if (kb_Data[4] & kb_2) {
+				newgame();
+				maingameloop();
+			}
+		}
+		if (menuyes == 1) {
+			if (kb_Data[5] & kb_3) {
+				options();
+			}
+		}
+		//menuyes chunk end
+	} while (!(kb_Data[6] & kb_Clear));
+	gfx_End();
+	exit(0);
+	
+}	
 
 void maingameloop(void){	
 	
@@ -83,10 +116,8 @@ y_offset = mapstarty * 32;
 	}
 	
 	} while (!((kb_Data[1] & kb_Graph)||(kb_Data[6] & kb_Clear)));
-	mainmenu();
+	menuloop();
 }
-
-
 void setmapshift(void) {
 	if (player_setup[2] == 0) {(mapshift = 1);}
 	if (player_setup[2] == 1) {(mapshift = 8);}
@@ -279,12 +310,14 @@ void drawplayerattack(void){
 	gfx_SwapDraw();
 }
 void checkplayerstatus(void){
-		/*for testing of healthbar*/
-	if (kb_Data[3] & kb_4) {
-		(player_setup[6] = player_setup[6] - 2);
+	//checks if you are standing on a spike
+	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
+		(player_setup[6] = player_setup[6] - 5);
 	}
+	
+		/*for testing of healthbar*/
 	if (kb_Data[5] & kb_6) {
-		(player_setup[6] = player_setup[6] + 2);
+		(player_setup[6] = player_setup[6] + 1);
 		if (player_setup[6] > 100) {player_setup[6] = 100;}
 	}
 	
@@ -310,12 +343,16 @@ void drawbottombar(void){
 void youdied(void){
 	gfx_SetDrawBuffer();
 	menubkgnd();
-	gfx_ScaledTransparentSprite_NoClip(tombstone,100,50,6,6);
+	gfx_ScaledTransparentSprite_NoClip(tombstone,70,30,5,5);
 	gfx_SetTextFGColor(0xE8);
 	gfx_SetTextScale(3,3);
-	gfx_PrintStringXY("You died!" 10,220);
+	gfx_PrintStringXY("You died!",120,200);
+	gfx_PrintStringXY("1. Main Menu",130,210);
+	gfx_PrintStringXY("2. Quit",130,218);
 	gfx_SwapDraw();
 	do {
+		if (kb_Data[3] & kb_1) {menuloop();}
 	} while (!(kb_Data[4] & kb_2));
-	abort();
+	gfx_End();
+	exit(0);
 }

@@ -91,11 +91,13 @@
 	*/
 	//{helmet,chestplate,boots,weapon,x,y,health%}
 	uint8_t player_setup[7] = {3,2,4,3,0,0,100};
+	
 
 void main(void) {
 
 	kb_key_t key;
 	
+
 	if (!dungeon_init()) { abort(); }
 
     /* Initialize the tilemap structure */
@@ -118,37 +120,8 @@ void main(void) {
 	kb_SetMode(3);
 	gfx_SetTextConfig(1);
 	
-	do {
-		
-		/*pick whether to continue or not*/
-		
-		mainmenu ();
+	menuloop();
 
-		//menuyes comes from the mainmenu function
-		//menuyes chunk begin
-		if (menuyes == 1) {
-			if (kb_Data[3] & kb_1) {
-				loadsave();
-				maingameloop();
-			}
-		}
-		if (menuyes == 1) {
-			if (kb_Data[4] & kb_2) {
-				newgame();
-				maingameloop();
-			}
-		}
-		if (menuyes == 1) {
-			if (kb_Data[5] & kb_3) {
-				options();
-			}
-		}
-		//menuyes chunk end
-	
-	
-	} while (!(kb_Data[6] & kb_Clear));
-	
 	gfx_End();
 }
 
-	

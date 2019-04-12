@@ -70,29 +70,28 @@ typedef struct enemy {
 	} enemy_t;
 
 gfx_sprite_t *enemySprite;
-
 enemy_t  enemy[NUM_ENEMIES];
 
 void keywait(void) { while (os_GetCSC()); }
 
 void mainmenu(void) {
 	
-		//type, dead, enemyx,enemyy,health
+	//type, dead, enemyx,enemyy,health
 	enemy[NUM_ENEMIES].type   = enemytype;
 	enemy[NUM_ENEMIES].dead   = deadset;
 	enemy[NUM_ENEMIES].x      = enemyx;
 	enemy[NUM_ENEMIES].y      = enemyy;
 	enemy[NUM_ENEMIES].health = enemyhealth;
 	
-	resetenemies();
 	
+	resetenemies();
+	gfx_SetDrawBuffer();
 	menubkgnd();
     gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
     gfx_TransparentSprite(menuwords,100,130);
-   
+	gfx_SwapDraw();
     do {
-        menuyes = 0;
-       
+       menuyes = 0;
         if (kb_Data[3] & kb_1) {
             menuyes = 1;
             menuoption = 1;
@@ -105,17 +104,18 @@ void mainmenu(void) {
             menuyes = 1;
             menuoption = 3;
         }
-       
-    } while (!((kb_Data[3] & kb_1)||(kb_Data[4] & kb_2)||(kb_Data[5] & kb_3)||(kb_Data[6] & kb_Clear)));
-    return;
+    } while (!(menuyes)||(kb_Data[6] & kb_Clear));
+ 
 }
 void options(void) {
+	gfx_SetDrawBuffer();
 	gfx_SetColor(submenucolor);
 	gfx_FillRectangle(40,60,215,100);
 	gfx_SetColor(accentcolor);
 	gfx_Rectangle(40,60,215,100);
 	gfx_Rectangle(42,62,211,96);
 	gfx_TransparentSprite(optionsmenu,45,65);
+	gfx_SwapDraw();
 		do {
 			if (kb_Data[3] & kb_1) {
 				playercreate();
@@ -152,6 +152,7 @@ void newgame(void) {
 	resetenemies();
 }
 void playercreate(void) {
+	gfx_SetDrawBuffer();
 	menubkgnd();
 	gfx_HorizLine(0,223,320);
 	gfx_HorizLine(0,221,320);
@@ -159,12 +160,12 @@ void playercreate(void) {
 	gfx_SetTextFGColor(textcolor);
     gfx_SetTextBGColor(transcolor);
 	gfx_SetTextScale(4,4);
-	gfx_PrintStringXY("1.",40,20);
-	gfx_PrintStringXY("2.",50,20);
+	//gfx_PrintStringXY("1.",40,20);
+	//gfx_PrintStringXY("2.",50,20);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
-	
-	//gfx_TransparentSprite(editmenunumbers,40,20);
+	gfx_TransparentSprite(editmenunumbers,40,20);
+	gfx_SwapDraw();
 	do {
 		drawequipment();
 		draweditedplayer();
@@ -194,6 +195,7 @@ void playercreate(void) {
 	(menuyes = 3);
 }
 void draweditedplayer(void) {
+	gfx_SetDrawBuffer();
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
 	gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
@@ -216,9 +218,10 @@ void draweditedplayer(void) {
 	if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
+	gfx_SwapDraw();
 }
 void drawequipment(void) {
-	
+	gfx_SetDrawBuffer();
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(65,12,96,208);
 	
@@ -245,6 +248,7 @@ void drawequipment(void) {
 		gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
+	gfx_SwapDraw();
 	}
 }
 
@@ -288,5 +292,8 @@ void renderenemy(enemy_t *enemy) {
 	}
 void drawstatsmenu(void) {
 	do {
+		
+		
+		
 	}while (!(kb_Data[3] & kb_1));
 }

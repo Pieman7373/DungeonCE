@@ -1,6 +1,7 @@
 #ifndef MAINGAMELOOP_H
 #define MAINGAMELOOP_H
 
+void menuloop();
 void maingameloop();
 void drawmap();
 void drawcharacter();
