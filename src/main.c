@@ -44,44 +44,44 @@
 	int editscalep = 12;
 	int editpx = 140;
 	int editpy = 10;
-
-
+	
+	
 	int mapshift;
-
+	
 	//player is 5 away
 	int mapstartx;
 	//player is 4 away
 	int mapstarty;
-
+	
 	//for tilemap stuff
 
 	#define TILE_WIDTH          32
 	#define TILE_HEIGHT         32
 
 	#define TILEMAP_WIDTH       150
-
+	
 	#define TILEMAP_HEIGHT      95
-
+	
 	#define TILEMAP_DRAW_WIDTH  10
 	#define TILEMAP_DRAW_HEIGHT 7
 
 	#define Y_OFFSET            0
 	#define X_OFFSET            0
-
+	
 	unsigned int x_offset;
 	unsigned int y_offset;
-
+	
 	extern uint8_t *dungeon[];
-
+	
 	extern uint8_t tilemap_map[];
 	//extern uint8_t tilemap_enemies[];
 	gfx_tilemap_t tilemap;
-
-
+	
+	
 	//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
 	signed int setnumber = 0;
-
-
+	
+	
 	/*
 	!!!!!!!!!!!!!!!!!!!!!!
 	!!!!!!!!!!!!!!!!!!!!!
@@ -91,12 +91,12 @@
 	*/
 	//{helmet,chestplate,boots,weapon,x,y,health%}
 	uint8_t player_setup[7] = {3,2,4,3,0,0,100};
-
+	
 
 void main(void) {
 
 	kb_key_t key;
-
+	
 
 	if (!dungeon_init()) { abort(); }
 
@@ -113,15 +113,15 @@ void main(void) {
     tilemap.width       = TILEMAP_WIDTH;
     tilemap.y_loc       = Y_OFFSET;
     tilemap.x_loc       = X_OFFSET;
-
-	gfx_Begin();
-	gfx_SetDrawBuffer();
+	
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);
+	gfx_Begin();
 	kb_SetMode(3);
 	gfx_SetTextConfig(1);
-
+	
 	menuloop();
 
 	gfx_End();
 }
+

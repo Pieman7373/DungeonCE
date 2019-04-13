@@ -17,11 +17,11 @@
 #include <keypadc.h>
 
 
-#define TYPE
-#define DEAD
-#define X
-#define Y
-#define HEALTH
+#define TYPE         
+#define DEAD         
+#define X			 
+#define Y            
+#define HEALTH		 
 
 extern int menuoption;
 extern int menuyes;
@@ -64,8 +64,8 @@ extern int tileoffsety;
 typedef struct enemy {
 	uint8_t type;
 	int dead;
-	uint24_t x;
-	uint24_t y;
+	uint24_t x; 
+	uint24_t y; 
 	uint8_t health;
 	} enemy_t;
 
@@ -75,16 +75,17 @@ enemy_t  enemy[NUM_ENEMIES];
 void keywait(void) { while (os_GetCSC()); }
 
 void mainmenu(void) {
-
+	
 	//type, dead, enemyx,enemyy,health
 	enemy[NUM_ENEMIES].type   = enemytype;
 	enemy[NUM_ENEMIES].dead   = deadset;
 	enemy[NUM_ENEMIES].x      = enemyx;
 	enemy[NUM_ENEMIES].y      = enemyy;
 	enemy[NUM_ENEMIES].health = enemyhealth;
-
-
+	
+	
 	resetenemies();
+	gfx_SetDrawBuffer();
 	menubkgnd();
     gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
     gfx_TransparentSprite(menuwords,100,130);
@@ -104,9 +105,10 @@ void mainmenu(void) {
             menuoption = 3;
         }
     } while (!(menuyes)||(kb_Data[6] & kb_Clear));
-
+ 
 }
 void options(void) {
+	gfx_SetDrawBuffer();
 	gfx_SetColor(submenucolor);
 	gfx_FillRectangle(40,60,215,100);
 	gfx_SetColor(accentcolor);
@@ -124,6 +126,7 @@ void options(void) {
 		} while (menuyes != 3);
 }
 void drawsavemenu(void){
+	gfx_SetDrawBuffer();
 	gfx_SetColor(submenucolor);
 	gfx_FillRectangle(0,154,108,66);
 	gfx_SetColor(accentcolor);
@@ -149,6 +152,7 @@ void newgame(void) {
 	resetenemies();
 }
 void playercreate(void) {
+	gfx_SetDrawBuffer();
 	menubkgnd();
 	gfx_HorizLine(0,223,320);
 	gfx_HorizLine(0,221,320);
@@ -171,7 +175,7 @@ void playercreate(void) {
 				else if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
 				else if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
 				else if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
-
+			
 				if (kb_Data[3] & kb_1){
 					(player_setup[0] = setnumber);
 				}
@@ -183,14 +187,15 @@ void playercreate(void) {
 				}
 				else if (kb_Data[3] & kb_4) {
 					(player_setup[3] = setnumber);
-				}
+				}		
 		}	while (!os_GetCSC());
-
+		
 	}	while (!(kb_Data[1] & kb_Del));
-
+	
 	(menuyes = 3);
 }
 void draweditedplayer(void) {
+	gfx_SetDrawBuffer();
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
 	gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
@@ -198,17 +203,17 @@ void draweditedplayer(void) {
 	if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [3] == 1) {gfx_ScaledTransparentSprite_NoClip(club,editweaponx,editweapony,editscale-1,editscale-1);}
-
+	
 	if (player_setup [0] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [3] == 2) {gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponx,editweapony,editscale-1,editscale-1);}
-
+	
 	if (player_setup [0] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [3] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponx,editweapony,editscale-1,editscale-1);}
-
+	
 	if (player_setup [0] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
@@ -216,9 +221,10 @@ void draweditedplayer(void) {
 	gfx_SwapDraw();
 }
 void drawequipment(void) {
+	gfx_SetDrawBuffer();
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(65,12,96,208);
-
+	
 	if (setnumber == 1) {
 		gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
@@ -270,14 +276,14 @@ void updateenemies(void) {
 		if ((enemy[i].type) == 0) {enemySprite = slime_blue;}
 		if ((enemy[i].type) == 1) {enemySprite = slime_green;}
 		if ((enemy[i].type) == 2) {enemySprite = slime_red;}
-
+		
 		if ((enemy->dead) == 0) {
 		renderenemy(&enemy[i]);
 		}
 	}
 }
 void renderenemy(enemy_t *enemy) {
-		gfx_TransparentSprite(enemySprite, enemy->x - x_offset, enemy->y - y_offset);
+		gfx_TransparentSprite(enemySprite, enemy->x - x_offset, enemy->y - y_offset); 
 		gfx_SetTextFGColor(0xA8);
 		if (drawhealth == 1) {
 		gfx_SetTextXY(enemy->x - x_offset,enemy->y - y_offset);
@@ -286,8 +292,8 @@ void renderenemy(enemy_t *enemy) {
 	}
 void drawstatsmenu(void) {
 	do {
-
-
-
+		
+		
+		
 	}while (!(kb_Data[3] & kb_1));
 }
