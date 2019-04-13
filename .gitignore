@@ -1,3 +1,4 @@
 obj/
 bin/
+*.log
 enemy structs help.txt
