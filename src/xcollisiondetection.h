@@ -1,5 +1,5 @@
-#ifndef COLLISIONDETECTION_H
-#define COLLISIONDETECTION_H
+#ifndef XCOLLISIONDETECTION_H
+#define XCOLLISIONDETECTION_H
 
 void collisionup();
 void collisiondown();

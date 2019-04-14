@@ -17,5 +17,4 @@ void drawstatsmenu();
 void resetenemies();
 void updateenemies();
 void renderenemy();
-
 #endif

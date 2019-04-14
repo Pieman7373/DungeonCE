@@ -5,7 +5,7 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-63:
+64:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
@@ -56,6 +56,7 @@ Transparent Color : 0xFC78
  steel_sword : converted!
  dragon_sword : converted!
  tombstone : converted!
+ pot : converted!
  health100 : converted!
  health90 : converted!
  health80 : converted!
@@ -80,7 +81,7 @@ Transparent Color : 0xFC78
 
 exporting appvar: dungeon.8xp
 
-Converted in 1 s
+Converted in 2 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 

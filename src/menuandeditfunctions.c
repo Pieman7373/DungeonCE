@@ -1,6 +1,8 @@
 #include "menuandeditfunctions.h"
+#include "maingameloop.h"
 #include "gfx/dungeon.h"
 #include "gfx/dungeon_gfx.h"
+#include "structs.h"
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -15,14 +17,9 @@
 #include <string.h>
 #include <graphx.h>
 #include <keypadc.h>
+	 
 
-
-#define TYPE         
-#define DEAD         
-#define X			 
-#define Y            
-#define HEALTH		 
-
+extern int i;
 extern int menuoption;
 extern int menuyes;
 extern int textcolor;
@@ -45,15 +42,15 @@ uint8_t enemytype;
 int deadset;
 uint24_t enemyx;
 uint24_t enemyy;
-uint8_t enemyhealth;
+int enemyhealth;
 
-int i;
 int drawhealth = 1;
 extern signed int setnumber;
 extern uint8_t player_setup[];
-#define NUM_ENEMIES 9
+
+
 uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,2,2,2,2};
-uint16_t defaultenemy_xlist[NUM_ENEMIES] = {74,74,74,106,107,107,106};
+uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,106,107,107,106};
 uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,74,75,74,75};
 
 extern int mapstartx;
@@ -61,21 +58,12 @@ extern int mapstarty;
 extern int tileoffsetx;
 extern int tileoffsety;
 
-typedef struct enemy {
-	uint8_t type;
-	int dead;
-	uint24_t x; 
-	uint24_t y; 
-	uint8_t health;
-	} enemy_t;
-
 gfx_sprite_t *enemySprite;
 enemy_t  enemy[NUM_ENEMIES];
 
 void keywait(void) { while (os_GetCSC()); }
 
 void mainmenu(void) {
-	
 	//type, dead, enemyx,enemyy,health
 	enemy[NUM_ENEMIES].type   = enemytype;
 	enemy[NUM_ENEMIES].dead   = deadset;
@@ -150,6 +138,7 @@ void newgame(void) {
 	mapstartx = 70;
 	mapstarty = 96;
 	resetenemies();
+	resetpots();
 }
 void playercreate(void) {
 	gfx_SetDrawBuffer();
@@ -251,18 +240,16 @@ void drawequipment(void) {
 	gfx_SwapDraw();
 	}
 }
-
 void menubkgnd(void) {
 	gfx_FillScreen(menucolor);
 	gfx_SetColor(accentcolor);
 	gfx_Rectangle(0,0,320,240);
 	gfx_Rectangle(2,2,316,236);
 }
-
-
 void resetenemies(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemy[i].type = defaultenemy_typelist[i];
+		enemy[i].dead = 0;
 		enemy[i].x = defaultenemy_xlist[i]*32;
 		enemy[i].y = defaultenemy_ylist[i]*32;
 		if ((enemy[i].type) == 0) {enemy[i].health = 10;}
@@ -270,14 +257,15 @@ void resetenemies(void) {
 		if ((enemy[i].type) == 2) {enemy[i].health = 30;}
 	}
 }
-
 void updateenemies(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		if ((enemy[i].type) == 0) {enemySprite = slime_blue;}
 		if ((enemy[i].type) == 1) {enemySprite = slime_green;}
 		if ((enemy[i].type) == 2) {enemySprite = slime_red;}
 		
-		if ((enemy->dead) == 0) {
+		
+		if (enemy[i].health <= 0) {enemy[i].dead = 1;}
+		if ((enemy[i].dead) == 0) {
 		renderenemy(&enemy[i]);
 		}
 	}
@@ -289,11 +277,14 @@ void renderenemy(enemy_t *enemy) {
 		gfx_SetTextXY(enemy->x - x_offset,enemy->y - y_offset);
 		gfx_PrintUInt(enemy->health,2);
 		}
+		/*only for debug
+		gfx_PrintString("---");
+		gfx_PrintUInt((enemy->x)/32,3);
+		gfx_PrintString("-");
+		gfx_PrintUInt((enemy->y)/32,3);
+		*/
 	}
 void drawstatsmenu(void) {
 	do {
-		
-		
-		
 	}while (!(kb_Data[3] & kb_1));
 }

@@ -1,8 +1,9 @@
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
-#include "collisiondetection.h"
+#include "xcollisiondetection.h"
 #include "gfx/tiles_gfx.h"
 #include "gfx/dungeon.h"
+#include "structs.h"
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -18,6 +19,7 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+int i;
 int goleft;
 int goright;
 int goup;
@@ -41,6 +43,16 @@ gfx_sprite_t *helmet;
 gfx_sprite_t *chestplate;
 gfx_sprite_t *boots;
 
+
+uint16_t default_pottypelist[NUM_POTS] = {0,1,0,1};
+uint16_t default_potxlist[NUM_POTS] = {77,78,106,107};
+uint16_t default_potylist[NUM_POTS] = {97,97,76,76};     
+
+uint8_t pottype;
+int potdeadset;
+uint24_t potx;
+uint24_t poty;
+	
 extern int menuyes;
 extern int textcolor;
 extern uint8_t tilemap_map[];
@@ -50,10 +62,12 @@ extern unsigned int y_offset;
 extern int mapstartx;
 extern int mapstarty;
 extern int mapshift;
+int playertilemapx;
+int playertilemapy;
 extern uint8_t player_setup [];
 
 extern gfx_tilemap_t tilemap;
-
+pots_t pots[NUM_POTS];
 
 //Start of the game
 void menuloop(void){
@@ -88,7 +102,11 @@ void menuloop(void){
 	
 }	
 
-void maingameloop(void){	
+void maingameloop(void){
+	pots[NUM_POTS].pottype   = pottype;
+	pots[NUM_POTS].potdead   = potdeadset;
+	pots[NUM_POTS].p_y       = poty;
+	pots[NUM_POTS].p_x       = potx;
 	
 x_offset = mapstartx * 32;
 y_offset = mapstarty * 32;
@@ -104,6 +122,7 @@ y_offset = mapstarty * 32;
 		drawmap();
 		drawcharacter();
 		updateenemies();
+		updatepots();
 		checkplayerstatus();
 		drawbottombar();
 		drawplayerattack();
@@ -136,6 +155,7 @@ void drawmap(void) {
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
 	
+	
 	//gfx_SetTextXY(48,226);
 	//gfx_PrintUInt(x_offset,4);
 	//gfx_PrintString("----");
@@ -154,6 +174,8 @@ void drawmap(void) {
 */
 }
 void mapshifter(void) {
+	playertilemapx = (playertilex/32);
+	playertilemapy = (playertiley/32);
 	if (kb_Data[7] & kb_Left) {
 		(playerface = 1);
 		collisionleft();
@@ -314,12 +336,7 @@ void checkplayerstatus(void){
 	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
 		(player_setup[6] = player_setup[6] - 5);
 	}
-	
-		/*for testing of healthbar*/
-	if (kb_Data[5] & kb_6) {
-		(player_setup[6] = player_setup[6] + 1);
-		if (player_setup[6] > 100) {player_setup[6] = 100;}
-	}
+	if (player_setup[6] > 100) {player_setup[6] = 100;}
 	
 	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){player_health = health100;}
 	else if ((90 >= player_setup[6]) & (player_setup[6] > 80)){player_health = health90;}
@@ -339,6 +356,12 @@ void drawbottombar(void){
 			gfx_TransparentSprite(player_health,80,224);
 			gfx_SetTextFGColor(textcolor);
 			gfx_PrintStringXY("[SAVE]   HP:",8,228);
+			
+			//debug
+			gfx_SetTextXY(200,226);
+	gfx_PrintUInt(playertilex/32,3);
+	gfx_PrintString("--");
+	gfx_PrintUInt(playertiley/32,3);
 }
 void youdied(void){
 	gfx_SetDrawBuffer();
@@ -355,4 +378,34 @@ void youdied(void){
 	} while (!(kb_Data[4] & kb_2));
 	gfx_End();
 	exit(0);
+}
+void resetpots(void){
+	for (i = 0; i < NUM_POTS; i++) {
+		pots[i].pottype = default_pottypelist[i];
+		pots[i].potdead = 0;
+		pots[i].p_x = default_potxlist[i]*32;
+		pots[i].p_y = default_potylist[i]*32;
+	}
+}
+void updatepots(void){
+	for (i = 0; i < NUM_POTS; i++) {	
+		if ((pots[i].potdead) == 0) {
+		renderpots(&pots[i]);
+		}
+	}
+}
+void renderpots(pots_t *pots){
+gfx_TransparentSprite(pot,(pots->p_x - x_offset), (pots->p_y - y_offset));
+//only for testing
+gfx_SetTextFGColor(0xA8);
+gfx_SetTextXY(pots->p_x - x_offset,pots->p_y - y_offset);
+gfx_PrintUInt(pots->pottype,1);
+
+/*for debug
+gfx_PrintString("---");
+gfx_PrintUInt((pots->p_x)/32,3);
+gfx_PrintString("-");
+gfx_PrintUInt((pots->p_y)/32,3);
+*/
+		
 }

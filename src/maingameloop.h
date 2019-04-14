@@ -14,4 +14,7 @@ void checkplayerstatus();
 void drawbottombar();
 void setmapshift();
 void youdied();
+void resetpots();
+void updatepots();
+void renderpots();
 #endif

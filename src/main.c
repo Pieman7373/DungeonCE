@@ -23,7 +23,7 @@
 #include <keypadc.h>
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
-#include "collisiondetection.h"
+#include "xcollisiondetection.h"
 
 #include "gfx/dungeon.h"
 #include "gfx/tiles_gfx.h"
@@ -89,7 +89,7 @@
 	!!!!!!!!!!!!!!!!!!!!
 	!!!!!!!!!!!!!!!!!!!!
 	*/
-	//{helmet,chestplate,boots,weapon,x,y,health%}
+	//{0-helmet,1-chestplate,2-boots,3-weapon,4-x,5-y,6-health%}
 	uint8_t player_setup[7] = {3,2,4,3,0,0,100};
 	
 
