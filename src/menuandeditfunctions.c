@@ -49,9 +49,9 @@ extern signed int setnumber;
 extern uint8_t player_setup[];
 
 
-uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,2,2,2,2};
-uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,106,107,107,106};
-uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,74,75,74,75};
+uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,3,4,5,6,2,2,2,2};
+uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,77,77,78,78,106,107,107,106};
+uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,90,91,90,91,74,75,74,75};
 
 extern int mapstartx;
 extern int mapstarty;
@@ -149,8 +149,8 @@ void playercreate(void) {
 	gfx_SetTextFGColor(textcolor);
     gfx_SetTextBGColor(transcolor);
 	gfx_SetTextScale(4,4);
-	//gfx_PrintStringXY("1.",40,20);
-	//gfx_PrintStringXY("2.",50,20);
+	gfx_PrintStringXY("1.",40,20);
+	gfx_PrintStringXY("2.",50,20);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
 	gfx_TransparentSprite(editmenunumbers,40,20);
@@ -213,7 +213,8 @@ void drawequipment(void) {
 	gfx_SetDrawBuffer();
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(65,12,96,208);
-	
+	gfx_SwapDraw();
+	gfx_SetDrawBuffer();
 	if (setnumber == 1) {
 		gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
@@ -237,10 +238,11 @@ void drawequipment(void) {
 		gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
-	gfx_SwapDraw();
 	}
+	gfx_SwapDraw();
 }
 void menubkgnd(void) {
+	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
 	gfx_SetColor(accentcolor);
 	gfx_Rectangle(0,0,320,240);
@@ -252,9 +254,16 @@ void resetenemies(void) {
 		enemy[i].dead = 0;
 		enemy[i].x = defaultenemy_xlist[i]*32;
 		enemy[i].y = defaultenemy_ylist[i]*32;
+		enemy[i].health = ((enemy[i].type + 1) * 10);
+		/*
 		if ((enemy[i].type) == 0) {enemy[i].health = 10;}
 		if ((enemy[i].type) == 1) {enemy[i].health = 20;}
 		if ((enemy[i].type) == 2) {enemy[i].health = 30;}
+		if ((enemy[i].type) == 3) {enemy[i].health = 40;}
+		if ((enemy[i].type) == 4) {enemy[i].health = 50;}
+		if ((enemy[i].type) == 5) {enemy[i].health = 60;}
+		if ((enemy[i].type) == 6) {enemy[i].health = 70;}
+		*/
 	}
 }
 void updateenemies(void) {
@@ -262,11 +271,15 @@ void updateenemies(void) {
 		if ((enemy[i].type) == 0) {enemySprite = slime_blue;}
 		if ((enemy[i].type) == 1) {enemySprite = slime_green;}
 		if ((enemy[i].type) == 2) {enemySprite = slime_red;}
+		if ((enemy[i].type) == 3) {enemySprite = bokoblin_light;}
+		if ((enemy[i].type) == 4) {enemySprite = bokoblin_dark;}
+		if ((enemy[i].type) == 5) {enemySprite = knight_green;}
+		if ((enemy[i].type) == 6) {enemySprite = knight_red;}
 		
 		
 		if (enemy[i].health <= 0) {enemy[i].dead = 1;}
 		if ((enemy[i].dead) == 0) {
-		renderenemy(&enemy[i]);
+			renderenemy(&enemy[i]);
 		}
 	}
 }

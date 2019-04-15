@@ -28,6 +28,7 @@ int spritexoffset = 160;
 int spriteyoffset = 128;
 int tileoffsetx;
 int tileoffsety;
+int player;
 
 //1=left,2=up,3=right,4=down
 int playerface = 2;
@@ -64,6 +65,8 @@ extern int mapstarty;
 extern int mapshift;
 int playertilemapx;
 int playertilemapy;
+int *inputx;
+int *inputy;
 extern uint8_t player_setup [];
 
 extern gfx_tilemap_t tilemap;
@@ -130,7 +133,7 @@ y_offset = mapstarty * 32;
 	if (kb_Data[1] & kb_Yequ) {
 		drawsavemenu();
 	}
-	if (kb_Data[1] & kb_Window) {
+	if (kb_Data[1] & kb_Zoom) {
 		drawstatsmenu();
 	}
 	
@@ -176,6 +179,10 @@ void drawmap(void) {
 void mapshifter(void) {
 	playertilemapx = (playertilex/32);
 	playertilemapy = (playertiley/32);
+	*inputx = playertilemapx;
+	*inputy = playertilemapy;
+	player = 1;
+	
 	if (kb_Data[7] & kb_Left) {
 		(playerface = 1);
 		collisionleft();
@@ -351,17 +358,13 @@ void checkplayerstatus(void){
 	if (player_setup[6] <= 0) {youdied();}
 }
 void drawbottombar(void){
-			gfx_SetColor(0x00);
-			gfx_FillRectangle(0,224,320,16);
-			gfx_TransparentSprite(player_health,80,224);
-			gfx_SetTextFGColor(textcolor);
-			gfx_PrintStringXY("[SAVE]   HP:",8,228);
-			
-			//debug
-			gfx_SetTextXY(200,226);
-	gfx_PrintUInt(playertilex/32,3);
-	gfx_PrintString("--");
-	gfx_PrintUInt(playertiley/32,3);
+	gfx_SetColor(0x00);
+	gfx_FillRectangle(0,224,320,16);
+	gfx_TransparentSprite(player_health,80,224);
+	gfx_SetTextFGColor(textcolor);
+	gfx_PrintStringXY("[SAVE]   HP:",8,228);
+	gfx_SetTextXY(150,228);
+	gfx_PrintString("[STATS]");
 }
 void youdied(void){
 	gfx_SetDrawBuffer();

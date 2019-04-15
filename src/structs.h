@@ -1,7 +1,7 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
-#define NUM_ENEMIES  10
+#define NUM_ENEMIES  50
 #define TYPE         
 #define DEAD         
 #define X			 
@@ -16,7 +16,7 @@ typedef struct enemy {
 } enemy_t;
 
 
-#define NUM_POTS  10
+#define NUM_POTS  50
 #define POTTYPE         
 #define POTDEAD
 #define P_X

@@ -34,6 +34,7 @@ int replacex;
 int replacey;
 int hit;
 int dmgmultiplyer = 1;
+extern int player;
 
 extern enemy_t enemy[];
 extern uint8_t enemytype;
@@ -55,38 +56,115 @@ extern int playertilex;
 extern int playertiley;
 extern int playertilemapx;
 extern int playertilemapy;
+extern int *inputx;
+extern int *inputy;
 
 int healthincrement = 10;
 
 void collisionleft(void) {
-	
+	goleft = 1;
+	if (player == 1) {
 	if (((gfx_GetTile(&tilemap,playertilex-32,playertiley)) >= 18)) {
 	goleft = 0;
 	}
-	else {goleft = 1;}
+	}
+	for (i = 0; i < NUM_ENEMIES; i++) {
+		enemytilemapx = (enemy[i].x/32);
+		enemytilemapy = (enemy[i].y/32);
+		if (((*inputx-1) == enemytilemapx) & (*inputy == enemytilemapy)){
+			if (enemy[i].dead == 0) {
+				goleft = 0;
+			}
+		}
+	}
+	for (i = 0; i < NUM_POTS; i++) {
+		pottilemapx = (pots[i].p_x/32);
+		pottilemapy = (pots[i].p_y/32);
+		if (((*inputx-1) == pottilemapx) & (*inputy == pottilemapy)){
+			if (pots[i].potdead == 0) {
+				goleft = 0;
+			}
+		}
+	}
 }
 void collisionright(void) {
-	
+	goright = 1;
+	if (player == 1) {
 	if (((gfx_GetTile(&tilemap,playertilex+32,playertiley)) >= 18)) {
-	goright = 0;
+		goright = 0;
 	}
-	else {(goright = 1);}
+	}
+	for (i = 0; i < NUM_ENEMIES; i++) {
+		enemytilemapx = (enemy[i].x/32);
+		enemytilemapy = (enemy[i].y/32);
+		if (((*inputx+1) == enemytilemapx) & (*inputy == enemytilemapy)){
+			if (enemy[i].dead == 0) {
+				goright = 0;
+			}
+		}
+	}
+	for (i = 0; i < NUM_POTS; i++) {
+		pottilemapx = (pots[i].p_x/32);
+		pottilemapy = (pots[i].p_y/32);
+		if (((*inputx+1) == pottilemapx) & (*inputy == pottilemapy)){
+			if (pots[i].potdead == 0) {
+				goright = 0;
+			}
+		}
+	}
 }
 void collisionup(void) {
-	
+	goup = 1;
+	if (player == 1) {
 	if (((gfx_GetTile(&tilemap,playertilex,playertiley-32)) >= 18)) {
 	goup = 0;
 	}
-	else {(goup = 1);}
+	}
+	for (i = 0; i < NUM_ENEMIES; i++) {
+		enemytilemapx = (enemy[i].x/32);
+		enemytilemapy = (enemy[i].y/32);
+		if ((*inputx == enemytilemapx) & ((*inputy-1) == enemytilemapy)){
+			if (enemy[i].dead == 0) {
+				goup = 0;
+			}
+		}
+	}
+	for (i = 0; i < NUM_POTS; i++) {
+		pottilemapx = (pots[i].p_x/32);
+		pottilemapy = (pots[i].p_y/32);
+		if ((*inputx == pottilemapx) & ((*inputy-1) == pottilemapy)){
+			if (pots[i].potdead == 0) {
+				goup = 0;
+			}
+		}
+	}
 }
 void collisiondown(void) {
-	
+	godown = 1;
+	if (player == 1) {
 	if (((gfx_GetTile(&tilemap,playertilex,playertiley+32)) >= 18)) {
 	godown = 0;
 	}
-	else {(godown = 1);}
+	}
+	for (i = 0; i < NUM_ENEMIES; i++) {
+		enemytilemapx = (enemy[i].x/32);
+		enemytilemapy = (enemy[i].y/32);
+		if ((*inputx == enemytilemapx) & ((*inputy+1) == enemytilemapy)){
+			if (enemy[i].dead == 0) {
+				godown = 0;
+			}
+		}
+	}
+	for (i = 0; i < NUM_POTS; i++) {
+		pottilemapx = (pots[i].p_x/32);
+		pottilemapy = (pots[i].p_y/32);
+		if ((*inputx == pottilemapx) & ((*inputy+1) == pottilemapy)){
+			if (pots[i].potdead == 0) {
+				godown = 0;
+			}
+		}
+	}
 }
-
 
 void playerattackhitcheck(void) {
 
