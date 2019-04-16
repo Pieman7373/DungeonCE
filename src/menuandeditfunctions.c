@@ -1,5 +1,6 @@
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
+#include "enemymovement.h"
 #include "gfx/dungeon.h"
 #include "gfx/dungeon_gfx.h"
 #include "structs.h"
@@ -60,6 +61,7 @@ extern int tileoffsety;
 
 gfx_sprite_t *enemySprite;
 enemy_t  enemy[NUM_ENEMIES];
+int ii;
 
 void keywait(void) { while (os_GetCSC()); }
 
@@ -267,19 +269,29 @@ void resetenemies(void) {
 	}
 }
 void updateenemies(void) {
-	for (i = 0; i < NUM_ENEMIES; i++) {
-		if ((enemy[i].type) == 0) {enemySprite = slime_blue;}
-		if ((enemy[i].type) == 1) {enemySprite = slime_green;}
-		if ((enemy[i].type) == 2) {enemySprite = slime_red;}
-		if ((enemy[i].type) == 3) {enemySprite = bokoblin_light;}
-		if ((enemy[i].type) == 4) {enemySprite = bokoblin_dark;}
-		if ((enemy[i].type) == 5) {enemySprite = knight_green;}
-		if ((enemy[i].type) == 6) {enemySprite = knight_red;}
+	for (ii = 0; ii < NUM_ENEMIES; ii++) {
+		if ((enemy[ii].type) == 0) {enemySprite = slime_blue;}
+		if ((enemy[ii].type) == 1) {enemySprite = slime_green;}
+		if ((enemy[ii].type) == 2) {enemySprite = slime_red;}
+		if ((enemy[ii].type) == 3) {enemySprite = bokoblin_light;}
+		if ((enemy[ii].type) == 4) {enemySprite = bokoblin_dark;}
+		if ((enemy[ii].type) == 5) {enemySprite = knight_green;}
+		if ((enemy[ii].type) == 6) {enemySprite = knight_red;}
 		
+		//if within current screen view
+		if (x_offset <= (enemy[ii].x)){
+			if ((enemy[ii].x) <= (x_offset + 288)){
+				if (y_offset <= (enemy[ii].y)) {
+					if  ((enemy[ii].y) <= (y_offset + 192)) {
+						enemymove();
+					}
+				}
+			}
+		}
 		
-		if (enemy[i].health <= 0) {enemy[i].dead = 1;}
-		if ((enemy[i].dead) == 0) {
-			renderenemy(&enemy[i]);
+		if (enemy[ii].health <= 0) {enemy[ii].dead = 1;}
+		if ((enemy[ii].dead) == 0) {
+			renderenemy(&enemy[ii]);
 		}
 	}
 }

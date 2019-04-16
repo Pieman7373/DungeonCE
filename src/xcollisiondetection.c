@@ -58,6 +58,8 @@ extern int playertilemapx;
 extern int playertilemapy;
 extern int *inputx;
 extern int *inputy;
+extern unsigned int x_offset;
+extern unsigned int y_offset;
 
 int healthincrement = 10;
 
@@ -71,18 +73,34 @@ void collisionleft(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemytilemapx = (enemy[i].x/32);
 		enemytilemapy = (enemy[i].y/32);
-		if (((*inputx-1) == enemytilemapx) & (*inputy == enemytilemapy)){
-			if (enemy[i].dead == 0) {
-				goleft = 0;
+		if (x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (x_offset + 288)){
+				if (y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (y_offset + 192)) {
+						if (((*inputx-1) == enemytilemapx) & (*inputy == enemytilemapy)){
+							if (enemy[i].dead == 0) {
+								goleft = 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 	for (i = 0; i < NUM_POTS; i++) {
 		pottilemapx = (pots[i].p_x/32);
 		pottilemapy = (pots[i].p_y/32);
-		if (((*inputx-1) == pottilemapx) & (*inputy == pottilemapy)){
-			if (pots[i].potdead == 0) {
-				goleft = 0;
+		if (x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (x_offset + 288)){
+				if (y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (y_offset + 192)) {
+						if (((*inputx-1) == pottilemapx) & (*inputy == pottilemapy)){
+							if (pots[i].potdead == 0) {
+								goleft = 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -97,18 +115,35 @@ void collisionright(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemytilemapx = (enemy[i].x/32);
 		enemytilemapy = (enemy[i].y/32);
-		if (((*inputx+1) == enemytilemapx) & (*inputy == enemytilemapy)){
-			if (enemy[i].dead == 0) {
-				goright = 0;
+		if (x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (x_offset + 288)){
+				if (y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (y_offset + 192)) {
+						if (((*inputx+1) == enemytilemapx) & (*inputy == enemytilemapy)){
+							if (enemy[i].dead == 0) {
+								goright = 0;
+							}
+						}
+					}
+				}
 			}
 		}
+		
 	}
 	for (i = 0; i < NUM_POTS; i++) {
 		pottilemapx = (pots[i].p_x/32);
 		pottilemapy = (pots[i].p_y/32);
-		if (((*inputx+1) == pottilemapx) & (*inputy == pottilemapy)){
-			if (pots[i].potdead == 0) {
-				goright = 0;
+		if (x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (x_offset + 288)){
+				if (y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (y_offset + 192)) {
+						if (((*inputx+1) == pottilemapx) & (*inputy == pottilemapy)){
+							if (pots[i].potdead == 0) {
+								goright = 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -123,18 +158,34 @@ void collisionup(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemytilemapx = (enemy[i].x/32);
 		enemytilemapy = (enemy[i].y/32);
-		if ((*inputx == enemytilemapx) & ((*inputy-1) == enemytilemapy)){
-			if (enemy[i].dead == 0) {
-				goup = 0;
+		if (x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (x_offset + 288)){
+				if (y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (y_offset + 192)) {
+						if ((*inputx == enemytilemapx) & ((*inputy-1) == enemytilemapy)){
+							if (enemy[i].dead == 0) {
+								goup = 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 	for (i = 0; i < NUM_POTS; i++) {
 		pottilemapx = (pots[i].p_x/32);
 		pottilemapy = (pots[i].p_y/32);
-		if ((*inputx == pottilemapx) & ((*inputy-1) == pottilemapy)){
-			if (pots[i].potdead == 0) {
-				goup = 0;
+		if (x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (x_offset + 288)){
+				if (y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (y_offset + 192)) {
+						if ((*inputx == pottilemapx) & ((*inputy-1) == pottilemapy)){
+							if (pots[i].potdead == 0) {
+								goup = 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -149,20 +200,36 @@ void collisiondown(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemytilemapx = (enemy[i].x/32);
 		enemytilemapy = (enemy[i].y/32);
-		if ((*inputx == enemytilemapx) & ((*inputy+1) == enemytilemapy)){
-			if (enemy[i].dead == 0) {
-				godown = 0;
+		if (x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (x_offset + 288)){
+				if (y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (y_offset + 192)) {
+						if ((*inputx == enemytilemapx) & ((*inputy+1) == enemytilemapy)){
+							if (enemy[i].dead == 0) {
+								godown = 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 	for (i = 0; i < NUM_POTS; i++) {
 		pottilemapx = (pots[i].p_x/32);
 		pottilemapy = (pots[i].p_y/32);
-		if ((*inputx == pottilemapx) & ((*inputy+1) == pottilemapy)){
-			if (pots[i].potdead == 0) {
-				godown = 0;
+		if (x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (x_offset + 288)){
+				if (y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (y_offset + 192)) {
+						if ((*inputx == pottilemapx) & ((*inputy+1) == pottilemapy)){
+							if (pots[i].potdead == 0) {
+								godown = 0;
+							}
+						}
+					}
+				}
 			}
-		}
+		}	
 	}
 }
 

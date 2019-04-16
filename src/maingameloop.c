@@ -179,8 +179,8 @@ void drawmap(void) {
 void mapshifter(void) {
 	playertilemapx = (playertilex/32);
 	playertilemapy = (playertiley/32);
-	*inputx = playertilemapx;
-	*inputy = playertilemapy;
+	inputx = &playertilemapx;
+	inputy = &playertilemapy;
 	player = 1;
 	
 	if (kb_Data[7] & kb_Left) {
