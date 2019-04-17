@@ -47,7 +47,7 @@ gfx_sprite_t *boots;
 
 uint16_t default_pottypelist[NUM_POTS] = {0,1,0,1};
 uint16_t default_potxlist[NUM_POTS] = {77,78,106,107};
-uint16_t default_potylist[NUM_POTS] = {97,97,76,76};     
+uint16_t default_potylist[NUM_POTS] = {97,97,76,76};    
 
 uint8_t pottype;
 int potdeadset;

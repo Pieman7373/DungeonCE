@@ -6,13 +6,15 @@
 #define DEAD         
 #define X			 
 #define Y            
-#define HEALTH	
+#define HEALTH
+#define MOVE
 typedef struct enemy {
 	uint8_t type;
 	int dead;
 	uint24_t x; 
 	uint24_t y; 
 	int health;
+	int move;
 } enemy_t;
 
 

@@ -38,25 +38,36 @@ void enemymove (void) {
 	extern int goleft;
 	extern int goright;
 	extern int godown;
+	int randcheck = 1;
 	enemystartx = (enemy[ii].x/32);
 	enemystarty = (enemy[ii].y/32);
 	inputx = &enemystartx;
 	inputy = &enemystarty;
+	
 	collisionleft();
 	collisionright();
 	collisionup();
 	collisiondown();
-	if (goleft = 1) {
-		
+	
+	if (goleft == 1) {
+		if (randcheck == randInt(0,10)){
+			enemy[ii].x = (enemy[ii].x - 32);
+		}
 	}
-	if (goup = 1) {
-		
+	if (goup == 1) {
+		if (randcheck == randInt(0,10)){
+			enemy[ii].y = (enemy[ii].y - 32);
+		}
 	}
-	if (goright = 1) {
-		
+	if (goright == 1) {
+		if (randcheck == randInt(0,10)){
+			enemy[ii].x = (enemy[ii].x + 32);
+		}
 	}
-	if (godown = 1) {
-		
+	if (godown == 1) {
+		if (randcheck == randInt(0,10)){
+			enemy[ii].y = (enemy[ii].y + 32);
+		}
 	}
 	/* only for debug
 	gfx_PrintStringXY("-",enemy[ii].x - x_offset,(enemy[ii].y+15) - y_offset);

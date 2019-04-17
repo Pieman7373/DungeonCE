@@ -49,10 +49,11 @@ int drawhealth = 1;
 extern signed int setnumber;
 extern uint8_t player_setup[];
 
-
+uint16_t defaultenemy_movelist[NUM_ENEMIES] = {1,1,1,1,1,1,1,0,0,0,0};
 uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,3,4,5,6,2,2,2,2};
 uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,77,77,78,78,106,107,107,106};
 uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,90,91,90,91,74,75,74,75};
+
 
 extern int mapstartx;
 extern int mapstarty;
@@ -256,6 +257,7 @@ void resetenemies(void) {
 		enemy[i].dead = 0;
 		enemy[i].x = defaultenemy_xlist[i]*32;
 		enemy[i].y = defaultenemy_ylist[i]*32;
+		enemy[i].move = defaultenemy_movelist[i];
 		enemy[i].health = ((enemy[i].type + 1) * 10);
 		/*
 		if ((enemy[i].type) == 0) {enemy[i].health = 10;}
@@ -269,6 +271,7 @@ void resetenemies(void) {
 	}
 }
 void updateenemies(void) {
+	int randcheck = 20;
 	for (ii = 0; ii < NUM_ENEMIES; ii++) {
 		if ((enemy[ii].type) == 0) {enemySprite = slime_blue;}
 		if ((enemy[ii].type) == 1) {enemySprite = slime_green;}
@@ -283,7 +286,11 @@ void updateenemies(void) {
 			if ((enemy[ii].x) <= (x_offset + 288)){
 				if (y_offset <= (enemy[ii].y)) {
 					if  ((enemy[ii].y) <= (y_offset + 192)) {
-						enemymove();
+						if (enemy[ii].move == 1) {
+							if (randcheck >= randInt(0,100)) {
+								enemymove();
+							}
+						}
 					}
 				}
 			}
