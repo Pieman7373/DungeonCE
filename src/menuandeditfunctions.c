@@ -49,10 +49,10 @@ int drawhealth = 1;
 extern signed int setnumber;
 extern uint8_t player_setup[];
 
-uint16_t defaultenemy_movelist[NUM_ENEMIES] = {1,1,1,1,1,1,1,0,0,0,0};
-uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,3,4,5,6,2,2,2,2};
-uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,77,77,78,78,106,107,107,106};
-uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,90,91,90,91,74,75,74,75};
+uint16_t defaultenemy_movelist[NUM_ENEMIES] = {1,1,1,1,1,0,0,0,0};
+uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,3,4,2,2,2,2};
+uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,77,77,106,107,107,106};
+uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,90,91,74,75,74,75};
 
 
 extern int mapstartx;
@@ -278,8 +278,8 @@ void updateenemies(void) {
 		if ((enemy[ii].type) == 2) {enemySprite = slime_red;}
 		if ((enemy[ii].type) == 3) {enemySprite = bokoblin_light;}
 		if ((enemy[ii].type) == 4) {enemySprite = bokoblin_dark;}
-		if ((enemy[ii].type) == 5) {enemySprite = knight_green;}
-		if ((enemy[ii].type) == 6) {enemySprite = knight_red;}
+		//if ((enemy[ii].type) == 5) {enemySprite = knight_green;}
+		//if ((enemy[ii].type) == 6) {enemySprite = knight_red;}
 		
 		//if within current screen view
 		if (x_offset <= (enemy[ii].x)){
@@ -291,14 +291,13 @@ void updateenemies(void) {
 								enemymove();
 							}
 						}
+						if (enemy[ii].health <= 0) {enemy[ii].dead = 1;}
+						if ((enemy[ii].dead) == 0) {
+							renderenemy(&enemy[ii]);
+						}
 					}
 				}
 			}
-		}
-		
-		if (enemy[ii].health <= 0) {enemy[ii].dead = 1;}
-		if ((enemy[ii].dead) == 0) {
-			renderenemy(&enemy[ii]);
 		}
 	}
 }
@@ -315,6 +314,7 @@ void renderenemy(enemy_t *enemy) {
 		gfx_PrintString("-");
 		gfx_PrintUInt((enemy->y)/32,3);
 		*/
+		enemyattack();
 	}
 void drawstatsmenu(void) {
 	do {

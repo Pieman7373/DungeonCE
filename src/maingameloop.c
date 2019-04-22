@@ -104,7 +104,6 @@ void menuloop(void){
 	exit(0);
 	
 }	
-
 void maingameloop(void){
 	pots[NUM_POTS].pottype   = pottype;
 	pots[NUM_POTS].potdead   = potdeadset;
@@ -141,10 +140,10 @@ y_offset = mapstarty * 32;
 	menuloop();
 }
 void setmapshift(void) {
-	if (player_setup[2] == 0) {(mapshift = 1);}
-	if (player_setup[2] == 1) {(mapshift = 8);}
-	if (player_setup[2] == 2) {(mapshift = 16);}
-	if (player_setup[2] == 3) {(mapshift = 24);}
+	if (player_setup[2] == 0) {(mapshift = 32);}
+	if (player_setup[2] == 1) {(mapshift = 32);}
+	if (player_setup[2] == 2) {(mapshift = 32);}
+	if (player_setup[2] == 3) {(mapshift = 32);}
 	if (player_setup[2] == 4) {(mapshift = 32);}
 }	
 void drawmap(void) {

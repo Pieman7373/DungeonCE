@@ -27,7 +27,27 @@ extern int enemyhealth;
 extern int *inputx;
 extern int *inputy;
 extern int ii;
+gfx_sprite_t *preflip;
 
+int randcheck = 1;
+int attackx;
+int attacky;
+
+
+void enemyattackhitcheck(void) {
+	extern int attackx;
+	extern int attacky;
+}
+void setattack(void) {
+	
+	if ((enemy[ii].type) == 0) {preflip = attack_blue;}
+	if ((enemy[ii].type) == 1) {preflip = attack_green;}
+	if ((enemy[ii].type) == 2) {preflip = attack_red;}
+	if ((enemy[ii].type) == 3) {preflip = bokoblin_light;}
+	if ((enemy[ii].type) == 4) {preflip = bokoblin_dark;}
+	//if ((enemy[ii].type) == 5) {preflip = knight_green;}
+	//if ((enemy[ii].type) == 6) {preflip = knight_red;}
+}
 void enemymove (void) {
 	
 	extern unsigned int x_offset;
@@ -79,10 +99,51 @@ void enemymove (void) {
 	gfx_PrintString("-");
 	gfx_PrintUInt(godown,1);
 	*/
+}
+void enemyattack(void) {
+	gfx_sprite_t *flippedattack;
+	gfx_sprite_t *enemyAttack;
+	extern int y_offset;
+	extern int x_offset;
+	extern int playerface;
 	
+	if (randcheck == randInt(0,14)) {
+		gfx_UninitedSprite(flippedattack, 32,32);
+		
+		//attack goes in opposite direction of playerface
+		if (playerface == 3) {
+			//set left
+			setattack();
+			attackx = (enemy[ii].x - 32);
+			attacky = enemy[ii].y;
+			gfx_RotateSpriteCC(preflip,flippedattack);
+			enemyAttack = flippedattack;
+		}
+		if (playerface == 4) {
+			//set up
+			setattack();
+			attackx = enemy[ii].x;
+			attacky = (enemy[ii].y - 32);
+			enemyAttack = preflip;
+		}
+		if (playerface == 1) {
+			//set right
+			setattack();
+			attackx = (enemy[ii].x + 32);
+			attacky = enemy[ii].y;
+			gfx_RotateSpriteC(preflip,flippedattack);
+			enemyAttack = flippedattack;
+		}
+		if (playerface == 2) {
+			//set down
+				setattack();
+			attackx = enemy[ii].x;
+			attacky = (enemy[ii].y + 32);
+			gfx_FlipSpriteX(preflip,flippedattack);
+			enemyAttack = flippedattack;
+		}
 	
-	
-	//check if it is onscreen
-	//do collision testing
-	//add or subtract 32 to the x or y coordinate 
+	gfx_TransparentSprite(enemyAttack,attackx - x_offset,attacky - y_offset);
+	enemyattackhitcheck();
+	}
 }

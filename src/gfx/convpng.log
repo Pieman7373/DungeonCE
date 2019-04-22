@@ -5,7 +5,7 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-68:
+69:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
@@ -57,6 +57,9 @@ Transparent Color : 0xFC78
  dragon_sword : converted!
  tombstone : converted!
  pot : converted!
+ attack_blue : converted!
+ attack_green : converted!
+ attack_red : converted!
  health100 : converted!
  health90 : converted!
  health80 : converted!
@@ -72,8 +75,6 @@ Transparent Color : 0xFC78
  slime_red : converted!
  bokoblin_light : converted!
  bokoblin_dark : converted!
- knight_green : converted!
- knight_red : converted!
 
 --- Group tiles_gfx (C) ---
 Using built-in xlibc palette ...
@@ -85,7 +86,7 @@ Transparent Color : 0xFC78
 
 exporting appvar: dungeon.8xp
 
-Converted in 2 s
+Converted in 1 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
