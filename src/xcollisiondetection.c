@@ -18,6 +18,7 @@
 #include <graphx.h>
 #include <keypadc.h>
 #include "gfx/Dungeon.h"
+#include "gfx/dungeon2.h"
 
 int playerdamage;
 extern int i;
@@ -33,7 +34,7 @@ extern gfx_tilemap_t tilemap;
 int replacex;
 int replacey;
 int hit;
-int dmgmultiplyer = 1;
+extern int dmgmultiplier;
 extern int player;
 
 extern enemy_t enemy[];
@@ -232,14 +233,8 @@ void collisiondown(void) {
 		}	
 	}
 }
-
 void playerattackhitcheck(void) {
 
-if (player_setup[3] == 0) {playerdamage = 1;}
-if (player_setup[3] == 1) {playerdamage = 2;}
-if (player_setup[3] == 2) {playerdamage = 3;}
-if (player_setup[3] == 3) {playerdamage = 4;}
-if (player_setup[3] == 4) {playerdamage = 5;}
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemytilemapx = (enemy[i].x/32);
 		enemytilemapy = (enemy[i].y/32);
@@ -265,7 +260,7 @@ if (player_setup[3] == 4) {playerdamage = 5;}
 			}
 		}
 		if (hit == 1) {
-			(enemy[i].health) = ((enemy[i].health ) - (playerdamage * dmgmultiplyer));
+			(enemy[i].health) = ((enemy[i].health ) - (playerdamage * dmgmultiplier));
 		}
 	}	
 	for (i = 0; i < NUM_POTS; i++) {

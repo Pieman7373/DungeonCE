@@ -5,12 +5,11 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-69:
+70:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
  menuwords : converted!
- savemenu : converted!
  player_naked_down : converted!
  player_naked_up : converted!
  player_naked_left : converted!
@@ -57,9 +56,6 @@ Transparent Color : 0xFC78
  dragon_sword : converted!
  tombstone : converted!
  pot : converted!
- attack_blue : converted!
- attack_green : converted!
- attack_red : converted!
  health100 : converted!
  health90 : converted!
  health80 : converted!
@@ -70,11 +66,16 @@ Transparent Color : 0xFC78
  health30 : converted!
  health20 : converted!
  health10 : converted!
+ attack_blue : converted!
+ attack_green : converted!
+ attack_red : converted!
  slime_blue : converted!
  slime_green : converted!
  slime_red : converted!
  bokoblin_light : converted!
  bokoblin_dark : converted!
+ knight_green : converted!
+ knight_red : converted!
 
 --- Group tiles_gfx (C) ---
 Using built-in xlibc palette ...
@@ -85,8 +86,9 @@ Transparent Color : 0xFC78
  tileset : converted!
 
 exporting appvar: dungeon.8xp
+exporting appvar: dungeon2.8xp
 
-Converted in 1 s
+Converted in 2 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 

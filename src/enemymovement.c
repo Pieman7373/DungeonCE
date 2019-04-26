@@ -2,6 +2,7 @@
 #include "xcollisiondetection.h"
 #include "maingameloop.h"
 #include "gfx/dungeon.h"
+#include "gfx/dungeon2.h"
 #include "gfx/dungeon_gfx.h"
 #include "structs.h"
 
@@ -33,10 +34,24 @@ int randcheck = 1;
 int attackx;
 int attacky;
 
+extern uint8_t player_setup[];
 
 void enemyattackhitcheck(void) {
 	extern int attackx;
 	extern int attacky;
+	extern int playertilex;
+	extern int playertiley;
+	int enemydamage;
+	extern int blockchance;
+	
+	enemydamage = (((enemy[ii].type)+1)*5);
+	if ((attackx == playertilex)&(attacky == playertiley)){
+		if (blockchance <= randInt(0,100)) {
+			gfx_FillScreen(0xE0);
+			player_setup[6] = (player_setup[6] - enemydamage);
+			if (player_setup[6] > 100) {player_setup[6] = 0;}
+		}
+	}
 }
 void setattack(void) {
 	
@@ -45,8 +60,8 @@ void setattack(void) {
 	if ((enemy[ii].type) == 2) {preflip = attack_red;}
 	if ((enemy[ii].type) == 3) {preflip = bokoblin_light;}
 	if ((enemy[ii].type) == 4) {preflip = bokoblin_dark;}
-	//if ((enemy[ii].type) == 5) {preflip = knight_green;}
-	//if ((enemy[ii].type) == 6) {preflip = knight_red;}
+	if ((enemy[ii].type) == 5) {preflip = knight_green;}
+	if ((enemy[ii].type) == 6) {preflip = knight_red;}
 }
 void enemymove (void) {
 	

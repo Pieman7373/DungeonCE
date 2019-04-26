@@ -26,6 +26,7 @@
 #include "xcollisiondetection.h"
 
 #include "gfx/dungeon.h"
+#include "gfx/dungeon2.h"
 #include "gfx/tiles_gfx.h"
 
 /* Put all your globals here */
@@ -45,13 +46,12 @@
 	int editpx = 140;
 	int editpy = 10;
 	
-	
+
 	int mapshift;
-	
 	//player is 5 away
-	int mapstartx;
+	int mapstartx = 70;
 	//player is 4 away
-	int mapstarty;
+	int mapstarty = 96;
 	
 	//for tilemap stuff
 
@@ -90,7 +90,12 @@
 	!!!!!!!!!!!!!!!!!!!!
 	*/
 	//{0-helmet,1-chestplate,2-boots,3-weapon,4-x,5-y,6-health%}
-	uint8_t player_setup[7] = {3,2, 2 ,4,0,0,100};
+	uint8_t player_setup[7] = {3,2,2,4,0,0,100};
+	/*
+	helmet and chestplate increase the chance of negating enemy damage
+	boots make walking faster
+	weapon increases damage dealt
+	*/
 	
 
 void main(void) {
@@ -99,6 +104,7 @@ void main(void) {
 	
 
 	if (!dungeon_init()) { abort(); }
+	if (!dungeon2_init()) { abort(); }
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;
@@ -117,7 +123,7 @@ void main(void) {
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);
 	gfx_Begin();
-	kb_SetMode(3);
+	kb_SetMode(MODE_3_CONTINUOUS);
 	gfx_SetTextConfig(1);
 	
 	menuloop();

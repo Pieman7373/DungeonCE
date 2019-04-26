@@ -2,6 +2,7 @@
 #define MENUANDEDITFUNCTIONS_H
 
 void keywait();
+void keyclear();
 void mainmenu();
 void menubkgnd();
 void newgame();
@@ -13,6 +14,7 @@ void draweditedplayer();
 void savegame();
 void drawsavemenu();
 void drawstatsmenu();
+void submenubottombar();
 
 void resetenemies();
 void updateenemies();

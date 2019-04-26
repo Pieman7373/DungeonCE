@@ -3,6 +3,7 @@
 #include "xcollisiondetection.h"
 #include "gfx/tiles_gfx.h"
 #include "gfx/dungeon.h"
+#include "gfx/dungeon2.h"
 #include "structs.h"
 
 #include <stdbool.h>
@@ -68,6 +69,12 @@ int playertilemapy;
 int *inputx;
 int *inputy;
 extern uint8_t player_setup [];
+int dmgmultiplier = 1;
+int blockchance;
+int walkwait = 1500;
+int w;
+int walkspeed = 100;
+extern int menuoption;
 
 extern gfx_tilemap_t tilemap;
 pots_t pots[NUM_POTS];
@@ -82,19 +89,19 @@ void menuloop(void){
 		//menuyes comes from the mainmenu function
 		//menuyes chunk begin
 		if (menuyes == 1) {
-			if (kb_Data[3] & kb_1) {
-				loadsave();
-				maingameloop();
+			if (menuoption == 1) {
+				//loadsave();
+				//maingameloop();
 			}
 		}
 		if (menuyes == 1) {
-			if (kb_Data[4] & kb_2) {
+			if (menuoption == 2) {
 				newgame();
 				maingameloop();
 			}
 		}
 		if (menuyes == 1) {
-			if (kb_Data[5] & kb_3) {
+			if (menuoption == 3) {
 				options();
 			}
 		}
@@ -105,10 +112,6 @@ void menuloop(void){
 	
 }	
 void maingameloop(void){
-	pots[NUM_POTS].pottype   = pottype;
-	pots[NUM_POTS].potdead   = potdeadset;
-	pots[NUM_POTS].p_y       = poty;
-	pots[NUM_POTS].p_x       = potx;
 	
 x_offset = mapstartx * 32;
 y_offset = mapstarty * 32;
@@ -181,6 +184,8 @@ void mapshifter(void) {
 	inputx = &playertilemapx;
 	inputy = &playertilemapy;
 	player = 1;
+	
+	for(w=0; w < (walkwait - (walkspeed*10)); w++) {}
 	
 	if (kb_Data[7] & kb_Left) {
 		(playerface = 1);
@@ -338,9 +343,11 @@ void drawplayerattack(void){
 	gfx_SwapDraw();
 }
 void checkplayerstatus(void){
+	extern int playerdamage;
 	//checks if you are standing on a spike
 	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
 		(player_setup[6] = player_setup[6] - 5);
+		gfx_FillScreen(0xE0);
 	}
 	if (player_setup[6] > 100) {player_setup[6] = 100;}
 	
@@ -355,6 +362,13 @@ void checkplayerstatus(void){
 	else if ((20 >= player_setup[6]) & (player_setup[6] > 10)){player_health = health20;}
 	else if ((10 >= player_setup[6]) & (player_setup[6] > 0)){player_health = health10;}
 	if (player_setup[6] <= 0) {youdied();}
+	
+	//determined by weapon
+	playerdamage = player_setup[3]+1;
+	//helmet and chestplate added together
+	blockchance = ((player_setup[0] + player_setup[1]) * 10);
+	//set by boots
+	walkspeed = ((player_setup[2]+1)*20);
 }
 void drawbottombar(void){
 	gfx_SetColor(0x00);
@@ -366,18 +380,24 @@ void drawbottombar(void){
 	gfx_PrintString("[STATS]");
 }
 void youdied(void){
+	extern int menucolor;
+	extern int accentcolor;
 	gfx_SetDrawBuffer();
-	menubkgnd();
+	gfx_FillScreen(menucolor);
+	gfx_SetColor(accentcolor);
+	gfx_Rectangle(0,0,320,240);
+	gfx_Rectangle(2,2,316,236);
 	gfx_ScaledTransparentSprite_NoClip(tombstone,70,30,5,5);
 	gfx_SetTextFGColor(0xE8);
-	gfx_SetTextScale(3,3);
+	gfx_SetTextScale(2,2);
 	gfx_PrintStringXY("You died!",120,200);
-	gfx_PrintStringXY("1. Main Menu",130,210);
-	gfx_PrintStringXY("2. Quit",130,218);
+	gfx_SetTextScale(1,1);
+	gfx_PrintStringXY("[f1] Main Menu",100,210);
+	gfx_PrintStringXY("[f2] Quit",100,218);
 	gfx_SwapDraw();
 	do {
-		if (kb_Data[3] & kb_1) {menuloop();}
-	} while (!(kb_Data[4] & kb_2));
+		if (kb_Data[1] & kb_Yequ) {menuloop();}
+	} while (!(kb_Data[1] & kb_Window));
 	gfx_End();
 	exit(0);
 }
