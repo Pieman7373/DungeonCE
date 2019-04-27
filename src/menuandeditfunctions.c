@@ -155,7 +155,7 @@ void newgame(void) {
 	resetpots();
 }
 void playercreate(void) {
-	
+	do{
 	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
 	gfx_SetColor(accentcolor);
@@ -172,12 +172,10 @@ void playercreate(void) {
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
 	gfx_TransparentSprite(editmenunumbers,40,20);
+	drawequipment();
+	draweditedplayer();
 	gfx_SwapDraw();
-	do {
 		
-		drawequipment();
-		draweditedplayer();
-
 		do {
 				if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
 				if (kb_Data[1] & kb_Window) {(setnumber = 1);}
@@ -256,13 +254,14 @@ void drawequipment(void) {
 	}
 }
 void menubkgnd(void) {
-	
+	/*
 	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
 	gfx_SetColor(accentcolor);
 	gfx_Rectangle(0,0,320,240);
 	gfx_Rectangle(2,2,316,236);
 	gfx_SwapDraw();
+	*/
 }
 void resetenemies(void) {
 	for (i = 0; i < NUM_ENEMIES; i++) {

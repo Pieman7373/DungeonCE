@@ -15,7 +15,6 @@ void savegame();
 void drawsavemenu();
 void drawstatsmenu();
 void submenubottombar();
-
 void resetenemies();
 void updateenemies();
 void renderenemy();
