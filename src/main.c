@@ -60,7 +60,7 @@
 
 	#define TILEMAP_WIDTH       150
 	
-	#define TILEMAP_HEIGHT      95
+	#define TILEMAP_HEIGHT      105
 	
 	#define TILEMAP_DRAW_WIDTH  10
 	#define TILEMAP_DRAW_HEIGHT 7
