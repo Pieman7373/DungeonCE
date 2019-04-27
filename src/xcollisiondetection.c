@@ -288,10 +288,12 @@ void playerattackhitcheck(void) {
 			}
 		}
 		if (hit == 1) {
-			pots[i].potdead = 1;
-			if (pots[i].pottype == 1){
-				player_setup[6] = (player_setup[6] + healthincrement);
+			if (pots[i].potdead == 0){
+				if (pots[i].pottype == 1){
+					player_setup[6] = (player_setup[6] + healthincrement);
+				}
 			}
+			pots[i].potdead = 1;
 		}
 	}
 }
