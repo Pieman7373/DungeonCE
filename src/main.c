@@ -90,7 +90,8 @@
 	!!!!!!!!!!!!!!!!!!!!
 	*/
 	//{0-helmet,1-chestplate,2-boots,3-weapon,4-x,5-y,6-health%}
-	uint8_t player_setup[7] = {3,2,2,4,0,0,100};
+	uint8_t player_setup[7] = {0,0,0,0,0,0,100};
+	//3,2,2,4,0,0,100
 	/*
 	helmet and chestplate increase the chance of negating enemy damage
 	boots make walking faster

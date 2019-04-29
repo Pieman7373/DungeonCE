@@ -155,6 +155,7 @@ void newgame(void) {
 	resetpots();
 }
 void playercreate(void) {
+	int keypress;
 	do{
 	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
@@ -177,25 +178,46 @@ void playercreate(void) {
 	gfx_SwapDraw();
 		
 		do {
-				if (kb_Data[1] & kb_Yequ) {(setnumber = 0);}
-				if (kb_Data[1] & kb_Window) {(setnumber = 1);}
-				if (kb_Data[1] & kb_Zoom) {(setnumber = 2);}
-				if (kb_Data[1] & kb_Trace) {(setnumber = 3);}
-				if (kb_Data[1] & kb_Graph) {(setnumber = 4);}
+			keypress = 0;
+				if (kb_Data[1] & kb_Yequ) {
+					(setnumber = 0);
+					keypress = 1;
+					}
+				else if (kb_Data[1] & kb_Window) {
+					(setnumber = 1);
+					keypress = 1;
+					}
+				else if (kb_Data[1] & kb_Zoom) {
+					(setnumber = 2);
+					keypress = 1;
+					}
+				else if (kb_Data[1] & kb_Trace) {
+					(setnumber = 3);
+					keypress = 1;
+					}
+				else if (kb_Data[1] & kb_Graph) {
+					(setnumber = 4);
+					keypress = 1;
+					}
 			
 				if (kb_Data[3] & kb_1){
 					(player_setup[0] = setnumber);
+					keypress = 1;
 				}
 				if (kb_Data[4] & kb_2) {
 					(player_setup[1] = setnumber);
+					keypress = 1;
 				}
 				if (kb_Data[5] & kb_3) {
 					(player_setup[2] = setnumber);
+					keypress = 1;
 				}
 				if (kb_Data[3] & kb_4) {
 					(player_setup[3] = setnumber);
-				}		
-		}	while (!os_GetCSC());
+					keypress = 1;
+				}
+				if (kb_Data[1] & kb_Del) {keypress = 1;}
+		}	while (keypress == 0);
 		
 	}	while (!(kb_Data[1] & kb_Del));
 	

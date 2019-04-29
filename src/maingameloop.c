@@ -235,6 +235,12 @@ drawboot();
 }
 void drawhelmet(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
+	if (player_setup[0] == 0){
+	if (playerface == 1) {helmet = player_naked_left;}
+	else if (playerface == 2) {helmet = player_naked_up;}
+	else if (playerface == 3) {helmet = player_naked_right;}
+	else if (playerface == 4) {helmet = player_naked_down;}
+	}
 	if (player_setup[0] == 1){
 	if (playerface == 1) {helmet = leather_helmet_left;}
 	else if (playerface == 2) {helmet = leather_helmet_up;}
@@ -263,6 +269,12 @@ void drawhelmet(void) {
 }
 void drawchestplate(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
+	if (player_setup[1] == 0){
+	if (playerface == 1) {chestplate = player_naked_left;}
+	else if (playerface == 2) {chestplate = player_naked_up;}
+	else if (playerface == 3) {chestplate = player_naked_right;}
+	else if (playerface == 4) {chestplate = player_naked_down;}
+	}
 	if (player_setup[1] == 1){
 	if (playerface == 1) {chestplate = leather_chestplate_left;}
 	else if (playerface == 2) {chestplate = leather_chestplate_up;}
@@ -291,6 +303,12 @@ void drawchestplate(void) {
 }
 void drawboot(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
+	if (player_setup[2] == 0){
+	if (playerface == 1) {boots = player_naked_left;}
+	else if (playerface == 2) {boots = player_naked_up;}
+	else if (playerface == 3) {boots = player_naked_right;}
+	else if (playerface == 4) {boots = player_naked_down;}
+	}
 	if (player_setup[2] == 1){
 	if (playerface == 1) {boots = leather_boots_left;}
 	else if (playerface == 2) {boots = leather_boots_up;}
@@ -321,6 +339,7 @@ void drawplayerattack(void){
 	
 	gfx_UninitedSprite(weaponrotated, 32, 32);
 	if (kb_Data[1] & kb_2nd){
+		if (player_setup[3] == 0) {weapon = fist;}
 		if (player_setup[3] == 1) {weapon = club;}
 		if (player_setup[3] == 2) {weapon = iron_sword;}
 		if (player_setup[3] == 3) {weapon = steel_sword;}

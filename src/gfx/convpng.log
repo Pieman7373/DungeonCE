@@ -5,7 +5,7 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-70:
+71:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
@@ -50,6 +50,7 @@ Transparent Color : 0xFC78
  dragon_boots_down : converted!
  dragon_boots_up : converted!
  dragon_boots_left : converted!
+ fist : converted!
  club : converted!
  iron_sword : converted!
  steel_sword : converted!
