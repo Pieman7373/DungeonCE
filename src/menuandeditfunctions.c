@@ -167,9 +167,6 @@ void playercreate(void) {
 	gfx_SetTextTransparentColor(transcolor);
 	gfx_SetTextFGColor(textcolor);
     gfx_SetTextBGColor(transcolor);
-	gfx_SetTextScale(4,4);
-	gfx_PrintStringXY("1.",40,20);
-	gfx_PrintStringXY("2.",50,20);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
 	gfx_TransparentSprite(editmenunumbers,40,20);
