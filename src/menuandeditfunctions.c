@@ -48,13 +48,7 @@ int enemyhealth;
 
 int drawhealth = 1;
 extern signed int setnumber;
-extern uint8_t player_setup[];
-
-uint16_t defaultenemy_movelist[NUM_ENEMIES] = {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,3,4,5,6,2,2,2,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6};
-uint16_t defaultenemy_xlist[NUM_ENEMIES] = {76,76,76,77,77,78,78,106,107,107,106,15,52,53,54,55,56,57,58,52,53,54,55,56,57,58,25,26,27,28,29,30,31};
-uint16_t defaultenemy_ylist[NUM_ENEMIES] = {90,91,92,90,91,90,91,74,75,74,75,93,80,80,80,80,80,80,80,81,81,81,81,81,81,81,65,65,65,65,65,65,65};
-
+extern uint24_t player_setup[];
 
 extern int mapstartx;
 extern int mapstarty;
@@ -65,6 +59,7 @@ extern kb_key_t key;
 
 gfx_sprite_t *enemySprite;
 enemy_t  enemy[NUM_ENEMIES];
+extern money_t money[];
 int ii;
 
 void keywait(void) {os_GetCSC();}
@@ -79,6 +74,8 @@ void mainmenu(void) {
 	gfx_Rectangle(2,2,316,236);
     gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
     gfx_TransparentSprite(menuwords,100,130);
+	gfx_SetTextFGColor(textcolor);
+	gfx_PrintStringXY("By: Pieman7373  CC22  2019",8,228);
 	gfx_SwapDraw();
 	
     do {
@@ -151,6 +148,8 @@ void loadsave(void) {
 }
 void newgame(void) {
 	player_setup[6] = 100;
+	player_setup[7] = 0;
+	resetmoney();
 	resetenemies();
 	resetpots();
 }
@@ -290,6 +289,11 @@ void resetenemies(void) {
 		enemy[i].y = defaultenemy_ylist[i]*32;
 		enemy[i].move = defaultenemy_movelist[i];
 		enemy[i].health = ((enemy[i].type + 1) * 10);
+	}
+}
+void resetmoney(void){
+	for (i=0; i < NUM_POTS; i++) {
+		money[i].moneydead = 1;
 	}
 }
 void updateenemies(void) {

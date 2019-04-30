@@ -5,7 +5,7 @@ Using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 Transparent Color Index : 0
 Transparent Color : 0xFC78
-71:
+76:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
@@ -77,6 +77,11 @@ Transparent Color : 0xFC78
  bokoblin_dark : converted!
  knight_green : converted!
  knight_red : converted!
+ money1 : converted!
+ money5 : converted!
+ money10 : converted!
+ money20 : converted!
+ money100 : converted!
 
 --- Group tiles_gfx (C) ---
 Using built-in xlibc palette ...

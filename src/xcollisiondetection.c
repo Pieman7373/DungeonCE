@@ -22,7 +22,7 @@
 
 int playerdamage;
 extern int i;
-extern uint8_t player_setup[];
+extern uint24_t player_setup[];
 extern int playertilex;
 extern int playertiley;
 extern int playerface;
@@ -38,17 +38,8 @@ extern int dmgmultiplier;
 extern int player;
 
 extern enemy_t enemy[];
-extern uint8_t enemytype;
-extern int deadset;
-extern uint24_t enemyx;
-extern uint24_t enemyy;
-extern int enemyhealth;
-
 extern pots_t pots[];
-extern uint8_t pottype;
-extern int potdeadset;
-extern uint24_t potx;
-extern uint24_t poty;
+extern money_t money[];
 int enemytilemapx;
 int enemytilemapy;
 int pottilemapx;
@@ -234,7 +225,45 @@ void collisiondown(void) {
 	}
 }
 void playerattackhitcheck(void) {
-
+int moneytilemapx;
+int moneytilemapy;
+int randcheck = 1;
+///*money
+	for (i = 0; i < NUM_POTS; i++) {
+		moneytilemapx = (money[i].m_x/32);
+		moneytilemapy = (money[i].m_y/32);
+		hit = 0;
+		if (playerface == 1){
+			if (((playertilemapx-1) == moneytilemapx) & (playertilemapy == moneytilemapy)){
+				hit = 1;
+			}
+		}
+		if (playerface == 2){
+			if ((playertilemapx == moneytilemapx) & ((playertilemapy-1) == moneytilemapy)){
+				hit = 1;
+			}
+		}
+		if (playerface == 3){
+			if (((playertilemapx+1) == moneytilemapx) & (playertilemapy == moneytilemapy)){
+				hit = 1;
+			}
+		}
+		if (playerface == 4){
+			if ((playertilemapx == moneytilemapx) & ((playertilemapy+1) == moneytilemapy)){
+				hit = 1;
+			}
+		}
+		
+		if (hit == 1) {
+			if (money[i].moneydead == 0){
+					player_setup[7] = (player_setup[7] + money[i].moneyvalue);
+					if (player_setup[7] > 99999){player_setup[7] = 99999;}
+			}
+			money[i].moneydead = 1;
+		}
+	}
+//*/
+//enemies
 	for (i = 0; i < NUM_ENEMIES; i++) {
 		enemytilemapx = (enemy[i].x/32);
 		enemytilemapy = (enemy[i].y/32);
@@ -263,6 +292,7 @@ void playerattackhitcheck(void) {
 			(enemy[i].health) = ((enemy[i].health ) - (playerdamage * dmgmultiplier));
 		}
 	}	
+//pots
 	for (i = 0; i < NUM_POTS; i++) {
 		pottilemapx = (pots[i].p_x/32);
 		pottilemapy = (pots[i].p_y/32);
@@ -292,6 +322,26 @@ void playerattackhitcheck(void) {
 				if (pots[i].pottype == 1){
 					player_setup[6] = (player_setup[6] + healthincrement);
 				}
+				money[i].m_x = pots[i].p_x;
+				money[i].m_y = pots[i].p_y;
+				money[i].moneydead = 0;
+				money[i].moneyvalue = 1;
+				randcheck = 30;
+					if (randcheck >= randInt(0,100)) {
+						money[i].moneyvalue = 5;
+					}
+				randcheck = 20;
+					if (randcheck >= randInt(0,100)) {
+						money[i].moneyvalue = 10;
+					}
+				randcheck = 10;
+					if (randcheck >= randInt(0,100)) {
+						money[i].moneyvalue = 20;
+					}
+				randcheck = 1;
+					if (randcheck >= randInt(0,100)) {
+						money[i].moneyvalue = 100;
+					}
 			}
 			pots[i].potdead = 1;
 		}

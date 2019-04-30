@@ -43,17 +43,7 @@ gfx_sprite_t *flippedequip;
 gfx_sprite_t *player_health;
 gfx_sprite_t *helmet;
 gfx_sprite_t *chestplate;
-gfx_sprite_t *boots;
-
-
-uint16_t default_pottypelist[NUM_POTS] = {0,1,0,1,0,1,0,1,0,1};
-uint16_t default_potxlist[NUM_POTS] = {77,78,106,107,14,15,16,14,15,16};
-uint16_t default_potylist[NUM_POTS] = {97,97,76,76,91,91,91,92,92,92};    
-
-uint8_t pottype;
-int potdeadset;
-uint24_t potx;
-uint24_t poty;
+gfx_sprite_t *boots;   
 	
 extern int menuyes;
 extern int textcolor;
@@ -68,7 +58,7 @@ int playertilemapx;
 int playertilemapy;
 int *inputx;
 int *inputy;
-extern uint8_t player_setup [];
+extern uint24_t player_setup[];
 int dmgmultiplier = 1;
 int blockchance;
 int walkwait = 1500;
@@ -78,6 +68,7 @@ extern int menuoption;
 
 extern gfx_tilemap_t tilemap;
 pots_t pots[NUM_POTS];
+money_t money[NUM_POTS];
 
 //Start of the game
 void menuloop(void){
@@ -128,6 +119,7 @@ y_offset = mapstarty * 32;
 		drawcharacter();
 		updateenemies();
 		updatepots();
+		updatemoney();
 		checkplayerstatus();
 		drawbottombar();
 		drawplayerattack();
@@ -397,6 +389,8 @@ void drawbottombar(void){
 	gfx_PrintStringXY("[SAVE]   HP:",8,228);
 	gfx_SetTextXY(150,228);
 	gfx_PrintString("[STATS]");
+	gfx_SetTextXY(250,228);
+	gfx_PrintInt(player_setup[7],5);
 }
 void youdied(void){
 	extern int menucolor;
@@ -421,8 +415,16 @@ void youdied(void){
 	exit(0);
 }
 void resetpots(void){
+int n = 0;
 	for (i = 0; i < NUM_POTS; i++) {
-		pots[i].pottype = default_pottypelist[i];
+		n++;
+		if (n>5) {n=0;}
+		if (3<= n) {
+			pots[i].pottype = 0;
+		}
+		else {
+			pots[i].pottype = 1;
+		}
 		pots[i].potdead = 0;
 		pots[i].p_x = default_potxlist[i]*32;
 		pots[i].p_y = default_potylist[i]*32;
@@ -451,4 +453,25 @@ gfx_PrintString("-");
 gfx_PrintUInt((pots->p_y)/32,3);
 */
 		
+}
+void updatemoney(void){
+	for (i = 0; i < NUM_POTS; i++) {	
+		if ((money[i].moneydead) == 0) {
+			rendermoney(&money[i]);
+		}
+	}
+}
+void rendermoney(money_t *money){
+	gfx_sprite_t *moneySprite;
+	
+	moneySprite = money1;
+	if (money->moneyvalue == 5) {moneySprite = money5;}
+	if (money->moneyvalue == 10) {moneySprite = money10;}
+	if (money->moneyvalue == 20) {moneySprite = money20;}
+	if (money->moneyvalue == 100) {moneySprite = money100;}
+	gfx_TransparentSprite(moneySprite, money->m_x - x_offset, money->m_y - y_offset);
+	
+	gfx_SetTextFGColor(0xA8);
+	gfx_SetTextXY(money->m_x - x_offset,money->m_y - y_offset);
+	gfx_PrintUInt(money->moneyvalue,3);
 }

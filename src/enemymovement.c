@@ -34,7 +34,7 @@ int randcheck = 1;
 int attackx;
 int attacky;
 
-extern uint8_t player_setup[];
+extern uint24_t player_setup[];
 
 void enemyattackhitcheck(void) {
 	extern int attackx;
