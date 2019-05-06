@@ -130,8 +130,11 @@ y_offset = mapstarty * 32;
 	if (kb_Data[1] & kb_Zoom) {
 		drawstatsmenu();
 	}
+	if (kb_Data[1] & kb_Trace) {
+		drawstore();
+	}
 	
-	} while (!((kb_Data[1] & kb_Graph)||(kb_Data[6] & kb_Clear)));
+	} while (!(kb_Data[6] & kb_Clear));
 	menuloop();
 }
 void setmapshift(void) {
@@ -355,6 +358,8 @@ void drawplayerattack(void){
 }
 void checkplayerstatus(void){
 	extern int playerdamage;
+	int tempmult = 1;
+	extern int purchased[];
 	//checks if you are standing on a spike
 	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
 		(player_setup[6] = player_setup[6] - 5);
@@ -380,6 +385,15 @@ void checkplayerstatus(void){
 	blockchance = ((player_setup[0] + player_setup[1]) * 10);
 	//set by boots
 	walkspeed = ((player_setup[2]+1)*20);
+	
+	tempmult = 1;
+	for (i=0;i<6;i++){
+		if (purchased[i] == 1) {
+		tempmult = (tempmult + i);
+		}
+	}
+	dmgmultiplier = (tempmult + 1);
+	
 }
 void drawbottombar(void){
 	gfx_SetColor(0x00);
@@ -387,10 +401,8 @@ void drawbottombar(void){
 	gfx_TransparentSprite(player_health,80,224);
 	gfx_SetTextFGColor(textcolor);
 	gfx_PrintStringXY("[SAVE]   HP:",8,228);
-	gfx_SetTextXY(150,228);
-	gfx_PrintString("[STATS]");
-	gfx_SetTextXY(250,228);
-	gfx_PrintInt(player_setup[7],5);
+	gfx_PrintStringXY("[STATS]",150,228);
+	gfx_PrintStringXY("[STORE]",208,228);
 }
 void youdied(void){
 	extern int menucolor;
@@ -471,7 +483,4 @@ void rendermoney(money_t *money){
 	if (money->moneyvalue == 100) {moneySprite = money100;}
 	gfx_TransparentSprite(moneySprite, money->m_x - x_offset, money->m_y - y_offset);
 	
-	gfx_SetTextFGColor(0xA8);
-	gfx_SetTextXY(money->m_x - x_offset,money->m_y - y_offset);
-	gfx_PrintUInt(money->moneyvalue,3);
 }

@@ -61,6 +61,9 @@ gfx_sprite_t *enemySprite;
 enemy_t  enemy[NUM_ENEMIES];
 extern money_t money[];
 int ii;
+int redcolor = 0xA8;
+int purchased[5] = {0,0,0,0,0};
+//1=2X, 2=3X, 3=4X, 4=5X, 5=6X
 
 void keywait(void) {os_GetCSC();}
 
@@ -132,6 +135,193 @@ void drawsavemenu(void){
 		if (kb_Data[3] & kb_1) {savegame();}
 	} while (!(kb_Data[1] & kb_Window));
 }
+void drawstore(void) {
+	int keypress;
+	int price1 = 100;
+	int buy1 = 0;
+	int price2 = 150;
+	int buy2 = 0;
+	int price3 = 200;
+	int buy3 = 0;
+	int price4 = 250;
+	int buy4 = 0;
+	int price5 = 300;
+	int buy5 = 0;
+	int greencolor = 0x27;
+	
+	do {
+		gfx_SetDrawBuffer();
+		gfx_SetColor(submenucolor);
+		gfx_FillRectangle(140,125,150,95);
+		gfx_SetColor(accentcolor);
+		gfx_Rectangle(140,125,150,95);
+		gfx_Rectangle(142,127,146,91);	
+		submenubottombar();
+		
+		
+		if (player_setup[7] >= price1) {
+			gfx_SetTextFGColor(greencolor);
+			buy1 = 1;
+			}
+		else {
+			gfx_SetTextFGColor(redcolor);
+			buy1 = 0;
+			}
+		if (purchased[0] == 1) {
+			gfx_SetTextFGColor(textcolor);
+			buy1 = 0;
+		}
+			gfx_PrintStringXY("1. Damage x2   100",150,132);
+			
+		if (player_setup[7] >= price2) {
+			gfx_SetTextFGColor(greencolor);
+			buy2 = 1;
+			}
+		else {
+			gfx_SetTextFGColor(redcolor);
+			buy2 = 0;
+			}
+		if (purchased[1] == 1) {
+			gfx_SetTextFGColor(textcolor);
+			buy2 = 0;
+			}
+			gfx_PrintStringXY("2. Damage x3   150",150,147);
+			
+		if (player_setup[7] >= price3) {
+			gfx_SetTextFGColor(greencolor);
+			buy3 = 1;
+			}
+		else {
+			gfx_SetTextFGColor(redcolor);
+			buy3 = 0;
+			}
+		if (purchased[2] == 1) {
+			gfx_SetTextFGColor(textcolor);
+			buy3 = 0;
+			}
+			gfx_PrintStringXY("3. Damage x4   200",150,162);
+			
+		if (player_setup[7] >= price4) {
+			gfx_SetTextFGColor(greencolor);
+			buy4 = 1;
+			}
+		else {
+			gfx_SetTextFGColor(redcolor);
+			buy4 = 0;
+			}
+		if (purchased[3] == 1) {
+			gfx_SetTextFGColor(textcolor);
+			buy4 = 0;
+			}
+			gfx_PrintStringXY("4. Damage x5   250",150,177);
+			
+		if (player_setup[7] >= price5) {
+			gfx_SetTextFGColor(greencolor);
+			buy5 = 1;
+			}
+		else {
+			gfx_SetTextFGColor(redcolor);
+			buy5 = 0;
+			}
+		if (purchased[4] == 1) {
+			gfx_SetTextFGColor(textcolor);
+			buy5 = 0;
+			}
+			gfx_PrintStringXY("5. Damage x6   300",150,192);
+	
+		gfx_SetTextFGColor(textcolor);
+		gfx_PrintStringXY("Money:  ",150,207);
+		gfx_PrintUInt(player_setup[7],sizeof(player_setup[7]));
+		gfx_SwapDraw();
+		do {
+			keypress = 0;
+			
+			if (kb_Data[3] & kb_1){
+				keypress = 1;
+				if (buy1 == 1) {
+					if (purchased[0] == 0){
+						buy1 = 0;
+						purchased[0] = 1;
+						player_setup[7] = (player_setup[7] - price1);
+					}
+				}
+			}
+			if (kb_Data[4] & kb_2){
+				keypress = 1;
+				if (buy2 == 1) {
+					if (purchased[1] == 0){
+						buy2 = 0;
+						purchased[1] = 1;
+						player_setup[7] = (player_setup[7] - price2);
+					}
+				}
+			}
+			if (kb_Data[5] & kb_3){
+				keypress = 1;
+				if (buy3 == 1) {
+					if (purchased[2] == 0){
+						buy3 = 0;
+						purchased[2] = 1;
+						player_setup[7] = (player_setup[7] - price3);
+					}
+				}
+			}
+			if (kb_Data[3] & kb_4){
+				keypress = 1;
+				if (buy4 == 1) {
+					if (purchased[3] == 0){
+						buy4 = 0;
+						purchased[3] = 1;
+						player_setup[7] = (player_setup[7] - price4);
+					}
+				}
+			}
+			if (kb_Data[4] & kb_5){
+				keypress = 1;
+				if (buy5 == 1) {
+					if (purchased[4] == 0){
+						buy5 = 0;
+						purchased[4] = 1;
+						player_setup[7] = (player_setup[7] - price5);
+					}
+				}
+			}
+			
+			if (kb_Data[1] & kb_Window) {keypress = 1;}
+			
+		}while (keypress != 1);
+	} while (!(kb_Data[1] & kb_Window));
+}
+void drawstatsmenu(void) {
+extern int dmgmultiplier;
+extern int blockchance;
+extern int playerdamage;
+extern int walkspeed;
+
+	gfx_SetDrawBuffer();
+	gfx_SetColor(submenucolor);
+	gfx_FillRectangle(140,125,150,95);
+	gfx_SetColor(accentcolor);
+	gfx_Rectangle(140,125,150,95);
+	gfx_Rectangle(142,127,146,91);
+	submenubottombar();
+	gfx_PrintStringXY("Money:  ",150,132);
+	gfx_PrintUInt(player_setup[7],sizeof(player_setup[7]));
+	gfx_PrintStringXY("Player Damage:  ",150,147);
+	gfx_PrintInt(playerdamage,2);
+	gfx_PrintStringXY("Damage Mult. :  ",150,162);
+	gfx_PrintInt(dmgmultiplier,2);
+	gfx_PrintStringXY("Block % Chance:  ",150,177);
+	gfx_PrintInt(blockchance,2);
+	gfx_PrintString("%");
+	gfx_PrintStringXY("Walk Speed:  ",150,192);
+	gfx_PrintInt(walkspeed,2);
+	gfx_PrintStringXY("Health:  ",150,207);
+	gfx_PrintInt(player_setup[6],sizeof(player_setup[6]));
+	gfx_SwapDraw();
+	do {
+	} while (!(kb_Data[1] & kb_Window));
+}
 void submenubottombar(void){
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
@@ -149,6 +339,9 @@ void loadsave(void) {
 void newgame(void) {
 	player_setup[6] = 100;
 	player_setup[7] = 0;
+	for (i=0;i<6;i++){
+		purchased[i] = 0;
+	}
 	resetmoney();
 	resetenemies();
 	resetpots();
@@ -329,7 +522,7 @@ void updateenemies(void) {
 }
 void renderenemy(enemy_t *enemy) {
 		gfx_TransparentSprite(enemySprite, enemy->x - x_offset, enemy->y - y_offset); 
-		gfx_SetTextFGColor(0xA8);
+		gfx_SetTextFGColor(redcolor);
 		if (drawhealth == 1) {
 		gfx_SetTextXY(enemy->x - x_offset,enemy->y - y_offset);
 		gfx_PrintUInt(enemy->health,2);
@@ -342,31 +535,3 @@ void renderenemy(enemy_t *enemy) {
 		*/
 		enemyattack();
 	}
-void drawstatsmenu(void) {
-extern int dmgmultiplier;
-extern int blockchance;
-extern int playerdamage;
-extern int walkspeed;
-
-	gfx_SetDrawBuffer();
-	gfx_SetColor(submenucolor);
-	gfx_FillRectangle(140,140,150,80);
-	gfx_SetColor(accentcolor);
-	gfx_Rectangle(140,140,150,80);
-	gfx_Rectangle(142,142,146,76);
-	submenubottombar();
-	gfx_PrintStringXY("Player Damage:  ",150,145);
-	gfx_PrintInt(playerdamage,2);
-	gfx_PrintStringXY("Damage Mult. :  ",150,160);
-	gfx_PrintInt(dmgmultiplier,2);
-	gfx_PrintStringXY("Block % Chance:  ",150,175);
-	gfx_PrintInt(blockchance,2);
-	gfx_PrintString("%");
-	gfx_PrintStringXY("Walk Speed:  ",150,190);
-	gfx_PrintInt(walkspeed,2);
-	gfx_PrintStringXY("Health:  ",150,205);
-	gfx_PrintInt(player_setup[6],sizeof(player_setup[6]));
-	gfx_SwapDraw();
-	do {
-	} while (!(kb_Data[1] & kb_Window));
-}

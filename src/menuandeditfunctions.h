@@ -14,6 +14,7 @@ void draweditedplayer();
 void savegame();
 void drawsavemenu();
 void drawstatsmenu();
+void drawstore();
 void submenubottombar();
 void resetmoney();
 void resetenemies();
