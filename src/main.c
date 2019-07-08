@@ -68,6 +68,11 @@
 	#define Y_OFFSET            0
 	#define X_OFFSET            0
 	
+	
+	
+
+	
+	
 	unsigned int x_offset;
 	unsigned int y_offset;
 	

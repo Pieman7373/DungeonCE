@@ -65,6 +65,12 @@ int redcolor = 0xA8;
 int purchased[5] = {0,0,0,0,0};
 //1=2X, 2=3X, 3=4X, 4=5X, 5=6X
 
+extern uint16_t defaultenemy_movelist[];
+extern uint16_t defaultenemy_typelist[];
+extern uint16_t defaultenemy_xlist[];
+extern uint16_t defaultenemy_ylist[];
+
+
 void keywait(void) {os_GetCSC();}
 
 void mainmenu(void) {

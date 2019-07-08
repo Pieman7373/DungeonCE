@@ -70,6 +70,9 @@ extern gfx_tilemap_t tilemap;
 pots_t pots[NUM_POTS];
 money_t money[NUM_POTS];
 
+extern uint16_t default_potylist[];
+extern uint16_t default_potxlist[];
+
 //Start of the game
 void menuloop(void){
 	
