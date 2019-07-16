@@ -18,6 +18,8 @@ void drawstore();
 void submenubottombar();
 void resetmoney();
 void resetenemies();
+void resetrelics();
+void resetbosses();
 void updateenemies();
 void renderenemy();
 #endif

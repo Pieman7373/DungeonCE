@@ -44,16 +44,36 @@ typedef struct money {
 	uint24_t m_y;
 } money_t;
 
+
+#define NUM_RELICS  5
 #define RELICNUMBER
+#define RELICSHOW
 #define RELICTAKEN
 #define R_X
 #define R_Y
 typedef struct relic {
 	int relicnumber;
+	int relicshow;
 	int relictaken;
 	uint24_t r_x;
 	uint24_t r_y;
 } relic_t;
 	
+
+#define NUM_BOSS  3
+#define BOSS_TYPE
+#define BOSS_DEAD
+#define BOSS_HEALTH
+#define BOSS_RELICNUM
+#define B_X
+#define B_Y
+typedef struct boss {
+	int boss_type;
+	int boss_dead;
+	int boss_health;
+	int boss_relicnum;
+	uint24_t b_x;
+	uint24_t b_y;
+} boss_t;
 
 #endif

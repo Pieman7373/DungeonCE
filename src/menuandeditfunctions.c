@@ -40,11 +40,13 @@ extern int editpy;
 extern unsigned int x_offset;
 extern unsigned int y_offset;
 
+/*
 uint8_t enemytype;
 int deadset;
 uint24_t enemyx;
 uint24_t enemyy;
 int enemyhealth;
+*/
 
 int drawhealth = 1;
 extern signed int setnumber;
@@ -60,6 +62,8 @@ extern kb_key_t key;
 gfx_sprite_t *enemySprite;
 enemy_t  enemy[NUM_ENEMIES];
 extern money_t money[];
+extern relic_t relic[];
+extern boss_t boss[];
 int ii;
 int redcolor = 0xA8;
 int purchased[5] = {0,0,0,0,0};
@@ -69,6 +73,11 @@ extern uint16_t defaultenemy_movelist[];
 extern uint16_t defaultenemy_typelist[];
 extern uint16_t defaultenemy_xlist[];
 extern uint16_t defaultenemy_ylist[];
+extern uint16_t default_relicxlist[];
+extern uint16_t default_relicylist[];
+extern uint16_t defaultboss_type[];
+extern uint16_t defaultboss_xlist[];
+extern uint16_t defaultboss_ylist[];
 
 
 void keywait(void) {os_GetCSC();}
@@ -351,6 +360,8 @@ void newgame(void) {
 	resetmoney();
 	resetenemies();
 	resetpots();
+	resetrelics();
+	resetbosses();
 }
 void playercreate(void) {
 	int keypress;
@@ -493,6 +504,25 @@ void resetenemies(void) {
 void resetmoney(void){
 	for (i=0; i < NUM_POTS; i++) {
 		money[i].moneydead = 1;
+	}
+}
+void resetrelics(void) {
+	for (i = 0; i < NUM_RELICS; i++) {
+		relic[i].relicshow = 0;
+		relic[i].relictaken = 0;
+		relic[i].relicnumber = i;
+		relic[i].r_x = default_relicxlist[i];
+		relic[i].r_y = default_relicylist[i];
+	}
+}
+void resetbosses(void) {
+	for (i = 0; i < NUM_BOSS; i++) {
+		boss[i].boss_type = defaultboss_type[i];
+		boss[i].boss_dead = 0;
+		boss[i].boss_health = ((boss[i].boss_type + 1) * 100);
+		boss[i].boss_relicnum = i;
+		boss[i].b_x = defaultboss_xlist[i];
+		boss[i].b_y = defaultboss_ylist[i];
 	}
 }
 void updateenemies(void) {

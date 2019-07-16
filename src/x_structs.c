@@ -26,3 +26,12 @@ uint16_t default_pottypelist[NUM_POTS];
 uint16_t default_potxlist[NUM_POTS] = {77,78,106,107,14,15,16,14,15,16,52,53,54,55,56,57,58,21,22,23,24,25,26,27,28,29,30,31,32,33,34,21,22,23,24,25,26,27,28,29,30,31,32,33,34,21,22,23,24,25,26,27,28,29,30,31,32,33,34,21,22,23,24,25,26,27,28,29,30,31,32,33,34,21,22,23,24,25,26,27,28,29,30,31,32,33,34};
 uint16_t default_potylist[NUM_POTS] = {97,97, 76, 76,91,91,91,92,92,92,80,80,80,80,80,80,80,71,71,71,71,71,71,71,71,71,71,71,71,71,71,72,72,72,72,72,72,72,72,72,72,72,72,72,72,73,73,73,73,73,73,73,73,73,73,73,73,73,73,74,74,74,74,74,74,74,74,74,74,74,74,74,74,75,75,75,75,75,75,75,75,75,75,75,75,75,75}; 
 
+//RELICS
+uint16_t default_relicxlist[NUM_RELICS];
+uint16_t default_relicylist[NUM_RELICS];
+
+//BOSSES
+uint16_t defaultboss_type[NUM_BOSS];
+uint16_t defaultboss_relicnum[NUM_BOSS];
+uint16_t defaultboss_xlist[NUM_BOSS];
+uint16_t defaultboss_ylist[NUM_BOSS];

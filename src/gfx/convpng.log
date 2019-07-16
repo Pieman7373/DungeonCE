@@ -1,11 +1,11 @@
-Opened convpng.ini
+opened convpng.ini
 
---- Group dungeon_gfx (C) ---
-Using built-in xlibc palette ...
+--- dungeon_gfx (C) ---
+using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
-Transparent Color Index : 0
-Transparent Color : 0xFC78
-76:
+transparent color index : 0
+transparent color : 0xFC78
+77:
  optionsmenu : converted!
  editmenunumbers : converted!
  mainmenulogo : converted!
@@ -82,22 +82,96 @@ Transparent Color : 0xFC78
  money10 : converted!
  money20 : converted!
  money100 : converted!
+ relic1 : converted!
 
---- Group tiles_gfx (C) ---
-Using built-in xlibc palette ...
+--- tiles_gfx (C) ---
+using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
-Transparent Color Index : 0
-Transparent Color : 0xFC78
+transparent color index : 0
+transparent color : 0xFC78
 1:
  tileset : converted!
 
-exporting appvar: dungeon.8xp
-exporting appvar: dungeon2.8xp
+exporting appvar: dungeon.8xv
+ player_naked_down
+ player_naked_up
+ player_naked_left
+ player_naked_right
+ leather_helmet_down
+ leather_helmet_up
+ leather_helmet_left
+ chain_helmet_down
+ chain_helmet_up
+ chain_helmet_left
+ steel_helmet_down
+ steel_helmet_up
+ steel_helmet_left
+ dragon_helmet_down
+ dragon_helmet_up
+ dragon_helmet_left
+ leather_chestplate_down
+ leather_chestplate_up
+ leather_chestplate_left
+ chain_chestplate_down
+ chain_chestplate_up
+ chain_chestplate_left
+ steel_chestplate_down
+ steel_chestplate_up
+ steel_chestplate_left
+ dragon_chestplate_down
+ dragon_chestplate_up
+ dragon_chestplate_left
+ leather_boots_down
+ leather_boots_up
+ leather_boots_left
+ chain_boots_down
+ chain_boots_up
+ chain_boots_left
+ steel_boots_down
+ steel_boots_up
+ steel_boots_left
+ dragon_boots_down
+ dragon_boots_up
+ dragon_boots_left
+ fist
+ club
+ iron_sword
+ steel_sword
+ dragon_sword
+ tombstone
+ pot
+ health100
+ health90
+ health80
+ health70
+ health60
+ health50
+ health40
+ health30
+ health20
+ health10
+ money1
+ money5
+ money10
+ money20
+ money100
+exporting appvar: dungeon2.8xv
+ attack_blue
+ attack_green
+ attack_red
+ slime_blue
+ slime_green
+ slime_red
+ bokoblin_light
+ bokoblin_dark
+ knight_green
+ knight_red
+ relic1
 
-Converted in 13 s
+converted in 1 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
 or selecting a better palette if conversion is not ideal.
 
-Finished!
+finished!
