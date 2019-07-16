@@ -11,77 +11,77 @@ transparent color : 0xFC78
  mainmenulogo : converted!
  menuwords : converted!
  player_naked_down : converted!
- player_naked_up : converted!
  player_naked_left : converted!
  player_naked_right : converted!
- leather_helmet_down : converted!
- leather_helmet_up : converted!
- leather_helmet_left : converted!
- chain_helmet_down : converted!
- chain_helmet_up : converted!
- chain_helmet_left : converted!
- steel_helmet_down : converted!
- steel_helmet_up : converted!
- steel_helmet_left : converted!
- dragon_helmet_down : converted!
- dragon_helmet_up : converted!
- dragon_helmet_left : converted!
- leather_chestplate_down : converted!
- leather_chestplate_up : converted!
- leather_chestplate_left : converted!
- chain_chestplate_down : converted!
- chain_chestplate_up : converted!
- chain_chestplate_left : converted!
- steel_chestplate_down : converted!
- steel_chestplate_up : converted!
- steel_chestplate_left : converted!
- dragon_chestplate_down : converted!
- dragon_chestplate_up : converted!
- dragon_chestplate_left : converted!
+ player_naked_up : converted!
  leather_boots_down : converted!
  leather_boots_up : converted!
- leather_boots_left : converted!
+ leather_chestplate_down : converted!
+ leather_chestplate_right : converted!
+ leather_chestplate_up : converted!
+ leather_helmet_down : converted!
+ leather_helmet_right : converted!
+ leather_helmet_up : converted!
  chain_boots_down : converted!
+ chain_boots_right : converted!
  chain_boots_up : converted!
- chain_boots_left : converted!
+ chain_chestplate_down : converted!
+ chain_chestplate_right : converted!
+ chain_chestplate_up : converted!
+ chain_helmet_down : converted!
+ chain_helmet_right : converted!
+ chain_helmet_up : converted!
  steel_boots_down : converted!
+ steel_boots_right : converted!
  steel_boots_up : converted!
- steel_boots_left : converted!
+ steel_chestplate_down : converted!
+ steel_chestplate_right : converted!
+ steel_chestplate_up : converted!
+ steel_helmet_down : converted!
+ steel_helmet_right : converted!
+ steel_helmet_up : converted!
+ steel_sword : converted!
  dragon_boots_down : converted!
+ dragon_boots_right : converted!
  dragon_boots_up : converted!
- dragon_boots_left : converted!
+ dragon_chestplate_down : converted!
+ dragon_chestplate_right : converted!
+ dragon_chestplate_up : converted!
+ dragon_helmet_down : converted!
+ dragon_helmet_right : converted!
+ dragon_helmet_up : converted!
+ dragon_sword : converted!
  fist : converted!
  club : converted!
  iron_sword : converted!
- steel_sword : converted!
- dragon_sword : converted!
  tombstone : converted!
  pot : converted!
- health100 : converted!
- health90 : converted!
- health80 : converted!
- health70 : converted!
- health60 : converted!
- health50 : converted!
- health40 : converted!
- health30 : converted!
- health20 : converted!
  health10 : converted!
+ health100 : converted!
+ health20 : converted!
+ health30 : converted!
+ health40 : converted!
+ health50 : converted!
+ health60 : converted!
+ health70 : converted!
+ health80 : converted!
+ health90 : converted!
+ health_pot : converted!
  attack_blue : converted!
  attack_green : converted!
  attack_red : converted!
  slime_blue : converted!
  slime_green : converted!
  slime_red : converted!
- bokoblin_light : converted!
  bokoblin_dark : converted!
+ bokoblin_light : converted!
  knight_green : converted!
  knight_red : converted!
  money1 : converted!
- money5 : converted!
  money10 : converted!
- money20 : converted!
  money100 : converted!
+ money20 : converted!
+ money5 : converted!
  relic1 : converted!
 
 --- tiles_gfx (C) ---
@@ -94,67 +94,67 @@ transparent color : 0xFC78
 
 exporting appvar: dungeon.8xv
  player_naked_down
- player_naked_up
  player_naked_left
  player_naked_right
- leather_helmet_down
- leather_helmet_up
- leather_helmet_left
- chain_helmet_down
- chain_helmet_up
- chain_helmet_left
- steel_helmet_down
- steel_helmet_up
- steel_helmet_left
- dragon_helmet_down
- dragon_helmet_up
- dragon_helmet_left
- leather_chestplate_down
- leather_chestplate_up
- leather_chestplate_left
- chain_chestplate_down
- chain_chestplate_up
- chain_chestplate_left
- steel_chestplate_down
- steel_chestplate_up
- steel_chestplate_left
- dragon_chestplate_down
- dragon_chestplate_up
- dragon_chestplate_left
+ player_naked_up
  leather_boots_down
  leather_boots_up
- leather_boots_left
+ leather_chestplate_down
+ leather_chestplate_right
+ leather_chestplate_up
+ leather_helmet_down
+ leather_helmet_right
+ leather_helmet_up
  chain_boots_down
+ chain_boots_right
  chain_boots_up
- chain_boots_left
+ chain_chestplate_down
+ chain_chestplate_right
+ chain_chestplate_up
+ chain_helmet_down
+ chain_helmet_right
+ chain_helmet_up
  steel_boots_down
+ steel_boots_right
  steel_boots_up
- steel_boots_left
+ steel_chestplate_down
+ steel_chestplate_right
+ steel_chestplate_up
+ steel_helmet_down
+ steel_helmet_right
+ steel_helmet_up
+ steel_sword
  dragon_boots_down
+ dragon_boots_right
  dragon_boots_up
- dragon_boots_left
+ dragon_chestplate_down
+ dragon_chestplate_right
+ dragon_chestplate_up
+ dragon_helmet_down
+ dragon_helmet_right
+ dragon_helmet_up
+ dragon_sword
  fist
  club
  iron_sword
- steel_sword
- dragon_sword
  tombstone
  pot
- health100
- health90
- health80
- health70
- health60
- health50
- health40
- health30
- health20
  health10
+ health100
+ health20
+ health30
+ health40
+ health50
+ health60
+ health70
+ health80
+ health90
+ health_pot
  money1
- money5
  money10
- money20
  money100
+ money20
+ money5
 exporting appvar: dungeon2.8xv
  attack_blue
  attack_green
@@ -162,10 +162,8 @@ exporting appvar: dungeon2.8xv
  slime_blue
  slime_green
  slime_red
- bokoblin_light
  bokoblin_dark
- knight_green
- knight_red
+ bokoblin_light
  relic1
 
 converted in 1 s
