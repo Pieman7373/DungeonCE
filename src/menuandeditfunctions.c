@@ -360,8 +360,8 @@ void newgame(void) {
 	resetmoney();
 	resetenemies();
 	resetpots();
-	resetrelics();
-	resetbosses();
+	//resetrelics();
+	//resetbosses();
 }
 void playercreate(void) {
 	int keypress;
@@ -506,6 +506,8 @@ void resetmoney(void){
 		money[i].moneydead = 1;
 	}
 }
+//Relics and Bosses for later
+/*
 void resetrelics(void) {
 	for (i = 0; i < NUM_RELICS; i++) {
 		relic[i].relicshow = 0;
@@ -525,6 +527,7 @@ void resetbosses(void) {
 		boss[i].b_y = defaultboss_ylist[i];
 	}
 }
+*/
 void updateenemies(void) {
 	int randcheck = 20;
 	for (ii = 0; ii < NUM_ENEMIES; ii++) {

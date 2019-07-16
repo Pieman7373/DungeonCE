@@ -23,8 +23,6 @@
 int playerdamage;
 extern int i;
 extern uint24_t player_setup[];
-extern int playertilex;
-extern int playertiley;
 extern int playerface;
 extern int goup;
 extern int godown;

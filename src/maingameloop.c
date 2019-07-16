@@ -5,6 +5,7 @@
 #include "gfx/dungeon.h"
 #include "gfx/dungeon2.h"
 #include "structs.h"
+#include "minimap.h"
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -123,6 +124,7 @@ y_offset = mapstarty * 32;
 		updateenemies();
 		updatepots();
 		updatemoney();
+		minimap();
 		checkplayerstatus();
 		drawbottombar();
 		drawplayerattack();
