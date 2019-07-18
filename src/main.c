@@ -67,9 +67,12 @@
 	extern uint8_t tilemap_map[];
 	//extern uint8_t tilemap_enemies[];
 	gfx_tilemap_t tilemap;
+
+	// used to hold a scaled tileset for use when drawing the minimap
+	uint8_t *minimapTileset[tileset_tiles_num];
 	
 	
-	//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
+	//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon (rawr)
 	signed int setnumber = 0;
 	
 	
@@ -93,7 +96,6 @@
 void main(void) {
 
 	kb_key_t key;
-	
 
 	if (!dungeon_init()) { abort(); }
 	//if (!dungeon2_init()) { abort(); }
@@ -112,9 +114,9 @@ void main(void) {
     tilemap.y_loc       = Y_OFFSET;
     tilemap.x_loc       = X_OFFSET;
 	
+	gfx_Begin();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);
-	gfx_Begin();
 	kb_SetMode(MODE_3_CONTINUOUS);
 	//gfx_SetTextConfig(1);
 	
