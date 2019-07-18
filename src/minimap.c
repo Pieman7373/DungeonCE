@@ -20,6 +20,7 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+#include "main.h"
 // include its own header file for the defines
 #include "minimap.h"
 
@@ -46,14 +47,16 @@ void minimap(void) {
 		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 
 		drawX = MINIMAP_X;
-		scanX = playertilex;
+		// offset the scan so the minimap is centered on the player
+		scanX = playertilex - (MINIMAP_COLS * TILEMAP_TILE_SIZE / 2);
 		for (col = 0; col < MINIMAP_COLS; col++) {
 			uint8_t row;
 			uint8_t drawY;
 			int scanY;
 
 			drawY = MINIMAP_Y;
-			scanY = playertiley;
+			// offset the scan so the minimap is centered on the player
+			scanY = playertiley  - (MINIMAP_ROWS * TILEMAP_TILE_SIZE / 2);
 			for (row = 0; row < MINIMAP_ROWS; row++) {
 				// ensure we don't scan outside of the world (please replace the magic numbers 12380 and 6400 with defines!)
 				if (scanX >= 0 && scanX < 12380 && scanY >= 0 && scanY < 6400) {
@@ -64,10 +67,10 @@ void minimap(void) {
 					// draw the scaled tile
 					gfx_Sprite_NoClip(minimapSprite, drawX, drawY);
 				}
-				scanY += 32;
+				scanY += TILEMAP_TILE_SIZE;
 				drawY += MINIMAP_TILE_SIZE;
 			}
-			scanX += 32; 
+			scanX += TILEMAP_TILE_SIZE; 
 			drawX += MINIMAP_TILE_SIZE;
 		}
 	}	
