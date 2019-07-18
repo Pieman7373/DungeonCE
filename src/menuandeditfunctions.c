@@ -2,7 +2,7 @@
 #include "maingameloop.h"
 #include "enemymovement.h"
 #include "gfx/dungeon.h"
-#include "gfx/dungeon2.h"
+//#include "gfx/dungeon2.h"
 #include "gfx/dungeon_gfx.h"
 #include "structs.h"
 
@@ -91,9 +91,14 @@ void mainmenu(void) {
 	gfx_Rectangle(0,0,320,240);
 	gfx_Rectangle(2,2,316,236);
     gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
-    gfx_TransparentSprite(menuwords,100,130);
+	gfx_SetTextScale(2,2);
 	gfx_SetTextFGColor(textcolor);
-	gfx_PrintStringXY("By: Pieman7373  CC22  2019",8,228);
+	gfx_PrintStringXY("1. Continue",68,130);
+	gfx_PrintStringXY("2. New Game",68,155);
+	gfx_PrintStringXY("3. Edit Player",68,180);
+    //gfx_TransparentSprite(menuwords,100,130);
+	gfx_SetTextScale(1,1);
+	gfx_PrintStringXY("By: Pieman7373   2019",8,228);
 	gfx_SwapDraw();
 	
     do {
@@ -113,6 +118,8 @@ void mainmenu(void) {
 } while (!((menuoption) || (kb_Data[6] & kb_Clear)));
  
 }
+//Options Menu
+/*
 void options(void) {
 	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
@@ -135,6 +142,7 @@ void options(void) {
 			}
 		} while (menuyes != 3);
 }
+*/
 void drawsavemenu(void){
 	
 	gfx_SetDrawBuffer();
@@ -435,22 +443,22 @@ void draweditedplayer(void) {
 	gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
 	if (player_setup [0] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
-	if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy,editscale,editscale);}
+	if (player_setup [2] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_boots_down,editpx,editpy + ((27 * editscale) + 32),editscale,editscale);}
 	if (player_setup [3] == 1) {gfx_ScaledTransparentSprite_NoClip(club,editweaponx,editweapony,editscale-1,editscale-1);}
 	
 	if (player_setup [0] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,editpx,editpy,editscale,editscale);}
-	if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy,editscale,editscale);}
+	if (player_setup [2] == 2) {gfx_ScaledTransparentSprite_NoClip(chain_boots_down,editpx,editpy + ((27 * editscale) + 32),editscale,editscale);}
 	if (player_setup [3] == 2) {gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	
 	if (player_setup [0] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,editpx,editpy,editscale,editscale);}
-	if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy,editscale,editscale);}
+	if (player_setup [2] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_boots_down,editpx,editpy + ((27 * editscale) + 32),editscale,editscale);}
 	if (player_setup [3] == 3) {gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 	
 	if (player_setup [0] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,editpx,editpy,editscale,editscale);}
-	if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy,editscale,editscale);}
+	if (player_setup [2] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,editpx,editpy + ((27 * editscale) + 32),editscale,editscale);}
 	if (player_setup [3] == 4) {gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponx,editweapony,editscale-1,editscale-1);}
 }
 void drawequipment(void) {
@@ -459,25 +467,25 @@ void drawequipment(void) {
 	if (setnumber == 1) {
 		gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,55,3,3);
+		gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,82,3,3);
 		gfx_ScaledTransparentSprite_NoClip(club,editweaponsmallx,editweaponsmally,2,2);
 	}
 	if (setnumber == 2) {
 		gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,55,3,3);
+		gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,82,3,3);
 		gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 	if (setnumber == 3) {
 		gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,55,3,3);
+		gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,82,3,3);
 		gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 	if (setnumber == 4) {
 		gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,55,3,3);
+		gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,82,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 }

@@ -26,7 +26,7 @@
 #include "xcollisiondetection.h"
 
 #include "gfx/dungeon.h"
-#include "gfx/dungeon2.h"
+//#include "gfx/dungeon2.h"
 #include "gfx/tiles_gfx.h"
 
 /* Put all your globals here */
@@ -49,9 +49,9 @@
 
 	int mapshift;
 	//player is 5 away
-	int mapstartx = 70;
+	int mapstartx;
 	//player is 4 away
-	int mapstarty = 96;
+	int mapstarty;
 	
 	//for tilemap stuff
 
@@ -110,7 +110,7 @@ void main(void) {
 	
 
 	if (!dungeon_init()) { abort(); }
-	if (!dungeon2_init()) { abort(); }
+	//if (!dungeon2_init()) { abort(); }
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;
@@ -130,7 +130,10 @@ void main(void) {
 	gfx_SetTransparentColor(transcolor);
 	gfx_Begin();
 	kb_SetMode(MODE_3_CONTINUOUS);
-	gfx_SetTextConfig(1);
+	//gfx_SetTextConfig(1);
+	
+	mapstartx = ((TILEMAP_WIDTH/2) - 5);
+	mapstarty = (TILEMAP_HEIGHT - 10);
 	
 	menuloop();
 

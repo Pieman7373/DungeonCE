@@ -3,7 +3,7 @@
 #include "xcollisiondetection.h"
 #include "gfx/tiles_gfx.h"
 #include "gfx/dungeon.h"
-#include "gfx/dungeon2.h"
+//#include "gfx/dungeon2.h"
 #include "structs.h"
 
 #include <stdbool.h>
@@ -34,6 +34,7 @@ void minimap(void){
 	playertiley
 		for loop that iterates over the tilemap around the player, drawing the corresponding mini-tile in the correct corner of the map
 		*/
+	
 	for (i = 0; i < 280; i++) {
 	}
 			

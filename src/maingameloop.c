@@ -3,7 +3,7 @@
 #include "xcollisiondetection.h"
 #include "gfx/tiles_gfx.h"
 #include "gfx/dungeon.h"
-#include "gfx/dungeon2.h"
+//#include "gfx/dungeon2.h"
 #include "structs.h"
 #include "minimap.h"
 
@@ -97,7 +97,8 @@ void menuloop(void){
 		}
 		if (menuyes == 1) {
 			if (menuoption == 3) {
-				options();
+				//options();
+				playercreate();
 			}
 		}
 		//menuyes chunk end
@@ -265,7 +266,12 @@ void drawhelmet(void) {
 	else if (playerface == 3) {helmet = (gfx_FlipSpriteY(dragon_helmet_left,flippedequip));}
 	else if (playerface == 4) {helmet = dragon_helmet_down;}
 	}
-	gfx_TransparentSprite(helmet,playerx,playery);
+	if (player_setup[0] == 0){
+		gfx_TransparentSprite(helmet,playerx,playery);
+	}
+	else {
+		gfx_TransparentSprite(helmet,playerx,playery + 27);
+	}
 }
 void drawchestplate(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
@@ -299,7 +305,12 @@ void drawchestplate(void) {
 	else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(dragon_chestplate_left,flippedequip));}
 	else if (playerface == 4) {chestplate = dragon_chestplate_down;}
 	}
-	gfx_TransparentSprite(chestplate,playerx,playery);
+	if (player_setup[1] == 0){
+		gfx_TransparentSprite(chestplate,playerx,playery);
+	}
+	else {
+		gfx_TransparentSprite(chestplate,playerx,playery + 27);
+	}
 }
 void drawboot(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
@@ -333,7 +344,13 @@ void drawboot(void) {
 	else if (playerface == 3) {boots = (gfx_FlipSpriteY(dragon_boots_left,flippedequip));}
 	else if (playerface == 4) {boots = dragon_boots_down;}
 	}
-	gfx_TransparentSprite(boots,playerx,playery);
+	
+	if (player_setup[2] == 0){
+		gfx_TransparentSprite(boots,playerx,playery);
+	}
+	else {
+		gfx_TransparentSprite(boots,playerx,playery + 27);
+	}
 }
 void drawplayerattack(void){
 	
@@ -408,6 +425,7 @@ void drawbottombar(void){
 	gfx_PrintStringXY("[SAVE]   HP:",8,228);
 	gfx_PrintStringXY("[STATS]",150,228);
 	gfx_PrintStringXY("[STORE]",208,228);
+	gfx_PrintStringXY("[OPTNS]",266,228);
 }
 void youdied(void){
 	extern int menucolor;

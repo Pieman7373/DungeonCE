@@ -18,7 +18,7 @@
 #include <graphx.h>
 #include <keypadc.h>
 #include "gfx/Dungeon.h"
-#include "gfx/dungeon2.h"
+//#include "gfx/dungeon2.h"
 
 int playerdamage;
 extern int i;
