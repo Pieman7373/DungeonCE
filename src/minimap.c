@@ -20,70 +20,47 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+// include its own header file for the defines
+#include "minimap.h"
+
 extern gfx_tilemap_t tilemap;
 extern int playertilex;
 extern int playertiley;
 extern int showminimap;
-gfx_sprite_t *minimaptile;
-gfx_sprite_t *tile;
 
-void minimap(void){
-
-	int minimapx;
-	int minitilex = 5;
-	int minimapx_initial;
-	int minimapy;
-	int minitiley = 5;
-	int minimapy_initial;
-	int i;
-	gfx_UninitedSprite(minimaptile, 5, 5);
+void minimap(void) {
 	gfx_sprite_t *tile;
+	gfx_UninitedSprite(minimapSprite, MINIMAP_TILE_SIZE, MINIMAP_TILE_SIZE);
+
+	minimapSprite->width = MINIMAP_TILE_SIZE;
+	minimapSprite->height = MINIMAP_TILE_SIZE;
 	
 	if (showminimap == 1) {
-		gfx_SetColor(0x00);
-		gfx_FillRectangle(3,3,100,70);
+		uint8_t col;
+		uint16_t drawX;
+		int scanX;
 
-		playertilex = minimapx_initial;
-		minimapx = minimapx_initial;
-		playertiley = minimapy_initial;
-		minimapy = minimapy_initial;
-		
-		for (i = 0; i < 279; i++) {
-			//get the tile 
-			tile = tilemap.tiles[gfx_GetTile(&tilemap,(minimapx*32),(minimapy*32))];
-			
-				if ((minimapx < 0)||(minimapy < 0)) {
-					tile = tilemap.tiles[gfx_GetTile(&tilemap,0,0)];
+		// draw the area for where the minimap will be drawn. This is necessary 
+		// so that there is a background for tiles that aren't drawn (outside of the world)
+		gfx_SetColor(0x00);
+		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+
+		for (scanX = playertilex, drawX = MINIMAP_X, col = 0; col < MINIMAP_COLS; scanX += 32, drawX += 5, col++) {
+			uint8_t row;
+			uint8_t drawY;
+			int scanY;
+
+			for (scanY = playertiley, drawY = MINIMAP_Y, row = 0; row < MINIMAP_ROWS; scanY += 32, drawY += 5, row++) {
+				// ensure we don't scan outside of the world (please replace the magic numbers 12380 and 6400 with defines!)
+				if (scanX >= 0 && scanX <= 12380 && scanY >= 0 && scanY <= 6400) {
+					// grab the tile
+					tile = tilemap.tiles[gfx_GetTile(&tilemap, scanX, scanY)];
+					// scale it down
+					gfx_ScaleSprite(tile, minimapSprite);
+					// draw the scaled tile
+					gfx_Sprite_NoClip(minimapSprite, drawX, drawY);
 				}
-				if ((minimapx > 12379)||(minimapy > 6399)) {
-					tile = tilemap.tiles[gfx_GetTile(&tilemap,0,0)];
-				}
-			
-			
-			//shrink to 5x5
-			gfx_ScaleSprite(tile, minimaptile);
-			
-			//draw mini tile
-			gfx_Sprite(minimaptile, minitilex, minitiley);
-			
-			//move on to next tile
-			minimapx++;
-			minitilex = (minitilex + 5);
-				
-			//if a row is done, reset to the left and advance down 1 row
-			if (minimapx > minimapx_initial) {
-				minimapx = minimapx_initial;
-				minitilex = 5;
-				minimapy = (minimapy + 1);
-				minitiley = (minitiley + 5);
-			}
-			
-			//when the rows are all done
-			if (minimapy > minimapy_initial) {
-				minimapy = minimapy_initial;
-				minimapy = 5;
 			}
 		}
-		
 	}	
 }
