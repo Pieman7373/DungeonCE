@@ -45,12 +45,16 @@ void minimap(void) {
 		gfx_SetColor(0x00);
 		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 
-		for (scanX = playertilex, drawX = MINIMAP_X, col = 0; col < MINIMAP_COLS; scanX += 32, drawX += 5, col++) {
+		drawX = MINIMAP_X;
+		scanX = playertilex;
+		for (col = 0; col < MINIMAP_COLS; col++) {
 			uint8_t row;
 			uint8_t drawY;
 			int scanY;
 
-			for (scanY = playertiley, drawY = MINIMAP_Y, row = 0; row < MINIMAP_ROWS; scanY += 32, drawY += 5, row++) {
+			drawY = MINIMAP_Y;
+			scanY = playertiley;
+			for (row = 0; row < MINIMAP_ROWS; row++) {
 				// ensure we don't scan outside of the world (please replace the magic numbers 12380 and 6400 with defines!)
 				if (scanX >= 0 && scanX < 12380 && scanY >= 0 && scanY < 6400) {
 					// grab the tile
@@ -60,7 +64,11 @@ void minimap(void) {
 					// draw the scaled tile
 					gfx_Sprite_NoClip(minimapSprite, drawX, drawY);
 				}
+				scanY += 32;
+				drawY += MINIMAP_TILE_SIZE;
 			}
+			scanX += 32; 
+			drawX += MINIMAP_TILE_SIZE;
 		}
 	}	
 }
