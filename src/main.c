@@ -56,20 +56,8 @@
 	
 	//for tilemap stuff
 
-	#define TILEMAP_WIDTH       40
-	
-	#define TILEMAP_HEIGHT      200
-	
-	#define TILEMAP_DRAW_WIDTH  10
-	#define TILEMAP_DRAW_HEIGHT 7
-
 	#define Y_OFFSET            0
 	#define X_OFFSET            0
-	
-	
-	
-
-	
 	
 	unsigned int x_offset;
 	unsigned int y_offset;
