@@ -28,6 +28,7 @@
 #include "gfx/dungeon.h"
 //#include "gfx/dungeon2.h"
 #include "gfx/tiles_gfx.h"
+#include "main.h"
 
 /* Put all your globals here */
 	int menuyes;
@@ -54,9 +55,6 @@
 	int mapstarty;
 	
 	//for tilemap stuff
-
-	#define TILE_WIDTH          32
-	#define TILE_HEIGHT         32
 
 	#define TILEMAP_WIDTH       40
 	
@@ -117,8 +115,8 @@ void main(void) {
     tilemap.tiles       = tileset_tiles;
     tilemap.type_width  = gfx_tile_32_pixel;
     tilemap.type_height = gfx_tile_32_pixel;
-    tilemap.tile_height = TILE_HEIGHT;
-    tilemap.tile_width  = TILE_WIDTH;
+    tilemap.tile_height = TILEMAP_TILE_SIZE;
+    tilemap.tile_width  = TILEMAP_TILE_SIZE;
     tilemap.draw_height = TILEMAP_DRAW_HEIGHT;
     tilemap.draw_width  = TILEMAP_DRAW_WIDTH;
     tilemap.height      = TILEMAP_HEIGHT;
