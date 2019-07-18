@@ -20,6 +20,8 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+#include <debug.h>
+
 #include "main.h"
 // include its own header file for the defines
 #include "minimap.h"
@@ -37,41 +39,50 @@ void minimap(void) {
 	minimapSprite->height = MINIMAP_TILE_SIZE;
 	
 	if (showminimap == 1) {
-		uint8_t col;
-		uint16_t drawX;
-		int scanX;
+		uint8_t row;
+		uint8_t drawY;
+		int scanY;
+		int initialScanX;
 
 		// draw the area for where the minimap will be drawn. This is necessary 
 		// so that there is a background for tiles that aren't drawn (outside of the world)
 		gfx_SetColor(0x00);
 		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 
-		drawX = MINIMAP_X;
+		drawY = MINIMAP_Y;
 		// offset the scan so the minimap is centered on the player
-		scanX = playertilex - (MINIMAP_COLS * TILEMAP_TILE_SIZE / 2);
-		for (col = 0; col < MINIMAP_COLS; col++) {
-			uint8_t row;
-			uint8_t drawY;
-			int scanY;
+		scanY = playertiley  - (MINIMAP_ROWS * TILEMAP_TILE_SIZE / 2);
+		initialScanX = playertilex - (MINIMAP_COLS * TILEMAP_TILE_SIZE / 2);
+		for (row = 0; row < MINIMAP_ROWS; row++) {
+			uint8_t col;
+			uint16_t drawX;
+			uint8_t *tilePointer;
+			int scanX;
 
-			drawY = MINIMAP_Y;
+			drawX = MINIMAP_X;
 			// offset the scan so the minimap is centered on the player
-			scanY = playertiley  - (MINIMAP_ROWS * TILEMAP_TILE_SIZE / 2);
-			for (row = 0; row < MINIMAP_ROWS; row++) {
+			scanX = initialScanX;
+			tilePointer = NULL;
+			for (col = 0; col < MINIMAP_COLS; col++) {
 				// ensure we don't scan outside of the world (please replace the magic numbers 12380 and 6400 with defines!)
 				if (scanX >= 0 && scanX < 12380 && scanY >= 0 && scanY < 6400) {
-					// grab the tile
-					tile = tilemap.tiles[gfx_GetTile(&tilemap, scanX, scanY)];
-					// scale it down
-					gfx_ScaleSprite(tile, minimapSprite);
+					// check if we have yet to grab the first tile in the row
+					if (!tilePointer) {
+						// find where in the tilemap this minimap row starts
+						tilePointer = gfx_TilePtr(&tilemap, scanX, scanY);
+					} else {
+						tilePointer++;
+					}
+					// scale the tile down
+					gfx_ScaleSprite(tilemap.tiles[*tilePointer], minimapSprite);
 					// draw the scaled tile
 					gfx_Sprite_NoClip(minimapSprite, drawX, drawY);
 				}
-				scanY += TILEMAP_TILE_SIZE;
-				drawY += MINIMAP_TILE_SIZE;
+				scanX += TILEMAP_TILE_SIZE; 
+				drawX += MINIMAP_TILE_SIZE;
 			}
-			scanX += TILEMAP_TILE_SIZE; 
-			drawX += MINIMAP_TILE_SIZE;
+			scanY += TILEMAP_TILE_SIZE;
+			drawY += MINIMAP_TILE_SIZE;
 		}
 	}	
 }
