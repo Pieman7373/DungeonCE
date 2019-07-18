@@ -37,8 +37,7 @@ void minimap(void){
 	int minimapy_initial;
 	int i;
 	gfx_UninitedSprite(minimaptile, 5, 5);
-	gfx_UninitedSprite(sprite_out, 5, 5);
-	
+	gfx_sprite_t *tile;
 	
 	if (showminimap == 1) {
 		gfx_SetColor(0x00);
@@ -49,18 +48,23 @@ void minimap(void){
 		playertiley = minimapy_initial;
 		minimapy = minimapy_initial;
 		
-		//sprite_out->width = 5;
-		//sprite_out->height = 5;
-		
-		for (i = 0; i < 280; i++) {
+		for (i = 0; i < 279; i++) {
 			//get the tile 
-			//tile = (gfx_TilePtr(&tilemap,(minimapx*32),(minimapy*32)));
+			tile = tilemap.tiles[gfx_GetTile(&tilemap,(minimapx*32),(minimapy*32))];
+			
+				if ((minimapx < 0)||(minimapy < 0)) {
+					tile = tilemap.tiles[gfx_GetTile(&tilemap,0,0)];
+				}
+				if ((minimapx > 12379)||(minimapy > 6399)) {
+					tile = tilemap.tiles[gfx_GetTile(&tilemap,0,0)];
+				}
+			
 			
 			//shrink to 5x5
-			//gfx_ScaleSprite(&tile, minimaptile);
+			gfx_ScaleSprite(tile, minimaptile);
 			
 			//draw mini tile
-			//gfx_Sprite(minimaptile, minitilex, minitiley);
+			gfx_Sprite(minimaptile, minitilex, minitiley);
 			
 			//move on to next tile
 			minimapx++;
@@ -80,5 +84,6 @@ void minimap(void){
 				minimapy = 5;
 			}
 		}
+		
 	}	
 }
