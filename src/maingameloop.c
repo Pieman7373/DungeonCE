@@ -74,6 +74,8 @@ money_t money[NUM_POTS];
 extern uint16_t default_potylist[];
 extern uint16_t default_potxlist[];
 
+int showminimap = 1;
+
 //Start of the game
 void menuloop(void){
 	
