@@ -52,7 +52,7 @@ void minimap(void) {
 
 			for (scanY = playertiley, drawY = MINIMAP_Y, row = 0; row < MINIMAP_ROWS; scanY += 32, drawY += 5, row++) {
 				// ensure we don't scan outside of the world (please replace the magic numbers 12380 and 6400 with defines!)
-				if (scanX >= 0 && scanX <= 12380 && scanY >= 0 && scanY <= 6400) {
+				if (scanX >= 0 && scanX < 12380 && scanY >= 0 && scanY < 6400) {
 					// grab the tile
 					tile = tilemap.tiles[gfx_GetTile(&tilemap, scanX, scanY)];
 					// scale it down
