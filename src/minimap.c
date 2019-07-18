@@ -25,6 +25,7 @@ extern int playertilex;
 extern int playertiley;
 extern int showminimap;
 gfx_sprite_t *minimaptile;
+gfx_sprite_t *tile;
 
 void minimap(void){
 
@@ -37,16 +38,12 @@ void minimap(void){
 	int i;
 	gfx_UninitedSprite(minimaptile, 5, 5);
 	gfx_UninitedSprite(sprite_out, 5, 5);
-	int tile;
+	
 	
 	if (showminimap == 1) {
 		gfx_SetColor(0x00);
 		gfx_FillRectangle(3,3,100,70);
-		/*
-		playertilex - (whatever makes the minimap 20x14)
-		playertiley
-			for loop that iterates over the tilemap around the player, drawing the corresponding mini-tile in the correct corner of the map
-			*/
+
 		playertilex = minimapx_initial;
 		minimapx = minimapx_initial;
 		playertiley = minimapy_initial;
@@ -57,24 +54,27 @@ void minimap(void){
 		
 		for (i = 0; i < 280; i++) {
 			//get the tile 
-			tile = (gfx_TilePtr(&tilemap,(minimapx*32),(minimapy*32)));
+			//tile = (gfx_TilePtr(&tilemap,(minimapx*32),(minimapy*32)));
 			
 			//shrink to 5x5
-			gfx_ScaleSprite(tile, minimaptile);
+			//gfx_ScaleSprite(&tile, minimaptile);
 			
 			//draw mini tile
-			gfx_Sprite(minimaptile, minitilex, minitiley);
+			//gfx_Sprite(minimaptile, minitilex, minitiley);
 			
 			//move on to next tile
 			minimapx++;
 			minitilex = (minitilex + 5);
 				
+			//if a row is done, reset to the left and advance down 1 row
 			if (minimapx > minimapx_initial) {
 				minimapx = minimapx_initial;
 				minitilex = 5;
 				minimapy = (minimapy + 1);
 				minitiley = (minitiley + 5);
 			}
+			
+			//when the rows are all done
 			if (minimapy > minimapy_initial) {
 				minimapy = minimapy_initial;
 				minimapy = 5;
