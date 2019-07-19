@@ -33,6 +33,26 @@ extern int showminimap;
 extern gfx_tilemap_t minimapTilemap;
 
 void minimap(void) {
+	//	                /           /                                               
+	//                 /' .,,,,  ./                                                 
+	//                /';'     ,/                                                   
+	//               / /   ,,//,`'`                                                 
+	//              ( ,, '_,  ,,,' ``                                               
+	//              |    /@  ,,, ;" `                                               
+	//             /    .   ,''/' `,``                                              
+	//            /   .     ./, `,, ` ;                                             
+	//         ,./  .   ,-,',` ,,/''\,'                                             
+	//        |   /; ./,,'`,,'' |   |                                               
+	// RAWR!  |     /   ','    /    |                                               
+	//         \___/'   '     |     |                                               
+	//           `,,'  |      /     `\                                              
+	//                /      |        ~\                                            
+	//               '       (                                                      
+	//              :                                                               
+	//             ; .         \--                                                  
+	//           :   \         ;
+	// KryptonicDragon was here!
+	// ascii art by Ooyamaneko, according to the internet
 	if (showminimap == 1) {
 		int xOffset;
 		int yOffset;
