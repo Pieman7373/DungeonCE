@@ -91,7 +91,7 @@ void minimap(void) {
 			minimapTilemap.x_loc = minimapx - xOffset;
 			xOffset = 0;
 		} else {
-			minimapTilemap.x_loc = minimapy;
+			minimapTilemap.x_loc = minimapx;
 		}
 
 		if (yOffset < 0) {
