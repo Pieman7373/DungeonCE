@@ -158,7 +158,6 @@ void drawmap(void) {
 	playertilex = (x_offset + (32*5));
 	playertiley = (y_offset + (32*4));
 	gfx_SetDrawBuffer();
-	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_Tilemap(&tilemap, x_offset, y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);

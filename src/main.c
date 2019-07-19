@@ -21,6 +21,7 @@
 #include <string.h>
 #include <graphx.h>
 #include <keypadc.h>
+#include <debug.h>
 #include "menuandeditfunctions.h"
 #include "maingameloop.h"
 #include "xcollisiondetection.h"
@@ -29,6 +30,7 @@
 //#include "gfx/dungeon2.h"
 #include "gfx/tiles_gfx.h"
 #include "main.h"
+#include "minimap.h"
 
 /* Put all your globals here */
 	int menuyes;
@@ -67,9 +69,14 @@
 	extern uint8_t tilemap_map[];
 	//extern uint8_t tilemap_enemies[];
 	gfx_tilemap_t tilemap;
+
+	// used to hold a scaled tileset for use when drawing the minimap
+	uint8_t minimapTileset[tileset_tiles_num][(MINIMAP_TILE_SIZE * MINIMAP_TILE_SIZE) + 2];
+	uint8_t *minimapTilesetPointers[tileset_tiles_num];
+	gfx_tilemap_t minimapTilemap;
 	
 	
-	//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon
+	//0=naked, 1=leather, 2=chain, 3=steel, 4=dragon (rawr)
 	signed int setnumber = 0;
 	
 	
@@ -93,7 +100,6 @@
 void main(void) {
 
 	kb_key_t key;
-	
 
 	if (!dungeon_init()) { abort(); }
 	//if (!dungeon2_init()) { abort(); }
@@ -111,10 +117,34 @@ void main(void) {
     tilemap.width       = TILEMAP_WIDTH;
     tilemap.y_loc       = Y_OFFSET;
     tilemap.x_loc       = X_OFFSET;
+
+    // initialize the minimap tilemap structure
+    minimapTilemap.map = tilemap_map;
+	minimapTilemap.tiles = ((gfx_sprite_t**)minimapTilesetPointers);
+	minimapTilemap.type_width  = gfx_tile_no_pow2;
+    minimapTilemap.type_height = gfx_tile_no_pow2;
+    minimapTilemap.tile_height = MINIMAP_TILE_SIZE;
+    minimapTilemap.tile_width  = MINIMAP_TILE_SIZE;
+    minimapTilemap.draw_height = MINIMAP_ROWS;
+    minimapTilemap.draw_width  = MINIMAP_COLS;
+    minimapTilemap.height      = TILEMAP_HEIGHT;
+    minimapTilemap.width       = TILEMAP_WIDTH;
+    
+	// generate all the scaled sprites for the minimap tileset cache
+	{
+		uint8_t i;
+		for (i = 0; i < tileset_tiles_num; i++) {
+			minimapTilesetPointers[i] = &minimapTileset[i][0];
+			minimapTileset[i][0] = MINIMAP_TILE_SIZE;
+			minimapTileset[i][1] = MINIMAP_TILE_SIZE;
+
+			gfx_ScaleSprite(tilemap.tiles[i], (gfx_sprite_t *)minimapTileset[i]);
+		}
+	}
 	
+	gfx_Begin();
 	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);
-	gfx_Begin();
 	kb_SetMode(MODE_3_CONTINUOUS);
 	//gfx_SetTextConfig(1);
 	

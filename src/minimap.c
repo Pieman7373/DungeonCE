@@ -20,6 +20,8 @@
 #include <graphx.h>
 #include <keypadc.h>
 
+#include <debug.h>
+
 #include "main.h"
 // include its own header file for the defines
 #include "minimap.h"
@@ -28,50 +30,75 @@ extern gfx_tilemap_t tilemap;
 extern int playertilex;
 extern int playertiley;
 extern int showminimap;
+extern gfx_tilemap_t minimapTilemap;
 
 void minimap(void) {
-	gfx_sprite_t *tile;
-	gfx_UninitedSprite(minimapSprite, MINIMAP_TILE_SIZE, MINIMAP_TILE_SIZE);
-
-	minimapSprite->width = MINIMAP_TILE_SIZE;
-	minimapSprite->height = MINIMAP_TILE_SIZE;
-	
+	//	                /           /                                               
+	//                 /' .,,,,  ./                                                 
+	//                /';'     ,/                                                   
+	//               / /   ,,//,`'`                                                 
+	//              ( ,, '_,  ,,,' ``                                               
+	//              |    /@  ,,, ;" `                                               
+	//             /    .   ,''/' `,``                                              
+	//            /   .     ./, `,, ` ;                                             
+	//         ,./  .   ,-,',` ,,/''\,'                                             
+	//        |   /; ./,,'`,,'' |   |                                               
+	// RAWR!  |     /   ','    /    |                                               
+	//         \___/'   '     |     |                                               
+	//           `,,'  |      /     `\                                              
+	//                /      |        ~\                                            
+	//               '       (                                                      
+	//              :                                                               
+	//             ; .         \--                                                  
+	//           :   \         ;
+	// KryptonicDragon was here!
+	// ascii art by Ooyamaneko, according to the internet
 	if (showminimap == 1) {
-		uint8_t col;
-		uint16_t drawX;
-		int scanX;
+		int xOffset;
+		int yOffset;
+		int minimapMaxDrawX;
+		int minimapMaxDrawY;
+
+		xOffset = ((playertilex / TILEMAP_TILE_SIZE) - (MINIMAP_COLS / 2)) * MINIMAP_TILE_SIZE;
+		yOffset = ((playertiley / TILEMAP_TILE_SIZE) - (MINIMAP_ROWS / 2)) * MINIMAP_TILE_SIZE;
+
+		minimapMaxDrawX = MINIMAP_X + MINIMAP_WIDTH;
+		minimapMaxDrawY = MINIMAP_Y + MINIMAP_HEIGHT;
+
+		if (xOffset < 0) {
+			minimapTilemap.x_loc = MINIMAP_X - xOffset;
+			xOffset = 0;
+		} else {
+			minimapTilemap.x_loc = MINIMAP_X;
+		}
+
+		if (yOffset < 0) {
+			minimapTilemap.y_loc = MINIMAP_Y - yOffset;
+			yOffset = 0;
+		} else {
+			minimapTilemap.y_loc = MINIMAP_Y;
+		}
+
+		if (MINIMAP_MAX_X - xOffset < MINIMAP_WIDTH) {
+			minimapMaxDrawX -= MINIMAP_WIDTH - (MINIMAP_MAX_X - xOffset);
+		}
+		if (MINIMAP_MAX_Y - yOffset < MINIMAP_HEIGHT) {
+			minimapMaxDrawY -= MINIMAP_HEIGHT - (MINIMAP_MAX_Y - yOffset);
+		}
+
+
+		// limit the area we can draw within
+		gfx_SetClipRegion(MINIMAP_X, MINIMAP_Y, minimapMaxDrawX, minimapMaxDrawY);
 
 		// draw the area for where the minimap will be drawn. This is necessary 
 		// so that there is a background for tiles that aren't drawn (outside of the world)
 		gfx_SetColor(0x00);
 		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 
-		drawX = MINIMAP_X;
-		// offset the scan so the minimap is centered on the player
-		scanX = playertilex - (MINIMAP_COLS * TILEMAP_TILE_SIZE / 2);
-		for (col = 0; col < MINIMAP_COLS; col++) {
-			uint8_t row;
-			uint8_t drawY;
-			int scanY;
+		// draw the minimap
+		gfx_Tilemap(&minimapTilemap, xOffset, yOffset);
 
-			drawY = MINIMAP_Y;
-			// offset the scan so the minimap is centered on the player
-			scanY = playertiley  - (MINIMAP_ROWS * TILEMAP_TILE_SIZE / 2);
-			for (row = 0; row < MINIMAP_ROWS; row++) {
-				// ensure we don't scan outside of the world (please replace the magic numbers 12380 and 6400 with defines!)
-				if (scanX >= 0 && scanX < 12380 && scanY >= 0 && scanY < 6400) {
-					// grab the tile
-					tile = tilemap.tiles[gfx_GetTile(&tilemap, scanX, scanY)];
-					// scale it down
-					gfx_ScaleSprite(tile, minimapSprite);
-					// draw the scaled tile
-					gfx_Sprite_NoClip(minimapSprite, drawX, drawY);
-				}
-				scanY += TILEMAP_TILE_SIZE;
-				drawY += MINIMAP_TILE_SIZE;
-			}
-			scanX += TILEMAP_TILE_SIZE; 
-			drawX += MINIMAP_TILE_SIZE;
-		}
-	}	
+		// reset the clipping window
+		gfx_SetClipRegion(0, 0, LCD_WIDTH, LCD_HEIGHT);
+	}
 }
