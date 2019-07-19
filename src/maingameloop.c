@@ -65,6 +65,7 @@ int blockchance;
 int walkwait = 1500;
 int w;
 int walkspeed = 100;
+int minimapposition = 1;
 extern int menuoption;
 
 extern gfx_tilemap_t tilemap;
@@ -140,6 +141,9 @@ y_offset = mapstarty * 32;
 	}
 	if (kb_Data[1] & kb_Trace) {
 		drawstore();
+	}
+	if (kb_Data[1] & kb_Graph) {
+		drawoptions();
 	}
 	
 	} while (!(kb_Data[6] & kb_Clear));
@@ -267,12 +271,15 @@ void drawhelmet(void) {
 	else if (playerface == 3) {helmet = (gfx_FlipSpriteY(dragon_helmet_left,flippedequip));}
 	else if (playerface == 4) {helmet = dragon_helmet_down;}
 	}
+	gfx_TransparentSprite(helmet,playerx,playery);
+	/*
 	if (player_setup[0] == 0){
 		gfx_TransparentSprite(helmet,playerx,playery);
 	}
 	else {
 		gfx_TransparentSprite(helmet,playerx,playery + 27);
 	}
+	*/
 }
 void drawchestplate(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
@@ -306,12 +313,15 @@ void drawchestplate(void) {
 	else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(dragon_chestplate_left,flippedequip));}
 	else if (playerface == 4) {chestplate = dragon_chestplate_down;}
 	}
+	gfx_TransparentSprite(chestplate,playerx,playery);
+	/*
 	if (player_setup[1] == 0){
 		gfx_TransparentSprite(chestplate,playerx,playery);
 	}
 	else {
 		gfx_TransparentSprite(chestplate,playerx,playery + 27);
 	}
+	*/
 }
 void drawboot(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
@@ -439,7 +449,7 @@ void youdied(void){
 	gfx_ScaledTransparentSprite_NoClip(tombstone,70,30,5,5);
 	gfx_SetTextFGColor(0xE8);
 	gfx_SetTextScale(2,2);
-	gfx_PrintStringXY("You died!",120,200);
+	gfx_PrintStringXY("You died!",102,192);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("[f1] Main Menu",100,210);
 	gfx_PrintStringXY("[f2] Quit",100,218);

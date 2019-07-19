@@ -40,14 +40,6 @@
 	int menucolor = (0x00);
 	int submenucolor = (0x4A);
 	int transcolor = (0xF8);
-	int editweaponx = 90;
-	int editweapony = 0;
-	int editweaponsmallx = 75;
-	int editweaponsmally = 150;
-	int editscale = 6;
-	int editscalep = 12;
-	int editpx = 140;
-	int editpy = 10;
 	
 
 	int mapshift;

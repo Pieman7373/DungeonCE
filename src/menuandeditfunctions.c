@@ -29,14 +29,14 @@ extern int menucolor;
 extern int submenucolor;
 extern int accentcolor;
 extern int transcolor;
-extern int editscale;
-extern int editscalep;
-extern int editweaponx;
-extern int editweapony;
-extern int editweaponsmallx;
-extern int editweaponsmally;
-extern int editpx;
-extern int editpy;
+int editweaponx = 90;
+int editweapony = 0;
+int editweaponsmallx = 66;
+int editweaponsmally = 152;
+int editscale = 6;
+int editscalep = 12;
+int editpx = 140;
+int editpy = 10;
 extern unsigned int x_offset;
 extern unsigned int y_offset;
 
@@ -57,6 +57,7 @@ extern int mapstarty;
 extern int tileoffsetx;
 extern int tileoffsety;
 extern kb_key_t key;
+extern int showminimap;
 
 
 gfx_sprite_t *enemySprite;
@@ -79,8 +80,9 @@ extern uint16_t defaultboss_type[];
 extern uint16_t defaultboss_xlist[];
 extern uint16_t defaultboss_ylist[];
 
+extern int minimapposition;
 
-void keywait(void) {os_GetCSC();}
+void keywait(void) { while (kb_AnyKey()); }
 
 void mainmenu(void) {
 	//type, dead, enemyx,enemyy,health
@@ -345,6 +347,137 @@ extern int walkspeed;
 	do {
 	} while (!(kb_Data[1] & kb_Window));
 }
+void drawoptions(void) {
+	int selectedcolor = (0xE3);
+	int cursorposition = 1;
+	int optionspage = 1;
+	int windowpress = 0;
+	do {
+		gfx_SetDrawBuffer();
+		gfx_SetColor(submenucolor);
+		gfx_FillRectangle(140,125,150,95);
+		gfx_SetColor(accentcolor);
+		gfx_Rectangle(140,125,150,95);
+		gfx_Rectangle(142,127,146,91);
+		submenubottombar();
+		windowpress = 0;
+		if (optionspage == 1){
+			
+			
+			if (cursorposition == 1) {gfx_SetTextFGColor(selectedcolor); }
+			else { gfx_SetTextFGColor(textcolor); }		
+				gfx_PrintStringXY("Toggle Minimap",145,132);
+					if (showminimap == 1) {gfx_PrintStringXY("<ON>",258,132); }
+					if (showminimap == 0) {gfx_PrintStringXY("<OFF>",250,132); }
+		
+			if (cursorposition == 2) {gfx_SetTextFGColor(selectedcolor); }
+			else {gfx_SetTextFGColor(textcolor); }
+					if (showminimap == 0) {gfx_SetTextFGColor(redcolor); }
+				gfx_PrintStringXY("Position: ",145,147);
+					if (minimapposition == 1) {gfx_PrintStringXY("<Top L>",236,147); }
+					if (minimapposition == 2) {gfx_PrintStringXY("<Top R>",236,147); }
+					if (minimapposition == 3) {gfx_PrintStringXY("<Btm L>",237,147); }
+					if (minimapposition == 4) {gfx_PrintStringXY("<Btm R>",237,147); }
+	
+			if (cursorposition == 3) {gfx_SetTextFGColor(selectedcolor); }
+			else {gfx_SetTextFGColor(textcolor); }
+				gfx_PrintStringXY("Enemy HP bar",145,162);
+					if (drawhealth == 1) {gfx_PrintStringXY("<ON>",258,162); }
+					if (drawhealth == 0) {gfx_PrintStringXY("<OFF>",250,162); }
+
+			if (cursorposition == 4) {gfx_SetTextFGColor(selectedcolor); }
+			else {gfx_SetTextFGColor(textcolor); }
+				gfx_PrintStringXY("=====",145,177);
+
+			if (cursorposition == 5) {gfx_SetTextFGColor(selectedcolor); }
+			else {gfx_SetTextFGColor(textcolor); }
+				gfx_PrintStringXY("====",145,192);
+
+			if (cursorposition == 6) {gfx_SetTextFGColor(selectedcolor); }
+			else {gfx_SetTextFGColor(textcolor); }
+				gfx_PrintStringXY("=====",145,207);
+		}
+	
+		gfx_SwapDraw();
+		
+	if (kb_Data[1] & kb_Window) {
+		windowpress = 1;
+	}
+	if (kb_Data[7] & kb_Left) {
+		if (optionspage == 1) {
+			if (cursorposition == 1) {
+				if (showminimap == 1) {
+					showminimap = 0;
+				}
+				else if (showminimap == 0) {
+					showminimap = 1;
+				}
+			}
+			if (cursorposition == 2) {
+				minimapposition =  (minimapposition - 1);
+				if (minimapposition <= 0) {minimapposition = 4; }
+			}
+			if (cursorposition == 3) {
+				if (drawhealth == 1) {
+					drawhealth = 0;
+				}
+				else if (drawhealth == 0) {
+					drawhealth = 1;
+				}
+			}
+		}
+	}
+	if (kb_Data[7] & kb_Right) {
+		if (optionspage == 1) {
+			if (cursorposition == 1) {
+				if (showminimap == 1) {
+					showminimap = 0;
+				}
+				else if (showminimap == 0) {
+					showminimap = 1;
+				}
+			}
+			if (cursorposition == 2) {
+				minimapposition =  (minimapposition + 1);
+				if (minimapposition > 4) {minimapposition = 1; }
+			}
+			if (cursorposition == 3) {
+				if (drawhealth == 1) {
+					drawhealth = 0;
+				}
+				else if (drawhealth == 0) {
+					drawhealth = 1;
+				}
+			}
+		}
+	}
+	if (kb_Data[7] & kb_Down) {
+		cursorposition++;
+			if (cursorposition == 2) {
+				if (showminimap == 0) {
+					cursorposition = 3;
+				}
+			}
+			if (cursorposition == 7) {
+				cursorposition = 1;
+			}
+	}
+	if (kb_Data[7] & kb_Up) {
+		cursorposition = (cursorposition - 1);
+			if (cursorposition == 2) {
+				if (showminimap == 0) {
+				cursorposition = 1;
+				}
+			}
+			if (cursorposition == 0) {
+				cursorposition = 6;
+			}
+	}
+keywait();
+kb_SetMode(MODE_3_CONTINUOUS);
+	} while (!(windowpress));
+	kb_SetMode(MODE_3_CONTINUOUS);
+}
 void submenubottombar(void){
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
@@ -467,25 +600,25 @@ void drawequipment(void) {
 	if (setnumber == 1) {
 		gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,82,3,3);
+		gfx_ScaledTransparentSprite_NoClip(leather_boots_down,50,142,3,3);
 		gfx_ScaledTransparentSprite_NoClip(club,editweaponsmallx,editweaponsmally,2,2);
 	}
 	if (setnumber == 2) {
 		gfx_ScaledTransparentSprite_NoClip(chain_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(chain_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,82,3,3);
+		gfx_ScaledTransparentSprite_NoClip(chain_boots_down,50,142,3,3);
 		gfx_ScaledTransparentSprite_NoClip(iron_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 	if (setnumber == 3) {
 		gfx_ScaledTransparentSprite_NoClip(steel_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(steel_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,82,3,3);
+		gfx_ScaledTransparentSprite_NoClip(steel_boots_down,50,142,3,3);
 		gfx_ScaledTransparentSprite_NoClip(steel_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 	if (setnumber == 4) {
 		gfx_ScaledTransparentSprite_NoClip(dragon_helmet_down,50,15,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_chestplate_down,50,25,3,3);
-		gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,82,3,3);
+		gfx_ScaledTransparentSprite_NoClip(dragon_boots_down,50,142,3,3);
 		gfx_ScaledTransparentSprite_NoClip(dragon_sword,editweaponsmallx,editweaponsmally,2,2);
 	}
 }

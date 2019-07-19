@@ -15,16 +15,16 @@
 #include "structs.h"
 
 //ENEMIES
-uint16_t defaultenemy_movelist[NUM_ENEMIES];
+uint16_t defaultenemy_movelist[NUM_ENEMIES] = {0};
 //from test map {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 
-uint16_t defaultenemy_typelist[NUM_ENEMIES];
+uint16_t defaultenemy_typelist[NUM_ENEMIES] = {4};
 //from test map {0,1,2,3,4,5,6,2,2,2,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6}
 
-uint16_t defaultenemy_xlist[NUM_ENEMIES];
+uint16_t defaultenemy_xlist[NUM_ENEMIES] = {12 };
 //from test map {76,76,76,77,77,78,78,106,107,107,106,15,52,53,54,55,56,57,58,52,53,54,55,56,57,58,25,26,27,28,29,30,31}
 
-uint16_t defaultenemy_ylist[NUM_ENEMIES];
+uint16_t defaultenemy_ylist[NUM_ENEMIES] = {187};
 //from test map {90,91,92,90,91,90,91,74,75,74,75,93,81,81,81,81,81,81,81,82,82,82,82,82,82,82,65,65,65,65,65,65,65}
 
 

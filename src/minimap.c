@@ -32,9 +32,16 @@ extern int playertiley;
 extern int showminimap;
 extern gfx_tilemap_t minimapTilemap;
 extern int playerface;
+extern int minimapposition;
 
 void minimap(void) {
 	gfx_sprite_t *playerarrow;
+		int xOffset;
+		int yOffset;
+		int minimapMaxDrawX;
+		int minimapMaxDrawY;
+		int minimapx = 3;
+		int minimapy = 3;
 	//	                /           /                                               
 	//                 /' .,,,,  ./                                                 
 	//                /';'     ,/                                                   
@@ -56,29 +63,42 @@ void minimap(void) {
 	// KryptonicDragon was here!
 	// ascii art by Ooyamaneko, according to the internet
 	if (showminimap == 1) {
-		int xOffset;
-		int yOffset;
-		int minimapMaxDrawX;
-		int minimapMaxDrawY;
 
 		xOffset = ((playertilex / TILEMAP_TILE_SIZE) - (MINIMAP_COLS / 2)) * MINIMAP_TILE_SIZE;
 		yOffset = ((playertiley / TILEMAP_TILE_SIZE) - (MINIMAP_ROWS / 2)) * MINIMAP_TILE_SIZE;
-
-		minimapMaxDrawX = MINIMAP_X + MINIMAP_WIDTH;
-		minimapMaxDrawY = MINIMAP_Y + MINIMAP_HEIGHT;
+		
+		if (minimapposition == 1) {
+			minimapx = 3;
+			minimapy = 3;
+		}
+		if (minimapposition == 2) {
+			minimapx = 217;
+			minimapy = 3;
+		}
+		if (minimapposition == 3) {
+			minimapx = 3;
+			minimapy = 151;
+		}
+		if (minimapposition == 4) {
+			minimapx = 217;
+			minimapy = 151;
+		}
+		
+		minimapMaxDrawX = minimapx + MINIMAP_WIDTH;
+		minimapMaxDrawY = minimapy + MINIMAP_HEIGHT;
 
 		if (xOffset < 0) {
-			minimapTilemap.x_loc = MINIMAP_X - xOffset;
+			minimapTilemap.x_loc = minimapx - xOffset;
 			xOffset = 0;
 		} else {
-			minimapTilemap.x_loc = MINIMAP_X;
+			minimapTilemap.x_loc = minimapy;
 		}
 
 		if (yOffset < 0) {
-			minimapTilemap.y_loc = MINIMAP_Y - yOffset;
+			minimapTilemap.y_loc = minimapy - yOffset;
 			yOffset = 0;
 		} else {
-			minimapTilemap.y_loc = MINIMAP_Y;
+			minimapTilemap.y_loc = minimapy;
 		}
 
 		if (MINIMAP_MAX_X - xOffset < MINIMAP_WIDTH) {
@@ -90,19 +110,19 @@ void minimap(void) {
 
 
 		// limit the area we can draw within
-		gfx_SetClipRegion(MINIMAP_X, MINIMAP_Y, minimapMaxDrawX, minimapMaxDrawY);
+		gfx_SetClipRegion(minimapx, minimapy, minimapMaxDrawX, minimapMaxDrawY);
 
 		// draw the area for where the minimap will be drawn. This is necessary 
 		// so that there is a background for tiles that aren't drawn (outside of the world)
 		gfx_SetColor(0x18);
-		gfx_FillRectangle_NoClip(MINIMAP_X - 2, MINIMAP_Y - 2, MINIMAP_WIDTH + 4, MINIMAP_HEIGHT + 4);
+		gfx_FillRectangle_NoClip(minimapx - 2, minimapy - 2, MINIMAP_WIDTH + 4, MINIMAP_HEIGHT + 4);
 		gfx_SetColor(0x00);
-		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+		gfx_FillRectangle_NoClip(minimapx, minimapy, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 		
 		
 		// draw the minimap
 		gfx_Tilemap(&minimapTilemap, xOffset, yOffset);
-		//11x8
+		
 		if (playerface == 1) {
 			playerarrow = player_arrow_left;
 		}
@@ -115,7 +135,7 @@ void minimap(void) {
 		if (playerface == 4) {
 			playerarrow = player_arrow_down;
 		}
-			gfx_TransparentSprite(playerarrow , MINIMAP_X + 50, MINIMAP_Y + 35);
+			gfx_TransparentSprite(playerarrow , minimapx + 50, minimapy + 35);
 								  
 		// reset the clipping window
 		gfx_SetClipRegion(0, 0, LCD_WIDTH, LCD_HEIGHT);
