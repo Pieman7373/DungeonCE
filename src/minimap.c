@@ -31,8 +31,10 @@ extern int playertilex;
 extern int playertiley;
 extern int showminimap;
 extern gfx_tilemap_t minimapTilemap;
+extern int playerface;
 
 void minimap(void) {
+	gfx_sprite_t *playerarrow;
 	//	                /           /                                               
 	//                 /' .,,,,  ./                                                 
 	//                /';'     ,/                                                   
@@ -92,12 +94,29 @@ void minimap(void) {
 
 		// draw the area for where the minimap will be drawn. This is necessary 
 		// so that there is a background for tiles that aren't drawn (outside of the world)
+		gfx_SetColor(0x18);
+		gfx_FillRectangle_NoClip(MINIMAP_X - 2, MINIMAP_Y - 2, MINIMAP_WIDTH + 4, MINIMAP_HEIGHT + 4);
 		gfx_SetColor(0x00);
 		gfx_FillRectangle_NoClip(MINIMAP_X, MINIMAP_Y, MINIMAP_WIDTH, MINIMAP_HEIGHT);
-
+		
+		
 		// draw the minimap
 		gfx_Tilemap(&minimapTilemap, xOffset, yOffset);
-
+		//11x8
+		if (playerface == 1) {
+			playerarrow = player_arrow_left;
+		}
+		if (playerface == 2) {
+			playerarrow = player_arrow_up;
+		}
+		if (playerface == 3) {
+			playerarrow = player_arrow_right;
+		}
+		if (playerface == 4) {
+			playerarrow = player_arrow_down;
+		}
+			gfx_TransparentSprite(playerarrow , MINIMAP_X + 50, MINIMAP_Y + 35);
+								  
 		// reset the clipping window
 		gfx_SetClipRegion(0, 0, LCD_WIDTH, LCD_HEIGHT);
 	}

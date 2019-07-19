@@ -5,7 +5,7 @@ using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 transparent color index : 0
 transparent color : 0xFC78
-75:
+79:
  editmenunumbers : converted!
  mainmenulogo : converted!
  player_naked_down : converted!
@@ -81,6 +81,10 @@ transparent color : 0xFC78
  money20 : converted!
  money5 : converted!
  relic1 : converted!
+ player_arrow_down : converted!
+ player_arrow_left : converted!
+ player_arrow_right : converted!
+ player_arrow_up : converted!
 
 --- tiles_gfx (C) ---
 using built-in xlibc palette ...
@@ -162,8 +166,12 @@ exporting appvar: dungeon.8xv
  bokoblin_dark
  bokoblin_light
  relic1
+ player_arrow_down
+ player_arrow_left
+ player_arrow_right
+ player_arrow_up
 
-converted in 2 s
+converted in 1 s
 
 [warning] image quality might be too low.
 please try grouping similar images, reducing image colors, 
