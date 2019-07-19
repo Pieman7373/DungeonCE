@@ -121,8 +121,8 @@ void main(void) {
     // initialize the minimap tilemap structure
     minimapTilemap.map = tilemap_map;
 	minimapTilemap.tiles = ((gfx_sprite_t**)minimapTilesetPointers);
-	minimapTilemap.type_width  = gfx_tile_4_pixel;
-    minimapTilemap.type_height = gfx_tile_4_pixel;
+	minimapTilemap.type_width  = gfx_tile_no_pow2;
+    minimapTilemap.type_height = gfx_tile_no_pow2;
     minimapTilemap.tile_height = MINIMAP_TILE_SIZE;
     minimapTilemap.tile_width  = MINIMAP_TILE_SIZE;
     minimapTilemap.draw_height = MINIMAP_ROWS;

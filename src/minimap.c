@@ -36,9 +36,14 @@ void minimap(void) {
 	if (showminimap == 1) {
 		int xOffset;
 		int yOffset;
+		int minimapMaxDrawX;
+		int minimapMaxDrawY;
 
-		xOffset = (playertilex - (MINIMAP_COLS * TILEMAP_TILE_SIZE / 2)) / MINIMAP_SCALE_FACTOR;
-		yOffset = (playertiley  - (MINIMAP_ROWS * TILEMAP_TILE_SIZE / 2)) / MINIMAP_SCALE_FACTOR;
+		xOffset = ((playertilex / TILEMAP_TILE_SIZE) - (MINIMAP_COLS / 2)) * MINIMAP_TILE_SIZE;
+		yOffset = ((playertiley / TILEMAP_TILE_SIZE) - (MINIMAP_ROWS / 2)) * MINIMAP_TILE_SIZE;
+
+		minimapMaxDrawX = MINIMAP_X + MINIMAP_WIDTH;
+		minimapMaxDrawY = MINIMAP_Y + MINIMAP_HEIGHT;
 
 		if (xOffset < 0) {
 			minimapTilemap.x_loc = MINIMAP_X - xOffset;
@@ -54,8 +59,16 @@ void minimap(void) {
 			minimapTilemap.y_loc = MINIMAP_Y;
 		}
 
+		if (MINIMAP_MAX_X - xOffset < MINIMAP_WIDTH) {
+			minimapMaxDrawX -= MINIMAP_WIDTH - (MINIMAP_MAX_X - xOffset);
+		}
+		if (MINIMAP_MAX_Y - yOffset < MINIMAP_HEIGHT) {
+			minimapMaxDrawY -= MINIMAP_HEIGHT - (MINIMAP_MAX_Y - yOffset);
+		}
+
+
 		// limit the area we can draw within
-		gfx_SetClipRegion(MINIMAP_X, MINIMAP_Y, MINIMAP_X + (MINIMAP_MAX_X - xOffset), MINIMAP_Y + (MINIMAP_MAX_Y - yOffset));
+		gfx_SetClipRegion(MINIMAP_X, MINIMAP_Y, minimapMaxDrawX, minimapMaxDrawY);
 
 		// draw the area for where the minimap will be drawn. This is necessary 
 		// so that there is a background for tiles that aren't drawn (outside of the world)
