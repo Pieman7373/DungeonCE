@@ -42,7 +42,8 @@ gfx_sprite_t *weapon;
 gfx_sprite_t *weaponrotated;
 gfx_sprite_t *flippedequip;
 gfx_sprite_t *playerwalk;
-gfx_sprite_t *playerstate;
+gfx_sprite_t *bootanimation;
+gfx_sprite_t *animation;
 gfx_sprite_t *player_health;
 gfx_sprite_t *helmet;
 gfx_sprite_t *chestplate;
@@ -80,6 +81,9 @@ extern uint16_t default_potxlist[];
 int showminimap = 1;
 
 int walkanimation = 1;
+int animationcount_min = 1;
+int animationcount_mid = 3;
+int animationcount_max = 6;
 
 //Start of the game
 void menuloop(void){
@@ -151,8 +155,8 @@ y_offset = mapstarty * 32;
 	}
 	
 	walkanimation++;
-		if (walkanimation > 6) {
-			walkanimation = 1;
+		if (walkanimation > animationcount_max) {
+			walkanimation = animationcount_min;
 		}
 		
 	} while (!(kb_Data[6] & kb_Clear));
@@ -234,42 +238,36 @@ void mapshifter(void) {
 void drawcharacter(void) {
 gfx_UninitedSprite(playerwalk, 32,32);
 	if (playerface == 1) {
-		playerstate = player_naked_left;
+		animation = player_naked_left;
 	}
 	if (playerface == 2) {
-		if (walkanimation <= 3) {
-			playerstate = player_naked_up;
+		if (walkanimation <= animationcount_mid) {
+			animation = player_naked_up;
 		}
-		if (walkanimation > 3) {
+		if (walkanimation > animationcount_mid) {
 			gfx_FlipSpriteY(player_naked_up,playerwalk);
-			playerstate = playerwalk;
+			animation = playerwalk;
 		}
 	}
 	if (playerface == 3) {
-		playerstate = player_naked_right;
+		animation = player_naked_right;
 	}
 	if (playerface == 4) {
-		if (walkanimation <= 3) {
-			playerstate = player_naked_down;
+		if (walkanimation <= animationcount_mid) {
+			animation = player_naked_down;
 		}
-		if (walkanimation > 3) {
+		if (walkanimation > animationcount_mid) {
 			gfx_FlipSpriteY(player_naked_down,playerwalk);
-			playerstate = playerwalk;
+			animation = playerwalk;
 		}
 	}
-gfx_TransparentSprite(playerstate,playerx,playery);
+gfx_TransparentSprite(animation,playerx,playery);
 drawhelmet();
 drawchestplate();
 drawboot();
 }
 void drawhelmet(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
-	if (player_setup[0] == 0){
-	if (playerface == 1) {helmet = player_naked_left;}
-	else if (playerface == 2) {helmet = player_naked_up;}
-	else if (playerface == 3) {helmet = player_naked_right;}
-	else if (playerface == 4) {helmet = player_naked_down;}
-	}
 	if (player_setup[0] == 1){
 	if (playerface == 1) {helmet = leather_helmet_left;}
 	else if (playerface == 2) {helmet = leather_helmet_up;}
@@ -294,98 +292,86 @@ void drawhelmet(void) {
 	else if (playerface == 3) {helmet = (gfx_FlipSpriteY(dragon_helmet_left,flippedequip));}
 	else if (playerface == 4) {helmet = dragon_helmet_down;}
 	}
+	if (player_setup[0] != 0) {
 	gfx_TransparentSprite(helmet,playerx,playery);
-	/*
-	if (player_setup[0] == 0){
-		gfx_TransparentSprite(helmet,playerx,playery);
 	}
-	else {
-		gfx_TransparentSprite(helmet,playerx,playery + 27);
-	}
-	*/
 }
 void drawchestplate(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
-	if (player_setup[1] == 0){
-	if (playerface == 1) {chestplate = player_naked_left;}
-	else if (playerface == 2) {chestplate = player_naked_up;}
-	else if (playerface == 3) {chestplate = player_naked_right;}
-	else if (playerface == 4) {chestplate = player_naked_down;}
-	}
 	if (player_setup[1] == 1){
-	if (playerface == 1) {chestplate = leather_chestplate_left;}
-	else if (playerface == 2) {chestplate = leather_chestplate_up;}
-	else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(leather_chestplate_left,flippedequip));}
-	else if (playerface == 4) {chestplate = leather_chestplate_down;}
+		if (playerface == 1) {chestplate = leather_chestplate_left;}
+		else if (playerface == 2) {chestplate = leather_chestplate_up;}
+		else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(leather_chestplate_left,flippedequip));}
+		else if (playerface == 4) {chestplate = leather_chestplate_down;}
 	}
 	else if (player_setup[1] == 2){
-	if (playerface == 1) {chestplate = chain_chestplate_left;}
-	else if (playerface == 2) {chestplate = chain_chestplate_up;}
-	else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(chain_chestplate_left,flippedequip));}
-	else if (playerface == 4) {chestplate = chain_chestplate_down;}
+		if (playerface == 1) {chestplate = chain_chestplate_left;}
+		else if (playerface == 2) {chestplate = chain_chestplate_up;}
+		else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(chain_chestplate_left,flippedequip));}
+		else if (playerface == 4) {chestplate = chain_chestplate_down;}
 	}
 	else if (player_setup[1] == 3){
-	if (playerface == 1) {chestplate = steel_chestplate_left;}
-	else if (playerface == 2) {chestplate = steel_chestplate_up;}
-	else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(steel_chestplate_left,flippedequip));}
-	else if (playerface == 4) {chestplate = steel_chestplate_down;}
+		if (playerface == 1) {chestplate = steel_chestplate_left;}
+		else if (playerface == 2) {chestplate = steel_chestplate_up;}
+		else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(steel_chestplate_left,flippedequip));}
+		else if (playerface == 4) {chestplate = steel_chestplate_down;}
 	}
 	else if (player_setup[1] == 4){
-	if (playerface == 1) {chestplate = dragon_chestplate_left;}
-	else if (playerface == 2) {chestplate = dragon_chestplate_up;}
-	else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(dragon_chestplate_left,flippedequip));}
-	else if (playerface == 4) {chestplate = dragon_chestplate_down;}
+		if (playerface == 1) {chestplate = dragon_chestplate_left;}
+		else if (playerface == 2) {chestplate = dragon_chestplate_up;}
+		else if (playerface == 3) {chestplate = (gfx_FlipSpriteY(dragon_chestplate_left,flippedequip));}
+		else if (playerface == 4) {chestplate = dragon_chestplate_down;}
 	}
-	gfx_TransparentSprite(chestplate,playerx,playery);
-	/*
-	if (player_setup[1] == 0){
+	if (player_setup[1] != 0){
 		gfx_TransparentSprite(chestplate,playerx,playery);
 	}
-	else {
-		gfx_TransparentSprite(chestplate,playerx,playery + 27);
-	}
-	*/
 }
 void drawboot(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
-	if (player_setup[2] == 0){
-	if (playerface == 1) {boots = player_naked_left;}
-	else if (playerface == 2) {boots = player_naked_up;}
-	else if (playerface == 3) {boots = player_naked_right;}
-	else if (playerface == 4) {boots = player_naked_down;}
-	}
+	gfx_UninitedSprite(bootanimation, 32, 32);
 	if (player_setup[2] == 1){
-	if (playerface == 1) {boots = leather_boots_left;}
-	else if (playerface == 2) {boots = leather_boots_up;}
-	else if (playerface == 3) {boots = (gfx_FlipSpriteY(leather_boots_left,flippedequip));}
-	else if (playerface == 4) {boots = leather_boots_down;}
+		if (playerface == 1) {boots = leather_boots_left;}
+		else if (playerface == 2) {boots = leather_boots_up;}
+		else if (playerface == 3) {boots = (gfx_FlipSpriteY(leather_boots_left,flippedequip));}
+		else if (playerface == 4) {boots = leather_boots_down;}
 	}
 	else if (player_setup[2] == 2){
 		if (playerface == 1) {boots = chain_boots_left;}
-	else if (playerface == 2) {boots = chain_boots_up;}
-	else if (playerface == 3) {boots = (gfx_FlipSpriteY(chain_boots_left,flippedequip));}
-	else if (playerface == 4) {boots = chain_boots_down;}
+		else if (playerface == 2) {boots = chain_boots_up;}
+		else if (playerface == 3) {boots = (gfx_FlipSpriteY(chain_boots_left,flippedequip));}
+		else if (playerface == 4) {boots = chain_boots_down;}
 	}
 	else if (player_setup[2] == 3){
 		if (playerface == 1) {boots = steel_boots_left;}
-	else if (playerface == 2) {boots = steel_boots_up;}
-	else if (playerface == 3) {boots = (gfx_FlipSpriteY(steel_boots_left,flippedequip));}
-	else if (playerface == 4) {boots = steel_boots_down;}
+		else if (playerface == 2) {boots = steel_boots_up;}
+		else if (playerface == 3) {boots = (gfx_FlipSpriteY(steel_boots_left,flippedequip));}
+		else if (playerface == 4) {boots = steel_boots_down;}
 	}
 	else if (player_setup[2] == 4){
-	if (playerface == 1) {boots = dragon_boots_left;}
-	else if (playerface == 2) {boots = dragon_boots_up;}
-	else if (playerface == 3) {boots = (gfx_FlipSpriteY(dragon_boots_left,flippedequip));}
-	else if (playerface == 4) {boots = dragon_boots_down;}
+		if (playerface == 1) {boots = dragon_boots_left;}
+		else if (playerface == 2) {boots = dragon_boots_up;}
+		else if (playerface == 3) {boots = (gfx_FlipSpriteY(dragon_boots_left,flippedequip));}
+		else if (playerface == 4) {boots = dragon_boots_down;}
 	}
 	
-	if (player_setup[2] == 0){
-		gfx_TransparentSprite(boots,playerx,playery);
+if (walkanimation <= animationcount_mid) {
+	gfx_TransparentSprite(boots,playerx,playery + 27);
+}
+	
+else if (walkanimation > animationcount_mid) {
+	if ((playerface == 2) || (playerface == 4)) {
+		gfx_FlipSpriteY(boots,bootanimation);
 	}
-	else {
-		gfx_TransparentSprite(boots,playerx,playery + 27);
+	if ((playerface == 1) || (playerface == 3)) {
+		bootanimation = boots;
+	}
+	if (player_setup[2] != 0){
+		gfx_TransparentSprite(bootanimation,playerx,playery + 27);
 	}
 }
+	
+}
+
 void drawplayerattack(void){
 	
 	gfx_UninitedSprite(weaponrotated, 32, 32);
