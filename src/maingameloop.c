@@ -41,6 +41,8 @@ int playertiley;
 gfx_sprite_t *weapon;
 gfx_sprite_t *weaponrotated;
 gfx_sprite_t *flippedequip;
+gfx_sprite_t *playerwalk;
+gfx_sprite_t *playerstate;
 gfx_sprite_t *player_health;
 gfx_sprite_t *helmet;
 gfx_sprite_t *chestplate;
@@ -76,6 +78,8 @@ extern uint16_t default_potylist[];
 extern uint16_t default_potxlist[];
 
 int showminimap = 1;
+
+int walkanimation = 1;
 
 //Start of the game
 void menuloop(void){
@@ -115,7 +119,7 @@ void maingameloop(void){
 x_offset = mapstartx * 32;
 y_offset = mapstarty * 32;
 	do{
-			
+		
 		(goleft = 0);
 		(goright = 0);
 		(goup = 0);
@@ -146,6 +150,11 @@ y_offset = mapstarty * 32;
 		drawoptions();
 	}
 	
+	walkanimation++;
+		if (walkanimation > 6) {
+			walkanimation = 1;
+		}
+		
 	} while (!(kb_Data[6] & kb_Clear));
 	menuloop();
 }
@@ -191,7 +200,7 @@ void mapshifter(void) {
 	inputy = &playertilemapy;
 	player = 1;
 	
-	for(w=0; w < (walkwait - (walkspeed*10)); w++) {}
+	//for(w=0; w < (walkwait - (walkspeed*10)); w++) {}
 	
 	if (kb_Data[7] & kb_Left) {
 		(playerface = 1);
@@ -223,18 +232,32 @@ void mapshifter(void) {
 	}
 }
 void drawcharacter(void) {
+gfx_UninitedSprite(playerwalk, 32,32);
 	if (playerface == 1) {
-		gfx_TransparentSprite(player_naked_left,playerx,playery);
+		playerstate = player_naked_left;
 	}
-	else if (playerface == 2) {
-		gfx_TransparentSprite(player_naked_up,playerx,playery);
+	if (playerface == 2) {
+		if (walkanimation <= 3) {
+			playerstate = player_naked_up;
+		}
+		if (walkanimation > 3) {
+			gfx_FlipSpriteY(player_naked_up,playerwalk);
+			playerstate = playerwalk;
+		}
 	}
-	else if (playerface == 3) {
-		gfx_TransparentSprite(player_naked_right,playerx,playery);
+	if (playerface == 3) {
+		playerstate = player_naked_right;
 	}
-	else if (playerface == 4) {
-		gfx_TransparentSprite(player_naked_down,playerx,playery);
+	if (playerface == 4) {
+		if (walkanimation <= 3) {
+			playerstate = player_naked_down;
+		}
+		if (walkanimation > 3) {
+			gfx_FlipSpriteY(player_naked_down,playerwalk);
+			playerstate = playerwalk;
+		}
 	}
+gfx_TransparentSprite(playerstate,playerx,playery);
 drawhelmet();
 drawchestplate();
 drawboot();

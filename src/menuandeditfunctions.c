@@ -323,25 +323,27 @@ extern int blockchance;
 extern int playerdamage;
 extern int walkspeed;
 
+//add level bar, and restriction on which armor you can put on, based on level
+	
 	gfx_SetDrawBuffer();
 	gfx_SetColor(submenucolor);
-	gfx_FillRectangle(140,125,150,95);
+	gfx_FillRectangle(140,115,150,105);
 	gfx_SetColor(accentcolor);
-	gfx_Rectangle(140,125,150,95);
-	gfx_Rectangle(142,127,146,91);
+	gfx_Rectangle(140,115,150,105);
+	gfx_Rectangle(142,117,146,101);
 	submenubottombar();
-	gfx_PrintStringXY("Money:  ",150,132);
+	gfx_PrintStringXY("Money:  ",150,122);
 	gfx_PrintUInt(player_setup[7],sizeof(player_setup[7]));
-	gfx_PrintStringXY("Player Damage:  ",150,147);
+	gfx_PrintStringXY("Player Damage:  ",150,137);
 	gfx_PrintInt(playerdamage,2);
-	gfx_PrintStringXY("Damage Mult. :  ",150,162);
+	gfx_PrintStringXY("Damage Mult. :  ",150,152);
 	gfx_PrintInt(dmgmultiplier,2);
-	gfx_PrintStringXY("Block % Chance:  ",150,177);
+	gfx_PrintStringXY("Block % Chance:  ",150,167);
 	gfx_PrintInt(blockchance,2);
 	gfx_PrintString("%");
-	gfx_PrintStringXY("Walk Speed:  ",150,192);
+	gfx_PrintStringXY("Walk Speed:  ",150,182);
 	gfx_PrintInt(walkspeed,2);
-	gfx_PrintStringXY("Health:  ",150,207);
+	gfx_PrintStringXY("Health:  ",150,197);
 	gfx_PrintInt(player_setup[6],sizeof(player_setup[6]));
 	gfx_SwapDraw();
 	do {
@@ -658,6 +660,7 @@ void resetrelics(void) {
 		relic[i].r_y = default_relicylist[i];
 	}
 }
+
 void resetbosses(void) {
 	for (i = 0; i < NUM_BOSS; i++) {
 		boss[i].boss_type = defaultboss_type[i];
