@@ -29,6 +29,7 @@ extern int menucolor;
 extern int submenucolor;
 extern int accentcolor;
 extern int transcolor;
+extern int playerface;
 int editweaponx = 90;
 int editweapony = 0;
 int editweaponsmallx = 66;
@@ -497,6 +498,7 @@ void loadsave(void) {
 void newgame(void) {
 	player_setup[6] = 100;
 	player_setup[7] = 0;
+	playerface = 4;
 	for (i=0;i<6;i++){
 		purchased[i] = 0;
 	}

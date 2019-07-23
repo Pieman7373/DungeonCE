@@ -33,7 +33,7 @@ int tileoffsety;
 int player;
 
 //1=left,2=up,3=right,4=down
-int playerface = 2;
+int playerface;
 int playerx;
 int playery;
 int playertilex;
