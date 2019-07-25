@@ -58,7 +58,7 @@ typedef struct relic {
 	uint24_t r_x;
 	uint24_t r_y;
 } relic_t;
-	
+//extern relic_t relic[NUM_RELICS];
 
 #define NUM_BOSS  3
 #define BOSS_TYPE
@@ -75,5 +75,6 @@ typedef struct boss {
 	uint24_t b_x;
 	uint24_t b_y;
 } boss_t;
+//extern boss_t boss[NUM_BOSS];
 
 #endif

@@ -43,10 +43,11 @@ uint16_t default_potylist[NUM_POTS] = {194,194};
 
 
 //RELICS
-uint16_t default_relicxlist[NUM_RELICS] = {10,11,12,13,14};
-uint16_t default_relicylist[NUM_RELICS] = {10,11,12,13,14};
 
 
+
+//boss_t boss[];
+//relic_t relic[];
 
 //BOSSES
 uint16_t defaultboss_type[NUM_BOSS] = {1,2,3};

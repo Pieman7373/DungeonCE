@@ -78,6 +78,8 @@ money_t money[NUM_POTS];
 extern uint16_t default_potylist[];
 extern uint16_t default_potxlist[];
 
+extern int mmhotkey;
+
 int showminimap = 1;
 
 int walkanimation = 1;
@@ -153,7 +155,25 @@ y_offset = mapstarty * 32;
 	if (kb_Data[1] & kb_Graph) {
 		drawoptions();
 	}
-	
+	if (kb_Data[2] & kb_Alpha) {
+		if (mmhotkey == 1) {
+			if (showminimap == 1){showminimap = 0;}
+			else if (showminimap == 0){showminimap = 1;}
+		}
+	}
+	if (kb_Data[1] & kb_Mode) {
+		if (mmhotkey == 2) {
+			if (showminimap == 1){showminimap = 0;}
+			else if (showminimap == 0){showminimap = 1;}
+		}
+	}
+	if (kb_Data[1] & kb_Del) {
+		if (mmhotkey == 3) {
+			if (showminimap == 1){showminimap = 0;}
+			else if (showminimap == 0){showminimap = 1;}
+		}
+	}
+		
 	walkanimation++;
 		if (walkanimation > animationcount_max) {
 			walkanimation = animationcount_min;
@@ -329,47 +349,50 @@ void drawchestplate(void) {
 void drawboot(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
 	gfx_UninitedSprite(bootanimation, 32, 32);
-	if (player_setup[2] == 1){
-		if (playerface == 1) {boots = leather_boots_left;}
-		else if (playerface == 2) {boots = leather_boots_up;}
-		else if (playerface == 3) {boots = (gfx_FlipSpriteY(leather_boots_left,flippedequip));}
-		else if (playerface == 4) {boots = leather_boots_down;}
+	//beck: if player_setup[2] is zero, "boots" will never be set
+	if (player_setup[2]){
+		if (player_setup[2] == 1){
+			if (playerface == 1) {boots = leather_boots_left;}
+			else if (playerface == 2) {boots = leather_boots_up;}
+			else if (playerface == 3) {boots = (gfx_FlipSpriteY(leather_boots_left,flippedequip));}
+			else if (playerface == 4) {boots = leather_boots_down;}
+		}
+		else if (player_setup[2] == 2){
+			if (playerface == 1) {boots = chain_boots_left;}
+			else if (playerface == 2) {boots = chain_boots_up;}
+			else if (playerface == 3) {boots = (gfx_FlipSpriteY(chain_boots_left,flippedequip));}
+			else if (playerface == 4) {boots = chain_boots_down;}
+		}
+		else if (player_setup[2] == 3){
+			if (playerface == 1) {boots = steel_boots_left;}
+			else if (playerface == 2) {boots = steel_boots_up;}
+			else if (playerface == 3) {boots = (gfx_FlipSpriteY(steel_boots_left,flippedequip));}
+			else if (playerface == 4) {boots = steel_boots_down;}
+		}
+		else if (player_setup[2] == 4){
+			if (playerface == 1) {boots = dragon_boots_left;}
+			else if (playerface == 2) {boots = dragon_boots_up;}
+			else if (playerface == 3) {boots = (gfx_FlipSpriteY(dragon_boots_left,flippedequip));}
+			else if (playerface == 4) {boots = dragon_boots_down;}
+		}
+
+		//Only draw the sprite "boots" if it was set.
+		//The only case it gets set is when player_setup[2] is not zero
+		if (walkanimation <= animationcount_mid) {
+			gfx_TransparentSprite(boots,playerx,playery + 27);
+		}
+		else if (walkanimation > animationcount_mid) {
+			if ((playerface == 2) || (playerface == 4)) {
+				gfx_FlipSpriteY(boots,bootanimation);
+			}
+			if ((playerface == 1) || (playerface == 3)) {
+				bootanimation = boots;
+			}
+			if (player_setup[2] != 0){
+				gfx_TransparentSprite(bootanimation,playerx,playery + 27);
+			}
+		}
 	}
-	else if (player_setup[2] == 2){
-		if (playerface == 1) {boots = chain_boots_left;}
-		else if (playerface == 2) {boots = chain_boots_up;}
-		else if (playerface == 3) {boots = (gfx_FlipSpriteY(chain_boots_left,flippedequip));}
-		else if (playerface == 4) {boots = chain_boots_down;}
-	}
-	else if (player_setup[2] == 3){
-		if (playerface == 1) {boots = steel_boots_left;}
-		else if (playerface == 2) {boots = steel_boots_up;}
-		else if (playerface == 3) {boots = (gfx_FlipSpriteY(steel_boots_left,flippedequip));}
-		else if (playerface == 4) {boots = steel_boots_down;}
-	}
-	else if (player_setup[2] == 4){
-		if (playerface == 1) {boots = dragon_boots_left;}
-		else if (playerface == 2) {boots = dragon_boots_up;}
-		else if (playerface == 3) {boots = (gfx_FlipSpriteY(dragon_boots_left,flippedequip));}
-		else if (playerface == 4) {boots = dragon_boots_down;}
-	}
-	
-if (walkanimation <= animationcount_mid) {
-	gfx_TransparentSprite(boots,playerx,playery + 27);
-}
-	
-else if (walkanimation > animationcount_mid) {
-	if ((playerface == 2) || (playerface == 4)) {
-		gfx_FlipSpriteY(boots,bootanimation);
-	}
-	if ((playerface == 1) || (playerface == 3)) {
-		bootanimation = boots;
-	}
-	if (player_setup[2] != 0){
-		gfx_TransparentSprite(bootanimation,playerx,playery + 27);
-	}
-}
-	
 }
 
 void drawplayerattack(void){

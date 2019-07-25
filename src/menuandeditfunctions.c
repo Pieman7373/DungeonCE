@@ -40,6 +40,7 @@ int editpx = 140;
 int editpy = 10;
 extern unsigned int x_offset;
 extern unsigned int y_offset;
+int mmhotkey = 0;
 
 /*
 uint8_t enemytype;
@@ -60,17 +61,6 @@ extern int tileoffsety;
 extern kb_key_t key;
 extern int showminimap;
 
-
-gfx_sprite_t *enemySprite;
-enemy_t  enemy[NUM_ENEMIES];
-extern money_t money[];
-extern relic_t relic[];
-extern boss_t boss[];
-int ii;
-int redcolor = 0xA8;
-int purchased[5] = {0,0,0,0,0};
-//1=2X, 2=3X, 3=4X, 4=5X, 5=6X
-
 extern uint16_t defaultenemy_movelist[];
 extern uint16_t defaultenemy_typelist[];
 extern uint16_t defaultenemy_xlist[];
@@ -81,12 +71,20 @@ extern uint16_t defaultboss_type[];
 extern uint16_t defaultboss_xlist[];
 extern uint16_t defaultboss_ylist[];
 
+gfx_sprite_t *enemySprite;
+enemy_t  enemy[NUM_ENEMIES];
+extern money_t money[];
+
+int ii;
+int redcolor = 0xA8;
+int purchased[5] = {0,0,0,0,0};
+//1=2X, 2=3X, 3=4X, 4=5X, 5=6X
+
 extern int minimapposition;
 
 void keywait(void) { while (kb_AnyKey()); }
 
 void mainmenu(void) {
-	//type, dead, enemyx,enemyy,health
 	
 	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
@@ -99,7 +97,6 @@ void mainmenu(void) {
 	gfx_PrintStringXY("1. Continue",68,130);
 	gfx_PrintStringXY("2. New Game",68,155);
 	gfx_PrintStringXY("3. Edit Player",68,180);
-    //gfx_TransparentSprite(menuwords,100,130);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("By: Pieman7373   2019",8,228);
 	gfx_SwapDraw();
@@ -121,31 +118,6 @@ void mainmenu(void) {
 } while (!((menuoption) || (kb_Data[6] & kb_Clear)));
  
 }
-//Options Menu
-/*
-void options(void) {
-	gfx_SetDrawBuffer();
-	gfx_FillScreen(menucolor);
-	gfx_SetColor(accentcolor);
-	gfx_Rectangle(0,0,320,240);
-	gfx_Rectangle(2,2,316,236);
-	gfx_SetColor(submenucolor);
-	gfx_FillRectangle(40,60,215,100);
-	gfx_SetColor(accentcolor);
-	gfx_Rectangle(40,60,215,100);
-	gfx_Rectangle(42,62,211,96);
-	gfx_TransparentSprite(optionsmenu,45,65);
-	gfx_SwapDraw();
-		do {
-			if (kb_Data[3] & kb_1) {
-				playercreate();
-			}
-			if (kb_Data[4] & kb_2){
-				menuyes = 3;
-			}
-		} while (menuyes != 3);
-}
-*/
 void drawsavemenu(void){
 	
 	gfx_SetDrawBuffer();
@@ -376,21 +348,26 @@ void drawoptions(void) {
 			if (cursorposition == 2) {gfx_SetTextFGColor(selectedcolor); }
 			else {gfx_SetTextFGColor(textcolor); }
 					if (showminimap == 0) {gfx_SetTextFGColor(redcolor); }
-				gfx_PrintStringXY("Position: ",145,147);
-					if (minimapposition == 1) {gfx_PrintStringXY("<Top L>",236,147); }
-					if (minimapposition == 2) {gfx_PrintStringXY("<Top R>",236,147); }
-					if (minimapposition == 3) {gfx_PrintStringXY("<Btm L>",237,147); }
-					if (minimapposition == 4) {gfx_PrintStringXY("<Btm R>",237,147); }
-	
+				gfx_PrintStringXY("MM Position: ",145,147);
+					if (minimapposition == 1) {gfx_PrintStringXY("<Top L>",239,148); }
+					if (minimapposition == 2) {gfx_PrintStringXY("<Top R>",239,148); }
+					if (minimapposition == 3) {gfx_PrintStringXY("<Btm L>",240,148); }
+					if (minimapposition == 4) {gfx_PrintStringXY("<Btm R>",240,148); }
+
 			if (cursorposition == 3) {gfx_SetTextFGColor(selectedcolor); }
 			else {gfx_SetTextFGColor(textcolor); }
-				gfx_PrintStringXY("Enemy HP bar",145,162);
-					if (drawhealth == 1) {gfx_PrintStringXY("<ON>",258,162); }
-					if (drawhealth == 0) {gfx_PrintStringXY("<OFF>",250,162); }
-
+				gfx_PrintStringXY("MM Hotkey",145,162);
+					if (mmhotkey == 0) {gfx_PrintStringXY("<None>",242,162);}
+					if (mmhotkey == 1) {gfx_PrintStringXY("<[alpha]>",227,162);}
+					if (mmhotkey == 2) {gfx_PrintStringXY("<[mode]>",232,162);}
+					if (mmhotkey == 3) {gfx_PrintStringXY("<[del]>",243,162);}
+			
+	
 			if (cursorposition == 4) {gfx_SetTextFGColor(selectedcolor); }
-			else {gfx_SetTextFGColor(textcolor); }
-				gfx_PrintStringXY("=====",145,177);
+				else {gfx_SetTextFGColor(textcolor); }
+				gfx_PrintStringXY("Enemy HP bar",145,177);
+					if (drawhealth == 1) {gfx_PrintStringXY("<ON>",258,177); }
+					if (drawhealth == 0) {gfx_PrintStringXY("<OFF>",250,177); }
 
 			if (cursorposition == 5) {gfx_SetTextFGColor(selectedcolor); }
 			else {gfx_SetTextFGColor(textcolor); }
@@ -421,6 +398,12 @@ void drawoptions(void) {
 				if (minimapposition <= 0) {minimapposition = 4; }
 			}
 			if (cursorposition == 3) {
+				mmhotkey = mmhotkey++;
+					if (mmhotkey > 3){
+						mmhotkey = 0;
+					}
+			}
+			if (cursorposition == 4) {
 				if (drawhealth == 1) {
 					drawhealth = 0;
 				}
@@ -445,6 +428,12 @@ void drawoptions(void) {
 				if (minimapposition > 4) {minimapposition = 1; }
 			}
 			if (cursorposition == 3) {
+				mmhotkey = mmhotkey--;
+					if (mmhotkey < 0){
+						mmhotkey = 3;
+					}
+			}
+			if (cursorposition == 4) {
 				if (drawhealth == 1) {
 					drawhealth = 0;
 				}
@@ -505,6 +494,7 @@ void newgame(void) {
 	resetmoney();
 	resetenemies();
 	resetpots();
+	
 	//resetrelics();
 	//resetbosses();
 }
@@ -658,8 +648,6 @@ void resetrelics(void) {
 		relic[i].relicshow = 0;
 		relic[i].relictaken = 0;
 		relic[i].relicnumber = i;
-		relic[i].r_x = default_relicxlist[i];
-		relic[i].r_y = default_relicylist[i];
 	}
 }
 
