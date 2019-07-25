@@ -192,8 +192,8 @@ void setmapshift(void) {
 void drawmap(void) {
 	playerx = ((x_offset/x_offset)+spritexoffset);
 	playery = ((y_offset/y_offset)+spriteyoffset);
-	playertilex = (x_offset + (32*5));
-	playertiley = (y_offset + (32*4));
+	playertilex = (x_offset + (spritexoffset));
+	playertiley = (y_offset + (spriteyoffset));
 	gfx_SetDrawBuffer();
 	gfx_Tilemap(&tilemap, x_offset, y_offset);
 	gfx_SetColor(0x00);
@@ -394,7 +394,6 @@ void drawboot(void) {
 		}
 	}
 }
-
 void drawplayerattack(void){
 	
 	gfx_UninitedSprite(weaponrotated, 32, 32);
