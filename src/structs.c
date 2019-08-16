@@ -16,7 +16,7 @@
 #include "menuandeditfunctions.h"
 
 //ENEMIES
-uint16_t defaultenemy_movelist[NUM_ENEMIES] = {0,0,0,0,0};
+uint16_t defaultenemy_movelist[NUM_ENEMIES] = {0,0,0,0,0,0,0};
 //from test map {1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 
 uint16_t defaultenemy_typelist[NUM_ENEMIES] = {0,1,2,3,4,5,6};
@@ -43,11 +43,6 @@ uint16_t default_potylist[NUM_POTS] = {194,194};
 
 
 //RELICS
-
-
-
-//boss_t boss[];
-//relic_t relic[];
 
 //BOSSES
 uint16_t defaultboss_type[NUM_BOSS] = {1,2,3};

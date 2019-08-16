@@ -17,6 +17,7 @@ typedef struct enemy {
 	int health;
 	int move;
 } enemy_t;
+extern enemy_t enemy[];
 
 
 
@@ -31,6 +32,7 @@ typedef struct pots {
 	uint24_t p_x; 
 	uint24_t p_y; 
 } pots_t;
+extern pots_t pots[];
 
 
 #define MONEYVALUE
@@ -43,6 +45,7 @@ typedef struct money {
 	uint24_t m_x;
 	uint24_t m_y;
 } money_t;
+extern money_t money[];
 
 
 #define NUM_RELICS  5
@@ -58,7 +61,7 @@ typedef struct relic {
 	uint24_t r_x;
 	uint24_t r_y;
 } relic_t;
-//extern relic_t relic[NUM_RELICS];
+extern relic_t relic[];
 
 #define NUM_BOSS  3
 #define BOSS_TYPE
@@ -75,6 +78,20 @@ typedef struct boss {
 	uint24_t b_x;
 	uint24_t b_y;
 } boss_t;
-//extern boss_t boss[NUM_BOSS];
+extern boss_t boss[];
+
+#define P_TYPE
+#define P_ALIVE
+#define P_VECTOR
+#define P_X
+#define P_Y
+typedef struct projectile {
+	int p_type;
+	int p_alive;
+	int p_vector;
+	uint16_t p_x;
+	uint8_t p_y;
+} projectile_t;
+extern projectile_t projectile[];
 
 #endif

@@ -38,6 +38,11 @@ int playerx;
 int playery;
 int playertilex;
 int playertiley;
+int hpbar_length;
+int hpbar_color;
+int greencolor = 0x25;
+int yellowcolor = 0xE7;
+extern int redcolor;
 gfx_sprite_t *weapon;
 gfx_sprite_t *weaponrotated;
 gfx_sprite_t *flippedequip;
@@ -53,8 +58,8 @@ extern int menuyes;
 extern int textcolor;
 extern uint8_t tilemap_map[];
 extern uint8_t tilemap_enemies[];
-extern unsigned int x_offset;
-extern unsigned int y_offset;
+extern unsigned int tmp_pxl_x_offset;
+extern unsigned int tmp_pxl_y_offset;
 extern int mapstartx;
 extern int mapstarty;
 extern int mapshift;
@@ -72,8 +77,6 @@ int minimapposition = 1;
 extern int menuoption;
 
 extern gfx_tilemap_t tilemap;
-pots_t pots[NUM_POTS];
-money_t money[NUM_POTS];
 
 extern uint16_t default_potylist[];
 extern uint16_t default_potxlist[];
@@ -105,11 +108,25 @@ void menuloop(void){
 		if (menuyes == 1) {
 			if (menuoption == 2) {
 				newgame();
+					player_setup[0] = 0;
+					player_setup[1] = 0;
+					player_setup[2] = 0;
+					player_setup[3] = 0;
+					player_setup[4] = 0;
+					player_setup[5] = 0;
+					player_setup[6] = 100;
+					player_setup[7] = 0;
 				maingameloop();
 			}
 		}
 		if (menuyes == 1) {
 			if (menuoption == 3) {
+				newgame();
+				maingameloop();
+			}
+		}
+		if (menuyes == 1) {
+			if (menuoption == 4) {
 				//options();
 				playercreate();
 			}
@@ -122,8 +139,8 @@ void menuloop(void){
 }	
 void maingameloop(void){
 	
-x_offset = mapstartx * 32;
-y_offset = mapstarty * 32;
+tmp_pxl_x_offset = mapstartx * 32;
+tmp_pxl_y_offset = mapstarty * 32;
 	do{
 		
 		(goleft = 0);
@@ -144,7 +161,7 @@ y_offset = mapstarty * 32;
 		drawplayerattack();
 		mapshifter();
 	if (kb_Data[1] & kb_Yequ) {
-		drawsavemenu();
+		//drawinventory;
 	}
 	if (kb_Data[1] & kb_Zoom) {
 		drawstatsmenu();
@@ -190,20 +207,20 @@ void setmapshift(void) {
 	if (player_setup[2] == 4) {(mapshift = 32);}
 }	
 void drawmap(void) {
-	playerx = ((x_offset/x_offset)+spritexoffset);
-	playery = ((y_offset/y_offset)+spriteyoffset);
-	playertilex = (x_offset + (spritexoffset));
-	playertiley = (y_offset + (spriteyoffset));
+	playerx = ((tmp_pxl_x_offset/tmp_pxl_x_offset)+spritexoffset);
+	playery = ((tmp_pxl_y_offset/tmp_pxl_y_offset)+spriteyoffset);
+	playertilex = (tmp_pxl_x_offset + (spritexoffset));
+	playertiley = (tmp_pxl_y_offset + (spriteyoffset));
 	gfx_SetDrawBuffer();
-	gfx_Tilemap(&tilemap, x_offset, y_offset);
+	gfx_Tilemap(&tilemap, tmp_pxl_x_offset, tmp_pxl_y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
 	
 	
 	//gfx_SetTextXY(48,226);
-	//gfx_PrintUInt(x_offset,4);
+	//gfx_PrintUInt(tmp_pxl_x_offset,4);
 	//gfx_PrintString("----");
-	//gfx_PrintUInt(y_offset,4);
+	//gfx_PrintUInt(tmp_pxl_y_offset,4);
 /*print debug numbers for collision and stuff
 	gfx_PrintStringXY("tile", 8, 224);
 	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley)),2);
@@ -230,28 +247,28 @@ void mapshifter(void) {
 		(playerface = 1);
 		collisionleft();
 		if (goleft == 1) {
-			(x_offset = (x_offset - mapshift));
+			(tmp_pxl_x_offset = (tmp_pxl_x_offset - mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Right) {
 		(playerface = 3);
 		collisionright();
 		if (goright == 1){
-			(x_offset = (x_offset + mapshift));
+			(tmp_pxl_x_offset = (tmp_pxl_x_offset + mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Up) {
 		(playerface = 2);
 			collisionup();
 			if (goup == 1){
-			(y_offset = (y_offset - mapshift));
+			(tmp_pxl_y_offset = (tmp_pxl_y_offset - mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Down) {
 			(playerface = 4);
 			collisiondown();
 			if (godown == 1){
-			(y_offset = (y_offset + mapshift));
+			(tmp_pxl_y_offset = (tmp_pxl_y_offset + mapshift));
 		}
 	}
 }
@@ -422,7 +439,6 @@ void drawplayerattack(void){
 }
 void checkplayerstatus(void){
 	extern int playerdamage;
-	int tempmult = 1;
 	extern int purchased[];
 	//checks if you are standing on a spike
 	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
@@ -431,16 +447,42 @@ void checkplayerstatus(void){
 	}
 	if (player_setup[6] > 100) {player_setup[6] = 100;}
 	
-	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){player_health = health100;}
-	else if ((90 >= player_setup[6]) & (player_setup[6] > 80)){player_health = health90;}
-	else if ((80 >= player_setup[6]) & (player_setup[6] > 70)){player_health = health80;}
-	else if ((70 >= player_setup[6]) & (player_setup[6] > 60)){player_health = health70;}
-	else if ((60 >= player_setup[6]) & (player_setup[6] > 50)){player_health = health60;}
-	else if ((50 >= player_setup[6]) & (player_setup[6] > 40)){player_health = health50;}
-	else if ((40 >= player_setup[6]) & (player_setup[6] > 30)){player_health = health40;}
-	else if ((30 >= player_setup[6]) & (player_setup[6] > 20)){player_health = health30;}
-	else if ((20 >= player_setup[6]) & (player_setup[6] > 10)){player_health = health20;}
-	else if ((10 >= player_setup[6]) & (player_setup[6] > 0)){player_health = health10;}
+	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){
+		hpbar_length = 60;
+		hpbar_color = greencolor;
+	}
+	else if ((90 >= player_setup[6]) & (player_setup[6] > 80)){
+		hpbar_length = 54;
+		hpbar_color = greencolor;
+	}
+	else if ((80 >= player_setup[6]) & (player_setup[6] > 70)){
+		hpbar_length = 48;
+		hpbar_color = greencolor;
+	}
+	else if ((70 >= player_setup[6]) & (player_setup[6] > 60)){
+		hpbar_length = 42;
+		hpbar_color = greencolor;
+	}
+	else if ((60 >= player_setup[6]) & (player_setup[6] > 50)){
+		hpbar_length = 36;
+		hpbar_color = yellowcolor;
+	}
+	else if ((50 >= player_setup[6]) & (player_setup[6] > 40)){
+		hpbar_length = 30;
+		hpbar_color = yellowcolor;
+	}
+	else if ((40 >= player_setup[6]) & (player_setup[6] > 30)){
+		hpbar_length = 24;
+		hpbar_color = yellowcolor;
+	}
+	else if ((30 >= player_setup[6]) & (player_setup[6] > 20)){
+		hpbar_length = 18;
+		hpbar_color = redcolor;
+	}
+	else if ((20 >= player_setup[6]) & (player_setup[6] > 10)){
+		hpbar_length = 12;
+		hpbar_color = redcolor;
+	}
 	if (player_setup[6] <= 0) {youdied();}
 	
 	//determined by weapon
@@ -448,23 +490,20 @@ void checkplayerstatus(void){
 	//helmet and chestplate added together
 	blockchance = ((player_setup[0] + player_setup[1]) * 10);
 	//set by boots
-	walkspeed = ((player_setup[2]+1)*20);
+	//walkspeed = ((player_setup[2]+1)*20);
 	
-	tempmult = 1;
-	for (i=0;i<6;i++){
-		if (purchased[i] == 1) {
-		tempmult = (tempmult + i);
-		}
-	}
-	dmgmultiplier = (tempmult + 1);
+
 	
 }
 void drawbottombar(void){
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
-	gfx_TransparentSprite(player_health,80,224);
+	gfx_SetColor(hpbar_color);
+	gfx_FillRectangle(80,227,hpbar_length,10); 
+	gfx_TransparentSprite(health_empty,80,224);
+	if ((10 >= player_setup[6]) & (player_setup[6] > 0)){gfx_TransparentSprite(health10,80,224);}
 	gfx_SetTextFGColor(textcolor);
-	gfx_PrintStringXY("[SAVE]   HP:",8,228);
+	gfx_PrintStringXY("[POUCH]  HP:",4,228);
 	gfx_PrintStringXY("[STATS]",150,228);
 	gfx_PrintStringXY("[STORE]",208,228);
 	gfx_PrintStringXY("[OPTNS]",266,228);
@@ -515,11 +554,11 @@ void updatepots(void){
 	}
 }
 void renderpots(pots_t *pots){
-gfx_TransparentSprite(pot,(pots->p_x - x_offset), (pots->p_y - y_offset));
+gfx_TransparentSprite(pot,(pots->p_x - tmp_pxl_x_offset), (pots->p_y - tmp_pxl_y_offset));
 
 /*only for testing
 gfx_SetTextFGColor(0xA8);
-gfx_SetTextXY(pots->p_x - x_offset,pots->p_y - y_offset);
+gfx_SetTextXY(pots->p_x - tmp_pxl_x_offset,pots->p_y - tmp_pxl_y_offset);
 gfx_PrintUInt(pots->pottype,1);
 */
 
@@ -546,6 +585,6 @@ void rendermoney(money_t *money){
 	if (money->moneyvalue == 10) {moneySprite = money10;}
 	if (money->moneyvalue == 20) {moneySprite = money20;}
 	if (money->moneyvalue == 100) {moneySprite = money100;}
-	gfx_TransparentSprite(moneySprite, money->m_x - x_offset, money->m_y - y_offset);
+	gfx_TransparentSprite(moneySprite, money->m_x - tmp_pxl_x_offset, money->m_y - tmp_pxl_y_offset);
 	
 }

@@ -38,8 +38,8 @@ int editscale = 6;
 int editscalep = 12;
 int editpx = 140;
 int editpy = 10;
-extern unsigned int x_offset;
-extern unsigned int y_offset;
+extern unsigned int tmp_pxl_x_offset;
+extern unsigned int tmp_pxl_y_offset;
 int mmhotkey = 0;
 
 /*
@@ -72,13 +72,11 @@ extern uint16_t defaultboss_xlist[];
 extern uint16_t defaultboss_ylist[];
 
 gfx_sprite_t *enemySprite;
-enemy_t  enemy[NUM_ENEMIES];
-extern money_t money[];
 
 int ii;
-int redcolor = 0xA8;
-int purchased[5] = {0,0,0,0,0};
-//1=2X, 2=3X, 3=4X, 4=5X, 5=6X
+int redcolor = 0xE8;
+int purchased[22] = {0,0,0,0,0};
+
 
 extern int minimapposition;
 
@@ -94,9 +92,10 @@ void mainmenu(void) {
     gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
 	gfx_SetTextScale(2,2);
 	gfx_SetTextFGColor(textcolor);
-	gfx_PrintStringXY("1. Continue",68,130);
-	gfx_PrintStringXY("2. New Game",68,155);
-	gfx_PrintStringXY("3. Edit Player",68,180);
+	gfx_PrintStringXY("1. Continue",68,120);
+	gfx_PrintStringXY("2. New Game",68,145);
+	gfx_PrintStringXY("3. Free Play",68,170);
+	gfx_PrintStringXY("4. Edit Player",68,195);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("By: Pieman7373   2019",8,228);
 	gfx_SwapDraw();
@@ -115,6 +114,10 @@ void mainmenu(void) {
             menuyes = 1;
             menuoption = 3;
         }
+		if (kb_Data[3] & kb_4) {
+			menuyes = 1;
+			menuoption = 4;
+		}
 } while (!((menuoption) || (kb_Data[6] & kb_Clear)));
  
 }
@@ -134,161 +137,283 @@ void drawsavemenu(void){
 	} while (!(kb_Data[1] & kb_Window));
 }
 void drawstore(void) {
-	int keypress;
-	int price1 = 100;
-	int buy1 = 0;
-	int price2 = 150;
-	int buy2 = 0;
-	int price3 = 200;
-	int buy3 = 0;
-	int price4 = 250;
-	int buy4 = 0;
-	int price5 = 300;
-	int buy5 = 0;
-	int greencolor = 0x27;
+		//0
+		int price_leather_helmet = 10;
+		//1
+		int price_leather_tunic = 20;
+		//2
+		int price_leather_boots = 30;
+		//3
+		int price_iron_helmet = 40;
+		//4
+		int price_chain_shirt = 50;
+		//5
+		int price_chain_boots = 60;
+		//6
+		int price_steel_helmet = 70;
+		//7
+		int price_steel_chestplate = 80;
+		//8
+		int price_steel_boots = 90;
+		//9
+		int price_dragon_helmet = 100;
+		//10
+		int price_dragon_chestplate = 110;
+		//11
+		int price_dragon_boots = 120;
+		//12
+		int price_club = 10;
+		//13
+		int price_iron_sword = 20;
+		//14
+		int price_steel_sword = 30;
+		//15
+		int price_dragon_sword = 40;
+		//16
+		int price_ordinary_bow = 10;
+		//17
+		int price_recurve_bow = 20;
+		//18
+		int price_compound_bow = 30;
+		//19
+		int price_dragon_bow = 40;
+		//20
+		int price_small_potion = 10;
+		//21
+		int price_medium_potion = 50;
+		//22
+		int price_large_potion = 60;
 	
+	
+	int selectedcolor = (0xE3);
+	int graycolor = (0xAC);
+	int cursorposition = 1;
+	int storepage = 1;
+	int storepane = 1;
+	int windowpress = 0;
+	extern int greencolor;
 	do {
 		gfx_SetDrawBuffer();
 		gfx_SetColor(submenucolor);
 		gfx_FillRectangle(140,125,150,95);
 		gfx_SetColor(accentcolor);
 		gfx_Rectangle(140,125,150,95);
-		gfx_Rectangle(142,127,146,91);	
+		gfx_Rectangle(142,127,146,91);
 		submenubottombar();
-		
-		
-		if (player_setup[7] >= price1) {
-			gfx_SetTextFGColor(greencolor);
-			buy1 = 1;
-			}
-		else {
-			gfx_SetTextFGColor(redcolor);
-			buy1 = 0;
-			}
-		if (purchased[0] == 1) {
-			gfx_SetTextFGColor(textcolor);
-			buy1 = 0;
-		}
-			gfx_PrintStringXY("1. Damage x2   100",150,132);
-			
-		if (player_setup[7] >= price2) {
-			gfx_SetTextFGColor(greencolor);
-			buy2 = 1;
-			}
-		else {
-			gfx_SetTextFGColor(redcolor);
-			buy2 = 0;
-			}
-		if (purchased[1] == 1) {
-			gfx_SetTextFGColor(textcolor);
-			buy2 = 0;
-			}
-			gfx_PrintStringXY("2. Damage x3   150",150,147);
-			
-		if (player_setup[7] >= price3) {
-			gfx_SetTextFGColor(greencolor);
-			buy3 = 1;
-			}
-		else {
-			gfx_SetTextFGColor(redcolor);
-			buy3 = 0;
-			}
-		if (purchased[2] == 1) {
-			gfx_SetTextFGColor(textcolor);
-			buy3 = 0;
-			}
-			gfx_PrintStringXY("3. Damage x4   200",150,162);
-			
-		if (player_setup[7] >= price4) {
-			gfx_SetTextFGColor(greencolor);
-			buy4 = 1;
-			}
-		else {
-			gfx_SetTextFGColor(redcolor);
-			buy4 = 0;
-			}
-		if (purchased[3] == 1) {
-			gfx_SetTextFGColor(textcolor);
-			buy4 = 0;
-			}
-			gfx_PrintStringXY("4. Damage x5   250",150,177);
-			
-		if (player_setup[7] >= price5) {
-			gfx_SetTextFGColor(greencolor);
-			buy5 = 1;
-			}
-		else {
-			gfx_SetTextFGColor(redcolor);
-			buy5 = 0;
-			}
-		if (purchased[4] == 1) {
-			gfx_SetTextFGColor(textcolor);
-			buy5 = 0;
-			}
-			gfx_PrintStringXY("5. Damage x6   300",150,192);
-	
+		windowpress = 0;
 		gfx_SetTextFGColor(textcolor);
 		gfx_PrintStringXY("Money:  ",150,207);
 		gfx_PrintUInt(player_setup[7],sizeof(player_setup[7]));
+			gfx_PrintStringXY("<",160,228);
+			gfx_PrintStringXY(">",288,228);
+		if (storepane == 1){
+			gfx_PrintStringXY("ARMOR",208,228);
+			if (storepage == 1){				
+				if (cursorposition == 1) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_leather_helmet > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[0] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Leather Helmet    ",150,132);
+					gfx_PrintInt(price_leather_helmet,3);
+		
+				if (cursorposition == 2) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_leather_tunic > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[1] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Leather Tunic    ",150,147);
+					gfx_PrintInt(price_leather_tunic,3);
+			
+				if (cursorposition == 3) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor);
+				if (price_leather_boots > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[2] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Leather Boots    ",150,162);
+					gfx_PrintInt(price_leather_boots,3);
+	
+				if (cursorposition == 4) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor);	
+					if (price_iron_helmet > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[3] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Iron Helmet    ",150,177);
+					gfx_PrintInt(price_iron_helmet,3);
+
+				if (cursorposition == 5) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_chain_shirt > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[4] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Chain Shirt    ",150,192);
+					gfx_PrintInt(price_chain_shirt,3);
+			}
+			if (storepage == 2){				
+				if (cursorposition == 1) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_chain_boots > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[5] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Chain Boots    ",150,132);
+					gfx_PrintInt(price_chain_boots,3);
+			
+				if (cursorposition == 2) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_steel_helmet > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[6] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Steel Helmet    ",150,147);
+					gfx_PrintInt(price_steel_helmet,3);
+			
+				if (cursorposition == 3) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_steel_chestplate > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[7] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Steel Chestplate    ",150,162);
+					gfx_PrintInt(price_steel_chestplate,3);
+	
+				if (cursorposition == 4) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_steel_boots > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[8] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Steel Boots    ",150,177);
+					gfx_PrintInt(price_steel_boots,3);
+
+				if (cursorposition == 5) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_dragon_helmet > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[9] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Dragon Helmet    ",150,192);
+			}		gfx_PrintInt(price_dragon_helmet,3);
+			if (storepage == 3){				
+				if (cursorposition == 1) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_dragon_chestplate > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[10] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Dragon Chestplate    ",150,132);
+					gfx_PrintInt(price_dragon_chestplate,3);
+		
+				if (cursorposition == 2) {gfx_SetTextFGColor(selectedcolor); }
+				else { 
+				gfx_SetTextFGColor(textcolor); 
+				if (price_dragon_boots > player_setup[7]){
+					gfx_SetTextFGColor(redcolor);
+				}
+				if (purchased[11] == 1){
+					gfx_SetTextFGColor(greencolor);
+				}
+			}
+					gfx_PrintStringXY("Dragon Boots    ",150,147);
+					gfx_PrintInt(price_dragon_boots,3);
+			
+				if (cursorposition == 3) {gfx_SetTextFGColor(selectedcolor); }
+				else {gfx_SetTextFGColor(graycolor);}
+					gfx_PrintStringXY("--------",150,162);
+	
+				if (cursorposition == 4) {gfx_SetTextFGColor(selectedcolor); }
+				else {gfx_SetTextFGColor(graycolor);}
+					gfx_PrintStringXY("--------",150,177);
+
+				if (cursorposition == 5) {gfx_SetTextFGColor(selectedcolor); }
+				else {gfx_SetTextFGColor(graycolor);}
+					gfx_PrintStringXY("--------",150,192);
+			}
+		}
+	
 		gfx_SwapDraw();
-		do {
-			keypress = 0;
-			
-			if (kb_Data[3] & kb_1){
-				keypress = 1;
-				if (buy1 == 1) {
-					if (purchased[0] == 0){
-						buy1 = 0;
-						purchased[0] = 1;
-						player_setup[7] = (player_setup[7] - price1);
-					}
-				}
+
+	if (kb_Data[1] & kb_Window) {
+		windowpress = 1;
+	}
+	if (kb_Data[7] & kb_Down) {
+		cursorposition++;
+		if (cursorposition == 6) {
+			cursorposition = 1;
+			if (storepane == 1){
+				if (storepage == 1){storepage = 2;}
+				else if (storepage == 2){storepage = 3;}
 			}
-			if (kb_Data[4] & kb_2){
-				keypress = 1;
-				if (buy2 == 1) {
-					if (purchased[1] == 0){
-						buy2 = 0;
-						purchased[1] = 1;
-						player_setup[7] = (player_setup[7] - price2);
-					}
-				}
+		}
+	}
+	if (kb_Data[7] & kb_Up) {
+		cursorposition = (cursorposition - 1);
+		if (cursorposition == 0) {
+			cursorposition = 5;
+			if (storepane == 1){
+				if (storepage == 2){storepage = 1;}
+				else if (storepage == 3){storepage = 1;}
 			}
-			if (kb_Data[5] & kb_3){
-				keypress = 1;
-				if (buy3 == 1) {
-					if (purchased[2] == 0){
-						buy3 = 0;
-						purchased[2] = 1;
-						player_setup[7] = (player_setup[7] - price3);
-					}
-				}
-			}
-			if (kb_Data[3] & kb_4){
-				keypress = 1;
-				if (buy4 == 1) {
-					if (purchased[3] == 0){
-						buy4 = 0;
-						purchased[3] = 1;
-						player_setup[7] = (player_setup[7] - price4);
-					}
-				}
-			}
-			if (kb_Data[4] & kb_5){
-				keypress = 1;
-				if (buy5 == 1) {
-					if (purchased[4] == 0){
-						buy5 = 0;
-						purchased[4] = 1;
-						player_setup[7] = (player_setup[7] - price5);
-					}
-				}
-			}
-			
-			if (kb_Data[1] & kb_Window) {keypress = 1;}
-			
-		}while (keypress != 1);
-	} while (!(kb_Data[1] & kb_Window));
+		}
+	}
+	if (kb_Data[1] & kb_2nd) {
+		if (storepage == 1){
+		}
+	}
+		
+keywait();
+kb_SetMode(MODE_3_CONTINUOUS);
+	} while (!(windowpress));
+	kb_SetMode(MODE_3_CONTINUOUS);
 }
 void drawstatsmenu(void) {
 extern int dmgmultiplier;
@@ -296,8 +421,7 @@ extern int blockchance;
 extern int playerdamage;
 extern int walkspeed;
 
-//add level bar, and restriction on which armor you can put on, based on level
-	
+
 	gfx_SetDrawBuffer();
 	gfx_SetColor(submenucolor);
 	gfx_FillRectangle(140,115,150,105);
@@ -375,7 +499,7 @@ void drawoptions(void) {
 
 			if (cursorposition == 6) {gfx_SetTextFGColor(selectedcolor); }
 			else {gfx_SetTextFGColor(textcolor); }
-				gfx_PrintStringXY("=====",145,207);
+				gfx_PrintStringXY("[2nd] to SAVE",145,207);
 		}
 	
 		gfx_SwapDraw();
@@ -465,6 +589,13 @@ void drawoptions(void) {
 				cursorposition = 6;
 			}
 	}
+	if (kb_Data[1] & kb_2nd) {
+		if (optionspage == 1){
+			if (cursorposition == 6) {
+				//drawsavemenu();
+			}
+		}
+	}
 keywait();
 kb_SetMode(MODE_3_CONTINUOUS);
 	} while (!(windowpress));
@@ -491,12 +622,15 @@ void newgame(void) {
 	for (i=0;i<6;i++){
 		purchased[i] = 0;
 	}
+	drawhealth = 1;
+	showminimap = 1;
+	minimapposition = 1;
 	resetmoney();
 	resetenemies();
 	resetpots();
 	
-	//resetrelics();
-	//resetbosses();
+	resetrelics();
+	resetbosses();
 }
 void playercreate(void) {
 	int keypress;
@@ -511,9 +645,16 @@ void playercreate(void) {
 	gfx_SetTextTransparentColor(transcolor);
 	gfx_SetTextFGColor(textcolor);
     gfx_SetTextBGColor(transcolor);
+	gfx_SetTextScale(2,3);
+	gfx_PrintStringXY("1.",40,20);
+	gfx_PrintStringXY("2.",40,79);
+	gfx_PrintStringXY("3.",40,137);
+	gfx_PrintStringXY("4.",40,197);
 	gfx_SetTextScale(1,1);
 	gfx_PrintStringXY("f(1-5) = change set, # = select item, del = back",8,227);
-	gfx_TransparentSprite(editmenunumbers,40,20);
+	gfx_SetTextFGColor(redcolor);
+	gfx_PrintStringXY("This character is for Free Play only!",4,4);
+		
 	drawequipment();
 	draweditedplayer();
 	gfx_SwapDraw();
@@ -566,7 +707,7 @@ void playercreate(void) {
 }
 void draweditedplayer(void) {
 	gfx_SetColor(0x00);
-	gfx_FillRectangle(editpx,editpy,((editscale * 32)-15),(editscale * 32));
+	gfx_FillRectangle(editpx,editpy + 2,((editscale * 32)-15),(editscale * 32));
 	gfx_ScaledTransparentSprite_NoClip(player_naked_down,editpx,editpy,editscale,editscale);
 	if (player_setup [0] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_helmet_down,editpx,editpy,editscale,editscale);}
 	if (player_setup [1] == 1) {gfx_ScaledTransparentSprite_NoClip(leather_chestplate_down,editpx,editpy,editscale,editscale);}
@@ -641,8 +782,6 @@ void resetmoney(void){
 		money[i].moneydead = 1;
 	}
 }
-//Relics and Bosses for later
-/*
 void resetrelics(void) {
 	for (i = 0; i < NUM_RELICS; i++) {
 		relic[i].relicshow = 0;
@@ -650,7 +789,6 @@ void resetrelics(void) {
 		relic[i].relicnumber = i;
 	}
 }
-
 void resetbosses(void) {
 	for (i = 0; i < NUM_BOSS; i++) {
 		boss[i].boss_type = defaultboss_type[i];
@@ -661,7 +799,6 @@ void resetbosses(void) {
 		boss[i].b_y = defaultboss_ylist[i];
 	}
 }
-*/
 void updateenemies(void) {
 	int randcheck = 20;
 	for (ii = 0; ii < NUM_ENEMIES; ii++) {
@@ -674,31 +811,57 @@ void updateenemies(void) {
 		if ((enemy[ii].type) == 6) {enemySprite = knight_red;}
 		
 		//if within current screen view
-		if (enemy[ii].health <= 0) {enemy[ii].dead = 1;}
+		if (enemy[ii].health <= 0) {
+			if (enemy[ii].dead == 0){
+				enemy[ii].dead = 1;
+			
+				money[ii].m_x = enemy[ii].x;
+				money[ii].m_y = enemy[ii].y;
+				money[ii].moneydead = 0;
+				money[ii].moneyvalue = 1;
+				randcheck = 30;
+				if (randcheck >= randInt(0,300)) {
+					money[ii].moneyvalue = 5;
+				}
+				randcheck = 20;
+				if (randcheck >= randInt(0,300)) {
+					money[ii].moneyvalue = 10;
+				}
+				randcheck = 10;
+				if (randcheck >= randInt(0,300)) {
+					money[ii].moneyvalue = 20;
+				}
+				randcheck = 1;
+				if (randcheck >= randInt(0,300)) {
+					money[ii].moneyvalue = 100;
+				}
+			}
+			
+		}
 		if ((enemy[ii].dead) == 0) {
-			if (x_offset <= (enemy[ii].x)){
-				if ((enemy[ii].x) <= (x_offset + 288)){
-					if (y_offset <= (enemy[ii].y)) {
-						if  ((enemy[ii].y) <= (y_offset + 192)) {
+			if (tmp_pxl_x_offset <= (enemy[ii].x)){
+				if ((enemy[ii].x) <= (tmp_pxl_x_offset + 288)){
+					if (tmp_pxl_y_offset <= (enemy[ii].y)) {
+						if  ((enemy[ii].y) <= (tmp_pxl_y_offset + 192)) {
 							if (enemy[ii].move == 1) {
 								if (randcheck >= randInt(0,100)) {
 									enemymove();
 								}
 							}
-							renderenemy(&enemy[ii]);
 						}
+						renderenemy(&enemy[ii]);
 					}
 				}
-			}		
-		}
+			}
+		}		
 	}
 }
 void renderenemy(enemy_t *enemy) {
-		gfx_TransparentSprite(enemySprite, enemy->x - x_offset, enemy->y - y_offset); 
+		gfx_TransparentSprite(enemySprite, enemy->x - tmp_pxl_x_offset, enemy->y - tmp_pxl_y_offset); 
 		gfx_SetTextFGColor(redcolor);
 		if (drawhealth == 1) {
-		gfx_SetTextXY(enemy->x - x_offset,enemy->y - y_offset);
-		gfx_PrintUInt(enemy->health,2);
+			gfx_SetTextXY(enemy->x - tmp_pxl_x_offset,enemy->y - tmp_pxl_y_offset);
+			gfx_PrintUInt(enemy->health,2);
 		}
 		/*only for debug
 		gfx_PrintString("---");
@@ -706,5 +869,6 @@ void renderenemy(enemy_t *enemy) {
 		gfx_PrintString("-");
 		gfx_PrintUInt((enemy->y)/32,3);
 		*/
+	
 		enemyattack();
 	}

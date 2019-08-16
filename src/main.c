@@ -26,6 +26,7 @@
 #include "maingameloop.h"
 #include "xcollisiondetection.h"
 
+#include "structs.h"
 #include "gfx/dungeon.h"
 //#include "gfx/dungeon2.h"
 #include "gfx/tiles_gfx.h"
@@ -53,9 +54,17 @@
 	#define Y_OFFSET            0
 	#define X_OFFSET            0
 	
-	unsigned int x_offset;
-	unsigned int y_offset;
-	
+	//distance in pixels from top left of tilemap
+	unsigned int tmp_pxl_x_offset;
+	unsigned int tmp_pxl_y_offset;
+
+	relic_t relic[NUM_RELICS];
+	boss_t boss[NUM_BOSS];
+	pots_t pots[NUM_POTS];
+	money_t money[NUM_POTS];
+	enemy_t enemy[NUM_ENEMIES];
+	projectile_t projectile[];
+
 	extern uint8_t *dungeon[];
 	
 	extern uint8_t tilemap_map[];

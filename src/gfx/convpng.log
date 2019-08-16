@@ -5,8 +5,7 @@ using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 transparent color index : 0
 transparent color : 0xFC78
-79:
- editmenunumbers : converted!
+70:
  mainmenulogo : converted!
  player_naked_down : converted!
  player_naked_left : converted!
@@ -56,15 +55,7 @@ transparent color : 0xFC78
  tombstone : converted!
  pot : converted!
  health10 : converted!
- health100 : converted!
- health20 : converted!
- health30 : converted!
- health40 : converted!
- health50 : converted!
- health60 : converted!
- health70 : converted!
- health80 : converted!
- health90 : converted!
+ health_empty : converted!
  attack_blue : converted!
  attack_green : converted!
  attack_red : converted!
@@ -143,15 +134,7 @@ exporting appvar: dungeon.8xv
  tombstone
  pot
  health10
- health100
- health20
- health30
- health40
- health50
- health60
- health70
- health80
- health90
+ health_empty
  money1
  money10
  money100
