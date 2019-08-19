@@ -69,6 +69,7 @@ int *inputx;
 int *inputy;
 extern uint24_t player_setup[];
 int dmgmultiplier = 1;
+int damagenumbers = 0;
 int blockchance;
 int walkwait = 1500;
 int w;
@@ -82,6 +83,8 @@ extern uint16_t default_potylist[];
 extern uint16_t default_potxlist[];
 
 extern int mmhotkey;
+extern int purchased[];
+extern int equipped[];
 
 int showminimap = 1;
 
@@ -122,6 +125,10 @@ void menuloop(void){
 		if (menuyes == 1) {
 			if (menuoption == 3) {
 				newgame();
+					equipped[0] = player_setup[0];
+					equipped[1] = player_setup[1];
+					equipped[2] = player_setup[2];
+					equipped[3] = player_setup[3];
 				maingameloop();
 			}
 		}
@@ -161,7 +168,7 @@ tmp_pxl_y_offset = mapstarty * 32;
 		drawplayerattack();
 		mapshifter();
 	if (kb_Data[1] & kb_Yequ) {
-		//drawinventory;
+		drawpouch();
 	}
 	if (kb_Data[1] & kb_Zoom) {
 		drawstatsmenu();
@@ -439,14 +446,15 @@ void drawplayerattack(void){
 }
 void checkplayerstatus(void){
 	extern int playerdamage;
-	extern int purchased[];
+	int i;
 	//checks if you are standing on a spike
 	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
 		(player_setup[6] = player_setup[6] - 5);
 		gfx_FillScreen(0xE0);
 	}
-	if (player_setup[6] > 100) {player_setup[6] = 100;}
 	
+	//checks player health and adjusts healthbar
+	if (player_setup[6] > 100) {player_setup[6] = 100;}
 	if ((100 >= player_setup[6]) & (player_setup[6] > 90)){
 		hpbar_length = 60;
 		hpbar_color = greencolor;
@@ -485,6 +493,11 @@ void checkplayerstatus(void){
 	}
 	if (player_setup[6] <= 0) {youdied();}
 	
+	//determines player_setup
+	player_setup[0] = equipped[0];
+	player_setup[1] = equipped[1];
+	player_setup[2] = equipped[2];
+	player_setup[3] = equipped[3];
 	//determined by weapon
 	playerdamage = player_setup[3]+1;
 	//helmet and chestplate added together

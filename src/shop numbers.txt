@@ -1,0 +1,58 @@
+PANE 1:
+	PAGE 1:
+		//0
+		int price_leather_helmet = 10;
+		//1
+		int price_leather_tunic = 10;
+		//2
+		int price_leather_boots = 10;
+		//3
+		int price_iron_helmet = 50;
+		//4
+		int price_chain_shirt = 50;
+	PAGE 2:
+		//5
+		int price_chain_boots = 50;
+		//6
+		int price_steel_helmet = 100;
+		//7
+		int price_steel_chestplate = 100;
+		//8
+		int price_steel_boots = 100;
+		//9
+		int price_dragon_helmet = 500;
+	PAGE 3:
+		//10
+		int price_dragon_chestplate = 500;
+		//11
+		int price_dragon_boots = 500;
+		
+		
+PANE 2:
+	PAGE 1:
+		//12
+		int price_club = 10;
+		//13
+		int price_iron_sword = 50;
+		//14
+		int price_steel_sword = 100;
+		//15
+		int price_dragon_sword = 500;
+		//16
+		int price_basic_bow = 10;
+	PAGE 2:
+		//17
+		int price_recurve_bow = 50;
+		//18
+		int price_compound_bow = 100;
+		//19
+		int price_dragon_bow = 500;
+
+PANE 3:
+	PAgE 1:
+		//20
+		int price_small_potion = 10;
+		//21
+		int price_medium_potion = 50;
+		//22
+		int price_large_potion = 150;

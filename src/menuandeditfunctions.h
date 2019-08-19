@@ -16,6 +16,8 @@ void drawsavemenu();
 void drawstatsmenu();
 void drawstore();
 void drawoptions();
+void drawpouch();
+void updateinventory();
 void submenubottombar();
 void resetmoney();
 void resetenemies();

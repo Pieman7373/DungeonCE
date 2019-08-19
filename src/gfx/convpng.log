@@ -5,7 +5,7 @@ using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 transparent color index : 0
 transparent color : 0xFC78
-70:
+77:
  mainmenulogo : converted!
  player_naked_down : converted!
  player_naked_left : converted!
@@ -59,6 +59,13 @@ transparent color : 0xFC78
  attack_blue : converted!
  attack_green : converted!
  attack_red : converted!
+ bow_basic : converted!
+ bow_compound : converted!
+ bow_dragon : converted!
+ bow_recurve : converted!
+ potion_green : converted!
+ potion_purple : converted!
+ potion_red : converted!
  slime_blue : converted!
  slime_green : converted!
  slime_red : converted!
