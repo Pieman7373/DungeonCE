@@ -80,6 +80,7 @@ int purchased[22];
 int inventory[22];
 int equipped[5];
 
+extern int num_p;
 
 extern int minimapposition;
 
@@ -997,7 +998,11 @@ void updateinventory(void){
 	}
 	for (i = 0;i < 22;i++){
 		//draw rectangle
-		gfx_FillRectangle(inv_x,inv_y,18,18);
+		gfx_SetColor(0x00);
+		gfx_FillRectangle(inv_x,inv_y,20,20);
+		gfx_SetColor(accentcolor);
+		gfx_FillRectangle((inv_x + 2),(inv_y + 2),16,16);
+		
 		if (inventory[i] != 0){
 			//resize and draw tile
 		}
@@ -1028,12 +1033,13 @@ void newgame(void) {
 	player_setup[6] = 100;
 	player_setup[7] = 0;
 	playerface = 4;
-	for (i=0;i<6;i++){
+	for (i=0;i<22;i++){
 		purchased[i] = 0;
 	}
 	drawhealth = 1;
 	showminimap = 1;
 	minimapposition = 1;
+	num_p = 0;
 	resetmoney();
 	resetenemies();
 	resetpots();
@@ -1269,7 +1275,7 @@ void renderenemy(enemy_t *enemy) {
 		gfx_TransparentSprite(enemySprite, enemy->x - tmp_pxl_x_offset, enemy->y - tmp_pxl_y_offset); 
 		gfx_SetTextFGColor(redcolor);
 		if (drawhealth == 1) {
-			gfx_SetTextXY(enemy->x - tmp_pxl_x_offset,enemy->y - tmp_pxl_y_offset);
+			gfx_SetTextXY(enemy->x - tmp_pxl_x_offset, enemy->y - tmp_pxl_y_offset);
 			gfx_PrintUInt(enemy->health,2);
 		}
 		/*only for debug

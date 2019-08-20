@@ -37,7 +37,7 @@
 	int menuyes;
 	int menuoption;
 	int textcolor = (0xE6);
-	int accentcolor = (0x40);
+	int accentcolor = (0x80);
 	int menucolor = (0x00);
 	int submenucolor = (0x4A);
 	int transcolor = (0xF8);
@@ -63,7 +63,7 @@
 	pots_t pots[NUM_POTS];
 	money_t money[NUM_POTS];
 	enemy_t enemy[NUM_ENEMIES];
-	projectile_t projectile[];
+	projectile_t projectile[100];
 
 	extern uint8_t *dungeon[];
 	

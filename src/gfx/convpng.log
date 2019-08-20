@@ -5,7 +5,7 @@ using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 transparent color index : 0
 transparent color : 0xFC78
-77:
+78:
  mainmenulogo : converted!
  player_naked_down : converted!
  player_naked_left : converted!
@@ -59,6 +59,7 @@ transparent color : 0xFC78
  attack_blue : converted!
  attack_green : converted!
  attack_red : converted!
+ arrow : converted!
  bow_basic : converted!
  bow_compound : converted!
  bow_dragon : converted!
@@ -138,6 +139,10 @@ exporting appvar: dungeon.8xv
  fist
  club
  iron_sword
+ bow_basic
+ bow_compound
+ bow_dragon
+ bow_recurve
  tombstone
  pot
  health10
@@ -150,6 +155,7 @@ exporting appvar: dungeon.8xv
  attack_blue
  attack_green
  attack_red
+ arrow
  slime_blue
  slime_green
  slime_red

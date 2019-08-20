@@ -92,6 +92,8 @@ int walkanimation = 1;
 int animationcount_min = 1;
 int animationcount_mid = 3;
 int animationcount_max = 6;
+int num_p = 0;
+int max_p = 25;
 
 //Start of the game
 void menuloop(void){
@@ -162,6 +164,7 @@ tmp_pxl_y_offset = mapstarty * 32;
 		updateenemies();
 		updatepots();
 		updatemoney();
+		updateprojectiles();
 		minimap();
 		checkplayerstatus();
 		drawbottombar();
@@ -419,26 +422,87 @@ void drawboot(void) {
 	}
 }
 void drawplayerattack(void){
-	
 	gfx_UninitedSprite(weaponrotated, 32, 32);
+	
+		player_setup[3] = 5;
+	
 	if (kb_Data[1] & kb_2nd){
 		if (player_setup[3] == 0) {weapon = fist;}
 		if (player_setup[3] == 1) {weapon = club;}
 		if (player_setup[3] == 2) {weapon = iron_sword;}
 		if (player_setup[3] == 3) {weapon = steel_sword;}
 		if (player_setup[3] == 4) {weapon = dragon_sword;}
+		if (player_setup[3] == 5) {weapon = bow_basic;}
+		if (player_setup[3] == 6) {weapon =	bow_recurve;}
+		if (player_setup[3] == 7) {weapon = bow_compound;}
+		if (player_setup[3] == 8) {weapon = bow_dragon;}
+		
 		
 		if (playerface == 1) {
-			gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),playerx-32,playery);
+			if (player_setup[3] < 5){
+				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),playerx-32,playery);
+			}
+			else {
+				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),playerx-7,playery);
+				num_p++;
+				if (num_p > max_p){num_p = 1;}
+				projectile[num_p].p_type = 1;
+				projectile[num_p].p_x = playerx;
+				projectile[num_p].p_y = playery;
+				projectile[num_p].p_alive = 1;
+				projectile[num_p].p_vx = -1;
+				projectile[num_p].p_vy = 0;
+				
+			}
 		}
 		if (playerface == 2) {
-			gfx_TransparentSprite(weapon,playerx,playery-32);
+			if (player_setup[3] < 5){
+				gfx_TransparentSprite(weapon,playerx,playery-32);
+			}
+			else {
+				gfx_TransparentSprite(weapon,playerx,playery-7);
+				num_p++;
+				if (num_p > max_p){num_p = 1;}
+				projectile[num_p].p_type = 1;
+				projectile[num_p].p_x = playerx;
+				projectile[num_p].p_y = playery;
+				projectile[num_p].p_alive = 1;
+				projectile[num_p].p_vx = 0;
+				projectile[num_p].p_vy = -1;
+			}
 		}
 		if (playerface == 3) {
-			gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),playerx+32,playery);
+			if (player_setup[3] < 5){
+				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),playerx+32,playery);
+			}
+			else {
+				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),playerx+32,playery);
+				num_p++;
+				if (num_p > max_p){num_p = 1;}
+				projectile[num_p].p_type = 1;
+				projectile[num_p].p_x = playerx;
+				projectile[num_p].p_y = playery;
+				projectile[num_p].p_alive = 1;
+				projectile[num_p].p_vx = 1;
+				projectile[num_p].p_vy = 0;
+			}
+				
 		}
 		if (playerface == 4) {
-			gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
+			if (player_setup[3] < 5){
+				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
+			}
+			else {
+				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
+				num_p++;
+				if (num_p > max_p){num_p = 1;}
+				projectile[num_p].p_type = 1;
+				projectile[num_p].p_x = playerx;
+				projectile[num_p].p_y = playery;
+				projectile[num_p].p_alive = 1;
+				projectile[num_p].p_vx = 0;
+				projectile[num_p].p_vy = 1;
+			}
 		}
 		playerattackhitcheck();
 	}
@@ -601,3 +665,22 @@ void rendermoney(money_t *money){
 	gfx_TransparentSprite(moneySprite, money->m_x - tmp_pxl_x_offset, money->m_y - tmp_pxl_y_offset);
 	
 }
+void updateprojectiles(void){
+	for(i = 0; i < num_p; i++){
+		if ((projectile[i].p_alive) == 1) {
+			projectile[i].p_x = (projectile[i].p_x + projectile[i].p_vx);
+			projectile[i].p_y = (projectile[i].p_y + projectile[i].p_vy);
+			renderprojectiles(&projectile[i]);
+		}
+	}
+}
+void renderprojectiles(projectile_t *projectile){
+	gfx_sprite_t *projectileSprite;
+	
+	if (projectile->p_type == 1) {projectileSprite = arrow;}
+	//gfx_TransparentSprite(projectileSprite, projectile->p_x + tmp_pxl_x_offset, projectile->p_y + tmp_pxl_y_offset);
+	//gfx_TransparentSprite(projectileSprite, projectile->p_x - tmp_pxl_x_offset, projectile->p_y - tmp_pxl_y_offset);
+	gfx_TransparentSprite(projectileSprite, projectile->p_x, projectile->p_y);
+}
+
+

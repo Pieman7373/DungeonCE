@@ -19,5 +19,7 @@ void updatepots();
 void renderpots();
 void updatemoney();
 void rendermoney();
+void updateprojectiles();
+void renderprojectiles();
 
 #endif
