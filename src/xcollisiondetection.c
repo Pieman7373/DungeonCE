@@ -33,21 +33,23 @@ extern gfx_tilemap_t tilemap;
 int replacex;
 int replacey;
 int hit;
+extern int p_hit;
+extern int num_p;
 extern int dmgmultiplier;
 extern int player;
 
-int enemytilemapx;
-int enemytilemapy;
-int pottilemapx;
-int pottilemapy;
-extern int playertilex;
-extern int playertiley;
-extern int playertilemapx;
-extern int playertilemapy;
+int enemy_maptilex;
+int enemy_maptiley;
+int pot_maptilex;
+int pot_maptiley;
+extern int player_mappxlx;
+extern int player_mappxly;
+extern int player_maptilex;
+extern int player_maptiley;
 extern int *inputx;
 extern int *inputy;
-extern unsigned int tmp_pxl_x_offset;
-extern unsigned int tmp_pxl_y_offset;
+extern unsigned int tmap_pxl_x_offset;
+extern unsigned int tmap_pxl_y_offset;
 int enemycoordx;
 int enemycoordy;
 extern int ii;
@@ -58,7 +60,7 @@ enemycoordx = (enemy[ii].x/32);
 enemycoordy = (enemy[ii].y/32);
 	goleft = 1;
 	if (player == 1) {
-		if (((gfx_GetTile(&tilemap,playertilex-32,playertiley)) >= 18)) {
+		if (((gfx_GetTile(&tilemap,player_mappxlx-32,player_mappxly)) >= 18)) {
 			goleft = 0;
 		}
 	}
@@ -73,13 +75,13 @@ enemycoordy = (enemy[ii].y/32);
 	}
 
 	for (i = 0; i < NUM_ENEMIES; i++) {
-		enemytilemapx = (enemy[i].x/32);
-		enemytilemapy = (enemy[i].y/32);
-		if (tmp_pxl_x_offset <= (enemy[i].x)){
-			if ((enemy[i].x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (enemy[i].y)) {
-					if  ((enemy[i].y) <= (tmp_pxl_y_offset + 192)) {
-						if (((*inputx-1) == enemytilemapx) && (*inputy == enemytilemapy)){
+		enemy_maptilex = (enemy[i].x/32);
+		enemy_maptiley = (enemy[i].y/32);
+		if (tmap_pxl_x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (tmap_pxl_y_offset + 192)) {
+						if (((*inputx-1) == enemy_maptilex) && (*inputy == enemy_maptiley)){
 							if (enemy[i].dead == 0) {
 								goleft = 0;
 							}
@@ -90,13 +92,13 @@ enemycoordy = (enemy[ii].y/32);
 		}
 	}
 	for (i = 0; i < NUM_POTS; i++) {
-		pottilemapx = (pots[i].p_x/32);
-		pottilemapy = (pots[i].p_y/32);
-		if (tmp_pxl_x_offset <= (pots[i].p_x)){
-			if ((pots[i].p_x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (pots[i].p_y)) {
-					if  ((pots[i].p_y) <= (tmp_pxl_y_offset + 192)) {
-						if (((*inputx-1) == pottilemapx) && (*inputy == pottilemapy)){
+		pot_maptilex = (pots[i].p_x/32);
+		pot_maptiley = (pots[i].p_y/32);
+		if (tmap_pxl_x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (tmap_pxl_y_offset + 192)) {
+						if (((*inputx-1) == pot_maptilex) && (*inputy == pot_maptiley)){
 							if (pots[i].potdead == 0) {
 								goleft = 0;
 							}
@@ -112,7 +114,7 @@ enemycoordx = (enemy[ii].x/32);
 enemycoordy = (enemy[ii].y/32);
 	goright = 1;
 	if (player == 1) {
-		if (((gfx_GetTile(&tilemap,playertilex+32,playertiley)) >= 18)) {
+		if (((gfx_GetTile(&tilemap,player_mappxlx+32,player_mappxly)) >= 18)) {
 			goright = 0;
 		}
 	}
@@ -122,13 +124,13 @@ enemycoordy = (enemy[ii].y/32);
 		}
 	}
 	for (i = 0; i < NUM_ENEMIES; i++) {
-		enemytilemapx = (enemy[i].x/32);
-		enemytilemapy = (enemy[i].y/32);
-		if (tmp_pxl_x_offset <= (enemy[i].x)){
-			if ((enemy[i].x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (enemy[i].y)) {
-					if  ((enemy[i].y) <= (tmp_pxl_y_offset + 192)) {
-						if (((*inputx+1) == enemytilemapx) && (*inputy == enemytilemapy)){
+		enemy_maptilex = (enemy[i].x/32);
+		enemy_maptiley = (enemy[i].y/32);
+		if (tmap_pxl_x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (tmap_pxl_y_offset + 192)) {
+						if (((*inputx+1) == enemy_maptilex) && (*inputy == enemy_maptiley)){
 							if (enemy[i].dead == 0) {
 								goright = 0;
 							}
@@ -140,13 +142,13 @@ enemycoordy = (enemy[ii].y/32);
 		
 	}
 	for (i = 0; i < NUM_POTS; i++) {
-		pottilemapx = (pots[i].p_x/32);
-		pottilemapy = (pots[i].p_y/32);
-		if (tmp_pxl_x_offset <= (pots[i].p_x)){
-			if ((pots[i].p_x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (pots[i].p_y)) {
-					if  ((pots[i].p_y) <= (tmp_pxl_y_offset + 192)) {
-						if (((*inputx+1) == pottilemapx) && (*inputy == pottilemapy)){
+		pot_maptilex = (pots[i].p_x/32);
+		pot_maptiley = (pots[i].p_y/32);
+		if (tmap_pxl_x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (tmap_pxl_y_offset + 192)) {
+						if (((*inputx+1) == pot_maptilex) && (*inputy == pot_maptiley)){
 							if (pots[i].potdead == 0) {
 								goright = 0;
 							}
@@ -162,7 +164,7 @@ enemycoordx = (enemy[ii].x/32);
 enemycoordy = (enemy[ii].y/32);
 	goup = 1;
 	if (player == 1) {
-		if (((gfx_GetTile(&tilemap,playertilex,playertiley-32)) >= 18)) {
+		if (((gfx_GetTile(&tilemap,player_mappxlx,player_mappxly-32)) >= 18)) {
 			goup = 0;
 		}
 	}
@@ -172,13 +174,13 @@ enemycoordy = (enemy[ii].y/32);
 		}
 	}
 	for (i = 0; i < NUM_ENEMIES; i++) {
-		enemytilemapx = (enemy[i].x/32);
-		enemytilemapy = (enemy[i].y/32);
-		if (tmp_pxl_x_offset <= (enemy[i].x)){
-			if ((enemy[i].x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (enemy[i].y)) {
-					if  ((enemy[i].y) <= (tmp_pxl_y_offset + 192)) {
-						if ((*inputx == enemytilemapx) && ((*inputy-1) == enemytilemapy)){
+		enemy_maptilex = (enemy[i].x/32);
+		enemy_maptiley = (enemy[i].y/32);
+		if (tmap_pxl_x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (tmap_pxl_y_offset + 192)) {
+						if ((*inputx == enemy_maptilex) && ((*inputy-1) == enemy_maptiley)){
 							if (enemy[i].dead == 0) {
 								goup = 0;
 							}
@@ -189,13 +191,13 @@ enemycoordy = (enemy[ii].y/32);
 		}
 	}
 	for (i = 0; i < NUM_POTS; i++) {
-		pottilemapx = (pots[i].p_x/32);
-		pottilemapy = (pots[i].p_y/32);
-		if (tmp_pxl_x_offset <= (pots[i].p_x)){
-			if ((pots[i].p_x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (pots[i].p_y)) {
-					if  ((pots[i].p_y) <= (tmp_pxl_y_offset + 192)) {
-						if ((*inputx == pottilemapx) && ((*inputy-1) == pottilemapy)){
+		pot_maptilex = (pots[i].p_x/32);
+		pot_maptiley = (pots[i].p_y/32);
+		if (tmap_pxl_x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (tmap_pxl_y_offset + 192)) {
+						if ((*inputx == pot_maptilex) && ((*inputy-1) == pot_maptiley)){
 							if (pots[i].potdead == 0) {
 								goup = 0;
 							}
@@ -212,7 +214,7 @@ enemycoordy = (enemy[ii].y/32);
 	godown = 1;
 	
 	if (player == 1) {
-		if (((gfx_GetTile(&tilemap,playertilex,playertiley+32)) >= 18)) {
+		if (((gfx_GetTile(&tilemap,player_mappxlx,player_mappxly+32)) >= 18)) {
 			godown = 0;
 		}
 	}	
@@ -223,13 +225,13 @@ enemycoordy = (enemy[ii].y/32);
 	}
 	
 	for (i = 0; i < NUM_ENEMIES; i++) {
-		enemytilemapx = (enemy[i].x/32);
-		enemytilemapy = (enemy[i].y/32);
-		if (tmp_pxl_x_offset <= (enemy[i].x)){
-			if ((enemy[i].x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (enemy[i].y)) {
-					if  ((enemy[i].y) <= (tmp_pxl_y_offset + 192)) {
-						if ((*inputx == enemytilemapx) && ((*inputy+1) == enemytilemapy)){
+		enemy_maptilex = (enemy[i].x/32);
+		enemy_maptiley = (enemy[i].y/32);
+		if (tmap_pxl_x_offset <= (enemy[i].x)){
+			if ((enemy[i].x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (enemy[i].y)) {
+					if  ((enemy[i].y) <= (tmap_pxl_y_offset + 192)) {
+						if ((*inputx == enemy_maptilex) && ((*inputy+1) == enemy_maptiley)){
 							if (enemy[i].dead == 0) {
 								godown = 0;
 							}
@@ -240,13 +242,13 @@ enemycoordy = (enemy[ii].y/32);
 		}
 	}
 	for (i = 0; i < NUM_POTS; i++) {
-		pottilemapx = (pots[i].p_x/32);
-		pottilemapy = (pots[i].p_y/32);
-		if (tmp_pxl_x_offset <= (pots[i].p_x)){
-			if ((pots[i].p_x) <= (tmp_pxl_x_offset + 288)){
-				if (tmp_pxl_y_offset <= (pots[i].p_y)) {
-					if  ((pots[i].p_y) <= (tmp_pxl_y_offset + 192)) {
-						if ((*inputx == pottilemapx) && ((*inputy+1) == pottilemapy)){
+		pot_maptilex = (pots[i].p_x/32);
+		pot_maptiley = (pots[i].p_y/32);
+		if (tmap_pxl_x_offset <= (pots[i].p_x)){
+			if ((pots[i].p_x) <= (tmap_pxl_x_offset + 288)){
+				if (tmap_pxl_y_offset <= (pots[i].p_y)) {
+					if  ((pots[i].p_y) <= (tmap_pxl_y_offset + 192)) {
+						if ((*inputx == pot_maptilex) && ((*inputy+1) == pot_maptiley)){
 							if (pots[i].potdead == 0) {
 								godown = 0;
 							}
@@ -257,32 +259,55 @@ enemycoordy = (enemy[ii].y/32);
 		}	
 	}
 }
+void projectilemapcollision(void) {
+	if (projectile[i].p_type == 1) { 
+		if (gfx_GetTile(&tilemap,projectile[i].p_x,projectile[i].p_y) >= 18){
+			p_hit = 1;
+		}
+		else if (projectile[i].p_direction == 3) {
+			if (gfx_GetTile(&tilemap,(projectile[i].p_x + 32),projectile[i].p_y) >= 18){
+				p_hit = 1;
+				projectile[i].p_x = (projectile[i].p_x + 32);
+			}
+		}
+		else if (projectile[i].p_direction == 4) {
+			if (gfx_GetTile(&tilemap,projectile[i].p_x,(projectile[i].p_y + 32)) >= 18){
+				p_hit = 1;
+				projectile[i].p_y = (projectile[i].p_y + 32);
+			}
+		}
+			
+	}
+}
+void projectileentitycollision(void) {
+
+}
 void playerattackhitcheck(void) {
-int moneytilemapx;
-int moneytilemapy;
+int money_maptilex;
+int money_maptiley;
 int randcheck = 1;
 ///*money
 	for (i = 0; i < NUM_POTS; i++) {
-		moneytilemapx = (money[i].m_x/32);
-		moneytilemapy = (money[i].m_y/32);
+		money_maptilex = (money[i].m_x/32);
+		money_maptiley = (money[i].m_y/32);
 		hit = 0;
 		if (playerface == 1){
-			if (((playertilemapx-1) == moneytilemapx) & (playertilemapy == moneytilemapy)){
+			if (((player_maptilex-1) == money_maptilex) & (player_maptiley == money_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 2){
-			if ((playertilemapx == moneytilemapx) & ((playertilemapy-1) == moneytilemapy)){
+			if ((player_maptilex == money_maptilex) & ((player_maptiley-1) == money_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 3){
-			if (((playertilemapx+1) == moneytilemapx) & (playertilemapy == moneytilemapy)){
+			if (((player_maptilex+1) == money_maptilex) & (player_maptiley == money_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 4){
-			if ((playertilemapx == moneytilemapx) & ((playertilemapy+1) == moneytilemapy)){
+			if ((player_maptilex == money_maptilex) & ((player_maptiley+1) == money_maptiley)){
 				hit = 1;
 			}
 		}
@@ -298,26 +323,26 @@ int randcheck = 1;
 //*/
 //enemies
 	for (i = 0; i < NUM_ENEMIES; i++) {
-		enemytilemapx = (enemy[i].x/32);
-		enemytilemapy = (enemy[i].y/32);
+		enemy_maptilex = (enemy[i].x/32);
+		enemy_maptiley = (enemy[i].y/32);
 		hit = 0;
 		if (playerface == 1){
-			if (((playertilemapx-1) == enemytilemapx) & (playertilemapy == enemytilemapy)){
+			if (((player_maptilex-1) == enemy_maptilex) & (player_maptiley == enemy_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 2){
-			if ((playertilemapx == enemytilemapx) & ((playertilemapy-1) == enemytilemapy)){
+			if ((player_maptilex == enemy_maptilex) & ((player_maptiley-1) == enemy_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 3){
-			if (((playertilemapx+1) == enemytilemapx) & (playertilemapy == enemytilemapy)){
+			if (((player_maptilex+1) == enemy_maptilex) & (player_maptiley == enemy_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 4){
-			if ((playertilemapx == enemytilemapx) & ((playertilemapy+1) == enemytilemapy)){
+			if ((player_maptilex == enemy_maptilex) & ((player_maptiley+1) == enemy_maptiley)){
 				hit = 1;
 			}
 		}
@@ -327,26 +352,26 @@ int randcheck = 1;
 	}	
 //pots
 	for (i = 0; i < NUM_POTS; i++) {
-		pottilemapx = (pots[i].p_x/32);
-		pottilemapy = (pots[i].p_y/32);
+		pot_maptilex = (pots[i].p_x/32);
+		pot_maptiley = (pots[i].p_y/32);
 		hit = 0;
 		if (playerface == 1){
-			if (((playertilemapx-1) == pottilemapx) & (playertilemapy == pottilemapy)){
+			if (((player_maptilex-1) == pot_maptilex) & (player_maptiley == pot_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 2){
-			if ((playertilemapx == pottilemapx) & ((playertilemapy-1) == pottilemapy)){
+			if ((player_maptilex == pot_maptilex) & ((player_maptiley-1) == pot_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 3){
-			if (((playertilemapx+1) == pottilemapx) & (playertilemapy == pottilemapy)){
+			if (((player_maptilex+1) == pot_maptilex) & (player_maptiley == pot_maptiley)){
 				hit = 1;
 			}
 		}
 		if (playerface == 4){
-			if ((playertilemapx == pottilemapx) & ((playertilemapy+1) == pottilemapy)){
+			if ((player_maptilex == pot_maptilex) & ((player_maptiley+1) == pot_maptiley)){
 				hit = 1;
 			}
 		}

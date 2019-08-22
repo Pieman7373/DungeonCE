@@ -55,8 +55,8 @@
 	#define X_OFFSET            0
 	
 	//distance in pixels from top left of tilemap
-	unsigned int tmp_pxl_x_offset;
-	unsigned int tmp_pxl_y_offset;
+	unsigned int tmap_pxl_x_offset;
+	unsigned int tmap_pxl_y_offset;
 
 	relic_t relic[NUM_RELICS];
 	boss_t boss[NUM_BOSS];

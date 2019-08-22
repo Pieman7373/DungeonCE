@@ -82,6 +82,8 @@ extern boss_t boss[];
 
 #define P_TYPE
 #define P_ALIVE
+#define P_DIRECTION
+#define P_SPEED
 #define P_VX
 #define P_VY
 #define P_X
@@ -89,10 +91,12 @@ extern boss_t boss[];
 typedef struct projectile {
 	int p_type;
 	int p_alive;
+	int p_direction;
+	int p_speed;
 	int p_vx;
 	int p_vy;
-	uint16_t p_x;
-	uint8_t p_y;
+	int p_x;
+	int p_y;
 } projectile_t;
 extern projectile_t projectile[];
 

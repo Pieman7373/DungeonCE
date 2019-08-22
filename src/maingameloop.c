@@ -34,10 +34,10 @@ int player;
 
 //1=left,2=up,3=right,4=down
 int playerface;
-int playerx;
-int playery;
-int playertilex;
-int playertiley;
+int player_screenpxlx;
+int player_screenpxly;
+int player_mappxlx;
+int player_mappxly;
 int hpbar_length;
 int hpbar_color;
 int greencolor = 0x25;
@@ -57,14 +57,13 @@ gfx_sprite_t *boots;
 extern int menuyes;
 extern int textcolor;
 extern uint8_t tilemap_map[];
-extern uint8_t tilemap_enemies[];
-extern unsigned int tmp_pxl_x_offset;
-extern unsigned int tmp_pxl_y_offset;
+extern unsigned int tmap_pxl_x_offset;
+extern unsigned int tmap_pxl_y_offset;
 extern int mapstartx;
 extern int mapstarty;
 extern int mapshift;
-int playertilemapx;
-int playertilemapy;
+int player_maptilex;
+int player_maptiley;
 int *inputx;
 int *inputy;
 extern uint24_t player_setup[];
@@ -92,6 +91,7 @@ int walkanimation = 1;
 int animationcount_min = 1;
 int animationcount_mid = 3;
 int animationcount_max = 6;
+int p_hit;
 int num_p = 0;
 int max_p = 25;
 
@@ -148,8 +148,8 @@ void menuloop(void){
 }	
 void maingameloop(void){
 	
-tmp_pxl_x_offset = mapstartx * 32;
-tmp_pxl_y_offset = mapstarty * 32;
+tmap_pxl_x_offset = mapstartx * 32;
+tmap_pxl_y_offset = mapstarty * 32;
 	do{
 		
 		(goleft = 0);
@@ -158,9 +158,12 @@ tmp_pxl_y_offset = mapstarty * 32;
 		(godown = 0);
 		
 		setmapshift();
-	
+		
+		gfx_SetDrawBuffer();
+		
 		drawmap();
 		drawcharacter();
+		drawplayerattack();
 		updateenemies();
 		updatepots();
 		updatemoney();
@@ -168,7 +171,9 @@ tmp_pxl_y_offset = mapstarty * 32;
 		minimap();
 		checkplayerstatus();
 		drawbottombar();
-		drawplayerattack();
+		
+		gfx_SwapDraw();
+		
 		mapshifter();
 	if (kb_Data[1] & kb_Yequ) {
 		drawpouch();
@@ -210,75 +215,85 @@ tmp_pxl_y_offset = mapstarty * 32;
 	menuloop();
 }
 void setmapshift(void) {
+	mapshift = 32;
+	/*
 	if (player_setup[2] == 0) {(mapshift = 32);}
 	if (player_setup[2] == 1) {(mapshift = 32);}
 	if (player_setup[2] == 2) {(mapshift = 32);}
 	if (player_setup[2] == 3) {(mapshift = 32);}
 	if (player_setup[2] == 4) {(mapshift = 32);}
+	*/
 }	
 void drawmap(void) {
-	playerx = ((tmp_pxl_x_offset/tmp_pxl_x_offset)+spritexoffset);
-	playery = ((tmp_pxl_y_offset/tmp_pxl_y_offset)+spriteyoffset);
-	playertilex = (tmp_pxl_x_offset + (spritexoffset));
-	playertiley = (tmp_pxl_y_offset + (spriteyoffset));
+	player_screenpxlx = ((tmap_pxl_x_offset/tmap_pxl_x_offset)+spritexoffset);
+	player_screenpxly = ((tmap_pxl_y_offset/tmap_pxl_y_offset)+spriteyoffset);
+	player_mappxlx = (tmap_pxl_x_offset + (spritexoffset));
+	player_mappxly = (tmap_pxl_y_offset + (spriteyoffset));
 	gfx_SetDrawBuffer();
-	gfx_Tilemap(&tilemap, tmp_pxl_x_offset, tmp_pxl_y_offset);
+	gfx_Tilemap(&tilemap, tmap_pxl_x_offset, tmap_pxl_y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
+
+	gfx_SetTextBGColor(0x00);
+	gfx_SetTextXY(10,150);
+	gfx_PrintInt(num_p,3);
 	
+//coordinate debug numbers
+	/*
+	gfx_SetTextBGColor(0x00);
+	gfx_SetTextXY(10,10);
+	gfx_PrintString("tmap_px_offset---");
+	gfx_PrintInt(tmap_pxl_x_offset,4);
+	gfx_PrintString(" , ");
+	gfx_PrintInt(tmap_pxl_y_offset,4);
+	*/
 	
-	//gfx_SetTextXY(48,226);
-	//gfx_PrintUInt(tmp_pxl_x_offset,4);
-	//gfx_PrintString("----");
-	//gfx_PrintUInt(tmp_pxl_y_offset,4);
 /*print debug numbers for collision and stuff
 	gfx_PrintStringXY("tile", 8, 224);
-	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley)),2);
+	gfx_PrintUInt((gfx_GetTile(&tilemap,player_mappxlx,player_mappxly)),2);
 	gfx_PrintString("  tile L");
-	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex-32,playertiley)),2);
+	gfx_PrintUInt((gfx_GetTile(&tilemap,player_mappxlx-32,player_mappxly)),2);
 	gfx_PrintString("  tile U");
-	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley-32)),2);
+	gfx_PrintUInt((gfx_GetTile(&tilemap,player_mappxlx,player_mappxly-32)),2);
 	gfx_PrintString("  tile R");
-	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex+32,playertiley)),2);
+	gfx_PrintUInt((gfx_GetTile(&tilemap,player_mappxlx+32,player_mappxly)),2);
 	gfx_PrintString("  tile D");
-	gfx_PrintUInt((gfx_GetTile(&tilemap,playertilex,playertiley+32)),2);
+	gfx_PrintUInt((gfx_GetTile(&tilemap,player_mappxlx,player_mappxly+32)),2);
 */
 }
 void mapshifter(void) {
-	playertilemapx = (playertilex/32);
-	playertilemapy = (playertiley/32);
-	inputx = &playertilemapx;
-	inputy = &playertilemapy;
+	player_maptilex = (player_mappxlx/32);
+	player_maptiley = (player_mappxly/32);
+	inputx = &player_maptilex;
+	inputy = &player_maptiley;
 	player = 1;
-	
-	//for(w=0; w < (walkwait - (walkspeed*10)); w++) {}
 	
 	if (kb_Data[7] & kb_Left) {
 		(playerface = 1);
 		collisionleft();
 		if (goleft == 1) {
-			(tmp_pxl_x_offset = (tmp_pxl_x_offset - mapshift));
+			(tmap_pxl_x_offset = (tmap_pxl_x_offset - mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Right) {
 		(playerface = 3);
 		collisionright();
 		if (goright == 1){
-			(tmp_pxl_x_offset = (tmp_pxl_x_offset + mapshift));
+			(tmap_pxl_x_offset = (tmap_pxl_x_offset + mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Up) {
 		(playerface = 2);
 			collisionup();
 			if (goup == 1){
-			(tmp_pxl_y_offset = (tmp_pxl_y_offset - mapshift));
+			(tmap_pxl_y_offset = (tmap_pxl_y_offset - mapshift));
 		}
 	}
 	if (kb_Data[7] & kb_Down) {
 			(playerface = 4);
 			collisiondown();
 			if (godown == 1){
-			(tmp_pxl_y_offset = (tmp_pxl_y_offset + mapshift));
+			(tmap_pxl_y_offset = (tmap_pxl_y_offset + mapshift));
 		}
 	}
 }
@@ -308,10 +323,29 @@ gfx_UninitedSprite(playerwalk, 32,32);
 			animation = playerwalk;
 		}
 	}
-gfx_TransparentSprite(animation,playerx,playery);
+gfx_TransparentSprite(animation,player_screenpxlx,player_screenpxly);
 drawhelmet();
 drawchestplate();
 drawboot();
+	
+	/*
+	gfx_SetTextXY(10,30);
+	gfx_PrintString("player_screenpxl-");
+	gfx_PrintInt(player_screenpxlx,4);
+	gfx_PrintString(" , ");
+	gfx_PrintInt(player_screenpxly,4);
+	gfx_SetTextXY(10,50);
+	gfx_PrintString("player_mappxl-----");
+	gfx_PrintInt(player_mappxlx,4);
+	gfx_PrintString(" , ");
+	gfx_PrintInt(player_mappxly,4);
+	gfx_SetTextXY(10,70);
+	gfx_PrintString("player_maptile----");
+	gfx_PrintInt(player_maptilex,4);
+	gfx_PrintString(" , ");
+	gfx_PrintInt(player_maptiley,4);
+	*/
+	
 }
 void drawhelmet(void) {
 	gfx_UninitedSprite(flippedequip, 32,32);
@@ -340,7 +374,7 @@ void drawhelmet(void) {
 	else if (playerface == 4) {helmet = dragon_helmet_down;}
 	}
 	if (player_setup[0] != 0) {
-	gfx_TransparentSprite(helmet,playerx,playery);
+	gfx_TransparentSprite(helmet,player_screenpxlx,player_screenpxly);
 	}
 }
 void drawchestplate(void) {
@@ -370,7 +404,7 @@ void drawchestplate(void) {
 		else if (playerface == 4) {chestplate = dragon_chestplate_down;}
 	}
 	if (player_setup[1] != 0){
-		gfx_TransparentSprite(chestplate,playerx,playery);
+		gfx_TransparentSprite(chestplate,player_screenpxlx,player_screenpxly);
 	}
 }
 void drawboot(void) {
@@ -406,7 +440,7 @@ void drawboot(void) {
 		//Only draw the sprite "boots" if it was set.
 		//The only case it gets set is when player_setup[2] is not zero
 		if (walkanimation <= animationcount_mid) {
-			gfx_TransparentSprite(boots,playerx,playery + 27);
+			gfx_TransparentSprite(boots,player_screenpxlx,player_screenpxly + 27);
 		}
 		else if (walkanimation > animationcount_mid) {
 			if ((playerface == 2) || (playerface == 4)) {
@@ -416,14 +450,15 @@ void drawboot(void) {
 				bootanimation = boots;
 			}
 			if (player_setup[2] != 0){
-				gfx_TransparentSprite(bootanimation,playerx,playery + 27);
+				gfx_TransparentSprite(bootanimation,player_screenpxlx,player_screenpxly + 27);
 			}
 		}
 	}
 }
 void drawplayerattack(void){
 	gfx_UninitedSprite(weaponrotated, 32, 32);
-	
+	int p;
+	p = 1;
 		player_setup[3] = 5;
 	
 	if (kb_Data[1] & kb_2nd){
@@ -440,79 +475,95 @@ void drawplayerattack(void){
 		
 		if (playerface == 1) {
 			if (player_setup[3] < 5){
-				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),playerx-32,playery);
-			}
-			else {
-				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),playerx-7,playery);
-				num_p++;
-				if (num_p > max_p){num_p = 1;}
-				projectile[num_p].p_type = 1;
-				projectile[num_p].p_x = playerx;
-				projectile[num_p].p_y = playery;
-				projectile[num_p].p_alive = 1;
-				projectile[num_p].p_vx = -1;
-				projectile[num_p].p_vy = 0;
-				
+				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),player_screenpxlx-32,player_screenpxly);
 			}
 		}
 		if (playerface == 2) {
 			if (player_setup[3] < 5){
-				gfx_TransparentSprite(weapon,playerx,playery-32);
+				gfx_TransparentSprite(weapon,player_screenpxlx,player_screenpxly-32);
 			}
-			else {
-				gfx_TransparentSprite(weapon,playerx,playery-7);
-				num_p++;
-				if (num_p > max_p){num_p = 1;}
-				projectile[num_p].p_type = 1;
-				projectile[num_p].p_x = playerx;
-				projectile[num_p].p_y = playery;
-				projectile[num_p].p_alive = 1;
-				projectile[num_p].p_vx = 0;
-				projectile[num_p].p_vy = -1;
-			}
+
 		}
 		if (playerface == 3) {
 			if (player_setup[3] < 5){
-				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),playerx+32,playery);
-			}
-			else {
-				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),playerx+32,playery);
-				num_p++;
-				if (num_p > max_p){num_p = 1;}
-				projectile[num_p].p_type = 1;
-				projectile[num_p].p_x = playerx;
-				projectile[num_p].p_y = playery;
-				projectile[num_p].p_alive = 1;
-				projectile[num_p].p_vx = 1;
-				projectile[num_p].p_vy = 0;
+				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),player_screenpxlx+32,player_screenpxly);
 			}
 				
 		}
 		if (playerface == 4) {
 			if (player_setup[3] < 5){
-				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
+				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),player_screenpxlx,player_screenpxly+32);
 			}
-			else {
-				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),playerx,playery+32);
+		}
+		
+		if (player_setup[3] >= 5){
+			if (num_p < max_p){
 				num_p++;
-				if (num_p > max_p){num_p = 1;}
-				projectile[num_p].p_type = 1;
-				projectile[num_p].p_x = playerx;
-				projectile[num_p].p_y = playery;
-				projectile[num_p].p_alive = 1;
+			}
+				if (player_setup[3] <= 8){
+					projectile[num_p].p_type = 1;
+				}
+			projectile[num_p].p_x = player_mappxlx;	
+			projectile[num_p].p_y = player_mappxly;
+			projectile[num_p].p_alive = 1;
+			projectile[num_p].p_direction = playerface;
+			projectile[num_p].p_speed = 5;
+			
+			
+			if (playerface == 1) {
+				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),player_screenpxlx-32,player_screenpxly);
+				if (projectile[num_p].p_type == 1){
+					projectile[num_p].p_y = (projectile[num_p].p_y + 13);
+				}
+				projectile[num_p].p_vx = -1;
+				projectile[num_p].p_vy = 0;
+			}
+			if (playerface == 2) {
+				gfx_TransparentSprite(weapon,player_screenpxlx,player_screenpxly-7);
+				if (projectile[num_p].p_type == 1){
+					projectile[num_p].p_x = (projectile[num_p].p_x + 13);
+				}
+				projectile[num_p].p_vx = 0;
+				projectile[num_p].p_vy = -1;
+			}
+			if (playerface == 3) {
+				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),player_screenpxlx+32,player_screenpxly);
+				if (projectile[num_p].p_type == 1){
+					projectile[num_p].p_y = (projectile[num_p].p_y + 13);
+				}
+				projectile[num_p].p_vx = 1;
+				projectile[num_p].p_vy = 0;
+			}
+			if (playerface == 4) {
+				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),player_screenpxlx,player_screenpxly+32);
+				if (projectile[num_p].p_type == 1){
+					projectile[num_p].p_x = (projectile[num_p].p_x + 13);
+				}
 				projectile[num_p].p_vx = 0;
 				projectile[num_p].p_vy = 1;
 			}
+			
+			/*
+			gfx_SetTextBGColor(0x00);
+			gfx_SetTextXY(10,90);
+			gfx_PrintString("arrow coords-----");
+			gfx_PrintInt(projectile[num_p].p_x,4);
+			gfx_PrintString(" , ");
+			gfx_PrintInt(projectile[num_p].p_y,4);
+			*/
+			
 		}
+		
+		
+		
 		playerattackhitcheck();
 	}
-	gfx_SwapDraw();
 }
 void checkplayerstatus(void){
 	extern int playerdamage;
 	int i;
 	//checks if you are standing on a spike
-	if ((gfx_GetTile(&tilemap,playertilex,playertiley)) == 9){
+	if ((gfx_GetTile(&tilemap,player_mappxlx,player_mappxly)) == 9){
 		(player_setup[6] = player_setup[6] - 5);
 		gfx_FillScreen(0xE0);
 	}
@@ -579,6 +630,7 @@ void drawbottombar(void){
 	gfx_FillRectangle(80,227,hpbar_length,10); 
 	gfx_TransparentSprite(health_empty,80,224);
 	if ((10 >= player_setup[6]) & (player_setup[6] > 0)){gfx_TransparentSprite(health10,80,224);}
+	gfx_SetTextScale(1,1);
 	gfx_SetTextFGColor(textcolor);
 	gfx_PrintStringXY("[POUCH]  HP:",4,228);
 	gfx_PrintStringXY("[STATS]",150,228);
@@ -631,11 +683,11 @@ void updatepots(void){
 	}
 }
 void renderpots(pots_t *pots){
-gfx_TransparentSprite(pot,(pots->p_x - tmp_pxl_x_offset), (pots->p_y - tmp_pxl_y_offset));
+gfx_TransparentSprite(pot,(pots->p_x - tmap_pxl_x_offset), (pots->p_y - tmap_pxl_y_offset));
 
 /*only for testing
 gfx_SetTextFGColor(0xA8);
-gfx_SetTextXY(pots->p_x - tmp_pxl_x_offset,pots->p_y - tmp_pxl_y_offset);
+gfx_SetTextXY(pots->p_x - tmap_pxl_x_offset,pots->p_y - tmap_pxl_y_offset);
 gfx_PrintUInt(pots->pottype,1);
 */
 
@@ -662,25 +714,50 @@ void rendermoney(money_t *money){
 	if (money->moneyvalue == 10) {moneySprite = money10;}
 	if (money->moneyvalue == 20) {moneySprite = money20;}
 	if (money->moneyvalue == 100) {moneySprite = money100;}
-	gfx_TransparentSprite(moneySprite, money->m_x - tmp_pxl_x_offset, money->m_y - tmp_pxl_y_offset);
+	gfx_TransparentSprite(moneySprite, money->m_x - tmap_pxl_x_offset, money->m_y - tmap_pxl_y_offset);
 	
 }
 void updateprojectiles(void){
 	for(i = 0; i < num_p; i++){
 		if ((projectile[i].p_alive) == 1) {
-			projectile[i].p_x = (projectile[i].p_x + projectile[i].p_vx);
-			projectile[i].p_y = (projectile[i].p_y + projectile[i].p_vy);
-			renderprojectiles(&projectile[i]);
-		}
+			projectile[i].p_x = (projectile[i].p_x + (projectile[i].p_vx * projectile[i].p_speed));
+			projectile[i].p_y = (projectile[i].p_y + (projectile[i].p_vy * projectile[i].p_speed));
+			p_hit = 0;
+								 
+			//projectilemapcollision();
+			//projectileentitycollision();
+								 
+			//if it hit a wall
+			if (p_hit == 1){
+				gfx_TransparentSprite(arrow_hitwall,projectile[i].p_x,projectile[i].p_y);
+				num_p--;
+				projectile[i].p_alive = 0;
+			}
+			if (p_hit == 0){
+				renderprojectiles(&projectile[i]);
+			}
+		}	
 	}
 }
 void renderprojectiles(projectile_t *projectile){
-	gfx_sprite_t *projectileSprite;
+	gfx_UninitedSprite(p_unrotated,32,5);
+	gfx_UninitedSprite(p_rotated,32,5);
 	
-	if (projectile->p_type == 1) {projectileSprite = arrow;}
-	//gfx_TransparentSprite(projectileSprite, projectile->p_x + tmp_pxl_x_offset, projectile->p_y + tmp_pxl_y_offset);
-	//gfx_TransparentSprite(projectileSprite, projectile->p_x - tmp_pxl_x_offset, projectile->p_y - tmp_pxl_y_offset);
-	gfx_TransparentSprite(projectileSprite, projectile->p_x, projectile->p_y);
+	if (projectile->p_type == 1) {p_unrotated = arrow;}
+	
+	if (projectile->p_direction == 1){
+		gfx_RotateSpriteHalf(p_unrotated,p_rotated);
+	}
+	if (projectile->p_direction == 2){
+		gfx_RotateSpriteCC(p_unrotated,p_rotated);
+	}
+	if (projectile->p_direction == 3){
+		p_rotated = p_unrotated;
+	}
+	if (projectile->p_direction == 4){
+		gfx_RotateSpriteC(p_unrotated,p_rotated);
+	}
+	gfx_TransparentSprite(p_rotated, projectile->p_x - tmap_pxl_x_offset, projectile->p_y - tmap_pxl_y_offset);
 }
 
 

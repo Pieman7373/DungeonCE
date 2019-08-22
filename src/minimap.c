@@ -28,8 +28,8 @@
 #include "minimap.h"
 
 extern gfx_tilemap_t tilemap;
-extern int playertilex;
-extern int playertiley;
+extern int player_mappxlx;
+extern int player_mappxly;
 extern int showminimap;
 extern gfx_tilemap_t minimapTilemap;
 extern int playerface;
@@ -65,8 +65,8 @@ void minimap(void) {
 	// ascii art by Ooyamaneko, according to the internet
 	if (showminimap == 1) {
 
-		xOffset = ((playertilex / TILEMAP_TILE_SIZE) - (MINIMAP_COLS / 2)) * MINIMAP_TILE_SIZE;
-		yOffset = ((playertiley / TILEMAP_TILE_SIZE) - (MINIMAP_ROWS / 2)) * MINIMAP_TILE_SIZE;
+		xOffset = ((player_mappxlx / TILEMAP_TILE_SIZE) - (MINIMAP_COLS / 2)) * MINIMAP_TILE_SIZE;
+		yOffset = ((player_mappxly / TILEMAP_TILE_SIZE) - (MINIMAP_ROWS / 2)) * MINIMAP_TILE_SIZE;
 		
 		if (minimapposition == 1) {
 			minimapx = 3;

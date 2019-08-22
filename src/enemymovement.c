@@ -40,13 +40,13 @@ extern uint24_t player_setup[];
 void enemyattackhitcheck(void) {
 	extern int attackx;
 	extern int attacky;
-	extern int playertilex;
-	extern int playertiley;
+	extern int player_mappxlx;
+	extern int player_mappxly;
 	int enemydamage;
 	extern int blockchance;
 	
 	enemydamage = (((enemy[ii].type)+1)*5);
-	if ((attackx == playertilex)&(attacky == playertiley)){
+	if ((attackx == player_mappxlx)&(attacky == player_mappxly)){
 		if (blockchance <= randInt(0,100)) {
 			gfx_FillScreen(0xE0);
 			player_setup[6] = (player_setup[6] - enemydamage);
@@ -66,8 +66,8 @@ void setattack(void) {
 }
 void enemymove (void) {
 	
-	extern unsigned int tmp_pxl_x_offset;
-	extern unsigned int tmp_pxl_y_offset;
+	extern unsigned int tmap_pxl_x_offset;
+	extern unsigned int tmap_pxl_y_offset;
 	int enemystartx;
 	int enemystarty;
 	extern int goup;
@@ -76,8 +76,8 @@ void enemymove (void) {
 	extern int godown;
 	extern int enemycoordx;
 	extern int enemycoordy;
-	extern int playertilemapx;
-	extern int playertilemapy;
+	extern int player_maptilex;
+	extern int player_maptiley;
 	extern int player;
 
 	enemystartx = (enemy[ii].x/32);
@@ -93,28 +93,28 @@ void enemymove (void) {
 	collisiondown();
 	
 	if (goright == 1) {
-		if (enemycoordx <= playertilemapx) {
+		if (enemycoordx <= player_maptilex) {
 			enemy[ii].x = (enemy[ii].x + 32);
 		}
 	}
 	if (goleft == 1) {
-		if (enemycoordx >= playertilemapx) {
+		if (enemycoordx >= player_maptilex) {
 			enemy[ii].x = (enemy[ii].x - 32);
 		}
 	}
 	if (godown == 1) {
-		if (enemycoordy <= playertilemapy) {
+		if (enemycoordy <= player_maptiley) {
 			enemy[ii].y = (enemy[ii].y + 32);
 		}
 	}
 	if (goup == 1) {
-		if (enemycoordy >= (playertilemapy + 5)) {
+		if (enemycoordy >= (player_maptiley + 5)) {
 			enemy[ii].y = (enemy[ii].y - 32);
 		}
 	}
 	
 	/*
-	gfx_PrintStringXY("-",enemy[ii].x - tmp_pxl_x_offset,(enemy[ii].y+36) - tmp_pxl_y_offset);
+	gfx_PrintStringXY("-",enemy[ii].x - tmap_pxl_x_offset,(enemy[ii].y+36) - tmap_pxl_y_offset);
 	gfx_PrintUInt(goleft,1);
 	gfx_PrintString("-");
 	gfx_PrintUInt(goup,1);
@@ -124,21 +124,21 @@ void enemymove (void) {
 	gfx_PrintUInt(godown,1);
 
 	
-	gfx_SetTextXY(enemy[ii].x - tmp_pxl_x_offset,(enemy[ii].y+36) - tmp_pxl_y_offset);
+	gfx_SetTextXY(enemy[ii].x - tmap_pxl_x_offset,(enemy[ii].y+36) - tmap_pxl_y_offset);
 	gfx_PrintInt(enemycoordx,3);
 	gfx_PrintString("-");
 	gfx_PrintInt(enemycoordy,3);
-	gfx_SetTextXY(enemy[ii].x - tmp_pxl_x_offset,(enemy[ii].y+56) - tmp_pxl_y_offset);
-	gfx_PrintInt(playertilemapx,3);
+	gfx_SetTextXY(enemy[ii].x - tmap_pxl_x_offset,(enemy[ii].y+56) - tmap_pxl_y_offset);
+	gfx_PrintInt(player_maptilex,3);
 	gfx_PrintString("-");
-	gfx_PrintInt(playertilemapy,3);
+	gfx_PrintInt(player_maptiley,3);
 	*/
 }
 void enemyattack(void) {
 	gfx_sprite_t *flippedattack;
 	gfx_sprite_t *enemyAttack;
-	extern int tmp_pxl_y_offset;
-	extern int tmp_pxl_x_offset;
+	extern int tmap_pxl_y_offset;
+	extern int tmap_pxl_x_offset;
 	extern int playerface;
 	
 	if (randcheck == randInt(0,14)) {
@@ -177,7 +177,7 @@ void enemyattack(void) {
 			enemyAttack = flippedattack;
 		}
 	
-	gfx_TransparentSprite(enemyAttack,attackx - tmp_pxl_x_offset,attacky - tmp_pxl_y_offset);
+	gfx_TransparentSprite(enemyAttack,attackx - tmap_pxl_x_offset,attacky - tmap_pxl_y_offset);
 	enemyattackhitcheck();
 	}
 }

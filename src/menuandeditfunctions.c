@@ -38,8 +38,8 @@ int editscale = 6;
 int editscalep = 12;
 int editpx = 140;
 int editpy = 10;
-extern unsigned int tmp_pxl_x_offset;
-extern unsigned int tmp_pxl_y_offset;
+extern unsigned int tmap_pxl_x_offset;
+extern unsigned int tmap_pxl_y_offset;
 int mmhotkey = 0;
 extern int damagenumbers;
 
@@ -1254,10 +1254,10 @@ void updateenemies(void) {
 			
 		}
 		if ((enemy[ii].dead) == 0) {
-			if (tmp_pxl_x_offset <= (enemy[ii].x)){
-				if ((enemy[ii].x) <= (tmp_pxl_x_offset + 288)){
-					if (tmp_pxl_y_offset <= (enemy[ii].y)) {
-						if  ((enemy[ii].y) <= (tmp_pxl_y_offset + 192)) {
+			if (tmap_pxl_x_offset <= (enemy[ii].x)){
+				if ((enemy[ii].x) <= (tmap_pxl_x_offset + 288)){
+					if (tmap_pxl_y_offset <= (enemy[ii].y)) {
+						if  ((enemy[ii].y) <= (tmap_pxl_y_offset + 192)) {
 							if (enemy[ii].move == 1) {
 								if (randcheck >= randInt(0,100)) {
 									enemymove();
@@ -1272,10 +1272,10 @@ void updateenemies(void) {
 	}
 }
 void renderenemy(enemy_t *enemy) {
-		gfx_TransparentSprite(enemySprite, enemy->x - tmp_pxl_x_offset, enemy->y - tmp_pxl_y_offset); 
+		gfx_TransparentSprite(enemySprite, enemy->x - tmap_pxl_x_offset, enemy->y - tmap_pxl_y_offset); 
 		gfx_SetTextFGColor(redcolor);
 		if (drawhealth == 1) {
-			gfx_SetTextXY(enemy->x - tmp_pxl_x_offset, enemy->y - tmp_pxl_y_offset);
+			gfx_SetTextXY(enemy->x - tmap_pxl_x_offset, enemy->y - tmap_pxl_y_offset);
 			gfx_PrintUInt(enemy->health,2);
 		}
 		/*only for debug
