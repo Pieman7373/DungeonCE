@@ -172,6 +172,12 @@ tmap_pxl_y_offset = mapstarty * 32;
 		checkplayerstatus();
 		drawbottombar();
 		
+		
+		gfx_SetTextBGColor(0x00);
+		gfx_SetTextXY(10,150);
+		gfx_PrintInt(num_p,3);
+		
+		
 		gfx_SwapDraw();
 		
 		mapshifter();
@@ -212,7 +218,7 @@ tmap_pxl_y_offset = mapstarty * 32;
 		}
 		
 	} while (!(kb_Data[6] & kb_Clear));
-	menuloop();
+	//menuloop();
 }
 void setmapshift(void) {
 	mapshift = 32;
@@ -233,10 +239,6 @@ void drawmap(void) {
 	gfx_Tilemap(&tilemap, tmap_pxl_x_offset, tmap_pxl_y_offset);
 	gfx_SetColor(0x00);
 	gfx_FillRectangle(0,224,320,16);
-
-	gfx_SetTextBGColor(0x00);
-	gfx_SetTextXY(10,150);
-	gfx_PrintInt(num_p,3);
 	
 //coordinate debug numbers
 	/*
@@ -457,8 +459,7 @@ void drawboot(void) {
 }
 void drawplayerattack(void){
 	gfx_UninitedSprite(weaponrotated, 32, 32);
-	int p;
-	p = 1;
+	int pressed;
 		player_setup[3] = 5;
 	
 	if (kb_Data[1] & kb_2nd){
@@ -496,52 +497,53 @@ void drawplayerattack(void){
 			}
 		}
 		
-		if (player_setup[3] >= 5){
-			if (num_p < max_p){
-				num_p++;
-			}
+
+			if (player_setup[3] >= 5){
+				if (num_p < max_p){
+					num_p++;
+				}
 				if (player_setup[3] <= 8){
 					projectile[num_p].p_type = 1;
 				}
-			projectile[num_p].p_x = player_mappxlx;	
-			projectile[num_p].p_y = player_mappxly;
-			projectile[num_p].p_alive = 1;
-			projectile[num_p].p_direction = playerface;
-			projectile[num_p].p_speed = 5;
+				projectile[num_p].p_x = player_mappxlx;	
+				projectile[num_p].p_y = player_mappxly;
+				projectile[num_p].p_alive = 1;
+				projectile[num_p].p_direction = playerface;
+				projectile[num_p].p_speed = 5;
 			
 			
-			if (playerface == 1) {
-				gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),player_screenpxlx-32,player_screenpxly);
-				if (projectile[num_p].p_type == 1){
-					projectile[num_p].p_y = (projectile[num_p].p_y + 13);
+				if (projectile[num_p].p_direction == 1) {
+					gfx_TransparentSprite(gfx_RotateSpriteCC(weapon,weaponrotated),player_screenpxlx-7,player_screenpxly);
+					if (projectile[num_p].p_type == 1){
+						projectile[num_p].p_y = (projectile[num_p].p_y + 13);
+					}
+					projectile[num_p].p_vx = -1;
+					projectile[num_p].p_vy = 0;
 				}
-				projectile[num_p].p_vx = -1;
-				projectile[num_p].p_vy = 0;
-			}
-			if (playerface == 2) {
-				gfx_TransparentSprite(weapon,player_screenpxlx,player_screenpxly-7);
-				if (projectile[num_p].p_type == 1){
-					projectile[num_p].p_x = (projectile[num_p].p_x + 13);
+				if (projectile[num_p].p_direction == 2) {
+					gfx_TransparentSprite(weapon,player_screenpxlx,player_screenpxly-7);
+					if (projectile[num_p].p_type == 1){
+						projectile[num_p].p_x = (projectile[num_p].p_x + 13);
+					}
+					projectile[num_p].p_vx = 0;
+					projectile[num_p].p_vy = -1;
 				}
-				projectile[num_p].p_vx = 0;
-				projectile[num_p].p_vy = -1;
-			}
-			if (playerface == 3) {
-				gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),player_screenpxlx+32,player_screenpxly);
-				if (projectile[num_p].p_type == 1){
-					projectile[num_p].p_y = (projectile[num_p].p_y + 13);
+				if (projectile[num_p].p_direction == 3) {
+					gfx_TransparentSprite(gfx_RotateSpriteC(weapon,weaponrotated),player_screenpxlx+32,player_screenpxly);
+					if (projectile[num_p].p_type == 1){
+						projectile[num_p].p_y = (projectile[num_p].p_y + 13);
+					}
+					projectile[num_p].p_vx = 1;
+					projectile[num_p].p_vy = 0;
 				}
-				projectile[num_p].p_vx = 1;
-				projectile[num_p].p_vy = 0;
-			}
-			if (playerface == 4) {
-				gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),player_screenpxlx,player_screenpxly+32);
-				if (projectile[num_p].p_type == 1){
-					projectile[num_p].p_x = (projectile[num_p].p_x + 13);
+				if (projectile[num_p].p_direction == 4) {
+					gfx_TransparentSprite(gfx_RotateSpriteHalf(weapon,weaponrotated),player_screenpxlx,player_screenpxly+32);
+					if (projectile[num_p].p_type == 1){
+						projectile[num_p].p_x = (projectile[num_p].p_x + 13);
+					}
+					projectile[num_p].p_vx = 0;
+					projectile[num_p].p_vy = 1;
 				}
-				projectile[num_p].p_vx = 0;
-				projectile[num_p].p_vy = 1;
-			}
 			
 			/*
 			gfx_SetTextBGColor(0x00);
@@ -553,9 +555,6 @@ void drawplayerattack(void){
 			*/
 			
 		}
-		
-		
-		
 		playerattackhitcheck();
 	}
 }
@@ -718,25 +717,51 @@ void rendermoney(money_t *money){
 	
 }
 void updateprojectiles(void){
+/*for fixing dumb counting errors
+int projectile_test_x = 100;
+int projectile_test_y = 100;
+int deadcheck = 0;
+*/
+	
 	for(i = 0; i < num_p; i++){
+		
+		/* for testing dumb counting error fixes
+			gfx_SetTextXY(projectile_test_x,projectile_test_y);
+			gfx_PrintInt(projectile[i].p_alive,1);
+			projectile_test_x = (projectile_test_x + 20);
+			if (projectile_test_x >= 190){
+				projectile_test_x = 100;
+				projectile_test_y = (projectile_test_y + 20);
+			}
+		*/
+	/*	for fixing dumb counting errors
+		if (num_p > 1){
+			if (projectile[i].p_alive == 0){
+				deadcheck++;
+				if (deadcheck = num_p){
+					num_p--;
+				}
+			}
+		}
+	*/	
 		if ((projectile[i].p_alive) == 1) {
 			projectile[i].p_x = (projectile[i].p_x + (projectile[i].p_vx * projectile[i].p_speed));
 			projectile[i].p_y = (projectile[i].p_y + (projectile[i].p_vy * projectile[i].p_speed));
 			p_hit = 0;
 								 
-			//projectilemapcollision();
-			//projectileentitycollision();
+			projectilemapcollision();
+			projectileentitycollision();
 								 
 			//if it hit a wall
 			if (p_hit == 1){
-				gfx_TransparentSprite(arrow_hitwall,projectile[i].p_x,projectile[i].p_y);
+				gfx_TransparentSprite(arrow_hitwall,projectile[i].p_x - tmap_pxl_x_offset,projectile[i].p_y - tmap_pxl_y_offset);
 				num_p--;
 				projectile[i].p_alive = 0;
 			}
 			if (p_hit == 0){
 				renderprojectiles(&projectile[i]);
 			}
-		}	
+		}
 	}
 }
 void renderprojectiles(projectile_t *projectile){

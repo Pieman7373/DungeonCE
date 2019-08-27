@@ -1255,9 +1255,9 @@ void updateenemies(void) {
 		}
 		if ((enemy[ii].dead) == 0) {
 			if (tmap_pxl_x_offset <= (enemy[ii].x)){
-				if ((enemy[ii].x) <= (tmap_pxl_x_offset + 288)){
+				if ((enemy[ii].x) <= (tmap_pxl_x_offset + 320)){
 					if (tmap_pxl_y_offset <= (enemy[ii].y)) {
-						if  ((enemy[ii].y) <= (tmap_pxl_y_offset + 192)) {
+						if  ((enemy[ii].y) <= (tmap_pxl_y_offset + 240)) {
 							if (enemy[ii].move == 1) {
 								if (randcheck >= randInt(0,100)) {
 									enemymove();

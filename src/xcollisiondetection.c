@@ -260,27 +260,52 @@ enemycoordy = (enemy[ii].y/32);
 	}
 }
 void projectilemapcollision(void) {
-	if (projectile[i].p_type == 1) { 
 		if (gfx_GetTile(&tilemap,projectile[i].p_x,projectile[i].p_y) >= 18){
 			p_hit = 1;
 		}
-		else if (projectile[i].p_direction == 3) {
-			if (gfx_GetTile(&tilemap,(projectile[i].p_x + 32),projectile[i].p_y) >= 18){
-				p_hit = 1;
-				projectile[i].p_x = (projectile[i].p_x + 32);
-			}
-		}
-		else if (projectile[i].p_direction == 4) {
-			if (gfx_GetTile(&tilemap,projectile[i].p_x,(projectile[i].p_y + 32)) >= 18){
-				p_hit = 1;
-				projectile[i].p_y = (projectile[i].p_y + 32);
-			}
-		}
-			
-	}
 }
 void projectileentitycollision(void) {
-
+int randcheck;
+//enemies
+	for(ii = 0; ii < NUM_ENEMIES; ii++){
+		if ((projectile[i].p_x / 32) == (enemy[ii].x / 32)) { 
+			if ((projectile[i].p_y / 32) == (enemy[ii].y / 32)) {
+				enemy[ii].health = (enemy[ii].health - projectile[i].p_type);
+				p_hit = 1;
+			}
+		}
+	}
+//pots
+	for(ii = 0; ii < NUM_POTS; ii++){
+		if ((projectile[i].p_x / 32) == (pots[ii].p_x / 32)) {
+			if ((projectile[i].p_y / 32) == (pots[ii].p_y / 32)) {
+				if (pots[ii].potdead == 0){
+				money[ii].m_x = pots[ii].p_x;
+				money[ii].m_y = pots[ii].p_y;
+				money[ii].moneydead = 0;
+				money[ii].moneyvalue = 1;
+				randcheck = 30;
+					if (randcheck >= randInt(0,100)) {
+						money[ii].moneyvalue = 5;
+					}
+				randcheck = 20;
+					if (randcheck >= randInt(0,100)) {
+						money[ii].moneyvalue = 10;
+					}
+				randcheck = 10;
+					if (randcheck >= randInt(0,100)) {
+						money[ii].moneyvalue = 20;
+					}
+				randcheck = 1;
+					if (randcheck >= randInt(0,100)) {
+						money[ii].moneyvalue = 100;
+					}
+			}
+				pots[ii].potdead = 1;
+				p_hit = 1;
+			}
+		}
+	}
 }
 void playerattackhitcheck(void) {
 int money_maptilex;
