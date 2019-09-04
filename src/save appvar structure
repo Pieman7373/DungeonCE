@@ -1,0 +1,30 @@
+This document outlines the structure of the appvar (for reference by me)
+
+tmap_pxl_x_offset
+
+tmap_pxl_y_offset
+
+player_setup
+
+purchased
+
+drawhealth
+
+showminimap
+
+minimapposition
+
+money struct
+
+enemies struct
+
+pots struct
+
+relics struct
+
+boss struct
+
+
+
+tilemap data
+

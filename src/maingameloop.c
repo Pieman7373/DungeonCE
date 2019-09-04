@@ -93,7 +93,7 @@ int animationcount_mid = 3;
 int animationcount_max = 6;
 int p_hit;
 int num_p = 0;
-int max_p = 25;
+int max_p = 100;
 
 //Start of the game
 void menuloop(void){
@@ -148,8 +148,6 @@ void menuloop(void){
 }	
 void maingameloop(void){
 	
-tmap_pxl_x_offset = mapstartx * 32;
-tmap_pxl_y_offset = mapstarty * 32;
 	do{
 		
 		(goleft = 0);
@@ -173,9 +171,9 @@ tmap_pxl_y_offset = mapstarty * 32;
 		drawbottombar();
 		
 		
-		gfx_SetTextBGColor(0x00);
-		gfx_SetTextXY(10,150);
-		gfx_PrintInt(num_p,3);
+		//gfx_SetTextBGColor(0x00);
+		//gfx_SetTextXY(10,150);
+		//gfx_PrintInt(num_p,3);
 		
 		
 		gfx_SwapDraw();
@@ -460,7 +458,7 @@ void drawboot(void) {
 void drawplayerattack(void){
 	gfx_UninitedSprite(weaponrotated, 32, 32);
 	int pressed;
-		player_setup[3] = 5;
+		//player_setup[3] = 5;
 	
 	if (kb_Data[1] & kb_2nd){
 		if (player_setup[3] == 0) {weapon = fist;}
@@ -609,9 +607,10 @@ void checkplayerstatus(void){
 	
 	//determines player_setup
 	player_setup[0] = equipped[0];
-	player_setup[1] = equipped[1];
+	player_setup[1] = equipped[1];				
 	player_setup[2] = equipped[2];
 	player_setup[3] = equipped[3];
+	
 	//determined by weapon
 	playerdamage = player_setup[3]+1;
 	//helmet and chestplate added together

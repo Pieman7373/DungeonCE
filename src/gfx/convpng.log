@@ -5,7 +5,7 @@ using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 transparent color index : 0
 transparent color : 0xFC78
-79:
+88:
  mainmenulogo : converted!
  player_naked_down : converted!
  player_naked_left : converted!
@@ -39,6 +39,7 @@ transparent color : 0xFC78
  steel_helmet_left : converted!
  steel_helmet_up : converted!
  steel_sword : converted!
+ steel_sword_inv : converted!
  dragon_boots_down : converted!
  dragon_boots_left : converted!
  dragon_boots_up : converted!
@@ -49,9 +50,13 @@ transparent color : 0xFC78
  dragon_helmet_left : converted!
  dragon_helmet_up : converted!
  dragon_sword : converted!
+ dragon_sword_inv : converted!
  fist : converted!
  club : converted!
+ club_inv : converted!
  iron_sword : converted!
+ iron_sword_inv : converted!
+ no_item : converted!
  tombstone : converted!
  pot : converted!
  health10 : converted!
@@ -62,9 +67,13 @@ transparent color : 0xFC78
  arrow : converted!
  arrow_hitwall : converted!
  bow_basic : converted!
+ bow_basic_inv : converted!
  bow_compound : converted!
+ bow_compound_inv : converted!
  bow_dragon : converted!
+ bow_dragon_inv : converted!
  bow_recurve : converted!
+ bow_recurve_inv : converted!
  potion_green : converted!
  potion_purple : converted!
  potion_red : converted!
@@ -127,6 +136,7 @@ exporting appvar: dungeon.8xv
  steel_helmet_left
  steel_helmet_up
  steel_sword
+ steel_sword_inv
  dragon_boots_down
  dragon_boots_left
  dragon_boots_up
@@ -137,13 +147,24 @@ exporting appvar: dungeon.8xv
  dragon_helmet_left
  dragon_helmet_up
  dragon_sword
+ dragon_sword_inv
  fist
  club
+ club_inv
  iron_sword
+ iron_sword_inv
+ no_item
  bow_basic
+ bow_basic_inv
  bow_compound
+ bow_compound_inv
  bow_dragon
+ bow_dragon_inv
  bow_recurve
+ bow_recurve_inv
+ potion_green
+ potion_purple
+ potion_red
  tombstone
  pot
  health10

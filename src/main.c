@@ -58,6 +58,7 @@
 	unsigned int tmap_pxl_x_offset;
 	unsigned int tmap_pxl_y_offset;
 
+	inv_t inventory[22];
 	relic_t relic[NUM_RELICS];
 	boss_t boss[NUM_BOSS];
 	pots_t pots[NUM_POTS];
@@ -103,7 +104,9 @@ void main(void) {
 	kb_key_t key;
 
 	if (!dungeon_init()) { abort(); }
-	//if (!dungeon2_init()) { abort(); }
+	if (!dungeon2_init()) { 
+	//create appvar
+	}
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;

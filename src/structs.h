@@ -80,6 +80,16 @@ typedef struct boss {
 } boss_t;
 extern boss_t boss[];
 
+#define PURCHASED
+#define TYPE
+#define ORDER
+typedef struct inventory {
+	int purchased;
+	int type;
+	int order;
+}inv_t;
+extern inv_t inventory[];
+
 #define P_TYPE
 #define P_ALIVE
 #define P_DIRECTION

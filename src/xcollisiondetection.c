@@ -300,9 +300,9 @@ int randcheck;
 					if (randcheck >= randInt(0,100)) {
 						money[ii].moneyvalue = 100;
 					}
-			}
 				pots[ii].potdead = 1;
 				p_hit = 1;
+			}
 			}
 		}
 	}
