@@ -5,7 +5,7 @@ using built-in xlibc palette ...
 warning: might ignore transparent color value for a fixed palette.
 transparent color index : 0
 transparent color : 0xFC78
-88:
+90:
  mainmenulogo : converted!
  player_naked_down : converted!
  player_naked_left : converted!
@@ -94,6 +94,8 @@ transparent color : 0xFC78
  player_arrow_left : converted!
  player_arrow_right : converted!
  player_arrow_up : converted!
+ menuarrowL : converted!
+ menuarrowR : converted!
 
 --- tiles_gfx (C) ---
 using built-in xlibc palette ...
@@ -189,6 +191,8 @@ exporting appvar: dungeon.8xv
  player_arrow_left
  player_arrow_right
  player_arrow_up
+ menuarrowL
+ menuarrowR
 
 converted in 1 s
 

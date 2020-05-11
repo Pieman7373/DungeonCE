@@ -38,6 +38,10 @@ int editscale = 6;
 int editscalep = 12;
 int editpx = 140;
 int editpy = 10;
+int mainmenuleftX;
+int mainmenurightX;
+int mainmenuY;
+int mainmenuposition;
 extern unsigned int tmap_pxl_x_offset;
 extern unsigned int tmap_pxl_y_offset;
 int mmhotkey;
@@ -89,44 +93,107 @@ extern int num_p;
 
 extern int minimapposition;
 
-void keywait(void) { while (kb_AnyKey()); }
+void keywait(void) {
+	while (kb_AnyKey()); 
+	kb_SetMode(MODE_3_CONTINUOUS);
+}
 
 void mainmenu(void) {
+	
+mainmenuY = 113;
+mainmenuleftX = 72;
+mainmenurightX = 242;
+mainmenuposition = 1;
+	
+do{
 	
 	gfx_SetDrawBuffer();
 	gfx_FillScreen(menucolor);
 	gfx_SetColor(accentcolor);
 	gfx_Rectangle(0,0,320,240);
 	gfx_Rectangle(2,2,316,236);
-    gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,20,2,2);
+    gfx_ScaledTransparentSprite_NoClip(mainmenulogo,33,10,2,2);
 	gfx_SetTextScale(2,2);
 	gfx_SetTextFGColor(textcolor);
-	gfx_PrintStringXY("1. Continue",68,120);
-	gfx_PrintStringXY("2. New Game",68,145);
-	gfx_PrintStringXY("3. Free Play",68,170);
-	gfx_PrintStringXY("4. Edit Player",68,195);
+	gfx_PrintStringXY("Load Game",95,110);
+	gfx_PrintStringXY("New Game",102,138);
+	gfx_PrintStringXY("Free Play",97,164);
+	gfx_PrintStringXY("Edit Player",85,194);
 	gfx_SetTextScale(1,1);
-	gfx_PrintStringXY("By: Pieman7373   2019",8,228);
+	gfx_PrintStringXY("By: Pieman7373   2019",6,228);
+	
+	menuyes = 0;
+	menuoption = 0;
+	
+	gfx_TransparentSprite(menuarrowL,mainmenuleftX,mainmenuY);
+	gfx_TransparentSprite(menuarrowR,mainmenurightX,mainmenuY);
+	
+	if (kb_Data[7] & kb_Down){
+		switch(mainmenuposition) {
+			case 1 :
+				mainmenuposition = 2;
+				mainmenuY = 141;
+				mainmenuleftX = 82;
+				mainmenurightX = 230;
+			break;
+			case 2 :
+				mainmenuposition = 3;
+				mainmenuY = 167;
+				mainmenuleftX = 77;
+				mainmenurightX = 240;
+			break;
+			case 3 :
+				mainmenuposition = 4;
+				mainmenuY = 197;
+				mainmenuleftX = 65;
+				mainmenurightX = 250;
+			break;
+			case 4 :
+				mainmenuposition = 1;
+				mainmenuY = 113;
+				mainmenuleftX = 72;
+				mainmenurightX = 242;
+			break;
+		}		
+	}
+	if (kb_Data[7] & kb_Up){
+		switch(mainmenuposition) {
+			case 3 :
+				mainmenuposition = 2;
+				mainmenuY = 141;
+				mainmenuleftX = 82;
+				mainmenurightX = 230;
+			break;
+			case 4 :
+				mainmenuposition = 3;
+				mainmenuY = 167;
+				mainmenuleftX = 77;
+				mainmenurightX = 240;
+			break;
+			case 1 :
+				mainmenuposition = 4;
+				mainmenuY = 197;
+				mainmenuleftX = 65;
+				mainmenurightX = 250;
+			break;
+			case 2 :
+				mainmenuposition = 1;
+				mainmenuY = 113;
+				mainmenuleftX = 72;
+				mainmenurightX = 242;
+			break;
+		}		
+	}
+	if (kb_Data[1] & kb_2nd){
+		menuyes = 1;
+		menuoption = mainmenuposition;
+	}
+	
 	gfx_SwapDraw();
 	
-    do {
-       menuyes = 0;
-        if (kb_Data[3] & kb_1) {
-            menuyes = 1;
-            menuoption = 1;
-        }
-        if (kb_Data[4] & kb_2) {
-            menuyes = 1;
-            menuoption = 2;
-        }
-        if (kb_Data[5] & kb_3) {
-            menuyes = 1;
-            menuoption = 3;
-        }
-		if (kb_Data[3] & kb_4) {
-			menuyes = 1;
-			menuoption = 4;
-		}
+	keywait();
+	
+	
 } while (!((menuoption) || (kb_Data[6] & kb_Clear)));
  
 }

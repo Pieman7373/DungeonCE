@@ -459,6 +459,7 @@ void drawplayerattack(void){
 	gfx_UninitedSprite(weaponrotated, 32, 32);
 	int pressed;
 		//player_setup[3] = 5;
+		//permanently enables bow
 	
 	if (kb_Data[1] & kb_2nd){
 		if (player_setup[3] == 0) {weapon = fist;}
