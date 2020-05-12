@@ -95,7 +95,7 @@ extern int minimapposition;
 
 void keywait(void) {
 	while (kb_AnyKey()); 
-	kb_SetMode(MODE_3_CONTINUOUS);
+	kb_SetMode(MODE_3_CONTINUOUS
 }
 
 void mainmenu(void) {
@@ -1436,6 +1436,7 @@ void resetenemies(void) {
 		enemy[i].y = defaultenemy_ylist[i]*32;
 		enemy[i].move = defaultenemy_movelist[i];
 		enemy[i].health = ((enemy[i].type + 1) * 10);
+		enemy[i].maxhealth = enemy[i].health;
 	}
 }
 void resetmoney(void){
@@ -1519,11 +1520,17 @@ void updateenemies(void) {
 }
 void renderenemy(enemy_t *enemy) {
 		gfx_TransparentSprite(enemySprite, enemy->x - tmap_pxl_x_offset, enemy->y - tmap_pxl_y_offset); 
-		gfx_SetTextFGColor(redcolor);
+		if (drawhealth == 1) {
+			gfx_SetColor(redcolor);
+			gfx_FillRectangle((enemy->x - tmap_pxl_x_offset)-4, (enemy->y - tmap_pxl_y_offset)-4,40,3);
+		}	
+	/*
 		if (drawhealth == 1) {
 			gfx_SetTextXY(enemy->x - tmap_pxl_x_offset, enemy->y - tmap_pxl_y_offset);
 			gfx_PrintUInt(enemy->health,2);
 		}
+	*/
+	
 		/*only for debug
 		gfx_PrintString("---");
 		gfx_PrintUInt((enemy->x)/32,3);

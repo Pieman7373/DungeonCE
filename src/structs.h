@@ -8,6 +8,7 @@
 #define X			 
 #define Y            
 #define HEALTH
+#define MAXHEALTH
 #define MOVE
 typedef struct enemy {
 	uint8_t type;
@@ -15,6 +16,7 @@ typedef struct enemy {
 	uint24_t x; 
 	uint24_t y; 
 	int health;
+	int maxhealth;
 	int move;
 } enemy_t;
 extern enemy_t enemy[];
