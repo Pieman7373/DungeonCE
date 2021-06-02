@@ -137,8 +137,8 @@ void enemymove (void) {
 void enemyattack(void) {
 	gfx_sprite_t *flippedattack;
 	gfx_sprite_t *enemyAttack;
-	extern int tmap_pxl_y_offset;
-	extern int tmap_pxl_x_offset;
+	extern unsigned int tmap_pxl_y_offset;
+	extern unsigned int tmap_pxl_x_offset;
 	extern int playerface;
 	
 	if (randcheck == randInt(0,14)) {
