@@ -8,18 +8,27 @@
 # ----------------------------
 
 NAME        ?= Dungeon
+DEBUGMODE   ?= DEBUG
 ARCHIVED    ?= YES
 COMPRESSED  ?= YES
 ICON        ?= dungeonicon.png
 DESCRIPTION ?= "CC22 Dungeon Crawler"
 
-CFLAGS ?= -Wall -Wextra -Oz
-CXXFLAGS ?= -Wall -Wextra -Oz
+L ?= graphx keypadc fileioc
 
 # ----------------------------
+# Specify source and output locations
+# ----------------------------
 
-ifndef CEDEV
-$(error CEDEV environment path variable is not set)
-endif
+SRCDIR ?= src
+OBJDIR ?= obj
+BINDIR ?= bin
+GFXDIR ?= src/gfx
 
-include $(CEDEV)/meta/makefile.mk
+# ----------------------------
+# Use OS helper functions (Advanced)
+# ----------------------------
+
+USE_FLASH_FUNCTIONS ?= YES
+
+include $(CEDEV)/include/.makefile
