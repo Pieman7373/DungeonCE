@@ -29,7 +29,7 @@ converts:
         - menuarrow*
         - menuskull
         
-  - name: tiles_gfx
+  - name: tileset
     palette: xlibc
     tilesets:
       tile-width: 32
@@ -45,4 +45,10 @@ outputs:
       - xlibc
     converts:
       - dungeon_gfx
+  - type: c
+    include-file: tiles_gfx.h
+    palettes:
+      - xlibc
+    converts:
+      - tileset
       
