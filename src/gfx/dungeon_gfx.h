@@ -1,27 +1,106 @@
-// convpng v7.1
-// this file contains all the graphics sources for easy inclusion in a project
-#ifndef __dungeon_gfx__
-#define __dungeon_gfx__
-#include <stdint.h>
+#ifndef dungeon_gfx_include_file
+#define dungeon_gfx_include_file
 
-#define dungeon_gfx_transparent_color_index 0
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#define mainmenulogo_width 127
-#define mainmenulogo_height 45
-#define mainmenulogo_size 5717
-extern uint8_t mainmenulogo_data[5717];
-#define mainmenulogo ((gfx_sprite_t*)mainmenulogo_data)
-#define knight_green_width 32
-#define knight_green_height 32
-#define knight_green_size 1026
-extern uint8_t knight_green_data[1026];
-#define knight_green ((gfx_sprite_t*)knight_green_data)
-#define knight_red_width 32
-#define knight_red_height 32
-#define knight_red_size 1026
-extern uint8_t knight_red_data[1026];
-#define knight_red ((gfx_sprite_t*)knight_red_data)
-#define sizeof_dungeon_gfx_pal 512
-extern uint16_t dungeon_gfx_pal[256];
+#include "xlibc.h"
+#define dungeon_gfx_palette_offset 0
+#include "mainmenulogo.h"
+#include "player_naked_down.h"
+#include "player_naked_left.h"
+#include "player_naked_right.h"
+#include "player_naked_up.h"
+#include "leather_boots_down.h"
+#include "leather_boots_left.h"
+#include "leather_boots_up.h"
+#include "leather_chestplate_down.h"
+#include "leather_chestplate_left.h"
+#include "leather_chestplate_up.h"
+#include "leather_helmet_down.h"
+#include "leather_helmet_left.h"
+#include "leather_helmet_up.h"
+#include "chain_boots_down.h"
+#include "chain_boots_left.h"
+#include "chain_boots_up.h"
+#include "chain_chestplate_down.h"
+#include "chain_chestplate_left.h"
+#include "chain_chestplate_up.h"
+#include "chain_helmet_down.h"
+#include "chain_helmet_left.h"
+#include "chain_helmet_up.h"
+#include "steel_boots_down.h"
+#include "steel_boots_left.h"
+#include "steel_boots_up.h"
+#include "steel_chestplate_down.h"
+#include "steel_chestplate_left.h"
+#include "steel_chestplate_up.h"
+#include "steel_helmet_down.h"
+#include "steel_helmet_left.h"
+#include "steel_helmet_up.h"
+#include "steel_sword.h"
+#include "steel_sword_inv.h"
+#include "dragon_boots_down.h"
+#include "dragon_boots_left.h"
+#include "dragon_boots_up.h"
+#include "dragon_chestplate_down.h"
+#include "dragon_chestplate_left.h"
+#include "dragon_chestplate_up.h"
+#include "dragon_helmet_down.h"
+#include "dragon_helmet_left.h"
+#include "dragon_helmet_up.h"
+#include "dragon_sword.h"
+#include "dragon_sword_inv.h"
+#include "fist.h"
+#include "club.h"
+#include "club_inv.h"
+#include "iron_sword.h"
+#include "iron_sword_inv.h"
+#include "no_item.h"
+#include "tombstone.h"
+#include "pot.h"
+#include "health10.h"
+#include "health_empty.h"
+#include "attack_blue.h"
+#include "attack_green.h"
+#include "attack_red.h"
+#include "arrow.h"
+#include "arrow_hitwall.h"
+#include "bow_basic.h"
+#include "bow_basic_inv.h"
+#include "bow_compound.h"
+#include "bow_compound_inv.h"
+#include "bow_dragon.h"
+#include "bow_dragon_inv.h"
+#include "bow_recurve.h"
+#include "bow_recurve_inv.h"
+#include "potion_green.h"
+#include "potion_purple.h"
+#include "potion_red.h"
+#include "slime_blue.h"
+#include "slime_green.h"
+#include "slime_red.h"
+#include "bokoblin_dark.h"
+#include "bokoblin_light.h"
+#include "knight_green.h"
+#include "knight_red.h"
+#include "money1.h"
+#include "money10.h"
+#include "money100.h"
+#include "money20.h"
+#include "money5.h"
+#include "relic1.h"
+#include "player_arrow_down.h"
+#include "player_arrow_left.h"
+#include "player_arrow_right.h"
+#include "player_arrow_up.h"
+#include "menuarrowL.h"
+#include "menuarrowR.h"
+#include "menuskull.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

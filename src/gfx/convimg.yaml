@@ -1,0 +1,48 @@
+converts:
+  - name: dungeon_gfx
+    palette: xlibc
+    transparent-color-index: 248
+    images:
+        - mainmenulogo.png
+        - player_naked_*
+        - leather_*
+        - chain_*
+        - steel_*
+        - dragon_*
+        - fist
+        - club*
+        - iron_*
+        - no_item
+        - tombstone
+        - pot
+        - health*
+        - attack_*
+        - arrow*
+        - bow_*
+        - potion_*
+        - slime_*
+        - bokoblin_*
+        - knight_*
+        - money*
+        - relic*
+        - player_arrow_*
+        - menuarrow*
+        - menuskull
+        
+  - name: tiles_gfx
+    palette: xlibc
+    tilesets:
+      tile-width: 32
+      tile-height: 32
+      images:
+        - tileset.png
+
+
+outputs:
+  - type: c
+    include-file: dungeon_gfx.h
+    palettes:
+      - xlibc
+    converts:
+      - dungeon_gfx
+      

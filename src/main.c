@@ -1,6 +1,6 @@
 /*
  *--------------------------------------
- * Program Name:CC22 Dungeon
+ * Program Name:DungeonCE
  * Author:Pieman7373
  * License:
  * Description:
@@ -27,7 +27,7 @@
 #include "xcollisiondetection.h"
 
 #include "structs.h"
-#include "gfx/dungeon.h"
+#include "gfx/dungeon_gfx.h"
 //#include "gfx/dungeon2.h"
 #include "gfx/tiles_gfx.h"
 #include "main.h"

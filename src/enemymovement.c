@@ -1,7 +1,7 @@
 #include "menuandeditfunctions.h"
 #include "xcollisiondetection.h"
 #include "maingameloop.h"
-#include "gfx/dungeon.h"
+
 //#include "gfx/dungeon2.h"
 #include "gfx/dungeon_gfx.h"
 #include "structs.h"
