@@ -943,7 +943,7 @@ void drawoptions(void) {
 				if (minimapposition <= 0) {minimapposition = 4; }
 			}
 			if (cursorposition == 3) {
-				mmhotkey = mmhotkey++;
+				mmhotkey++;
 					if (mmhotkey > 3){
 						mmhotkey = 0;
 					}
@@ -981,7 +981,7 @@ void drawoptions(void) {
 				if (minimapposition > 4) {minimapposition = 1; }
 			}
 			if (cursorposition == 3) {
-				mmhotkey = mmhotkey--;
+				mmhotkey--;
 					if (mmhotkey < 0){
 						mmhotkey = 3;
 					}
