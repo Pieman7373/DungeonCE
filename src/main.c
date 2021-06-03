@@ -73,8 +73,8 @@
 	gfx_tilemap_t tilemap;
 
 	// used to hold a scaled tileset for use when drawing the minimap
-	uint8_t minimapTileset[tileset_tiles_num][(MINIMAP_TILE_SIZE * MINIMAP_TILE_SIZE) + 2];
-	uint8_t *minimapTilesetPointers[tileset_tiles_num];
+	uint8_t minimapTileset[tileset_num_tiles][(MINIMAP_TILE_SIZE * MINIMAP_TILE_SIZE) + 2];
+	uint8_t *minimapTilesetPointers[tileset_num_tiles];
 	gfx_tilemap_t minimapTilemap;
 	
 	
@@ -138,7 +138,7 @@ void main(void) {
 	// generate all the scaled sprites for the minimap tileset cache
 	{
 		uint8_t i;
-		for (i = 0; i < tileset_tiles_num; i++) {
+		for (i = 0; i < tileset_num_tiles; i++) {
 			minimapTilesetPointers[i] = &minimapTileset[i][0];
 			minimapTileset[i][0] = MINIMAP_TILE_SIZE;
 			minimapTileset[i][1] = MINIMAP_TILE_SIZE;
@@ -148,7 +148,7 @@ void main(void) {
 	}
 	
 	gfx_Begin();
-	gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
+	//gfx_SetPalette(tiles_gfx_pal, sizeof_tiles_gfx_pal, 0);
 	gfx_SetTransparentColor(transcolor);
 	kb_SetMode(MODE_3_CONTINUOUS);
 	//gfx_SetTextConfig(1);
