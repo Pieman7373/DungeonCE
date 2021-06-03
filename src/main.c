@@ -103,10 +103,11 @@ void main(void) {
 
 	kb_key_t key;
 
-	if (!dungeon_init()) { abort(); }
-	//if (!dungeon2_init()) { 
-	//create appvar
-	//}
+	/*
+	if (!dungeon_init()) { 
+	create appvar named dungeon for saving
+	}
+	*/
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;
