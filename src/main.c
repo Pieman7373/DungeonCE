@@ -102,12 +102,14 @@
 void main(void) {
 
 	kb_key_t key;
-
-	/*
-	if (!dungeon_init()) { 
-	create appvar named dungeon for saving
+    
+	ti_CloseAll();
+	if (!ti_Open("dungeon","r")) { 
+	//create appvar named dungeon for saving
+		ti_Open("dungeon","w+");
+		//check slot and make sure name matches for verification maybe
 	}
-	*/
+	ti_CloseAll();
 
     /* Initialize the tilemap structure */
 	tilemap.map         = tilemap_map;
